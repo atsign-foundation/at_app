@@ -9,6 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_tools:
+    sdk: flutter
 
 dev_dependencies:
   pedantic: ^1.10.0
