@@ -1,3 +1,3 @@
 library at_app;
 
-export 'at_context.dart';
+export 'src/at_context.dart';
