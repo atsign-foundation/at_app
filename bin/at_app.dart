@@ -17,6 +17,10 @@ import 'package:flutter_tools/src/devtools_launcher.dart';
 import 'package:flutter_tools/src/artifacts.dart';
 import 'package:flutter_tools/src/base/logger.dart';
 
+// * This file is an equivalent of package:flutter_tools/executable.dart
+// * with a replacement generateCommands function, so that it can be
+// * overrident with custom commands.
+
 Future<void> main(List<String> args) async {
   final veryVerbose = args.contains('-vv');
   final verbose =
