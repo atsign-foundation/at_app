@@ -10,3 +10,7 @@ flutter*.log
 
 # CLI Tests
 tests
+
+# Flutter
+.flutter-plugins*
+analysis-options.yaml

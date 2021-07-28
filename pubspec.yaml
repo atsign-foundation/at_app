@@ -11,6 +11,8 @@ dependencies:
     sdk: flutter
   flutter_tools:
     sdk: flutter
+  at_client_mobile: ^2.0.3
+  at_onboarding_flutter: ^2.1.2
 
 dev_dependencies:
   pedantic: ^1.10.0

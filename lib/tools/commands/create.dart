@@ -1,4 +1,5 @@
 // @dart = 2.8
+import 'package:at_app/tools/pub.dart';
 import 'package:flutter_tools/src/commands/create.dart';
 import 'package:flutter_tools/src/runner/flutter_command.dart';
 
@@ -43,25 +44,16 @@ class AtCreateCommand extends CreateCommand {
     var flutterResult = await super.runCommand();
     if (flutterResult != FlutterCommandResult.success()) return flutterResult;
 
-    List<FlutterCommandResult> atResults;
     try {
       var futureResults = [
         _updateEnvFile(),
         _addDependencies(),
         _generateMainFile(),
       ];
-      atResults = await Future.wait(futureResults, eagerError: true);
+      await Future.wait(futureResults, eagerError: true);
     } catch (error) {
       print(error.toString());
       return FlutterCommandResult.fail();
-    }
-
-    if (atResults.any((result) => result == FlutterCommandResult.fail())) {
-      return FlutterCommandResult.fail();
-    }
-
-    if (atResults.any((result) => result == FlutterCommandResult.warning())) {
-      return FlutterCommandResult.warning();
     }
 
     return FlutterCommandResult.success();
@@ -71,8 +63,10 @@ class AtCreateCommand extends CreateCommand {
     return FlutterCommandResult.success();
   }
 
-  Future<FlutterCommandResult> _addDependencies() async {
-    return FlutterCommandResult.success();
+  Future<void> _addDependencies() async {
+    var packages = ['at_client_mobile', 'at_onboarding_flutter', 'at_app'];
+    var futures = packages.map((package) => pubAdd(package)).toList();
+    await Future.wait(futures);
   }
 
   Future<FlutterCommandResult> _generateMainFile() async {
