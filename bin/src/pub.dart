@@ -2,10 +2,7 @@
 
 import 'dart:io';
 import 'package:flutter_tools/src/dart/pub.dart';
-import 'package:flutter_tools/src/globals.dart' as globals;
 import 'package:path/path.dart' as path;
-
-final stdio = globals.stdio;
 
 Future<void> pubAdd(String package,
     {bool isLocal = false, String directory}) async {
@@ -19,12 +16,14 @@ Future<void> pubAdd(String package,
           package,
         ]
       : ['add', package];
-  await pub.batch(
-    args,
-    directory: directory,
-    context: PubContext.getVerifyContext('at_app_init'),
-    retry: false,
-  );
+  try {
+    await pub.batch(
+      args,
+      directory: directory,
+      context: PubContext.getVerifyContext('at_app_init'),
+      retry: false,
+    );
+  } catch (e) {}
 }
 
 Future<void> pubGet(String package, {String directory}) async {
