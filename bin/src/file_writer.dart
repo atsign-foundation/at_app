@@ -2,11 +2,11 @@
 
 import 'dart:io';
 
-class EnvManager {
+class FileManager {
   File file;
 
-  EnvManager(Directory projectDir)
-      : file = File('${projectDir.absolute.path}/.env');
+  FileManager(Directory projectDir, String filename)
+      : file = File('${projectDir.absolute.path}/$filename');
 
   Future<bool> get exists => file.exists();
 
@@ -21,7 +21,7 @@ class EnvManager {
     return true;
   }
 
-  Future<bool> update(Map<String, String> values) async {
+  Future<bool> updateEnvFile(Map<String, String> values) async {
     IOSink sink;
     try {
       await create();
@@ -43,14 +43,27 @@ class EnvManager {
 
       sink = file.openWrite(mode: FileMode.writeOnly);
       sink.writeAll(newFileContents, '\n');
+      await sink.flush();
     } catch (error) {
+      if (sink != null) sink.close();
       return false;
     }
     if (sink != null) sink.close();
     return true;
   }
-}
 
-Future<bool> updateValue(Directory projectDir, String key, String value) async {
-  return true;
+  Future<bool> writeFromSource(File source) async {
+    IOSink sink;
+    try {
+      var sourceLines = await source.readAsLines();
+      sink = file.openWrite(mode: FileMode.writeOnly);
+      sink.writeAll(sourceLines, '\n');
+      await sink.flush();
+    } catch (error) {
+      if (sink != null) sink.close();
+      return false;
+    }
+    if (sink != null) sink.close();
+    return true;
+  }
 }
