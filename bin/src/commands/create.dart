@@ -1,9 +1,7 @@
 // @dart = 2.8
-import 'package:at_app/tools/pub.dart';
+import '../pub.dart';
 import 'package:flutter_tools/src/commands/create.dart';
 import 'package:flutter_tools/src/runner/flutter_command.dart';
-import 'package:flutter_tools/src/cache.dart';
-import 'package:flutter_tools/src/globals.dart' as globals;
 
 const List<String> overrideArgs = [
   'template',

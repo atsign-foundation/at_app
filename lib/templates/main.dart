@@ -5,7 +5,7 @@ import 'package:at_client_mobile/at_client_mobile.dart';
 import 'package:at_onboarding_flutter/at_onboarding_flutter.dart';
 import 'package:at_utils/at_logger.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
-import 'package:at_app/src/at_context.dart';
+import 'package:at_app/at_app.dart';
 
 void main() => runApp(MyApp());
 
