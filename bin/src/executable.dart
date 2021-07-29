@@ -1,4 +1,25 @@
+// Copyright 2014 The Flutter Authors. All rights reserved.
+
+// Redistribution and use in source and binary forms, with or without modification,
+// are permitted provided that the following conditions are met:
+
+//     * Redistributions of source code must retain the above copyright
+//       notice, this list of conditions and the following disclaimer.
+//     * Redistributions in binary form must reproduce the above
+//       copyright notice, this list of conditions and the following
+//       disclaimer in the documentation and/or other materials provided
+//       with the distribution.
+//     * Neither the name of Google Inc. nor the names of its
+//       contributors may be used to endorse or promote products derived
+//       from this software without specific prior written permission.
+
+
+// * This file is from the flutter sdk package: flutter_tools/executable.dart
+// * modification: generateCommands function is now an argument passed to run
+
+
 // @dart = 2.8
+
 import 'package:flutter_tools/src/runner/flutter_command.dart';
 import 'package:flutter_tools/runner.dart' as runner;
 import 'package:flutter_tools/executable.dart' show LoggerFactory;
@@ -15,9 +36,6 @@ import 'package:flutter_tools/src/resident_runner.dart';
 import 'package:flutter_tools/src/devtools_launcher.dart';
 import 'package:flutter_tools/src/artifacts.dart';
 import 'package:flutter_tools/src/base/logger.dart';
-
-// * This file is an equivalent of package:flutter_tools/executable.dart
-// * with a generateCommands as an argument instead of a defined function.
 
 Future<void> run(
   List<String> args,
