@@ -1,9 +1,6 @@
 // @dart = 2.8
 
 import 'dart:io';
-
-import 'package:flutter_tools/src/runner/flutter_command.dart';
-import 'package:flutter_tools/src/commands/packages.dart';
 import 'package:flutter_tools/src/dart/pub.dart';
 import 'package:flutter_tools/src/globals.dart' as globals;
 import 'package:path/path.dart' as path;
