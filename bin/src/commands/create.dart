@@ -1,4 +1,5 @@
 // @dart = 2.8
+import '../env.dart';
 import '../pub.dart' as pub;
 import 'package:flutter_tools/src/commands/create.dart';
 import 'package:flutter_tools/src/runner/flutter_command.dart';
@@ -8,6 +9,12 @@ const List<String> overrideArgs = [
   'sample',
   'list-samples',
 ];
+
+const Map<String, String> envArgs = {
+  'namespace': 'NAMESPACE',
+  'root-domain': 'ROOT_DOMAIN',
+  'api-key': 'API_KEY',
+};
 
 class AtCreateCommand extends CreateCommand {
   AtCreateCommand({
@@ -26,7 +33,7 @@ class AtCreateCommand extends CreateCommand {
       help: 'The @protocol root domain to use for the application.',
       allowed: ['prod', 'dev', 've'],
       defaultsTo: 'prod',
-      valueHelp: '[prod | dev | ve]',
+      valueHelp: 'prod | dev | ve',
     );
     argParser.addOption(
       'api-key',
@@ -72,11 +79,36 @@ class AtCreateCommand extends CreateCommand {
   // * .env file
 
   Future<FlutterCommandResult> _updateEnvFile() async {
-    // Check if .env exists
-    // Regex to check for each line
-    // Update with new parameters
-
+    var values = _parseEnvArgs();
+    EnvManager(projectDir).update(values);
     return null;
+  }
+
+  Map<String, String> _parseEnvArgs() {
+    Map<String, String> result = {};
+    envArgs.keys.forEach((element) {
+      if (argResults[element] != null) {
+        if (element == 'root-domain') {
+          result[envArgs[element]] = _getRootDomain(argResults[element]);
+        } else {
+          result[envArgs[element]] = argResults[element];
+        }
+      }
+    });
+    return result;
+  }
+
+  String _getRootDomain(String flag) {
+    switch (flag) {
+      case 'prod':
+        return 'root.atsign.org';
+      case 'dev':
+        return 'root.atsign.wtf';
+      case 've':
+        return 'vip.ve.atsign.zone';
+      default:
+        return '';
+    }
   }
 
   // * dependencies for skeleton_app
@@ -97,7 +129,6 @@ class AtCreateCommand extends CreateCommand {
   Future<FlutterCommandResult> _generateMainFile(bool shouldGenerate) async {
     if (shouldGenerate) {
       // Replace the existing main file
-
     }
     return null;
   }
