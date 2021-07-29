@@ -2,6 +2,8 @@
 import 'package:at_app/tools/pub.dart';
 import 'package:flutter_tools/src/commands/create.dart';
 import 'package:flutter_tools/src/runner/flutter_command.dart';
+import 'package:flutter_tools/src/cache.dart';
+import 'package:flutter_tools/src/globals.dart' as globals;
 
 const List<String> overrideArgs = [
   'template',
@@ -64,9 +66,11 @@ class AtCreateCommand extends CreateCommand {
   }
 
   Future<void> _addDependencies() async {
-    var packages = ['at_client_mobile', 'at_onboarding_flutter', 'at_app'];
-    var futures = packages.map((package) => pubAdd(package)).toList();
-    await Future.wait(futures);
+    globals.fs.currentDirectory = projectDir.absolute;
+    await pubAdd('at_client_mobile');
+    await pubAdd('at_onboarding_flutter');
+    await pubAdd('at_app');
+    print('done');
   }
 
   Future<FlutterCommandResult> _generateMainFile() async {
