@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:flutter_tools/src/dart/pub.dart';
 import 'package:path/path.dart' as path;
 
-Future<void> pubAdd(String package,
+Future<void> add(String package,
     {bool isLocal = false, String directory}) async {
   var args = (isLocal)
       ? [
@@ -26,7 +26,7 @@ Future<void> pubAdd(String package,
   } catch (e) {}
 }
 
-Future<void> pubGet(String package, {String directory}) async {
+Future<void> get(String package, {String directory}) async {
   await pub.batch(
     ['pub', 'get'],
     directory: directory,

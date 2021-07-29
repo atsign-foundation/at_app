@@ -1,5 +1,5 @@
 // @dart = 2.8
-import '../pub.dart';
+import '../pub.dart' as pub;
 import 'package:flutter_tools/src/commands/create.dart';
 import 'package:flutter_tools/src/runner/flutter_command.dart';
 
@@ -69,27 +69,37 @@ class AtCreateCommand extends CreateCommand {
     return FlutterCommandResult.success();
   }
 
+  // * .env file
+
   Future<FlutterCommandResult> _updateEnvFile() async {
     // Check if .env exists
     // Regex to check for each line
     // Update with new parameters
+
     return null;
   }
+
+  // * dependencies for skeleton_app
 
   Future<FlutterCommandResult> _addDependencies() async {
     var directory = projectDir.absolute.path;
 
-    await pubAdd('at_client_mobile', directory: directory);
-    await pubAdd('at_onboarding_flutter', directory: directory);
-    await pubAdd('at_app',
-        isLocal: true, // TODO isLocal = false before publishing
-        directory: directory);
+    await pub.add('at_client_mobile', directory: directory);
+    await pub.add('at_onboarding_flutter', directory: directory);
+    await pub.add(
+      'at_app',
+      isLocal: true, // TODO isLocal = false before publishing
+      directory: directory,
+    );
     return null;
   }
+
+  // * copy the main.dart for skeleton_app
 
   Future<FlutterCommandResult> _generateMainFile(bool shouldGenerate) async {
     if (shouldGenerate) {
       // Replace the existing main file
+
     }
     return null;
   }
