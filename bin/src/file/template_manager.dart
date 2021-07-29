@@ -17,7 +17,7 @@ class TemplateManager extends FileManager {
         sleep(Duration(milliseconds: 500));
       }
       var sourceLines = await source.readAsLines();
-      write(sourceLines);
+      await write(sourceLines);
     } catch (error) {
       print(error.toString());
       return false;

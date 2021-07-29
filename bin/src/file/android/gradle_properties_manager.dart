@@ -13,7 +13,7 @@ class GradlePropertiesManager extends FileManager {
       properties
           .removeWhere((element) => element.startsWith('android.enableR8'));
       properties.add('android.enableR8=true');
-      write(properties);
+      await write(properties);
     } catch (error) {
       print(error.toString());
       return false;

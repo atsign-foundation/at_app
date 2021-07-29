@@ -31,6 +31,6 @@ class FileManager {
     var sink = file.openWrite(mode: FileMode.writeOnly);
     sink.writeAll(lines, '\n');
     await sink.flush();
-    sink.close();
+    await sink.close();
   }
 }

@@ -1,6 +1,7 @@
 // @dart = 2.8
 import 'dart:io';
 
+import '../file/android/app_build_gradle_manager.dart';
 import '../file/android/gradle_properties_manager.dart';
 import '../pub.dart' as pub;
 import 'package:flutter_tools/src/commands/create.dart';
@@ -158,7 +159,11 @@ class AtCreateCommand extends CreateCommand {
 
   // * update the flutter android config
 
-  Future<bool> _androidConfig() {
-    return GradlePropertiesManager(projectDir).update();
+  Future<bool> _androidConfig() async {
+    List<Future> futures = [
+      GradlePropertiesManager(projectDir).update(),
+      AppBuildGradleManager(projectDir).update()
+    ];
+    return (await Future.wait(futures)).every((res) => res);
   }
 }

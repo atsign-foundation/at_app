@@ -26,7 +26,7 @@ class EnvManager extends FileManager {
         }
       });
 
-      write(newFileContents);
+      await write(newFileContents);
     } catch (error) {
       return false;
     }
