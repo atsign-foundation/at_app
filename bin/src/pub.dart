@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:flutter_tools/src/dart/pub.dart';
 import 'package:path/path.dart' as path;
 
-Future<void> add(String package,
+Future<bool> add(String package,
     {bool isLocal = false, Directory directory}) async {
   var dir = directory.absolute.path;
   var args = (isLocal)
@@ -24,7 +24,11 @@ Future<void> add(String package,
       context: PubContext.getVerifyContext('at_app_init'),
       retry: false,
     );
-  } catch (e) {}
+  } catch (error) {
+    print(error.toString());
+    return false;
+  }
+  return true;
 }
 
 Future<void> get(String package, {Directory directory}) async {

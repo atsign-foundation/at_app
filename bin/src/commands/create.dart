@@ -1,8 +1,12 @@
 // @dart = 2.8
-import '../env.dart';
+import 'dart:io';
+
 import '../pub.dart' as pub;
 import 'package:flutter_tools/src/commands/create.dart';
 import 'package:flutter_tools/src/runner/flutter_command.dart';
+import 'package:path/path.dart' as path;
+import '../file/env_manager.dart';
+import '../file/template_manager.dart';
 
 const List<String> overrideArgs = [
   'template',
@@ -14,6 +18,12 @@ const Map<String, String> envArgs = {
   'namespace': 'NAMESPACE',
   'root-domain': 'ROOT_DOMAIN',
   'api-key': 'API_KEY',
+};
+
+Map<String, bool> packages = {
+  'at_client_mobile': false,
+  'at_onboarding_flutter': false,
+  'at_app': true,
 };
 
 class AtCreateCommand extends CreateCommand {
@@ -47,20 +57,32 @@ class AtCreateCommand extends CreateCommand {
 
   @override
   Future<FlutterCommandResult> runCommand() async {
-    bool shouldGenerateMain = false; //Check if main already exists here
+    var mainFileManager = TemplateManager(
+      projectDir,
+      'lib/main.dart',
+      '${Platform.script.toFilePath()}/../../lib/templates/main.dart',
+    );
+    var mainExists = mainFileManager.existsSync;
     var flutterResult = await super.runCommand();
     if (flutterResult != FlutterCommandResult.success()) return flutterResult;
+
+    var results;
 
     try {
       var futureResults = [
         _updateEnvFile(),
         _addDependencies(),
-        _generateMainFile(shouldGenerateMain),
+        _generateMainFile(mainFileManager, mainExists),
       ];
 
-      await Future.wait(futureResults, eagerError: true);
+      results = await Future.wait(futureResults, eagerError: true);
     } catch (error) {
       print(error.toString());
+      return FlutterCommandResult.fail();
+    }
+
+    if (results.any((res) => !res)) {
+      print('There was an issue creating your project.');
       return FlutterCommandResult.fail();
     }
 
@@ -78,10 +100,9 @@ class AtCreateCommand extends CreateCommand {
 
   // * .env file
 
-  Future<FlutterCommandResult> _updateEnvFile() async {
+  Future<bool> _updateEnvFile() async {
     var values = _parseEnvArgs();
-    EnvManager(projectDir).update(values);
-    return null;
+    return await EnvManager(projectDir, '.env').update(values);
   }
 
   Map<String, String> _parseEnvArgs() {
@@ -113,23 +134,23 @@ class AtCreateCommand extends CreateCommand {
 
   // * dependencies for skeleton_app
 
-  Future<FlutterCommandResult> _addDependencies() async {
-    await pub.add('at_client_mobile', directory: projectDir);
-    await pub.add('at_onboarding_flutter', directory: projectDir);
-    await pub.add(
-      'at_app',
-      isLocal: true, // TODO isLocal = false before publishing
-      directory: projectDir,
-    );
-    return null;
+  Future<bool> _addDependencies() async {
+    for (var package in packages.keys) {
+      var success = await pub.add(
+        package,
+        isLocal: packages[package],
+        directory: projectDir,
+      );
+      if (!success) return false;
+    }
+    return true;
   }
 
   // * copy the main.dart for skeleton_app
 
-  Future<FlutterCommandResult> _generateMainFile(bool shouldGenerate) async {
-    if (shouldGenerate) {
-      // Replace the existing main file
-    }
-    return null;
+  Future<bool> _generateMainFile(
+      TemplateManager mainFileManager, bool mainExists) async {
+    if (!mainExists) return await mainFileManager.copyTemplate();
+    return true;
   }
 }
