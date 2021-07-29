@@ -8,12 +8,28 @@ import 'package:flutter_tools/src/commands/packages.dart';
 import 'package:flutter_tools/src/dart/pub.dart';
 import 'package:flutter_tools/src/globals.dart' as globals;
 
-Future<void> pubAdd(String package) async {
-  await pub.interactively(['add', package], stdio: globals.stdio);
+final stdio = globals.stdio;
+
+Future<void> pubAdd(String package,
+    {bool isLocal = false, String directory}) async {
+  var args = (isLocal)
+      ? ['add', '--path', Directory.current.absolute.path, package] // TODO needs to be relative path
+      : ['add', package];
+  print(args);
+  print(directory);
+  await pub.interactively(
+    args,
+    directory: directory,
+    stdio: stdio,
+  );
 }
 
-Future<void> pubGet(String package) async {
-  await pub.interactively(['pub', 'get'], stdio: globals.stdio);
+Future<void> pubGet(String package, {String directory}) async {
+  await pub.interactively(
+    ['pub', 'get'],
+    directory: directory,
+    stdio: stdio,
+  );
 }
 
 List<FlutterCommand> generateCommands({bool verboseHelp}) {

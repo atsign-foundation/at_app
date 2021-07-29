@@ -66,10 +66,11 @@ class AtCreateCommand extends CreateCommand {
   }
 
   Future<void> _addDependencies() async {
-    globals.fs.currentDirectory = projectDir.absolute;
-    await pubAdd('at_client_mobile');
-    await pubAdd('at_onboarding_flutter');
-    await pubAdd('at_app');
+    var directory = projectDir.absolute.path;
+
+    await pubAdd('at_client_mobile', directory: directory);
+    await pubAdd('at_onboarding_flutter', directory: directory);
+    await pubAdd('at_app', isLocal: true, directory: directory);
     print('done');
   }
 
