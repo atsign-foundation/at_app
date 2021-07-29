@@ -35,7 +35,6 @@ class AtCreateCommand extends CreateCommand {
       defaultsTo: '',
       valueHelp: 'api-key',
     );
-    //argParser.options.removeWhere((key, value) => overrideArgs.contains(key));
     // TODO add our templates/samples
   }
 
