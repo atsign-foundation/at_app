@@ -6,14 +6,14 @@ A command line utility for app developers.
 
 ```
 flutter pub global activate -s path .
-flutter pub run at_app create [...options] [path-to-project]
+flutter pub global run at_app create [...options] [path-to-project]
 ```
 
 ## Run the CLI from pub.dev
 
 ```
 flutter pub global activate at_app
-flutter pub run at_app create [...options] [path-to-project]
+flutter pub global run at_app create [...options] [path-to-project]
 ```
 
 ## Developer Notes
