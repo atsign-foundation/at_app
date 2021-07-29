@@ -12,6 +12,7 @@ dependencies:
     sdk: flutter
   at_client_mobile: ^2.0.3
   at_onboarding_flutter: ^2.1.2
+  dotenv: ^3.0.0
 
 dev_dependencies:
   pedantic: ^1.10.0

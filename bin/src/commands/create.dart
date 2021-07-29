@@ -1,6 +1,7 @@
 // @dart = 2.8
 import 'dart:io';
 
+import '../file/android/gradle_properties_manager.dart';
 import '../pub.dart' as pub;
 import 'package:flutter_tools/src/commands/create.dart';
 import 'package:flutter_tools/src/runner/flutter_command.dart';
@@ -73,6 +74,7 @@ class AtCreateCommand extends CreateCommand {
         _updateEnvFile(),
         _addDependencies(),
         _generateMainFile(mainFileManager, mainExists),
+        _androidConfig()
       ];
 
       results = await Future.wait(futureResults, eagerError: true);
@@ -152,5 +154,11 @@ class AtCreateCommand extends CreateCommand {
       TemplateManager mainFileManager, bool mainExists) async {
     if (!mainExists) return await mainFileManager.copyTemplate();
     return true;
+  }
+
+  // * update the flutter android config
+
+  Future<bool> _androidConfig() {
+    return GradlePropertiesManager(projectDir).update();
   }
 }

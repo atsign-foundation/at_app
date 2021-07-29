@@ -8,7 +8,6 @@ class EnvManager extends FileManager {
       : super(projectDir, filename);
 
   Future<bool> update(Map<String, String> values) async {
-    IOSink sink;
     try {
       await create();
       var newFileContents = (await file.readAsLines()).map((line) {
@@ -27,14 +26,10 @@ class EnvManager extends FileManager {
         }
       });
 
-      sink = file.openWrite(mode: FileMode.writeOnly);
-      sink.writeAll(newFileContents, '\n');
-      await sink.flush();
+      write(newFileContents);
     } catch (error) {
-      if (sink != null) sink.close();
       return false;
     }
-    if (sink != null) sink.close();
     return true;
   }
 }

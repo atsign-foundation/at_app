@@ -2,6 +2,14 @@ library at_app;
 
 import 'package:at_client_mobile/at_client_mobile.dart';
 import 'package:flutter/material.dart';
+import 'package:dotenv/dotenv.dart' as dot;
+
+class AtEnv {
+  static load() => dot.load();
+  static final rootDomain = dot.env['ROOT_DOMAIN'] ?? 'root.atsign.org';
+  static final appNamespace = dot.env['NAMESPACE'] ?? 'at_skeleton_app';
+  static final appApiKey = dot.env['API_KEY'] ?? '';
+}
 
 class AtContext extends InheritedWidget {
   AtContext({

@@ -26,4 +26,11 @@ class FileManager {
     }
     return true;
   }
+
+  Future<void> write(List<String> lines) async {
+    var sink = file.openWrite(mode: FileMode.writeOnly);
+    sink.writeAll(lines, '\n');
+    await sink.flush();
+    sink.close();
+  }
 }

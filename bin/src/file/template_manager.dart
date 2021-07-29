@@ -12,21 +12,16 @@ class TemplateManager extends FileManager {
         super(projectDir, filename);
 
   Future<bool> copyTemplate() async {
-    IOSink sink;
     try {
       while (existsSync == false) {
         sleep(Duration(milliseconds: 500));
       }
       var sourceLines = await source.readAsLines();
-      sink = file.openWrite(mode: FileMode.writeOnly);
-      sink.writeAll(sourceLines, '\n');
-      await sink.flush();
+      write(sourceLines);
     } catch (error) {
-      if (sink != null) sink.close();
       print(error.toString());
       return false;
     }
-    if (sink != null) sink.close();
     return true;
   }
 }

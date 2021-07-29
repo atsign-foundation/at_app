@@ -7,28 +7,22 @@ import 'package:at_utils/at_logger.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
 import 'package:at_app/at_app.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  AtEnv.load();
+  runApp(MyApp());
+}
 
-class AtOptions {
-  // TODO set your root domain, namespace, and api key
-  // * production - root.atsign.org
-  // * virtual environment - vip.ve.atsign.zone
-  static final rootDomain = 'root.atsign.org';
-  static final appNamespace = 'at_skeleton_app';
-  static final appApiKey = '';
-
-  static Future<AtClientPreference> loadAtClientPreference() async {
-    var dir = await path_provider.getApplicationSupportDirectory();
-    return AtClientPreference()
-          ..rootDomain = rootDomain
-          ..namespace = appNamespace
-          ..hiveStoragePath = dir.path
-          ..commitLogPath = dir.path
-        // ..isLocalStoreRequired = true
-        // ..syncStrategy = SyncStrategy.ONDEMAND
-        // TODO set the rest of your AtClientPreference here
-        ;
-  }
+Future<AtClientPreference> loadAtClientPreference() async {
+  var dir = await path_provider.getApplicationSupportDirectory();
+  return AtClientPreference()
+        ..rootDomain = AtEnv.rootDomain
+        ..namespace = AtEnv.appNamespace
+        ..hiveStoragePath = dir.path
+        ..commitLogPath = dir.path
+      // ..isLocalStoreRequired = true
+      // ..syncStrategy = SyncStrategy.ONDEMAND
+      // TODO set the rest of your AtClientPreference here
+      ;
 }
 
 class MyApp extends StatefulWidget {
@@ -38,13 +32,12 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   // * load the AtClientPreference in the background
-  Future<AtClientPreference> futurePreference =
-      AtOptions.loadAtClientPreference();
+  Future<AtClientPreference> futurePreference = loadAtClientPreference();
 
   AtClientService? atClientService;
   AtClientPreference? atClientPreference;
 
-  final AtSignLogger _logger = AtSignLogger(AtOptions.appNamespace);
+  final AtSignLogger _logger = AtSignLogger(AtEnv.appNamespace);
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +55,7 @@ class _MyAppState extends State<MyApp> {
                 Onboarding(
                   context: context,
                   atClientPreference: atClientPreference!,
-                  domain: AtOptions.rootDomain,
+                  domain: AtEnv.rootDomain,
                   onboard: (value, atsign) {
                     setState(() {
                       atClientService = value[atsign]!;
@@ -73,7 +66,7 @@ class _MyAppState extends State<MyApp> {
                     _logger.severe('Onboarding throws $error error');
                   },
                   nextScreen: HomeScreen(),
-                  appAPIKey: AtOptions.appApiKey,
+                  appAPIKey: AtEnv.appApiKey,
                 );
               },
               child: Text(
