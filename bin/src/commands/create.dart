@@ -41,6 +41,7 @@ class AtCreateCommand extends CreateCommand {
 
   @override
   Future<FlutterCommandResult> runCommand() async {
+    bool shouldGenerateMain = false; //Check if main already exists here
     var flutterResult = await super.runCommand();
     if (flutterResult != FlutterCommandResult.success()) return flutterResult;
 
@@ -48,31 +49,49 @@ class AtCreateCommand extends CreateCommand {
       var futureResults = [
         _updateEnvFile(),
         _addDependencies(),
-        _generateMainFile(),
+        _generateMainFile(shouldGenerateMain),
       ];
+
       await Future.wait(futureResults, eagerError: true);
     } catch (error) {
       print(error.toString());
       return FlutterCommandResult.fail();
     }
 
+    print(
+      '\n'
+      'Your @app template has been successfully created!\n'
+      '\n'
+      'Verify the project with:\n'
+      '  > cd ${projectDir.path}\n'
+      '  > flutter pub get\n',
+    );
+
     return FlutterCommandResult.success();
   }
 
   Future<FlutterCommandResult> _updateEnvFile() async {
-    return FlutterCommandResult.success();
+    // Check if .env exists
+    // Regex to check for each line
+    // Update with new parameters
+    return null;
   }
 
-  Future<void> _addDependencies() async {
+  Future<FlutterCommandResult> _addDependencies() async {
     var directory = projectDir.absolute.path;
 
     await pubAdd('at_client_mobile', directory: directory);
     await pubAdd('at_onboarding_flutter', directory: directory);
-    await pubAdd('at_app', isLocal: true, directory: directory);
-    print('done');
+    await pubAdd('at_app',
+        isLocal: true, // TODO isLocal = false before publishing
+        directory: directory);
+    return null;
   }
 
-  Future<FlutterCommandResult> _generateMainFile() async {
-    return FlutterCommandResult.success();
+  Future<FlutterCommandResult> _generateMainFile(bool shouldGenerate) async {
+    if (shouldGenerate) {
+      // Replace the existing main file
+    }
+    return null;
   }
 }
