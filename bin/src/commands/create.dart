@@ -23,7 +23,7 @@ const Map<String, String> envArgs = {
 Map<String, bool> packages = {
   'at_client_mobile': false,
   'at_onboarding_flutter': false,
-  'at_app': true,
+  'at_app': true, // TODO set to false for production
 };
 
 class AtCreateCommand extends CreateCommand {

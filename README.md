@@ -4,6 +4,21 @@ A command line utility for app developers.
 
 ## Run The CLI Locally
 
-flutter pub global deactivate at_app
+```
 flutter pub global activate -s path .
-flutter pub run at_app create tests/create
+flutter pub run at_app create [...options] [path-to-project]
+```
+
+## Run the CLI from pub.dev
+
+```
+flutter pub global activate at_app
+flutter pub run at_app create [...options] [path-to-project]
+```
+
+## Developer Notes
+
+Before releasing to production:
+
+at_app is set to false in the packages map in `bin/src/commands/create.dart`;
+When true pub will try to use the local version of at_app instead of from the pub-cacge.
