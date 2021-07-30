@@ -2,7 +2,7 @@
 
 import 'dart:io';
 import 'package:flutter_tools/src/dart/pub.dart';
-import 'package:path/path.dart' as path;
+import 'package:flutter_tools/src/globals.dart' as globals;
 
 Future<bool> add(String package,
     {bool isDev = false, Directory directory}) async {
@@ -20,25 +20,25 @@ Future<bool> add(String package,
       args,
       directory: dir,
       context: PubContext.getVerifyContext('at_app_init'),
+      filter: (String data) => null,
       retry: false,
     );
   } catch (error) {} // pub.batch has it's own handler
   return true;
 }
 
-Future<void> get(String package, {Directory directory}) async {
+Future<void> get({Directory directory}) async {
   await pub.batch(
-    ['pub', 'get'],
+    ['get'],
     directory: directory.absolute.path,
     context: PubContext.pubGet,
+    filter: (String data) => null,
     retry: false,
   );
 }
 
 String _getLocalPath({Directory directory}) {
   // This returns the local relative path of at_app from the projectDir
-  return path
-      .relative('${Platform.script.toFilePath()}/../..',
-          from: directory.absolute.path)
-      .replaceAll('\\', '/');
+  return globals.fs.path.relative('${Platform.script.toFilePath()}/../..',
+      from: directory.absolute.path);
 }
