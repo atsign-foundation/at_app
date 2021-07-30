@@ -203,9 +203,15 @@ Your $projectType code is in $relativeAppMain.
 
   Map<String, String> _parseEnvArgs() {
     Map<String, String> result = {};
-    result['NAMESPACE'] = stringArg('namespace');
-    result['ROOT_DOMAIN'] = _getRootDomain(stringArg('root-domain'));
-    result['API_KEY'] = stringArg('api-key');
+    if (argResults.wasParsed('namespace')) {
+      result['NAMESPACE'] = stringArg('namespace');
+    }
+    if (argResults.wasParsed('root-domain')) {
+      result['ROOT_DOMAIN'] = _getRootDomain(stringArg('root-domain'));
+    }
+    if (argResults.wasParsed('api-key')) {
+      result['API_KEY'] = stringArg('api-key');
+    }
     return result;
   }
 
