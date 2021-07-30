@@ -22,11 +22,11 @@ const Map<String, String> envArgs = {
   'api-key': 'API_KEY',
 };
 
-Map<String, bool> packages = {
-  'at_client_mobile': false,
-  'at_onboarding_flutter': false,
-  'at_app': true, // TODO set to false for production
-};
+List<String> packages = [
+  'at_client_mobile',
+  'at_onboarding_flutter',
+  'at_app',
+];
 
 class AtCreateCommand extends CreateCommand {
   AtCreateCommand({
@@ -138,10 +138,10 @@ class AtCreateCommand extends CreateCommand {
   // * dependencies for skeleton_app
 
   Future<bool> _addDependencies() async {
-    for (var package in packages.keys) {
+    for (var package in packages) {
       var success = await pub.add(
         package,
-        isLocal: packages[package],
+        isDev: true, // TODO set to false for production
         directory: projectDir,
       );
       if (!success) return false;

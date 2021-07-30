@@ -20,5 +20,5 @@ flutter pub global run at_app create [...options] [path-to-project]
 
 Before releasing to production:
 
-at_app is set to false in the packages map in `bin/src/commands/create.dart`;
+Make sure isDev is set to false in `bin/src/commands/create.dart` > \_addDependencies() > pub.add
 When true pub will try to use the local version of at_app instead of from the pub-cacge.

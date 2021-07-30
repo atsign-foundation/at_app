@@ -5,15 +5,13 @@ import 'package:flutter_tools/src/dart/pub.dart';
 import 'package:path/path.dart' as path;
 
 Future<bool> add(String package,
-    {bool isLocal = false, Directory directory}) async {
+    {bool isDev = false, Directory directory}) async {
   var dir = directory.absolute.path;
-  var args = (isLocal)
+  var args = (package == 'at_app' && isDev)
       ? [
           'add',
           '--path',
-          path
-              .relative(Directory.current.absolute.path, from: dir)
-              .replaceAll('\\', '/'),
+          _getLocalPath(directory: directory),
           package,
         ]
       : ['add', package];
@@ -24,10 +22,7 @@ Future<bool> add(String package,
       context: PubContext.getVerifyContext('at_app_init'),
       retry: false,
     );
-  } catch (error) {
-    print(error.toString());
-    return false;
-  }
+  } catch (error) {} // pub.batch has it's own handler
   return true;
 }
 
@@ -38,4 +33,12 @@ Future<void> get(String package, {Directory directory}) async {
     context: PubContext.pubGet,
     retry: false,
   );
+}
+
+String _getLocalPath({Directory directory}) {
+  // This returns the local relative path of at_app from the projectDir
+  return path
+      .relative('${Platform.script.toFilePath()}/../..',
+          from: directory.absolute.path)
+      .replaceAll('\\', '/');
 }
