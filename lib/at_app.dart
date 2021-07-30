@@ -6,9 +6,14 @@ import 'package:dotenv/dotenv.dart' as dot;
 
 class AtEnv {
   static load() => dot.load();
-  static final rootDomain = dot.env['ROOT_DOMAIN'] ?? 'root.atsign.org';
-  static final appNamespace = dot.env['NAMESPACE'] ?? 'at_skeleton_app';
-  static final appApiKey = dot.env['API_KEY'] ?? '';
+  static final rootDomain = _getEnvVar('ROOT_DOMAIN') ?? 'root.atsign.org';
+  static final appNamespace = _getEnvVar('NAMESPACE') ?? 'at_skeleton_app';
+  static final appApiKey = _getEnvVar('API_KEY') ?? '';
+  static String? _getEnvVar(String key) {
+    var value = dot.env[key];
+    if (value?.isEmpty ?? false) return null;
+    return value;
+  }
 }
 
 class AtContext extends InheritedWidget {
