@@ -11,7 +11,10 @@ class AppBuildGradleManager extends FileManager {
     try {
       var lines = (await file.readAsLines()).map((line) {
         if (line.contains('minSdkVersion')) {
-          return line.replaceFirst('16', '24');
+          return line.replaceFirst(
+            RegExp('minSdkVersion .*'),
+            'minSdkVersion 24',
+          );
         }
         return line;
       }).toList();

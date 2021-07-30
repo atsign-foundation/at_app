@@ -70,7 +70,8 @@ class AtCreateCommand extends CreateBase {
     );
     argParser.addFlag(
       'local',
-      help: 'Use the local version of at_app instead of from pub.dev',
+      help:
+          'Use the local version of at_app as a dependency instead of from pub.dev',
       defaultsTo: false,
       hide: true,
     );
@@ -91,7 +92,7 @@ class AtCreateCommand extends CreateBase {
   @override
   Future<FlutterCommandResult> runCommand() async {
     validateOutputDirectoryArg();
-    print('start create command');
+
     // Create a TemplateManager for the main file
     final TemplateManager mainFileManager = TemplateManager(
       projectDir,
@@ -228,10 +229,9 @@ Your $projectType code is in $relativeAppMain.
       'at_onboarding_flutter',
       'at_app'
     ];
-
+    final bool local = boolArg('local');
     List<Future> futures = packages.map((package) async {
-      return await pub.add(package,
-          isDev: boolArg('local'), directory: projectDir);
+      return await pub.add(package, local: local, directory: projectDir);
     }).toList();
     if (boolArg('pub')) {
       await pub.get(directory: projectDir);

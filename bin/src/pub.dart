@@ -5,9 +5,9 @@ import 'package:flutter_tools/src/dart/pub.dart';
 import 'package:flutter_tools/src/globals.dart' as globals;
 
 Future<bool> add(String package,
-    {bool isDev = false, Directory directory}) async {
+    {bool local = false, Directory directory}) async {
   var dir = directory.absolute.path;
-  var args = (package == 'at_app' && isDev)
+  var args = (package == 'at_app' && local)
       ? [
           'add',
           '--path',
