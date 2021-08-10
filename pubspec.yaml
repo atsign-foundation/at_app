@@ -1,5 +1,5 @@
 name: at_app
-description: A command line application to 
+description: A command line tool to help developers build an @ platform application.
 version: 0.1.0
 homepage: https://atsign.dev/
 

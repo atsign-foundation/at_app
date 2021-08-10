@@ -4,17 +4,15 @@
 
 # at_app_cli
 
-A command line utility for app developers.
+A command line tool to help developers build an @ platform application.
 
 ## Who is this for?
 
-The README should be addressed to somebody who's never seen this before.
-But also don't assume that they're a novice.
+This is for flutter developers looking to build end to end encrypted apps.
 
 ### Code user
 
-Does this repo publish to [pub.dev](https://pub.dev) or similar?
-In which case the code user just needs a pointer there - e.g. [at_client on pub.dev](https://pub.dev/packages/at_client)
+[at_app on pub.dev](https://pub.dev/packages/at_app)
 
 ### Contributor
 
@@ -26,68 +24,21 @@ tests and how to make a pull request.
 
 ### Why?
 
-What is the purpose of this project?
+An @ platform app has additional base libraries that are not included with the `flutter create` command, this tool creates a skeleton app with a the prerequisites.
 
 ### What?
 
-What is needed to get the project and its dependencies installed?
-
-### How?
-
-How does this work? How is this used to fulfil its intended purpose?
-
-## Checklist
-
-### Writing
-
-Does the writing flow, with proper grammar and correct spelling?
-
-### Links
-
-Are the links to external resources correct?
-Are the links to other parts of the project correct
-(beware stuff carried over from previous repos where the
-project might have lived during earlier development)?
-
-### Description
-
-Has the Description field been filled out?
-
-### Acknowledgement/Attribution
-
-Have we correctly acknowledged the work of others (and their Trademarks etc.)
-where appropriate (per the conditions of their LICENSE?
-
-### LICENSE
-
-Which LICENSE are we using?  
-Is the LICENSE(.md) file present?  
-Does it have the correct dates, legal entities etc.?
-
-## Maintainers
-
-Who created this?  
-
-Do they have complete GitHub profiles?  
-
-How can they be contacted?  
-
-Who is going to respond to pull requests?  
-
-## Run The CLI Locally
-
-When developing we want to activate our local version of at_app.  
-There is a hidden flag (--local) which will also install the template using the local version of at_app.
-
-```
-flutter pub global deactivate at_app
-flutter pub global activate -s path .
-flutter pub global run at_app create --local [...options] [path-to-project]
-```
-
-## Run the CLI from pub.dev
+This is a command-line utility that can be installed and run with:
 
 ```
 flutter pub global activate at_app
 flutter pub global run at_app create [...options] [path-to-project]
 ```
+
+### How?
+
+This application is an extension of `flutter create`, that replaces the main.dart file with our own custom template. We also include the necessary build configuration for an @ platform android app.
+
+## Maintainers
+
+Created by [XavierChanth](https://github.com/xavierchanth)

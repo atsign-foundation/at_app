@@ -28,31 +28,38 @@ describe.
 
 ### Prerequisites
 
-   ``` sh
-   # show how to install the tools needed to work with the code here
-   ```
+When developing we want to activate our local version of at_app.  
+There is a hidden flag (--local) which will also install the template using the local version of at_app.
+
+```sh
+# Activate the library
+flutter pub global activate -s path .
+
+# Run the cli tool
+flutter pub global run at_app create --local [...options] [path-to-project]
+```
 
 
 ### GitHub Repository Clone
 
 To prepare your dedicated GitHub repository:
 
-1. Fork in GitHub https://github.com/atsign-foundation/REPO
-2. Clone *your forked repository* (e.g., `git clone git@github.com:yourname/REPO`)
+1. Fork in GitHub https://github.com/atsign-foundation/at_app
+2. Clone *your forked repository* (e.g., `git clone git@github.com:atsign-foundation/at_app`)
 3. Set your remotes as follows:
 
    ```sh
-   cd REPO
-   git remote add upstream git@github.com:atsign-foundation/REPO.git
+   cd at_app
+   git remote add upstream git@github.com:atsign-foundation/at_app.git
    git remote set-url upstream --push DISABLED
    ```
 
    Running `git remote -v` should give something similar to:
 
    ```text
-   origin  git@github.com:yourname/REPO.git (fetch)
-   origin  git@github.com:yourname/REPO.git (push)
-   upstream        git@github.com:atsign-foundation/REPO.git (fetch)
+   origin  git@github.com:atsign-foundation/at_app.git (fetch)
+   origin  git@github.com:atsign-foundation/at_app.git (push)
+   upstream        git@github.com:atsign-foundation/at_app.git (fetch)
    upstream        DISABLED (push)
    ```
 
@@ -90,11 +97,10 @@ To prepare your dedicated GitHub repository:
 1. How to run tests:
 
    ``` sh
-   # explain tests here
+   # coming soon
    ```
 
 1. Open a new Pull Request to the main repository using your `trunk` branch
-
 
 ## @‎library release process
 
