@@ -4,6 +4,9 @@ version: 0.1.0
 repository: https://github.com/atsign-foundation/at_app_cli
 homepage: https://atsign.dev/
 
+executables:
+  at_app:
+
 environment:
   sdk: '>=2.12.0 <3.0.0'
 
