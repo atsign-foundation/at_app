@@ -7,13 +7,15 @@ environment:
   sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
+  at_client_mobile: ^2.0.3
+  at_onboarding_flutter: ^2.1.2
+  at_utils: ^2.0.4
+  dotenv: ^3.0.0
   flutter:
     sdk: flutter
   flutter_tools:
     sdk: flutter
-  at_client_mobile: ^2.0.3
-  at_onboarding_flutter: ^2.1.2
-  dotenv: ^3.0.0
+  path_provider: ^2.0.2
 
 dev_dependencies:
   pedantic: ^1.10.0

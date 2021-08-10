@@ -77,7 +77,7 @@ packages:
       name: at_commons
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.3"
+    version: "2.0.5"
   at_lookup:
     dependency: transitive
     description:
@@ -121,12 +121,12 @@ packages:
     source: hosted
     version: "1.0.0"
   at_utils:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: at_utils
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.3"
+    version: "2.0.4"
   boolean_selector:
     dependency: transitive
     description:
@@ -472,7 +472,7 @@ packages:
     source: hosted
     version: "1.8.0"
   path_provider:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: path_provider
       url: "https://pub.dartlang.org"
