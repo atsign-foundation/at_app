@@ -24,7 +24,7 @@ tests and how to make a pull request.
 
 ### Why?
 
-An @ platform app has additional base libraries that are not included with the `flutter create` command, this tool creates a skeleton app with a the prerequisites.
+An @ platform app has additional base libraries that are not included with the `flutter create` command, this tool creates a skeleton app with the prerequisites.
 
 ### What?
 
