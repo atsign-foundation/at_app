@@ -13,10 +13,8 @@
 //       contributors may be used to endorse or promote products derived
 //       from this software without specific prior written permission.
 
-
 // * This file is from the flutter sdk package: flutter_tools/executable.dart
 // * modification: generateCommands function is now an argument passed to run
-
 
 // @dart = 2.8
 
