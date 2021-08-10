@@ -28,15 +28,14 @@ describe.
 
 ### Prerequisites
 
-When developing we want to activate our local version of at_app.  
-There is a hidden flag (--local) which will also install the template using the local version of at_app.
-
+When developing the cli tool activate using the local path:
 ```sh
-# Activate the library
-flutter pub global activate -s path .
+flutter pub global activate -s path [path-to-repo]
+```
 
-# Run the cli tool
-flutter pub global run at_app create --local [...options] [path-to-project]
+When running the create command use the local flag to build at_app from the path:
+```sh
+flutter pub global run at_app create --local [options...] [path-to-project]
 ```
 
 
