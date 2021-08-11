@@ -102,11 +102,11 @@ class HomeScreen extends StatelessWidget {
     AtContext atContext = AtContext.of(context);
 
     // * Example Uses
-    // AtClientService atClientService = atContext.atClientService;
-    // AtClientImpl? atClientInstance = atContext.atClient;
-    // String? currentAtSign = atContext.currentAtSign;
-    // AtClientPreference atClientPreference = atContext.atClientPreference;
-    // atContext.switchAtsign("@example");
+    /// AtClientService atClientService = atContext.atClientService;
+    /// AtClientImpl? atClientInstance = atContext.atClient;
+    /// String? currentAtSign = atContext.currentAtSign;
+    /// AtClientPreference atClientPreference = atContext.atClientPreference;
+    /// atContext.switchAtsign("@example");
 
     return Scaffold(
       appBar: AppBar(

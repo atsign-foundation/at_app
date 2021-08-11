@@ -35,7 +35,7 @@ flutter pub global activate -s path [path-to-repo]
 
 When running the create command use the local flag to build at_app from the path:
 ```sh
-flutter pub global run at_app create --local [options...] [path-to-project]
+flutter pub global run at_app create --local [...options] \<output directory\>
 ```
 
 
