@@ -34,7 +34,7 @@ flutter pub global activate at_app
 Create a new @ platform app:
 
 ```sh
-flutter pub global run at_app create [...options] \<output directory\>
+flutter pub global run at_app create [...options] <output directory>
 ```
 
 #### Flags
