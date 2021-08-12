@@ -37,7 +37,6 @@ class TemplateManager extends FileManager {
         setSourceFromPubCache();
       }
       var sourceLines = await source.readAsLines();
-      print('Using main.dart from: ${source.path}');
       await write(sourceLines);
     } catch (error) {
       print(error.toString());
