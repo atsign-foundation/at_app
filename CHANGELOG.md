@@ -8,4 +8,4 @@
 
 ## 0.1.1+1
 
-- Fix formatting for Readme.md
+- Fix formatting for README.md
