@@ -31,10 +31,22 @@ Activate the executable:
 flutter pub global activate at_app
 ```
 
+Make sure the pub cache bin is on your path:
+
+```
+Windows: %LOCALAPPDATA%/Pub/Cache/bin
+Mac/Linux: ~/.pub-cache/bin
+```
+
 Create a new @ platform app:
 
 ```sh
-flutter pub global run at_app create [...options] <output directory>
+at_app create [...options] <output directory>
+```
+
+Or for windows
+```sh
+at_app.bat create [...options] <output directory>
 ```
 
 #### Flags
@@ -44,7 +56,7 @@ flutter pub global run at_app create [...options] <output directory>
 | Flag          | Shorthand | Description                                             | Value                     |
 | ------------- | --------- | ------------------------------------------------------- | ------------------------- |
 | --namespace   | -n        | The @protocol app namespace to use for the application. | (defaults to "")          |
-| --root-domain | -r        | The @protocol root domain to use for the application.   | [prod (default), dev, ve] |
+| --root-domain | -r        | The @protocol root domain to use for the application.   | [prod (default), ve] |
 | --api-key     | -k        | The api key for at_onboarding_flutter.                  | (defaults to "")          |
 
 ### Library

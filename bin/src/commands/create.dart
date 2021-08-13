@@ -57,9 +57,9 @@ class AtCreateCommand extends CreateBase {
       'root-domain',
       abbr: 'r',
       help: 'The @protocol root domain to use for the application.',
-      allowed: ['prod', 'dev', 've'],
+      allowed: ['prod', 've'],
       defaultsTo: 'prod',
-      valueHelp: 'prod | dev | ve',
+      valueHelp: 'prod | ve',
     );
     argParser.addOption(
       'api-key',
@@ -217,8 +217,6 @@ Your $projectType code is in $relativeAppMain.
 
   String _getRootDomain(String flag) {
     switch (flag) {
-      case 'dev':
-        return 'root.atsign.wtf';
       case 've':
         return 'vip.ve.atsign.zone';
       case 'prod':

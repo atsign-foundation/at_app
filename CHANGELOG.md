@@ -9,3 +9,7 @@
 ## 0.1.1+1
 
 - Fix formatting for README.md
+
+## 0.1.2
+
+- Add support for at_app when using the pub global binaries
