@@ -1,27 +1,17 @@
 #
 # pub
 #
-
-# Files and directories created by pub.
 pub/.dart_tool/
 pub/.packages
-
-# Conventional directory for build output.
 pub/build/
-
-# Logs
 pub/flutter*.log
-
-# CLI Tests
 pub/tests
-
-# Flutter
 pub/.flutter-plugins*
 pub/analysis-options.yaml
 
 #
 # vscode
 #
-
-# packages created by node
 vscode/node_modules/
+vscode/.vscode-test
+vscode/vscode
