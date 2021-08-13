@@ -6,9 +6,7 @@
 
 This is a common repository for the at_app tool that is intended to be published on various platforms.
 
-## Who is this for?
-
-This tool is for app developers interested in creating an @ platform app with flutter.
+at_app is a tool to help app developers create an @ platform app with flutter.
 
 ## Mediums
 
