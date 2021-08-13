@@ -2,7 +2,7 @@
 
 ### Now for a little internet optimism
 
-# at_app_cli
+# at_app
 
 A command line tool to help developers build an @ platform application.
 
