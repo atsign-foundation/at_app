@@ -13,3 +13,7 @@
 ## 0.1.2
 
 - Add support for at_app when using the pub global binaries
+
+## 0.1.2+2
+
+- Rename the git repository.
