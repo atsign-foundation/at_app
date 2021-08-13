@@ -21,6 +21,9 @@
       }
     ]
   },
+  "extensionDependencies": [
+		"Dart-Code.flutter"
+	],
   "scripts": {
     "vscode:prepublish": "yarn run package",
     "compile": "webpack",
