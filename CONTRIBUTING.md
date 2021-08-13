@@ -23,22 +23,6 @@ If you plan to contribute often or have a larger change to make, it is best to
 setup an environment for contribution, which is what the rest of these guidelines
 describe.
 
-## Development Environment Setup
-
-
-### Prerequisites
-
-When developing the cli tool activate using the local path:
-```sh
-flutter pub global activate -s path [path-to-repo]
-```
-
-When running the create command use the local flag to build at_app from the path:
-```sh
-flutter pub global run at_app create --local [...options] \<output directory\>
-```
-
-
 ### GitHub Repository Clone
 
 To prepare your dedicated GitHub repository:
