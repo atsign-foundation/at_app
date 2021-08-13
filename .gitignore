@@ -14,4 +14,4 @@ pub/analysis-options.yaml
 #
 vscode/node_modules/
 vscode/.vscode-test
-vscode/vscode
+vscode/out
