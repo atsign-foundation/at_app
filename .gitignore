@@ -15,3 +15,4 @@ pub/analysis-options.yaml
 vscode/node_modules/
 vscode/.vscode-test
 vscode/out
+vscode/dist
