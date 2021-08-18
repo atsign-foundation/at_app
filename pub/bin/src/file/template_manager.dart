@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:pub_cache/pub_cache.dart';
 import 'package:pub_semver/pub_semver.dart';
+import 'package:flutter_tools/src/globals.dart' as globals;
 
 import 'file_manager.dart';
 
@@ -17,7 +18,8 @@ class TemplateManager extends FileManager {
       : source = FileManager.fileFromPath(source),
         super(projectDir, filename) {
     pc = new PubCache();
-    hostedPubCachePath = '${pc.location}/hosted/pub.dartlang.org';
+    hostedPubCachePath = globals.fs.path
+        .normalize('${pc.location.absolute.path}/hosted/pub.dartlang.org');
   }
 
   Future<bool> copyTemplate() async {
