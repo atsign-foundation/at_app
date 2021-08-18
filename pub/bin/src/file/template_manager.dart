@@ -2,30 +2,22 @@
 
 import 'dart:io';
 
-import 'package:version/version.dart';
+import 'package:pub_cache/pub_cache.dart';
+import 'package:pub_semver/pub_semver.dart';
 
 import 'file_manager.dart';
-import 'package:flutter_tools/src/base/platform.dart';
-import 'package:flutter_tools/src/globals.dart' as globals;
 
 class TemplateManager extends FileManager {
   File source;
-  String hostedPubCachePath;
+  PubCache pc;
   String packageVersion;
+  String hostedPubCachePath;
 
   TemplateManager(Directory projectDir, String filename, String source)
       : source = FileManager.fileFromPath(source),
         super(projectDir, filename) {
-    var platform = LocalPlatform();
-    var pubCachePath = platform.environment['PUB_CACHE'];
-    if (pubCachePath == null) {
-      if (platform.isWindows) {
-        pubCachePath = '${platform.environment['LOCALAPPDATA']}\\Pub\\Cache';
-      } else {
-        pubCachePath = '${platform.environment['HOME']}/.pub-cache';
-      }
-    }
-    hostedPubCachePath = '$pubCachePath/hosted/pub.dartlang.org';
+    pc = new PubCache();
+    hostedPubCachePath = '${pc.location}/hosted/pub.dartlang.org';
   }
 
   Future<bool> copyTemplate() async {
@@ -46,16 +38,10 @@ class TemplateManager extends FileManager {
   }
 
   void setSourceFromPubCache() {
-    List<Version> entries = Directory(hostedPubCachePath)
-        .listSync(recursive: false)
-        .map((element) => globals.fs.path.split(element.path).last)
-        .where((element) {
-          print(element);
-          return element.startsWith('at_app');
-        })
-        .map((element) => Version.parse(element.replaceFirst('at_app-', '')))
+    List<Version> entries = pc
+        .getAllPackageVersions('at_app')
+        .map((element) => element.version)
         .toList();
-
     Version version;
     entries.forEach((element) {
       if (version == null || element > version) {

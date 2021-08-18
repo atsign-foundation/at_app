@@ -5,8 +5,6 @@ import 'src/executable.dart';
 import 'src/commands/create.dart';
 
 Future<void> main(List<String> args) async {
-  PubCache pc = new PubCache();
-  print('cache => ${pc.location}');
   await run(args, generateCommands);
 }
 
