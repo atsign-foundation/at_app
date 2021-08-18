@@ -1,6 +1,5 @@
 // @dart = 2.8
 import 'package:flutter_tools/src/runner/flutter_command.dart';
-import 'package:pub_cache/pub_cache.dart';
 import 'src/executable.dart';
 import 'src/commands/create.dart';
 
