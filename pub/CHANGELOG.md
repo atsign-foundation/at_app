@@ -1,3 +1,7 @@
+## 0.1.3
+
+- Using the package pub_cache to get the pub cache path consistently across various flutter installations.
+
 ## 0.1.2+1
 
 - Rename the git repository.
