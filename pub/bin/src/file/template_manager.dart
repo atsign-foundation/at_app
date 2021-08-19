@@ -40,17 +40,18 @@ class TemplateManager extends FileManager {
   }
 
   void setSourceFromPubCache() {
-    List<Version> entries = pc
-        .getAllPackageVersions('at_app')
-        .map((element) => element.version)
-        .toList();
-    Version version;
-    entries.forEach((element) {
-      if (version == null || element > version) {
-        version = element;
-      }
-    });
+    Version version = pc.getLatestVersion('at_app').version;
+
+    if (version == null) {
+      throw NoPackageException('at_app');
+    }
+
     source = FileManager.fileFromPath(
         '$hostedPubCachePath/at_app-${version.toString()}/lib/templates/main.dart');
   }
+}
+
+class NoPackageException extends Exception {
+  factory NoPackageException(String packageName) =>
+      Exception('No version of $packageName found in the pub cache.');
 }
