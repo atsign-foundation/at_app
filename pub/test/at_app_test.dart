@@ -8,11 +8,13 @@ void main() {
   group('Template Manager', () {
     test('pub cache is found', () {
       String pubCachePath = PubCache().location.absolute.path;
+      print('pubCachePath => ${pubCachePath}');
       expect(pubCachePath.length > 0, true);
     });
 
     test('at_app is found in pub cache', () {
       PackageRef latest = PubCache().getLatestVersion('at_app');
+      print('latest.version.toString() => ${latest.version.toString()}');
       expect(latest == null, false);
     });
 
@@ -21,12 +23,16 @@ void main() {
       String hostedPubCachePath = globals.fs.path
           .normalize('${pc.location.absolute.path}/hosted/pub.dartlang.org');
 
+      print('hostedPubCachePath => ${hostedPubCachePath}');
+
       String templatePath = globals.fs.path.join(
           hostedPubCachePath,
           'at_app-${pc.getLatestVersion('at_app')?.version.toString()}',
           'lib',
           'templates',
           'main.dart');
+
+      print('templatePath => ${templatePath}');
 
       File templateFile = File(templatePath);
 
