@@ -31,12 +31,7 @@ Activate the executable:
 flutter pub global activate at_app
 ```
 
-Make sure the pub cache bin is on your path:
-
-```
-Windows: %LOCALAPPDATA%/Pub/Cache/bin
-Mac/Linux: ~/.pub-cache/bin
-```
+Make sure the pub cache bin is on your path, the previous command should tell you what the path entry should be.
 
 Create a new @ platform app:
 
