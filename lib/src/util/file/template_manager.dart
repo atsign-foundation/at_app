@@ -12,7 +12,7 @@ class TemplateManager extends FileManager {
   String filename;
   PubCache pc;
 
-  late File source;
+  File? source;
   late String hostedPubCachePath;
 
   TemplateManager(Directory projectDir, this.filename)
@@ -20,18 +20,18 @@ class TemplateManager extends FileManager {
         super(projectDir, path.normalize('lib/$filename')) {
     hostedPubCachePath =
         path.normalize('${pc.location.absolute.path}/hosted/pub.dartlang.org');
-    setSourceFromPubCache();
   }
 
   Future<bool> copyTemplate() async {
     try {
+      setSourceFromPubCache();
       while (existsSync == false) {
         sleep(Duration(milliseconds: 500));
       }
-      if (!source.existsSync()) {
+      if (!source!.existsSync()) {
         setSourceFromPubCache();
       }
-      var sourceLines = await source.readAsLines();
+      var sourceLines = await source!.readAsLines();
       await write(sourceLines);
     } catch (error) {
       print(error.toString());
