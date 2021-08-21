@@ -96,10 +96,14 @@ class CreateCommand extends CreateBase {
     _logger.i('All done!');
 
     _logger.i('''
+
 In order to run your @platform application, type:
+
 \$ cd $relativeOutputPath
 \$ flutter run
+
 Your application code is in $relativeAppMain.
+
 Happy coding!
 ''');
 
