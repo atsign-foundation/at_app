@@ -1,14 +1,5 @@
-// @dart = 2.8
-import 'package:flutter_tools/src/runner/flutter_command.dart';
-import 'src/executable.dart';
-import 'src/commands/create.dart';
+import 'package:at_app/at_app.dart';
 
 Future<void> main(List<String> args) async {
-  await run(args, generateCommands);
-}
-
-List<FlutterCommand> generateCommands({bool verboseHelp}) {
-  return <FlutterCommand>[
-    AtCreateCommand(verboseHelp: verboseHelp),
-  ];
+  await AtCommandRunner().run(args);
 }
