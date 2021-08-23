@@ -1,6 +1,4 @@
-// @dart = 2.8
 import 'dart:io';
-
 import 'file_manager.dart';
 
 class EnvManager extends FileManager {

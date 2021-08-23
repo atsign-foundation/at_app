@@ -1,27 +1,24 @@
 name: at_app
 description: A command line tool to help developers build an @ platform application.
-version: 0.1.2+1
-repository: https://github.com/atsign-foundation/at_app_cli
+version: 1.0.0
+repository: https://github.com/atsign-foundation/at_app
 homepage: https://atsign.dev/
 
 executables:
-  at_app:
+  at_app: at_app
 
 environment:
   sdk: '>=2.12.0 <3.0.0'
 
-
 dependencies:
-  at_client_mobile: ^2.0.3
-  at_onboarding_flutter: ^2.1.2
-  at_utils: ^2.0.4
-  dotenv: ^3.0.0
-  flutter:
-    sdk: flutter
-  flutter_tools:
-    sdk: flutter
-  path_provider: ^2.0.2
-  version: ^2.0.0
+  args: ^2.2.0
+  logger: ^1.0.0
+  path: ^1.8.0
+  pub_cache: ^0.3.1
+  pub_semver: ^2.0.0
 
 dev_dependencies:
-  pedantic: ^1.10.0
+  build_runner: ^2.1.1
+  build_version: ^2.1.0
+  pedantic: ^1.11.1
+  test: ^1.16.8

@@ -1,66 +1,25 @@
 # Examples
 
-## Using AtEnv
+## Installing the executable
 
-Loading the environment
-
-```dart
-AtEnv.load();
+```sh
+flutter pub global activate at_app
 ```
 
-Get the root domain
+## Creating an @platform app
 
-```dart
-var rootDomain = AtEnv.rootDomain;
+```sh
+at_app.bat create path/to/output/directory
 ```
 
-Get the app namespace
+Windows usage:
 
-```dart
-var namespace = AtEnv.appNamespace;
+```sh
+at_app.bat create path/to/output/directory
 ```
 
-Get the app api key
-```dart
-var apiKey = AtEnv.appApiKey;
-```
+To see all available options:
 
-## Using AtContext
-
-### Get the AtContext instance from the BuildContext
-
-```dart
-AtContext atContext = AtContext.of(context);
-```
-
-### Using the AtContext instance
-
-Get the AtClientService
-
-```dart
-AtClientService atClientService = atContext.atClientService;
-```
-
-Get the AtClientInstance
-
-```dart
-AtClientImpl? atClientInstance = atContext.atClient;
-```
-
-Get the Currently Onboarded AtSign
-
-```dart
-String? currentAtSign = atContext.currentAtSign;
-```
-
-Get the AtClientPreference
-
-```dart
-AtClientPreference atClientPreference = atContext.atClientPreference;
-```
-
-Onboard with another Atsign
-
-```dart
-atContext.switchAtsign("@example");
+```sh
+at_app[.bat] create -h
 ```

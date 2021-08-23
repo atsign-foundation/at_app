@@ -1,13 +1,11 @@
-// @dart = 2.8
-
 import 'dart:io';
-import 'package:flutter_tools/src/globals.dart' as globals;
+import 'package:path/path.dart' as path;
 
 class FileManager {
   File file;
 
   static File fileFromPath(String filePath) =>
-      File(globals.fs.path.relative(filePath, from: Directory.current.path));
+      File(path.relative(filePath, from: Directory.current.path));
 
   FileManager(Directory projectDir, String filename)
       : file = fileFromPath('${projectDir.absolute.path}/$filename');

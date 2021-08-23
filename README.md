@@ -14,10 +14,7 @@ This is for flutter developers looking to build end to end encrypted apps.
 
 This application is an extension of `flutter create`, that replaces the main.dart file with our own custom template. We also perform the additional build configurations required for the onboarding package.
 
-The at_app package contains two pieces:
-
-- Executable
-- Library
+The at_app toolkit also includes a library component called [at_app_flutter](https://pub.dev/packages/at_app_flutter) which is included with the app built by this executable.
 
 Together these two parts work together to provide app developers with the prerequisites of an @ platform app.
 
@@ -45,6 +42,7 @@ at_app create [...options] <output directory>
 ```
 
 Or for windows
+
 ```sh
 at_app.bat create [...options] <output directory>
 ```
@@ -53,23 +51,15 @@ at_app.bat create [...options] <output directory>
 
 `at_app create` includes all of the `flutter create` flags, with the exception of --template, --sample, --list-samples
 
-| Flag          | Shorthand | Description                                             | Value                     |
-| ------------- | --------- | ------------------------------------------------------- | ------------------------- |
-| --namespace   | -n        | The @protocol app namespace to use for the application. | (defaults to "")          |
+| Flag          | Shorthand | Description                                             | Value                |
+| ------------- | --------- | ------------------------------------------------------- | -------------------- |
+| --namespace   | -n        | The @protocol app namespace to use for the application. | (defaults to "")     |
 | --root-domain | -r        | The @protocol root domain to use for the application.   | [prod (default), ve] |
-| --api-key     | -k        | The api key for at_onboarding_flutter.                  | (defaults to "")          |
+| --api-key     | -k        | The api key for at_onboarding_flutter.                  | (defaults to "")     |
 
 ### Library
 
-The library portion contains two classes, to see the usage of these classes please generate an app using the executable above.
-
-#### AtEnv
-
-To manage the environment variables configured via `at_app create` (listed in the table above)
-
-#### AtContext
-
-A wrapper for the MaterialApp widget to provide the AtClientService via global context.
+Please see [at_app_flutter](https://pub.dev/packages/at_app_flutter) for library usage within your generated app.
 
 ## Maintainers
 

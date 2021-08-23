@@ -95,8 +95,9 @@ To prepare your dedicated GitHub repository:
 
 1. How to run tests:
 
+
    ``` sh
-   # coming soon
+   flutter test
    ```
 
 1. Open a new Pull Request to the main repository using your `trunk` branch
