@@ -19,7 +19,7 @@ class TemplateManager extends FileManager {
       : pc = PubCache(),
         super(projectDir, path.normalize('lib/$filename')) {
     hostedPubCachePath =
-        path.normalize('${pc.location.absolute.path}/hosted/pub.dartlang.org');
+        path.absolute('${pc.location.absolute.path}/hosted/pub.dartlang.org');
   }
 
   Future<bool> copyTemplate() async {
