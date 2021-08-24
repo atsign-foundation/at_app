@@ -4,7 +4,7 @@ import '../file_manager.dart';
 
 class GradlePropertiesManager extends FileManager {
   GradlePropertiesManager(Directory projectDir)
-      : super(projectDir, 'android/gradle.properties');
+      : super(projectDir, 'android', 'gradle.properties');
 
   Future<bool> update() async {
     try {

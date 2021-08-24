@@ -4,7 +4,7 @@ import '../file_manager.dart';
 
 class AppBuildGradleManager extends FileManager {
   AppBuildGradleManager(Directory projectDir)
-      : super(projectDir, 'android/app/build.gradle');
+      : super(projectDir, 'android/app', 'build.gradle');
 
   Future<bool> update() async {
     try {

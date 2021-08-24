@@ -50,7 +50,9 @@ class CreateCommand extends CreateBase {
         TemplateManager(outputDirectory, 'main.dart');
 
     final bool shouldWriteMainFile =
-        boolArg('overwrite') ?? false || !mainFileManager.existsSync;
+        !mainFileManager.existsSync || (boolArg('overwrite') ?? false);
+    print(!mainFileManager.existsSync);
+    print(shouldWriteMainFile);
 
     final String relativeOutputPath =
         path.relative(outputDirectory.absolute.path);
@@ -156,6 +158,7 @@ Happy coding!
       'at_onboarding_flutter',
       'at_app_flutter'
     ];
+    // TODO check if flutter is available first
     List<Future> futures = packages.map((package) async {
       try {
         return await Flutter.pubAdd(package, directory: outputDirectory);
