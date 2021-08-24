@@ -5,28 +5,6 @@ import 'dart:io';
 import 'package:test/test.dart';
 
 void main() {
-  const correctFileContent = 'Hello Files!';
-
-  group('File Manager Base', () {
-    late FileManager testManager;
-
-    setUp(() => testManager = FileManager(
-        Directory(path.join(Platform.script.path, '..', 'test')),
-        'testing_file'));
-
-    test('exists', () {
-      final exists = testManager.existsSync;
-      print(testManager.file.path);
-      expect(exists, true);
-    });
-
-    test('read from file', () async {
-      final fileContent = await testManager.file.readAsString();
-      final isCorrectFileContent = fileContent.startsWith(correctFileContent);
-      expect(isCorrectFileContent, true);
-    });
-  });
-
   const templatePackage = 'at_app_flutter';
 
   group('Template Manager', () {
