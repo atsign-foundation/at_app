@@ -4,34 +4,33 @@ import 'dart:io';
 import 'package:test/test.dart';
 
 void main() {
+  const templatePackage = 'at_app_flutter';
+
   group('Template Manager', () {
+    late PubCache pc;
+
+    setUp(() => pc = PubCache());
     test('pub cache is found', () {
-      String pubCachePath = PubCache().location.absolute.path;
-      print('pubCachePath => ${pubCachePath}');
+      String pubCachePath = pc.location.absolute.path;
       expect(pubCachePath.length > 0, true);
     });
 
     test('at_app is found in pub cache', () {
-      PackageRef? latest = PubCache().getLatestVersion('at_app');
-      print('latest.version.toString() => ${latest?.version.toString()}');
+      PackageRef? latest = pc.getLatestVersion(templatePackage);
       expect(latest == null, false);
     });
 
     test('main.dart template exists in the pub cache', () {
-      PubCache pc = PubCache();
       String hostedPubCachePath = path
           .normalize('${pc.location.absolute.path}/hosted/pub.dartlang.org');
 
-      print('hostedPubCachePath => ${hostedPubCachePath}');
-
       String templatePath = path.join(
           hostedPubCachePath,
-          'at_app-${pc.getLatestVersion('at_app')?.version.toString()}',
+          '$templatePackage-${pc.getLatestVersion(templatePackage)?.version.toString()}',
           'lib',
+          'src',
           'templates',
           'main.dart');
-
-      print('templatePath => ${templatePath}');
 
       File templateFile = File(templatePath);
 

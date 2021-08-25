@@ -1,14 +1,16 @@
 import 'dart:io';
 import 'package:path/path.dart' as path;
 
-class FileManager {
+abstract class FileManager {
+  final String dir;
   File file;
 
   static File fileFromPath(String filePath) =>
       File(path.relative(filePath, from: Directory.current.path));
 
-  FileManager(Directory projectDir, String filename)
-      : file = fileFromPath('${projectDir.absolute.path}/$filename');
+  FileManager(Directory projectDir, this.dir, String filename)
+      : file = fileFromPath(
+            path.normalize('${projectDir.absolute.path}/$dir/$filename'));
 
   bool get existsSync => file.existsSync();
 

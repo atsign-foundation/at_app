@@ -28,14 +28,9 @@ describe.
 
 ### Prerequisites
 
-When developing the cli tool activate using the local path:
+Run the tool using:
 ```sh
-flutter pub global activate -s path [path-to-repo]
-```
-
-When running the create command use the local flag to build at_app from the path:
-```sh
-flutter pub global run at_app create --local [...options] \<output directory\>
+dart bin/at_app.dart ...options
 ```
 
 

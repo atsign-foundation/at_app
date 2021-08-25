@@ -1,3 +1,7 @@
+## 1.0.1
+
+- Bug fixes and clean up of file management
+
 ## 1.0.0
 
 - Separated the library portion to it's own package (at_app_flutter).

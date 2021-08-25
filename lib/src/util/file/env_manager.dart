@@ -2,7 +2,7 @@ import 'dart:io';
 import 'file_manager.dart';
 
 class EnvManager extends FileManager {
-  EnvManager(Directory projectDir) : super(projectDir, '.env');
+  EnvManager(Directory projectDir) : super(projectDir, '.', '.env');
 
   Future<bool> update(Map<String, String> values) async {
     try {
