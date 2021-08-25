@@ -51,8 +51,6 @@ class CreateCommand extends CreateBase {
 
     final bool shouldWriteMainFile =
         !mainFileManager.existsSync || (boolArg('overwrite') ?? false);
-    print(!mainFileManager.existsSync);
-    print(shouldWriteMainFile);
 
     final String relativeOutputPath =
         path.relative(outputDirectory.absolute.path);
