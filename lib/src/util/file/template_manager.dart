@@ -13,20 +13,14 @@ class TemplateManager extends FileManager {
   PubCache pc;
 
   File? source;
-  late String hostedPubCachePath;
 
   TemplateManager(Directory projectDir, this.filename)
       : pc = PubCache(),
-        super(projectDir, 'lib', 'main.dart') {
-    hostedPubCachePath =
-        path.absolute('${pc.location.absolute.path}/hosted/pub.dartlang.org');
-  }
+        super(projectDir, 'lib', 'main.dart');
 
   Future<bool> copyTemplate() async {
     try {
       setSourceFromPubCache();
-      print('source!.path => ${source!.path}');
-      
       var sourceLines = await source!.readAsLines();
       await write(sourceLines);
     } catch (error) {
@@ -39,13 +33,10 @@ class TemplateManager extends FileManager {
   void setSourceFromPubCache() {
     Version? version = pc.getLatestVersion(templatePackage)?.version;
     String? flutterRoot = Platform.environment['FLUTTER_ROOT'];
-    print('flutterRoot => ${flutterRoot}');
-    print('pc.location => ${pc.location}');
 
     if (version == null && (flutterRoot?.isNotEmpty ?? false)) {
       pc = PubCache(Directory(path.absolute(path.join(flutterRoot!,
           '.pub-cache')))); // set the directory to $FLUTTER_ROOT and try again
-      print('pc.location => ${pc.location}');
 
       version = pc.getLatestVersion(templatePackage)?.version;
     }
