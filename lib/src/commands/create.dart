@@ -51,8 +51,6 @@ class CreateCommand extends CreateBase {
 
     final bool shouldWriteMainFile =
         !mainFileManager.existsSync || (boolArg('overwrite') ?? false);
-    print(!mainFileManager.existsSync);
-    print(shouldWriteMainFile);
 
     final String relativeOutputPath =
         path.relative(outputDirectory.absolute.path);
@@ -61,9 +59,9 @@ class CreateCommand extends CreateBase {
         path.join(relativeOutputPath, 'lib', 'main.dart');
 
     if (creatingNewProject) {
-      _logger.i('Creating project in $relativeOutputPath...');
+      _logger.i('Creating project in $relativeOutputPath');
     } else {
-      _logger.i('Recreating project in $relativeOutputPath...');
+      _logger.i('Recreating project in $relativeOutputPath');
     }
 
     CommandStatus flutterCreateResult = await super.run();

@@ -119,6 +119,12 @@ chronological order.
 
 ![alt_text](images/image3.png "Versions screenshot")
 
+An additional step when bumping the version, this will update the version number for `at_app --version`.
+
+```sh
+pub run build_runner build
+```
+
 ## Reporting a bug
 
 The best place to start reporting bugs on the libraries published by 

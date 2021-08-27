@@ -1,3 +1,7 @@
+## 1.0.1+1
+
+- Remove bad output when running create command
+
 ## 1.0.1
 
 - Bug fixes and clean up of file management
