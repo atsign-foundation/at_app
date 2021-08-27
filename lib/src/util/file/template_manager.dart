@@ -24,14 +24,9 @@ class TemplateManager extends FileManager {
 
   Future<bool> copyTemplate() async {
     try {
-      print('copying template!');
       setSourceFromPubCache();
-      while (existsSync == false) {
-        sleep(Duration(milliseconds: 500));
-      }
-      if (!source!.existsSync()) {
-        setSourceFromPubCache();
-      }
+      print('source!.path => ${source!.path}');
+      
       var sourceLines = await source!.readAsLines();
       await write(sourceLines);
     } catch (error) {
@@ -43,18 +38,37 @@ class TemplateManager extends FileManager {
 
   void setSourceFromPubCache() {
     Version? version = pc.getLatestVersion(templatePackage)?.version;
-    print('version => ${version?.toString()}');
-    if (version == null) {
-      throw NoPackageException(templatePackage);
+    String? flutterRoot = Platform.environment['FLUTTER_ROOT'];
+    print('flutterRoot => ${flutterRoot}');
+    print('pc.location => ${pc.location}');
+
+    if (version == null && (flutterRoot?.isNotEmpty ?? false)) {
+      pc = PubCache(Directory(path.absolute(path.join(flutterRoot!,
+          '.pub-cache')))); // set the directory to $FLUTTER_ROOT and try again
+      print('pc.location => ${pc.location}');
+
+      version = pc.getLatestVersion(templatePackage)?.version;
     }
+    if (version == null) throw NoPackageException(templatePackage);
 
     buildSourceUrlForVersion(version.toString());
   }
 
   void buildSourceUrlForVersion(String version) {
-    source = FileManager.fileFromPath(path.normalize(
-        '$hostedPubCachePath/$templatePackage-${version}/lib/src/templates/$filename'));
-    print('source file => source?.path');
+    source = FileManager.fileFromPath(
+      path.absolute(
+        path.joinAll([
+          pc.location.absolute.path,
+          'hosted',
+          'pub.dartlang.org',
+          '$templatePackage-$version',
+          'lib',
+          'src',
+          'templates',
+          '$filename',
+        ]),
+      ),
+    );
   }
 }
 
