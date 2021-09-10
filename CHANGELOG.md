@@ -1,3 +1,7 @@
+## 1.0.2
+
+- Fallback to check for the templates under the flutter root pub cache
+
 ## 1.0.1+1
 
 - Remove bad output when running create command

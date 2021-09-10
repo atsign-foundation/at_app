@@ -15,7 +15,7 @@ void main() {
       expect(pubCachePath.length > 0, true);
     });
 
-    test('at_app is found in pub cache', () {
+    test('at_app_flutter is found in pub cache', () {
       PackageRef? latest = pc.getLatestVersion(templatePackage);
       expect(latest == null, false);
     });

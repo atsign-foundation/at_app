@@ -12,6 +12,15 @@ class Flutter {
     await _FlutterCli.run(['pub', 'get'], directory: directory?.absolute.path);
   }
 
+  static Future<bool> isInstalled() async {
+    try {
+      await _FlutterCli.run([]);
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
+
   static Future<void> create(
     Directory directory, {
     bool? pub,

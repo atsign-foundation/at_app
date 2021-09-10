@@ -1,11 +1,11 @@
 import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
-import 'util/command_status.dart';
-import 'util/printer.dart';
-import 'version.dart';
 import 'package:logger/logger.dart';
 
+import 'commands/command_status.dart';
 import 'commands/index.dart';
+import 'util/printer.dart';
+import 'version.dart';
 
 class AtCommandRunner extends CommandRunner<CommandStatus> {
   final Logger _logger;
@@ -41,7 +41,7 @@ class AtCommandRunner extends CommandRunner<CommandStatus> {
   @override
   Future<CommandStatus?> runCommand(ArgResults topLevelResults) async {
     if (topLevelResults['version']) {
-      print('at_app: $packageVersion');
+      print('at_app ${packageVersion.toString()}');
       return CommandStatus.success;
     }
     return super.runCommand(topLevelResults);

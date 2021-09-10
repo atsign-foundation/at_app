@@ -119,11 +119,7 @@ chronological order.
 
 ![alt_text](images/image3.png "Versions screenshot")
 
-An additional step when bumping the version, this will update the version number for `at_app --version`.
-
-```sh
-pub run build_runner build
-```
+An additional step when bumping the version, make sure to update the [version.dart file.](lib/src/version.dart)
 
 ## Reporting a bug
 
