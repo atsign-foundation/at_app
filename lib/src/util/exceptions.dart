@@ -12,3 +12,11 @@ class EnvException implements Exception {
 class TemplateFileException implements Exception {
   final String message = 'Unable to replace project with the template.';
 }
+
+/// An exception thrown when a package is not found in the pub cache
+class NoPackageException implements Exception {
+  final String message;
+
+  NoPackageException(String packageName)
+      : message = 'No version of $packageName found in the pub cache.';
+}

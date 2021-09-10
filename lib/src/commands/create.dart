@@ -1,13 +1,17 @@
+import 'package:at_app/src/util/template_manager.dart';
+import 'package:at_app/src/version.dart';
 import 'package:logger/logger.dart';
 import 'package:path/path.dart' as path;
 
-import '../util/command_status.dart';
+import 'command_status.dart';
 import '../util/exceptions.dart';
-import '../util/file/index.dart';
 import '../util/cli/flutter.dart';
 import '../util/printer.dart';
 import 'create_base.dart';
 
+/// This class extends the flutter create abstraction,
+/// It will pull templates from at_app_flutter
+/// and uses the respective template generator to generate the full template.
 class CreateCommand extends CreateBase {
   final String description = 'Create a new @platform Flutter project.';
   final Logger _logger;
@@ -37,23 +41,26 @@ class CreateCommand extends CreateBase {
       defaultsTo: '',
       valueHelp: 'api-key',
     );
+    argParser.addOption(
+      'template',
+      abbr: 't',
+      help: 'The template to generate.',
+      allowed: ['app'],
+      defaultsTo: 'app',
+      valueHelp: 'app',
+    );
+    //TODO samples
   }
 
   @override
   Future<CommandStatus> run() async {
     validateOutputDirectoryArg();
 
+    /// These variables are for print formatting
     final bool creatingNewProject =
-        !outputDirectory.existsSync() || outputDirectory.listSync().isEmpty;
+        !projectDir.existsSync() || projectDir.listSync().isEmpty;
 
-    final TemplateManager mainFileManager =
-        TemplateManager(outputDirectory, 'main.dart');
-
-    final bool shouldWriteMainFile =
-        !mainFileManager.existsSync || (boolArg('overwrite') ?? false);
-
-    final String relativeOutputPath =
-        path.relative(outputDirectory.absolute.path);
+    final String relativeOutputPath = path.relative(projectDir.absolute.path);
 
     final String relativeAppMain =
         path.join(relativeOutputPath, 'lib', 'main.dart');
@@ -64,32 +71,41 @@ class CreateCommand extends CreateBase {
       _logger.i('Recreating project in $relativeOutputPath');
     }
 
+    /// Run create_base before running the rest of create
     CommandStatus flutterCreateResult = await super.run();
     if (flutterCreateResult != CommandStatus.success) {
       return flutterCreateResult;
     }
 
     _logger.i('');
-    _logger.i('Project created, now adding a little @ magic...');
-
-    List<Future> futures = [];
-
-    for (Function f in [updateEnvFile, addDependencies, androidConfig]) {
-      try {
-        futures.add(f());
-      } catch (e) {
-        _logger.w(e.toString());
-      }
+    if (creatingNewProject) {
+      _logger.i('Project created, now adding a little @ magic...');
+    } else {
+      _logger.i('Project recreated, now adding a little @ magic...');
     }
 
-    await Future.wait(futures);
-
-    // Should be completed after addDependencies
-    // so that we can expect at_app_flutter to be in the pub cache
+    /// pub add at_app_flutter before generating the template
+    /// this ensures that we can pull the template from the pub cache
+    await addDependency();
     try {
-      if (shouldWriteMainFile) await mainFileManager.copyTemplate();
+      /// Generate the template
+      await TemplateManager(
+              stringArg('template') ?? 'app', projectDir, argResults!)
+          .generateTemplate();
+    } on AndroidBuildException {
+      _logger.e('Failed to setup the android build configuration.');
+      return CommandStatus.fail;
+    } on EnvException {
+      _logger.e('Failed to setup the @platform configuration.');
+      return CommandStatus.fail;
+    } on TemplateFileException {
+      _logger.e('Failed to transfer a template file.');
+      return CommandStatus.fail;
+    } on NoPackageException {
+      _logger.e('Failed to get a package from the pub cache.');
+      return CommandStatus.fail;
     } catch (e) {
-      throw TemplateFileException();
+      _logger.e(e.toString(), e);
     }
 
     _logger.i('');
@@ -110,80 +126,19 @@ Happy coding!
     return CommandStatus.success;
   }
 
-  /// Updates the environment variables from the command arguments
-  Future<void> updateEnvFile() async {
-    try {
-      var values = parseEnvArgs();
-      // generatedFileCount++;
-      await EnvManager(outputDirectory).update(values);
-    } catch (e) {
-      throw EnvException();
-    }
-  }
+  /// Install at_app_flutter to pub cache and set version constraints
+  Future<void> addDependency() async {
+    await Flutter.pubAdd(
+      '$templatePackageName:$templatePackageVersion',
+      directory: projectDir,
+    );
 
-  /// Parses the environment variables from the command arguments
-  Map<String, String> parseEnvArgs() {
-    assert(argResults != null);
-    Map<String, String> result = {};
-    if (argResults!.wasParsed('namespace')) {
-      result['NAMESPACE'] = stringArg('namespace')!;
-    }
-    if (argResults!.wasParsed('root-domain')) {
-      result['ROOT_DOMAIN'] = getRootDomain(stringArg('root-domain')!);
-    }
-    if (argResults!.wasParsed('api-key')) {
-      result['API_KEY'] = stringArg('api-key')!;
-    }
-    return result;
-  }
-
-  /// Get the full rootDomain for the specified [flag]
-  String getRootDomain(String flag) {
-    switch (flag) {
-      case 've':
-        return 'vip.ve.atsign.zone';
-      case 'prod':
-      default:
-        return 'root.atsign.org';
-    }
-  }
-
-  /// Dependencies for the @platform app
-  Future<void> addDependencies() async {
-    assert(argResults != null);
-    final List<String> packages = [
-      'at_client_mobile',
-      'at_onboarding_flutter',
-      'at_app_flutter'
-    ];
-    // TODO check if flutter is available first
-    List<Future> futures = packages.map((package) async {
-      try {
-        return await Flutter.pubAdd(package, directory: outputDirectory);
-      } catch (e) {
-        _logger.w(
-            'Package $package was not added, please manually add if necessary.');
-      }
-    }).toList();
-    await Future.wait(futures);
     if (boolArg('pub')!) {
       try {
-        await Flutter.pubGet(directory: outputDirectory);
+        await Flutter.pubGet(directory: projectDir);
       } catch (e) {
-        _logger.w('Unable to pub get in ${outputDirectory.path}');
+        _logger.w('Unable to pub get in ${projectDir.path}');
       }
-    }
-  }
-
-  /// Required Android build configuration
-  Future<void> androidConfig() async {
-    try {
-      await Future.wait([
-        GradlePropertiesManager(outputDirectory).update(),
-        AppBuildGradleManager(outputDirectory).update()
-      ]);
-    } catch (e) {
-      throw AndroidBuildException();
     }
   }
 }
