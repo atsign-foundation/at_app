@@ -59,3 +59,11 @@ Please see [at_app_flutter](https://pub.dev/packages/at_app_flutter) for library
 ## Maintainers
 
 Created by [XavierChanth](https://github.com/xavierchanth)
+
+## Attribution
+
+Copyright 2014 The Flutter Authors. All rights reserved.
+
+This project is an extension of, and utilises flutter create to generate templates.
+Code used from the flutter sdk is marked with the copyright.
+Please see the original license [here.](https://github.com/flutter/flutter/blob/master/LICENSE)

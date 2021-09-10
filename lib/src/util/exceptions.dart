@@ -20,3 +20,10 @@ class NoPackageException implements Exception {
   NoPackageException(String packageName)
       : message = 'No version of $packageName found in the pub cache.';
 }
+
+/// An exception thrown when a package is not found in the pub cache
+class FlutterCliException implements Exception {
+  final String message;
+
+  FlutterCliException(this.message);
+}

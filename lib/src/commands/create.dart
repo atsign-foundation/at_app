@@ -65,6 +65,7 @@ class CreateCommand extends CreateBase {
     final String relativeAppMain =
         path.join(relativeOutputPath, 'lib', 'main.dart');
 
+    // Copyright 2014 The Flutter Authors. All rights reserved.
     if (creatingNewProject) {
       _logger.i('Creating project in $relativeOutputPath');
     } else {
@@ -111,6 +112,7 @@ class CreateCommand extends CreateBase {
     _logger.i('');
     _logger.i('All done!');
 
+    // Copyright 2014 The Flutter Authors. All rights reserved.
     _logger.i('''
 
 In order to run your @platform application, type:

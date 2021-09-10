@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:args/command_runner.dart';
+import 'package:path/path.dart' as path;
 import 'command_status.dart';
 import 'package:logger/logger.dart';
 
@@ -37,6 +38,7 @@ abstract class CreateBase extends Command<CommandStatus> {
       : _logger =
             logger ?? Logger(filter: ProductionFilter(), printer: Printer()) {
     // Flutter Arguments
+    // Copyright 2014 The Flutter Authors. All rights reserved.
     argParser.addFlag(
       'pub',
       defaultsTo: true,
@@ -114,6 +116,13 @@ abstract class CreateBase extends Command<CommandStatus> {
     File mainFile = File('${projectDir.absolute.path}/lib/main.dart');
     final bool exists = mainFile.existsSync();
 
+    if (!validatePackageName(
+        projectName ?? path.basename(projectDir.absolute.path))) {
+      throw FormatException(
+          '"$projectName" is not a valid Dart package name.\n\n'
+          'See https://dart.dev/tools/pub/pubspec#name for more information.');
+    }
+
     await Flutter.create(
       projectDir,
       pub: pub,
@@ -157,7 +166,89 @@ abstract class CreateBase extends Command<CommandStatus> {
     }
   }
 
+  // Copyright 2014 The Flutter Authors. All rights reserved.
+  bool validatePackageName(String name) {
+    final Match? match = RegExp('[a-z_][a-z0-9_]*').matchAsPrefix(name);
+    return match != null &&
+        match.end == name.length &&
+        !_keywords.contains(name);
+  }
+
   Directory get projectDir {
     return Directory(argResults!.rest.first);
   }
 }
+
+// Copyright 2014 The Flutter Authors. All rights reserved.
+// dart keywords for package name validation
+const Set<String> _keywords = <String>{
+  'abstract',
+  'as',
+  'assert',
+  'async',
+  'await',
+  'break',
+  'case',
+  'catch',
+  'class',
+  'const',
+  'continue',
+  'covariant',
+  'default',
+  'deferred',
+  'do',
+  'dynamic',
+  'else',
+  'enum',
+  'export',
+  'extends',
+  'extension',
+  'external',
+  'factory',
+  'false',
+  'final',
+  'finally',
+  'for',
+  'function',
+  'get',
+  'hide',
+  'if',
+  'implements',
+  'import',
+  'in',
+  'inout',
+  'interface',
+  'is',
+  'late',
+  'library',
+  'mixin',
+  'native',
+  'new',
+  'null',
+  'of',
+  'on',
+  'operator',
+  'out',
+  'part',
+  'patch',
+  'required',
+  'rethrow',
+  'return',
+  'set',
+  'show',
+  'source',
+  'static',
+  'super',
+  'switch',
+  'sync',
+  'this',
+  'throw',
+  'true',
+  'try',
+  'typedef',
+  'var',
+  'void',
+  'while',
+  'with',
+  'yield',
+};
