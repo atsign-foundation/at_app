@@ -85,7 +85,7 @@ class CreateCommand extends CreateBase {
     await Future.wait(futures);
 
     // Should be completed after addDependencies
-    // so that we can expect at_app to be in the pub cache
+    // so that we can expect at_app_flutter to be in the pub cache
     try {
       if (shouldWriteMainFile) await mainFileManager.copyTemplate();
     } catch (e) {
