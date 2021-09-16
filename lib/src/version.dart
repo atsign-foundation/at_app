@@ -7,4 +7,4 @@ final packageVersion = Version(1, 0, 2);
 final templatePackageName = 'at_app_flutter';
 
 /// Version of the package to use for templates
-final templatePackageVersion = Version(0, 2, 0);
+final templatePackageVersion = Version(0, 2, 0, pre: 'rc');
