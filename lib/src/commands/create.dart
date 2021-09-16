@@ -47,7 +47,7 @@ class CreateCommand extends CreateBase {
       help: 'The template to generate.',
       allowed: ['app'],
       defaultsTo: 'app',
-      valueHelp: 'app',
+      valueHelp: 'template-name',
     );
     //TODO samples
   }
