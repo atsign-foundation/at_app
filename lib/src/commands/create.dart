@@ -48,6 +48,7 @@ class CreateCommand extends CreateBase {
       allowed: ['app'],
       defaultsTo: 'app',
       valueHelp: 'template-name',
+      hide: true
     );
     //TODO samples
   }
