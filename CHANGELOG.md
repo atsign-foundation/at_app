@@ -1,3 +1,7 @@
+## 1.1.0-rc+1
+
+- Catch errors caused by pub adding to a project that already has the dependency
+
 ## 1.1.0-rc
 
 - at_app now pulls specific dependency versions when generating templates with create
