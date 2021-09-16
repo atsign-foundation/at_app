@@ -1,3 +1,8 @@
+## 1.1.0-rc
+
+- at_app now pulls specific dependency versions when generating templates with create
+- Added support for multiple templates (hidden flag)
+
 ## 1.0.2
 
 - Fallback to check for the templates under the flutter root pub cache
