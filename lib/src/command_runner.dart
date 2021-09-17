@@ -3,7 +3,7 @@ import 'package:args/command_runner.dart';
 import 'package:logger/logger.dart';
 
 import 'commands/command_status.dart';
-import 'commands/index.dart';
+import 'commands/create.dart';
 import 'util/printer.dart';
 import 'version.dart';
 
