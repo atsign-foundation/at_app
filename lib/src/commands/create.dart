@@ -41,14 +41,13 @@ class CreateCommand extends CreateBase {
       defaultsTo: '',
       valueHelp: 'api-key',
     );
-    argParser.addOption(
-      'template',
-      abbr: 't',
-      help: 'The template to generate.',
-      allowed: ['app'],
-      defaultsTo: 'app',
-      valueHelp: 'app',
-    );
+    argParser.addOption('template',
+        abbr: 't',
+        help: 'The template to generate.',
+        allowed: ['app'],
+        defaultsTo: 'app',
+        valueHelp: 'template-name',
+        hide: true);
     //TODO samples
   }
 
@@ -130,10 +129,16 @@ Happy coding!
 
   /// Install at_app_flutter to pub cache and set version constraints
   Future<void> addDependency() async {
-    await Flutter.pubAdd(
-      '$templatePackageName:$templatePackageVersion',
-      directory: projectDir,
-    );
+    try {
+      await Flutter.pubAdd(
+        '$templatePackageName:$templatePackageVersion',
+        directory: projectDir,
+      );
+    } catch (e) {
+      _logger
+          .w('Unable to run "pub add $templatePackageName:$templatePackageVersion"');
+      _logger.i('This may not be an error, the package may already be added to the project.');
+    }
 
     if (boolArg('pub')!) {
       try {
