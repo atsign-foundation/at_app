@@ -135,9 +135,10 @@ Happy coding!
         directory: projectDir,
       );
     } catch (e) {
-      _logger
-          .w('Unable to run "pub add $templatePackageName:$templatePackageVersion"');
-      _logger.i('This may not be an error, the package may already be added to the project.');
+      _logger.w(
+          'Unable to run "pub add $templatePackageName:$templatePackageVersion"');
+      _logger.i(
+          'This may not be an error, the package may already be added to the project.');
     }
 
     if (boolArg('pub')!) {
