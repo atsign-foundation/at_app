@@ -1,3 +1,7 @@
+## 1.1.0
+
+- Publish release candidate 1.1.0-rc+3
+
 ## 1.1.0-rc+3
 
 - at_app now uses at_app_flutter version 1.0.0-rc
