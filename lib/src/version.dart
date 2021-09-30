@@ -1,7 +1,7 @@
 import 'package:pub_semver/pub_semver.dart';
 
 /// Current version of this package
-final packageVersion = Version(1, 1, 0, pre: 'rc', build: '1');
+final packageVersion = Version(1, 1, 0, pre: 'rc', build: '2');
 
 /// Name of the package containing the templates
 final templatePackageName = 'at_app_flutter';
