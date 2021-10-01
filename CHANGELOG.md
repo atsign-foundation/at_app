@@ -1,3 +1,7 @@
+## 1.1.1
+
+- Update for bug fix in at_app_flutter
+
 ## 1.1.0
 
 - Publish release candidate 1.1.0-rc+3
