@@ -1,3 +1,7 @@
+## 2.0.0-rc
+
+- Uses the new at_app_flutter 2.0.0
+
 ## 1.1.1
 
 - Update for bug fix in at_app_flutter
