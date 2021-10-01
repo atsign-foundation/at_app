@@ -1,3 +1,15 @@
+## 1.1.0
+
+- Publish release candidate 1.1.0-rc+3
+
+## 1.1.0-rc+3
+
+- at_app now uses at_app_flutter version 1.0.0-rc
+
+## 1.1.0-rc+2
+
+- at_app now uses .dart_tool/package_config.json to locate the template files contained in at_app_flutter
+
 ## 1.1.0-rc+1
 
 - Catch errors caused by pub adding to a project that already has the dependency

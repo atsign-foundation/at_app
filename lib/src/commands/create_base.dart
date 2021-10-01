@@ -116,10 +116,12 @@ abstract class CreateBase extends Command<CommandStatus> {
     File mainFile = File('${projectDir.absolute.path}/lib/main.dart');
     final bool exists = mainFile.existsSync();
 
-    if (!validatePackageName(
-        projectName ?? path.basename(projectDir.absolute.path))) {
+    var packageName =
+        projectName ?? path.basename(path.normalize(projectDir.absolute.path));
+
+    if (!validatePackageName(packageName)) {
       throw FormatException(
-          '"$projectName" is not a valid Dart package name.\n\n'
+          '"$packageName" is not a valid Dart package name.\n\n'
           'See https://dart.dev/tools/pub/pubspec#name for more information.');
     }
 

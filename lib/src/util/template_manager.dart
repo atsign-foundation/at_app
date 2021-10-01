@@ -1,18 +1,17 @@
 import 'dart:io';
 
 import 'package:args/args.dart';
-import 'package:at_app/src/util/printer.dart';
 import 'package:io/io.dart';
 import 'package:logger/logger.dart';
 import 'package:path/path.dart' as path;
-import 'package:pub_cache/pub_cache.dart';
 
-import 'package:at_app/src/util/exceptions.dart';
-import 'package:at_app/src/util/file/android_manager.dart';
-import 'package:at_app/src/util/file/env_manager.dart';
-import 'package:pub_semver/pub_semver.dart';
+import 'exceptions.dart';
+import 'file/android_manager.dart';
+import 'file/env_manager.dart';
+import 'printer.dart';
 
 import '../version.dart';
+import 'cache_package.dart';
 
 class TemplateManager {
   final AndroidManager androidManager;
@@ -21,7 +20,7 @@ class TemplateManager {
   final ArgResults argResults;
   final String name;
 
-  Cache cache;
+  CachePackage cachePackage;
   Logger _logger;
 
   TemplateManager(this.name, this.projectDir, this.argResults, {Logger? logger})
@@ -29,7 +28,7 @@ class TemplateManager {
             logger ?? Logger(filter: ProductionFilter(), printer: Printer()),
         envFileManager = EnvManager(projectDir),
         androidManager = AndroidManager(projectDir),
-        cache = Cache(templatePackageName, templatePackageVersion);
+        cachePackage = CachePackage(templatePackageName, projectDir);
 
   Future<void> generateTemplate() async {
     _logger.i('');
@@ -46,7 +45,7 @@ class TemplateManager {
     _logger.i('Building your $name template...');
 
     String from = path.absolute(path.joinAll([
-      cache.baseUrl,
+      cachePackage.baseUrl,
       'lib',
       'src',
       'templates',
@@ -99,40 +98,5 @@ class TemplateManager {
       default:
         return 'root.atsign.org';
     }
-  }
-}
-
-class Cache {
-  PubCache _pc = PubCache();
-  String packageName;
-  Version packageVersion;
-
-  Cache(this.packageName, this.packageVersion) {
-    String? flutterRoot = Platform.environment['FLUTTER_ROOT'];
-
-    if (!versionExists() && (flutterRoot?.isNotEmpty ?? false)) {
-      _pc = PubCache(Directory(path.absolute(path.join(flutterRoot!,
-          '.pub-cache')))); // set the directory to $FLUTTER_ROOT and try again
-    }
-
-    if (!versionExists()) {
-      throw NoPackageException;
-    }
-  }
-
-  PubCache get pubCache => _pc;
-
-  String get baseUrl => path.absolute(path.joinAll([
-        _pc.location.absolute.path,
-        'hosted',
-        'pub.dartlang.org',
-        '$packageName-$packageVersion',
-      ]));
-
-  bool versionExists() {
-    return _pc
-        .getAllPackageVersions(packageName)
-        .map((e) => e.version)
-        .contains(packageVersion);
   }
 }
