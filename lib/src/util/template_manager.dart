@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:args/args.dart';
+import 'package:at_app/src/util/file/gitignore_manager.dart';
 import 'package:io/io.dart';
 import 'package:logger/logger.dart';
 import 'package:path/path.dart' as path;
@@ -16,6 +17,7 @@ import 'cache_package.dart';
 class TemplateManager {
   final AndroidManager androidManager;
   final EnvManager envFileManager;
+  final GitignoreManager gitignoreManager;
   final Directory projectDir;
   final ArgResults argResults;
   final String name;
@@ -28,6 +30,7 @@ class TemplateManager {
             logger ?? Logger(filter: ProductionFilter(), printer: Printer()),
         envFileManager = EnvManager(projectDir),
         androidManager = AndroidManager(projectDir),
+        gitignoreManager = GitignoreManager(projectDir),
         cachePackage = CachePackage(templatePackageName, projectDir);
 
   Future<void> generateTemplate() async {
@@ -37,6 +40,7 @@ class TemplateManager {
     List<Future> futures = [
       androidManager.update(),
       envFileManager.update(parseEnvArgs()),
+      gitignoreManager.update(),
     ];
 
     await Future.wait(futures);
