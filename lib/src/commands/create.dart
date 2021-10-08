@@ -1,3 +1,4 @@
+import 'package:at_app/src/util/cache_package.dart';
 import 'package:at_app/src/util/template_manager.dart';
 import 'package:at_app/src/version.dart';
 import 'package:logger/logger.dart';
@@ -84,10 +85,11 @@ class CreateCommand extends CreateBase {
       _logger.i('Project recreated, now adding a little @ magic...');
     }
 
-    /// pub add at_app_flutter before generating the template
-    /// this ensures that we can pull the template from the pub cache
-    await addDependency();
     try {
+      /// pub add at_app_flutter before generating the template
+      /// this ensures that we can pull the template from the pub cache
+      await addDependency();
+
       /// Generate the template
       await TemplateManager(
               stringArg('template') ?? 'app', projectDir, argResults!)
@@ -106,6 +108,7 @@ class CreateCommand extends CreateBase {
       return CommandStatus.fail;
     } catch (e) {
       _logger.e(e.toString(), e);
+      return CommandStatus.fail;
     }
 
     _logger.i('');
@@ -129,24 +132,29 @@ Happy coding!
 
   /// Install at_app_flutter to pub cache and set version constraints
   Future<void> addDependency() async {
-    try {
-      await Flutter.pubAdd(
-        '$templatePackageName:$templatePackageVersion',
-        directory: projectDir,
-      );
-    } catch (e) {
-      _logger.w(
-          'Unable to run "pub add $templatePackageName:$templatePackageVersion"');
-      _logger.i(
-          'This may not be an error, the package may already be added to the project.');
-    }
-
-    if (boolArg('pub')!) {
+    const retries = 2;
+    for (int i = 0; i < retries; i++) {
       try {
-        await Flutter.pubGet(directory: projectDir);
+        CachePackage(templatePackageName, projectDir);
+        if (boolArg('pub')!) {
+          try {
+            await Flutter.pubGet(directory: projectDir);
+          } catch (e) {
+            _logger.w('Unable to pub get in ${projectDir.path}');
+          }
+        }
+        return;
       } catch (e) {
-        _logger.w('Unable to pub get in ${projectDir.path}');
+        await Flutter.pubAdd(
+          '$templatePackageName:$templatePackageVersion',
+          directory: projectDir,
+        );
       }
     }
+
+    _logger.e(
+        'Unable to add $templatePackageName:$templatePackageVersion to the project.');
+    _logger.i('Please try again later.');
+    throw NoPackageException(templatePackageName);
   }
 }
