@@ -35,6 +35,12 @@ class AppBuildGradleManager extends FileManager {
             'minSdkVersion 24',
           );
         }
+        if (line.contains('compileSdkVersion')) {
+          return line.replaceFirst(
+            RegExp('compileSdkVersion .*'),
+            'compileSdkVersion 31',
+          );
+        }
         return line;
       }).toList();
       await write(lines);
