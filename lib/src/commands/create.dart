@@ -13,6 +13,7 @@ import 'create_base.dart';
 /// It will pull templates from at_app_flutter
 /// and uses the respective template generator to generate the full template.
 class CreateCommand extends CreateBase {
+  @override
   final String description = 'Create a new @platform Flutter project.';
   final Logger _logger;
   CreateCommand({Logger? logger})

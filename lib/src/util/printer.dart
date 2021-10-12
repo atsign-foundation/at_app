@@ -32,7 +32,7 @@ class Printer extends LogPrinter {
 
   String _stringifyMessage(dynamic message) {
     if (message is Map || message is Iterable) {
-      var encoder = JsonEncoder.withIndent(null);
+      var encoder = const JsonEncoder.withIndent(null);
       return encoder.convert(message);
     } else {
       return message.toString();

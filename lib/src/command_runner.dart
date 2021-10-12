@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
 import 'package:logger/logger.dart';
@@ -41,7 +43,7 @@ class AtCommandRunner extends CommandRunner<CommandStatus> {
   @override
   Future<CommandStatus?> runCommand(ArgResults topLevelResults) async {
     if (topLevelResults['version']) {
-      print('at_app ${packageVersion.toString()}');
+      log('at_app ${packageVersion.toString()}');
       return CommandStatus.success;
     }
     return super.runCommand(topLevelResults);

@@ -17,11 +17,11 @@ class EnvManager extends FileManager {
         return line;
       }).toList();
 
-      values.keys.forEach((key) {
+      for (var key in values.keys) {
         if (!newFileContents.any((line) => line.startsWith(key))) {
           newFileContents.add('$key=${values[key]}');
         }
-      });
+      }
 
       await write(newFileContents);
     } catch (error) {

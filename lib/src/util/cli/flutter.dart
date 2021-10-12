@@ -41,8 +41,9 @@ class Flutter {
     if (org != null) args.add('--org=$org');
     if (projectName != null) args.add('--project-name=$projectName');
     if (iosLanguage != null) args.add('--ios-language=$iosLanguage');
-    if (androidLanguage != null)
+    if (androidLanguage != null) {
       args.add('--android-language=$androidLanguage');
+    }
 
     args.addAll(['--platforms=android,ios', directory.absolute.path]);
 
