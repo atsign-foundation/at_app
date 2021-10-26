@@ -1,3 +1,11 @@
+## 3.0.0-rc+2
+
+- Depends on at_app_flutter 3.0.0
+- Updates the android build config for flutter_config which was introduced in at_app_flutter 3.0.0
+- Updated the default compileSdkVersion to 31 for android apps
+- Performance optimizations to file management
+- Modified imports and constant variables for easier maintenance
+
 ## 2.0.0
 
 - Uses the new at_app_flutter 2.0.0
