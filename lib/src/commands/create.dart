@@ -1,13 +1,16 @@
-import 'package:at_app/src/util/cache_package.dart';
-import 'package:at_app/src/util/template_manager.dart';
-import 'package:at_app/src/version.dart';
-import 'package:logger/logger.dart';
-import 'package:path/path.dart' as path;
+import 'package:logger/logger.dart' show Logger, ProductionFilter;
+import 'package:path/path.dart' show join, relative;
 
-import 'command_status.dart';
-import '../util/exceptions.dart';
+import '../util/cache_package.dart';
 import '../util/cli/flutter.dart';
+import '../util/exceptions/android_build_exception.dart';
+import '../util/exceptions/env_exception.dart';
+import '../util/exceptions/package_exception.dart';
+import '../util/exceptions/template_exception.dart';
 import '../util/printer.dart';
+import '../util/template_manager.dart';
+import '../version.dart';
+import 'command_status.dart';
 import 'create_base.dart';
 
 /// This class extends the flutter create abstraction,
@@ -60,10 +63,9 @@ class CreateCommand extends CreateBase {
     final bool creatingNewProject =
         !projectDir.existsSync() || projectDir.listSync().isEmpty;
 
-    final String relativeOutputPath = path.relative(projectDir.absolute.path);
+    final String relativeOutputPath = relative(projectDir.absolute.path);
 
-    final String relativeAppMain =
-        path.join(relativeOutputPath, 'lib', 'main.dart');
+    final String relativeAppMain = join(relativeOutputPath, 'lib', 'main.dart');
 
     // Copyright 2014 The Flutter Authors. All rights reserved.
     if (creatingNewProject) {
@@ -98,12 +100,12 @@ class CreateCommand extends CreateBase {
       _logger.e('Failed to setup the android build configuration.');
       return CommandStatus.fail;
     } on EnvException {
-      _logger.e('Failed to setup the @platform configuration.');
+      _logger.e('Failed to setup the @platform environment.');
       return CommandStatus.fail;
-    } on TemplateFileException {
+    } on TemplateException {
       _logger.e('Failed to transfer a template file.');
       return CommandStatus.fail;
-    } on NoPackageException {
+    } on PackageException {
       _logger.e('Failed to get a package from the pub cache.');
       return CommandStatus.fail;
     } catch (e) {
@@ -146,15 +148,15 @@ Happy coding!
         return;
       } catch (e) {
         await Flutter.pubAdd(
-          '$templatePackageName:$templatePackageVersion',
+          '$templatePackageName:$packageVersion',
           directory: projectDir,
         );
       }
     }
 
     _logger.e(
-        'Unable to add $templatePackageName:$templatePackageVersion to the project.');
+        'Unable to add $templatePackageName:$packageVersion to the project.');
     _logger.i('Please try again later.');
-    throw NoPackageException(templatePackageName);
+    throw PackageException(templatePackageName);
   }
 }

@@ -1,6 +1,6 @@
-import 'package:args/args.dart';
-import 'package:args/command_runner.dart';
-import 'package:logger/logger.dart';
+import 'package:args/args.dart' show ArgResults;
+import 'package:args/command_runner.dart' show CommandRunner, UsageException;
+import 'package:logger/logger.dart' show Logger, ProductionFilter;
 
 import 'commands/command_status.dart';
 import 'commands/create.dart';
