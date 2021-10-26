@@ -1,7 +1,7 @@
-import 'dart:io';
+import 'dart:io' show Directory;
 
-import 'package:at_app/src/util/exceptions.dart';
-
+import '../exceptions/android_build_exception.dart';
+import 'config/android_config.dart';
 import 'file_manager.dart';
 
 class AndroidManager {
@@ -28,21 +28,42 @@ class AppBuildGradleManager extends FileManager {
 
   Future<bool> update() async {
     try {
-      var lines = (await file.readAsLines()).map((line) {
-        if (line.contains('minSdkVersion')) {
-          return line.replaceFirst(
-            RegExp('minSdkVersion .*'),
-            'minSdkVersion 24',
-          );
-        }
-        if (line.contains('compileSdkVersion')) {
-          return line.replaceFirst(
-            RegExp('compileSdkVersion .*'),
-            'compileSdkVersion 31',
-          );
-        }
-        return line;
-      }).toList();
+      List<String> lines = await file.readAsLines();
+
+      // Update minSdkVersion
+      int index = lines.indexWhere((line) => line.contains('minSdkVersion'));
+
+      lines[index] = lines[index].replaceFirst(
+        RegExp('minSdkVersion .*'),
+        'minSdkVersion $minSdkVersion',
+      );
+
+      // Update compileSdkVersion
+      index = lines.indexWhere((line) => line.contains('compileSdkVersion'));
+
+      lines[index] = lines[index].replaceFirst(
+        RegExp('compileSdkVersion .*'),
+        'compileSdkVersion $compileSdkVersion',
+      );
+
+      // Update targetSdkVersion
+      index = lines.indexWhere((line) => line.contains('targetSdkVersion'));
+
+      lines[index] = lines[index].replaceFirst(
+        RegExp('targetSdkVersion .*'),
+        'targetSdkVersion $targetSdkVersion',
+      );
+
+      // Add flutter_config package requirements to build.gradle
+      if (!lines.contains(flutterConfigGradle)) {
+        index = lines.indexWhere((line) => line.startsWith('android'));
+
+        // insert right before 'android {' line
+        lines.insert(index, flutterConfigGradle);
+        // new line right after
+        lines.insert(index + 1, '');
+      }
+
       await write(lines);
     } catch (_) {
       return false;
@@ -57,11 +78,15 @@ class GradlePropertiesManager extends FileManager {
 
   Future<bool> update() async {
     try {
-      var properties = await file.readAsLines();
-      properties
-          .removeWhere((element) => element.startsWith('android.enableR8'));
-      properties.add('android.enableR8=true');
-      await write(properties);
+      var lines = await file.readAsLines();
+      int index = lines.indexWhere((element) => element.startsWith(androidR8));
+      String androidR8Full = '$androidR8=$androidR8Value';
+      if (index < 0) {
+        lines.add(androidR8Full);
+      } else {
+        lines[index] = androidR8Full;
+      }
+      await write(lines);
     } catch (_) {
       return false;
     }
