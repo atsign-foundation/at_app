@@ -1,23 +1,27 @@
 import 'dart:io';
 
-import 'package:args/args.dart';
-import 'package:at_app/src/util/file/gitignore_manager.dart';
-import 'package:io/io.dart';
-import 'package:logger/logger.dart';
-import 'package:path/path.dart' as path;
-
-import 'exceptions.dart';
-import 'file/android_manager.dart';
-import 'file/env_manager.dart';
-import 'printer.dart';
+import 'package:args/args.dart' show ArgResults;
+import 'package:at_app/src/util/file/pubspec_manager.dart';
+import 'package:io/io.dart' show copyPath;
+import 'package:logger/logger.dart' show Logger, ProductionFilter;
+import 'package:path/path.dart' show absolute, join;
 
 import '../version.dart';
 import 'cache_package.dart';
+import 'exceptions/env_exception.dart';
+import 'exceptions/template_exception.dart';
+import 'file/android_manager.dart';
+import 'file/env_manager.dart';
+import 'file/gitignore_manager.dart';
+import 'printer.dart';
 
 class TemplateManager {
+  // File Managers
   final AndroidManager androidManager;
   final EnvManager envFileManager;
   final GitignoreManager gitignoreManager;
+  final PubspecManager pubspecManager;
+
   final Directory projectDir;
   final ArgResults argResults;
   final String name;
@@ -31,6 +35,7 @@ class TemplateManager {
         envFileManager = EnvManager(projectDir),
         androidManager = AndroidManager(projectDir),
         gitignoreManager = GitignoreManager(projectDir),
+        pubspecManager = PubspecManager(projectDir),
         cachePackage = CachePackage(templatePackageName, projectDir);
 
   Future<void> generateTemplate() async {
@@ -41,6 +46,7 @@ class TemplateManager {
       androidManager.update(),
       envFileManager.update(parseEnvArgs()),
       gitignoreManager.update(),
+      pubspecManager.update(),
     ];
 
     await Future.wait(futures);
@@ -48,22 +54,22 @@ class TemplateManager {
     _logger.i('');
     _logger.i('Building your $name template...');
 
-    String from = path.absolute(path.joinAll([
+    String from = absolute(join(
       cachePackage.baseUrl,
       'lib',
       'src',
       'templates',
       name,
-    ]));
+    ));
 
-    String to = path.absolute(path.joinAll([
+    String to = absolute(join(
       projectDir.absolute.path,
       'lib',
-    ]));
+    ));
     try {
       await copyPath(from, to);
     } catch (_) {
-      throw TemplateFileException();
+      throw TemplateException();
     }
   }
 
