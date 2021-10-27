@@ -1,7 +1,7 @@
-import 'dart:convert';
-import 'dart:io';
+import 'dart:convert' show jsonDecode;
+import 'dart:io' show Directory, File;
 
-import 'package:path/path.dart' as path;
+import 'package:path/path.dart' show join;
 
 class CachePackage {
   String packageName;
@@ -10,11 +10,11 @@ class CachePackage {
 
   CachePackage(this.packageName, this.projectDir) {
     File packageConfigFile = File(
-      path.joinAll([
+      join(
         projectDir.absolute.path,
         '.dart_tool',
         'package_config.json',
-      ]),
+      ),
     );
 
     packageInfo = jsonDecode(packageConfigFile.readAsStringSync())['packages']

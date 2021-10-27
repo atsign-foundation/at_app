@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'dart:io' show Process, ProcessException, ProcessResult;
 
 /// An abstraction layer to run commands using dart:io Process.
 class Cli {

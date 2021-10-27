@@ -1,12 +1,16 @@
-import 'package:at_app/src/util/template_manager.dart';
-import 'package:at_app/src/version.dart';
-import 'package:logger/logger.dart';
-import 'package:path/path.dart' as path;
+import 'package:logger/logger.dart' show Logger, ProductionFilter;
+import 'package:path/path.dart' show join, relative;
 
-import 'command_status.dart';
-import '../util/exceptions.dart';
+import '../util/cache_package.dart';
 import '../util/cli/flutter.dart';
+import '../util/exceptions/android_build_exception.dart';
+import '../util/exceptions/env_exception.dart';
+import '../util/exceptions/package_exception.dart';
+import '../util/exceptions/template_exception.dart';
 import '../util/printer.dart';
+import '../util/template_manager.dart';
+import '../version.dart';
+import 'command_status.dart';
 import 'create_base.dart';
 
 /// This class extends the flutter create abstraction,
@@ -59,10 +63,9 @@ class CreateCommand extends CreateBase {
     final bool creatingNewProject =
         !projectDir.existsSync() || projectDir.listSync().isEmpty;
 
-    final String relativeOutputPath = path.relative(projectDir.absolute.path);
+    final String relativeOutputPath = relative(projectDir.absolute.path);
 
-    final String relativeAppMain =
-        path.join(relativeOutputPath, 'lib', 'main.dart');
+    final String relativeAppMain = join(relativeOutputPath, 'lib', 'main.dart');
 
     // Copyright 2014 The Flutter Authors. All rights reserved.
     if (creatingNewProject) {
@@ -84,10 +87,11 @@ class CreateCommand extends CreateBase {
       _logger.i('Project recreated, now adding a little @ magic...');
     }
 
-    /// pub add at_app_flutter before generating the template
-    /// this ensures that we can pull the template from the pub cache
-    await addDependency();
     try {
+      /// pub add at_app_flutter before generating the template
+      /// this ensures that we can pull the template from the pub cache
+      await addDependency();
+
       /// Generate the template
       await TemplateManager(
               stringArg('template') ?? 'app', projectDir, argResults!)
@@ -96,16 +100,17 @@ class CreateCommand extends CreateBase {
       _logger.e('Failed to setup the android build configuration.');
       return CommandStatus.fail;
     } on EnvException {
-      _logger.e('Failed to setup the @platform configuration.');
+      _logger.e('Failed to setup the @platform environment.');
       return CommandStatus.fail;
-    } on TemplateFileException {
+    } on TemplateException {
       _logger.e('Failed to transfer a template file.');
       return CommandStatus.fail;
-    } on NoPackageException {
+    } on PackageException {
       _logger.e('Failed to get a package from the pub cache.');
       return CommandStatus.fail;
     } catch (e) {
       _logger.e(e.toString(), e);
+      return CommandStatus.fail;
     }
 
     _logger.i('');
@@ -129,24 +134,29 @@ Happy coding!
 
   /// Install at_app_flutter to pub cache and set version constraints
   Future<void> addDependency() async {
-    try {
-      await Flutter.pubAdd(
-        '$templatePackageName:$templatePackageVersion',
-        directory: projectDir,
-      );
-    } catch (e) {
-      _logger.w(
-          'Unable to run "pub add $templatePackageName:$templatePackageVersion"');
-      _logger.i(
-          'This may not be an error, the package may already be added to the project.');
-    }
-
-    if (boolArg('pub')!) {
+    const retries = 2;
+    for (int i = 0; i < retries; i++) {
       try {
-        await Flutter.pubGet(directory: projectDir);
+        CachePackage(templatePackageName, projectDir);
+        if (boolArg('pub')!) {
+          try {
+            await Flutter.pubGet(directory: projectDir);
+          } catch (e) {
+            _logger.w('Unable to pub get in ${projectDir.path}');
+          }
+        }
+        return;
       } catch (e) {
-        _logger.w('Unable to pub get in ${projectDir.path}');
+        await Flutter.pubAdd(
+          '$templatePackageName:$packageVersion',
+          directory: projectDir,
+        );
       }
     }
+
+    _logger.e(
+        'Unable to add $templatePackageName:$packageVersion to the project.');
+    _logger.i('Please try again later.');
+    throw PackageException(templatePackageName);
   }
 }

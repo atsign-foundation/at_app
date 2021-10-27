@@ -1,16 +1,17 @@
-import 'dart:io';
-import 'package:path/path.dart' as path;
+import 'dart:io' show Directory, File, FileMode;
+
+import 'package:path/path.dart' show normalize, relative;
 
 abstract class FileManager {
   final String dir;
   File file;
 
   static File fileFromPath(String filePath) =>
-      File(path.relative(filePath, from: Directory.current.path));
+      File(relative(filePath, from: Directory.current.path));
 
   FileManager(Directory projectDir, this.dir, String filename)
       : file = fileFromPath(
-            path.normalize('${projectDir.absolute.path}/$dir/$filename'));
+            normalize('${projectDir.absolute.path}/$dir/$filename'));
 
   bool get existsSync => file.existsSync();
 

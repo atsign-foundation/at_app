@@ -1,30 +1,13 @@
-import 'dart:io';
+import 'dart:io' show Directory, File;
 
-import 'package:args/command_runner.dart';
-import 'package:path/path.dart' as path;
-import 'command_status.dart';
-import 'package:logger/logger.dart';
+import 'package:args/command_runner.dart' show Command, UsageException;
+import 'package:logger/logger.dart' show Logger, ProductionFilter;
+import 'package:path/path.dart' show basename, normalize;
 
 import '../util/cli/flutter.dart';
 import '../util/printer.dart';
-
-const flutterArgs = <String>[
-  'pub',
-  'offline',
-  'overwrite',
-  'decription',
-  'org',
-  'project-name',
-  'ios-language',
-  'android-language',
-];
-
-const atAppArgs = <String>[
-  'overwrite', // Overwrite is part of both
-  'namespace',
-  'root-domain',
-  'api-key',
-];
+import 'command_status.dart';
+import 'constants/dart_keywords.dart';
 
 /// This class is an abstraction of the flutter create command
 /// It deletes the default main.dart file,
@@ -117,7 +100,7 @@ abstract class CreateBase extends Command<CommandStatus> {
     final bool exists = mainFile.existsSync();
 
     var packageName =
-        projectName ?? path.basename(path.normalize(projectDir.absolute.path));
+        projectName ?? basename(normalize(projectDir.absolute.path));
 
     if (!validatePackageName(packageName)) {
       throw FormatException(
@@ -173,84 +156,10 @@ abstract class CreateBase extends Command<CommandStatus> {
     final Match? match = RegExp('[a-z_][a-z0-9_]*').matchAsPrefix(name);
     return match != null &&
         match.end == name.length &&
-        !_keywords.contains(name);
+        !dartKeywords.contains(name);
   }
 
   Directory get projectDir {
     return Directory(argResults!.rest.first);
   }
 }
-
-// Copyright 2014 The Flutter Authors. All rights reserved.
-// dart keywords for package name validation
-const Set<String> _keywords = <String>{
-  'abstract',
-  'as',
-  'assert',
-  'async',
-  'await',
-  'break',
-  'case',
-  'catch',
-  'class',
-  'const',
-  'continue',
-  'covariant',
-  'default',
-  'deferred',
-  'do',
-  'dynamic',
-  'else',
-  'enum',
-  'export',
-  'extends',
-  'extension',
-  'external',
-  'factory',
-  'false',
-  'final',
-  'finally',
-  'for',
-  'function',
-  'get',
-  'hide',
-  'if',
-  'implements',
-  'import',
-  'in',
-  'inout',
-  'interface',
-  'is',
-  'late',
-  'library',
-  'mixin',
-  'native',
-  'new',
-  'null',
-  'of',
-  'on',
-  'operator',
-  'out',
-  'part',
-  'patch',
-  'required',
-  'rethrow',
-  'return',
-  'set',
-  'show',
-  'source',
-  'static',
-  'super',
-  'switch',
-  'sync',
-  'this',
-  'throw',
-  'true',
-  'try',
-  'typedef',
-  'var',
-  'void',
-  'while',
-  'with',
-  'yield',
-};
