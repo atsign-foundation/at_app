@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:io';
 import 'package:path/path.dart' as path;
 
@@ -20,7 +19,7 @@ abstract class FileManager {
       try {
         file = await file.create(recursive: true);
       } catch (error) {
-        log(error.toString());
+        print(error.toString());
         return false;
       }
     }

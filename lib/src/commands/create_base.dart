@@ -30,7 +30,6 @@ const atAppArgs = <String>[
 /// It deletes the default main.dart file,
 /// but will keep the existing one if it exists.
 abstract class CreateBase extends Command<CommandStatus> {
-  @override
   final String name = 'create';
 
   final Logger _logger;
