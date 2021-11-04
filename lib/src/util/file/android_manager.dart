@@ -14,11 +14,11 @@ class AndroidManager {
       AppBuildGradleManager(projectDir).update(),
       GradlePropertiesManager(projectDir).update()
     ];
-    (await Future.wait(futures)).forEach((element) {
+    for (var element in (await Future.wait(futures))) {
       if (!element) {
         throw AndroidBuildException();
       }
-    });
+    }
   }
 }
 
