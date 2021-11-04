@@ -1,6 +1,6 @@
-import 'dart:convert';
+import 'dart:convert' show JsonEncoder;
 
-import 'package:logger/logger.dart';
+import 'package:logger/logger.dart' show AnsiColor, Level, LogEvent, LogPrinter;
 
 class Printer extends LogPrinter {
   static final levelColors = {

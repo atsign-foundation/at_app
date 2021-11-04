@@ -1,5 +1,4 @@
-import 'dart:io';
-
+import 'dart:io' show Directory, ProcessResult;
 import 'cli_base.dart';
 
 class Flutter {

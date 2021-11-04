@@ -1,4 +1,5 @@
-import 'dart:io';
+import 'dart:io' show Directory;
+
 import 'file_manager.dart';
 
 class EnvManager extends FileManager {
@@ -7,9 +8,9 @@ class EnvManager extends FileManager {
   Future<bool> update(Map<String, String> values) async {
     try {
       await create();
-      var newFileContents = (await file.readAsLines()).map((line) {
+      List<String> newFileContents = (await file.readAsLines()).map((line) {
         if (line.isNotEmpty && line.contains('=')) {
-          var key = line.split('=')[0];
+          String key = line.split('=')[0];
           if (values.keys.contains(key)) {
             return '$key=${values[key]}';
           }
@@ -17,11 +18,11 @@ class EnvManager extends FileManager {
         return line;
       }).toList();
 
-      values.keys.forEach((key) {
+      for (String key in values.keys) {
         if (!newFileContents.any((line) => line.startsWith(key))) {
           newFileContents.add('$key=${values[key]}');
         }
-      });
+      }
 
       await write(newFileContents);
     } catch (error) {
