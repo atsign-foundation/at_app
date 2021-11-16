@@ -1,7 +1,10 @@
 import 'dart:io';
 
 import 'package:args/args.dart' show ArgResults;
+import 'package:args/command_runner.dart';
 import 'package:at_app/src/util/file/pubspec_manager.dart';
+import 'package:at_commons/at_commons.dart';
+import 'package:at_utils/at_utils.dart';
 import 'package:io/io.dart' show copyPath;
 import 'package:logger/logger.dart' show Logger, ProductionFilter;
 import 'package:path/path.dart' show absolute, join;
@@ -28,6 +31,8 @@ class TemplateManager {
 
   CachePackage cachePackage;
   final Logger _logger;
+
+  Map<String, String> environment = {};
 
   TemplateManager(this.name, this.projectDir, this.argResults, {Logger? logger})
       : _logger =
@@ -83,20 +88,43 @@ class TemplateManager {
     }
   }
 
+  void validateEnvironment() {
+    if (argResults.wasParsed('namespace')) {
+      environment['NAMESPACE'] = normalizeNamespace(
+        argResults['namespace'] as String,
+      );
+    }
+  }
+
   /// Parses the environment variables from the command arguments
   Map<String, String> parseEnvArgs() {
-    Map<String, String> result = {};
-    if (argResults.wasParsed('namespace')) {
-      result['NAMESPACE'] = argResults['namespace'] as String;
+    if (argResults.wasParsed('namespace') &&
+        !environment.containsKey('namespace')) {
+      environment['NAMESPACE'] = normalizeNamespace(
+        argResults['namespace'] as String,
+      );
     }
     if (argResults.wasParsed('root-domain')) {
-      result['ROOT_DOMAIN'] =
-          getRootDomain(argResults['root-domain'] as String);
+      environment['ROOT_DOMAIN'] = getRootDomain(
+        argResults['root-domain'] as String,
+      );
     }
     if (argResults.wasParsed('api-key')) {
-      result['API_KEY'] = argResults['api-key'] as String;
+      environment['API_KEY'] = argResults['api-key'] as String;
     }
-    return result;
+    return environment;
+  }
+
+  String normalizeNamespace(String namespace) {
+    try {
+      String atsign = AtUtils.fixAtSign(namespace);
+      return atsign.split('@')[1];
+    } on InvalidAtSignException {
+      throw UsageException(
+        'Invalid value for namespace.',
+        'Please use a valid @sign as your namespace.',
+      );
+    }
   }
 
   /// Get the full rootDomain for the specified [flag]

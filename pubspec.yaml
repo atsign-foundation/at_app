@@ -12,6 +12,8 @@ environment:
 
 dependencies:
   args: ^2.2.0
+  at_commons: ^3.0.0
+  at_utils: ^3.0.0
   io: ^1.0.3
   logger: ^1.0.0
   path: ^1.8.0

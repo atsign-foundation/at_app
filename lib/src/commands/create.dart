@@ -60,6 +60,11 @@ class CreateCommand extends CreateBase {
   Future<CommandStatus> run() async {
     validateOutputDirectoryArg();
 
+    TemplateManager templateManager = TemplateManager(
+        stringArg('template') ?? 'app', projectDir, argResults!);
+
+    templateManager.validateEnvironment();
+
     /// These variables are for print formatting
     final bool creatingNewProject =
         !projectDir.existsSync() || projectDir.listSync().isEmpty;
@@ -94,9 +99,7 @@ class CreateCommand extends CreateBase {
       await addDependency();
 
       /// Generate the template
-      await TemplateManager(
-              stringArg('template') ?? 'app', projectDir, argResults!)
-          .generateTemplate();
+      await templateManager.generateTemplate();
     } on AndroidBuildException {
       _logger.e('Failed to setup the android build configuration.');
       return CommandStatus.fail;
