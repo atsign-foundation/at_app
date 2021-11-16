@@ -27,7 +27,7 @@ class TemplateManager {
   final String name;
 
   CachePackage cachePackage;
-  Logger _logger;
+  final Logger _logger;
 
   TemplateManager(this.name, this.projectDir, this.argResults, {Logger? logger})
       : _logger =

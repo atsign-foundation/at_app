@@ -12,7 +12,7 @@ void main() {
     setUp(() => pc = PubCache());
     test('pub cache is found', () {
       String pubCachePath = pc.location.absolute.path;
-      expect(pubCachePath.length > 0, true);
+      expect(pubCachePath.isNotEmpty, true);
     });
 
     test('at_app_flutter is found in pub cache', () {

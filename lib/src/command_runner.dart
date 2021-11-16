@@ -41,7 +41,7 @@ class AtCommandRunner extends CommandRunner<CommandStatus> {
   @override
   Future<CommandStatus?> runCommand(ArgResults topLevelResults) async {
     if (topLevelResults['version']) {
-      print('at_app ${packageVersion.toString()}');
+      _logger.i('at_app ${packageVersion.toString()}');
       return CommandStatus.success;
     }
     return super.runCommand(topLevelResults);
