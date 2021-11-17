@@ -1,10 +1,7 @@
 import 'dart:io';
 
 import 'package:args/args.dart' show ArgResults;
-import 'package:args/command_runner.dart';
 import 'package:at_app/src/util/file/pubspec_manager.dart';
-import 'package:at_commons/at_commons.dart';
-import 'package:at_utils/at_utils.dart';
 import 'package:io/io.dart' show copyPath;
 import 'package:logger/logger.dart' show Logger, ProductionFilter;
 import 'package:path/path.dart' show absolute, join;
@@ -16,6 +13,7 @@ import 'exceptions/template_exception.dart';
 import 'file/android_manager.dart';
 import 'file/env_manager.dart';
 import 'file/gitignore_manager.dart';
+import 'namespace.dart';
 import 'printer.dart';
 
 class TemplateManager {
@@ -88,18 +86,9 @@ class TemplateManager {
     }
   }
 
-  void validateEnvironment() {
-    if (argResults.wasParsed('namespace')) {
-      environment['NAMESPACE'] = normalizeNamespace(
-        argResults['namespace'] as String,
-      );
-    }
-  }
-
   /// Parses the environment variables from the command arguments
   Map<String, String> parseEnvArgs() {
-    if (argResults.wasParsed('namespace') &&
-        !environment.containsKey('namespace')) {
+    if (argResults.wasParsed('namespace')) {
       environment['NAMESPACE'] = normalizeNamespace(
         argResults['namespace'] as String,
       );
@@ -113,18 +102,6 @@ class TemplateManager {
       environment['API_KEY'] = argResults['api-key'] as String;
     }
     return environment;
-  }
-
-  String normalizeNamespace(String namespace) {
-    try {
-      String atsign = AtUtils.fixAtSign(namespace);
-      return atsign.split('@')[1];
-    } on InvalidAtSignException {
-      throw UsageException(
-        'Invalid value for namespace.',
-        'Please use a valid @sign as your namespace.',
-      );
-    }
   }
 
   /// Get the full rootDomain for the specified [flag]

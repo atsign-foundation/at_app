@@ -1,3 +1,4 @@
+import 'package:at_app/src/util/namespace.dart';
 import 'package:logger/logger.dart' show Logger, ProductionFilter;
 import 'package:path/path.dart' show join, relative;
 
@@ -60,10 +61,7 @@ class CreateCommand extends CreateBase {
   Future<CommandStatus> run() async {
     validateOutputDirectoryArg();
 
-    TemplateManager templateManager = TemplateManager(
-        stringArg('template') ?? 'app', projectDir, argResults!);
-
-    templateManager.validateEnvironment();
+    validateEnvironment();
 
     /// These variables are for print formatting
     final bool creatingNewProject =
@@ -99,7 +97,9 @@ class CreateCommand extends CreateBase {
       await addDependency();
 
       /// Generate the template
-      await templateManager.generateTemplate();
+      await TemplateManager(
+              stringArg('template') ?? 'app', projectDir, argResults!)
+          .generateTemplate();
     } on AndroidBuildException {
       _logger.e('Failed to setup the android build configuration.');
       return CommandStatus.fail;
@@ -134,6 +134,12 @@ Happy coding!
 ''');
 
     return CommandStatus.success;
+  }
+
+  void validateEnvironment() {
+    if (argResults!.wasParsed('namespace')) {
+      normalizeNamespace(argResults!['namespace'] as String);
+    }
   }
 
   /// Install at_app_flutter to pub cache and set version constraints
