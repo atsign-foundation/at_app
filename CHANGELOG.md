@@ -1,3 +1,9 @@
+## 4.0.0-rc+2
+
+- Added desktop support by replacing flutter_config with flutter_dotenv
+- Added a namespace validator to enforce the usage of a valid @sign
+- Updated the pubspec.yaml file manager to correctly add .env to the assets list
+
 ## 3.0.0
 
 - Depends on at_app_flutter 3.0.0
