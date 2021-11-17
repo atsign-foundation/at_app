@@ -28,9 +28,10 @@ class CreateCommand extends CreateBase {
     argParser.addOption(
       'namespace',
       abbr: 'n',
-      help: 'The @protocol app namespace to use for the application.',
+      help:
+          'The @protocol app namespace to use for the application. (Use an @sign you own)',
       defaultsTo: '',
-      valueHelp: 'namespace',
+      valueHelp: '@youratsign',
     );
     argParser.addOption(
       'root-domain',
