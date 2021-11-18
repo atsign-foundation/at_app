@@ -24,7 +24,7 @@ const List<String> kAvailablePlatforms = <String>[
   'windows',
   'linux',
   'macos',
-  'web',
+  // 'web',
 ];
 
 // Copyright 2014 The Flutter Authors. All rights reserved.
@@ -34,7 +34,7 @@ const List<String> kAllCreatePlatforms = <String>[
   'windows',
   'linux',
   'macos',
-  'web',
+  // 'web',
   'winuwp',
 ];
 
