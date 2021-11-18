@@ -129,6 +129,7 @@ abstract class CreateBase extends Command<CommandStatus> {
         projectName: projectName,
         iosLanguage: iosLang,
         androidLanguage: androidLang,
+        platforms: platforms,
       );
     } catch (e) {
       _logger.e('Unable to run flutter create.');
