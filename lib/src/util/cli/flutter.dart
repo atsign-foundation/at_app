@@ -1,4 +1,6 @@
 import 'dart:io' show Directory, ProcessResult;
+import 'package:at_app/src/commands/constants/create_args.dart';
+
 import 'cli_base.dart';
 
 class Flutter {
@@ -30,6 +32,7 @@ class Flutter {
     String? projectName,
     String? iosLanguage,
     String? androidLanguage,
+    List<String>? platforms,
   }) async {
     List<String> args = ['create'];
 
@@ -40,10 +43,14 @@ class Flutter {
     if (org != null) args.add('--org=$org');
     if (projectName != null) args.add('--project-name=$projectName');
     if (iosLanguage != null) args.add('--ios-language=$iosLanguage');
-    if (androidLanguage != null)
+    if (androidLanguage != null) {
       args.add('--android-language=$androidLanguage');
-
-    args.addAll(['--platforms=android,ios', directory.absolute.path]);
+    }
+    List<String> resolvedPlatforms = platforms ?? kAvailablePlatforms;
+    args.addAll([
+      '--platforms=${resolvedPlatforms.join(',')}',
+      directory.absolute.path,
+    ]);
 
     await _FlutterCli.run(args);
   }
