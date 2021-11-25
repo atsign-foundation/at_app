@@ -54,16 +54,6 @@ class AppBuildGradleManager extends FileManager {
         'targetSdkVersion $targetSdkVersion',
       );
 
-      // Add flutter_config package requirements to build.gradle
-      if (!lines.contains(flutterConfigGradle)) {
-        index = lines.indexWhere((line) => line.startsWith('android'));
-
-        // insert right before 'android {' line
-        lines.insert(index, flutterConfigGradle);
-        // new line right after
-        lines.insert(index + 1, '');
-      }
-
       await write(lines);
     } catch (_) {
       return false;

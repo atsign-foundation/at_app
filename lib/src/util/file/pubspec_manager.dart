@@ -1,6 +1,4 @@
 import 'dart:io' show Directory;
-
-import 'config/pubspec_config.dart';
 import 'file_manager.dart';
 
 class PubspecManager extends FileManager {
@@ -9,47 +7,45 @@ class PubspecManager extends FileManager {
   Future<bool> update() async {
     try {
       List<String> lines = await file.readAsLines();
-      int index = lines.indexWhere((line) => line.startsWith(assetsLine));
 
-      // Use the indentation of the dependencies section
-      // to create the '- .env' line with the correct indentation
-      // Since addDependency is called before the templateManager in commands/create.dart
-      // We can ensure there will be at least one dependency
-      int dependencyIndex =
-          lines.indexWhere((line) => line.startsWith(dependenciesLine));
-      int indentSpaces = lines[dependencyIndex + 1].indexOf('-');
-      String spaces = List.filled(indentSpaces, ' ').join();
-      String envLine = '$spaces$envLineTrimmed';
+      // Assume 2 spaces per tab as is Flutter's default
+      String tab = '  ';
 
-      if (index < 0) {
-        // If there's no assets section add it at the end:
+      int flutterIndex = lines.indexWhere(
+        (line) => line.startsWith('flutter:'),
+      );
 
-        // ensure empty line before assets line
-        if (lines.last.trim().isEmpty) lines.add('');
-        lines.add(assetsLine);
-        lines.add(envLine);
+      if (flutterIndex < 0) {
+        flutterIndex = lines.length;
+        lines.add('flutter:');
         lines.add('');
-      } else {
-        // If there is an assets section iterate over each item
-        // To check for the '- .env' file
-        int i = index + 1;
-        bool envLineExists = false;
-        while (lines[i].startsWith('$spaces-')) {
-          if (lines[i].trim() == envLineTrimmed) {
-            envLineExists = true;
-            // if the line exists, ensure it has the correct spacing
-            lines[i] = envLine;
-            break;
-          }
-          i++;
-        }
-        // add the line right after 'assets:' if it doesn't exist
-        if (!envLineExists) {
-          lines.insert(index + 1, envLine);
-        }
       }
+
+      int assetsIndex = lines.indexWhere(
+        (line) => line.startsWith(RegExp(r'\s+assets:')),
+        flutterIndex,
+      );
+
+      if (assetsIndex < 0) {
+        assetsIndex = flutterIndex + 1;
+        lines.insert(assetsIndex, '${tab}assets:');
+      }
+
+      int envIndex = lines.indexWhere(
+        (line) => line.startsWith(RegExp(r'\s+-\s\.env')),
+        assetsIndex,
+      );
+
+      if (envIndex < 0) {
+        envIndex = assetsIndex + 1;
+        lines.insert(envIndex, '$tab$tab- .env');
+      }
+
+      // Write the updated yaml as a string to the file
       await write(lines);
     } catch (_) {
+      print('_ => ${_.toString()}');
+
       return false;
     }
     return true;

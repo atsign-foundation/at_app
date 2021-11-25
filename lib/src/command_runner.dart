@@ -33,7 +33,7 @@ class AtCommandRunner extends CommandRunner<CommandStatus> {
       return CommandStatus.warning;
     } on UsageException catch (e) {
       _logger.e(e.message);
-      _logger.i(usage);
+      _logger.i(e.usage);
       return CommandStatus.warning;
     }
   }

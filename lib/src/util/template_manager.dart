@@ -13,6 +13,7 @@ import 'exceptions/template_exception.dart';
 import 'file/android_manager.dart';
 import 'file/env_manager.dart';
 import 'file/gitignore_manager.dart';
+import 'namespace.dart';
 import 'printer.dart';
 
 class TemplateManager {
@@ -28,6 +29,8 @@ class TemplateManager {
 
   CachePackage cachePackage;
   final Logger _logger;
+
+  Map<String, String> environment = {};
 
   TemplateManager(this.name, this.projectDir, this.argResults, {Logger? logger})
       : _logger =
@@ -85,18 +88,20 @@ class TemplateManager {
 
   /// Parses the environment variables from the command arguments
   Map<String, String> parseEnvArgs() {
-    Map<String, String> result = {};
     if (argResults.wasParsed('namespace')) {
-      result['NAMESPACE'] = argResults['namespace'] as String;
+      environment['NAMESPACE'] = normalizeNamespace(
+        argResults['namespace'] as String,
+      );
     }
     if (argResults.wasParsed('root-domain')) {
-      result['ROOT_DOMAIN'] =
-          getRootDomain(argResults['root-domain'] as String);
+      environment['ROOT_DOMAIN'] = getRootDomain(
+        argResults['root-domain'] as String,
+      );
     }
     if (argResults.wasParsed('api-key')) {
-      result['API_KEY'] = argResults['api-key'] as String;
+      environment['API_KEY'] = argResults['api-key'] as String;
     }
-    return result;
+    return environment;
   }
 
   /// Get the full rootDomain for the specified [flag]

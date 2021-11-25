@@ -1,6 +1,6 @@
 name: at_app
 description: A command line tool to help developers build an @ platform application.
-version: 3.0.0
+version: 4.0.0
 repository: https://github.com/atsign-foundation/at_app
 homepage: https://atsign.dev/
 
@@ -12,6 +12,8 @@ environment:
 
 dependencies:
   args: ^2.2.0
+  at_commons: ^3.0.0
+  at_utils: ^3.0.0
   io: ^1.0.3
   logger: ^1.0.0
   path: ^1.8.0

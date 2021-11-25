@@ -1,3 +1,4 @@
+import 'package:at_app/src/util/namespace.dart';
 import 'package:logger/logger.dart' show Logger, ProductionFilter;
 import 'package:path/path.dart' show join, relative;
 
@@ -27,9 +28,10 @@ class CreateCommand extends CreateBase {
     argParser.addOption(
       'namespace',
       abbr: 'n',
-      help: 'The @protocol app namespace to use for the application.',
+      help:
+          'The @protocol app namespace to use for the application. (Use an @sign you own)',
       defaultsTo: '',
-      valueHelp: 'namespace',
+      valueHelp: '@youratsign',
     );
     argParser.addOption(
       'root-domain',
@@ -59,6 +61,8 @@ class CreateCommand extends CreateBase {
   @override
   Future<CommandStatus> run() async {
     validateOutputDirectoryArg();
+
+    validateEnvironment();
 
     /// These variables are for print formatting
     final bool creatingNewProject =
@@ -131,6 +135,12 @@ Happy coding!
 ''');
 
     return CommandStatus.success;
+  }
+
+  void validateEnvironment() {
+    if (argResults!.wasParsed('namespace')) {
+      normalizeNamespace(argResults!['namespace'] as String);
+    }
   }
 
   /// Install at_app_flutter to pub cache and set version constraints
