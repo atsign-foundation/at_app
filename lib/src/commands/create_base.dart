@@ -1,13 +1,13 @@
 import 'dart:io' show Directory, File;
 
 import 'package:args/command_runner.dart' show Command, UsageException;
-import 'package:logger/logger.dart' show Logger, ProductionFilter;
+import 'package:at_app/src/services/logger.dart';
+import 'package:logger/logger.dart' show Logger;
 import 'package:path/path.dart' show basename, normalize;
 
 import '../constants/create_args.dart';
 import '../constants/dart_keywords.dart';
 import '../cli/flutter_cli.dart';
-import '../util/printer.dart';
 import '../models/command_status.dart';
 
 /// This class is an abstraction of the flutter create command
@@ -17,11 +17,9 @@ abstract class CreateBase extends Command<CommandStatus> {
   @override
   final String name = 'create';
 
-  final Logger _logger;
+  final Logger _logger = LoggerService().logger;
 
-  CreateBase({Logger? logger})
-      : _logger =
-            logger ?? Logger(filter: ProductionFilter(), printer: Printer()) {
+  CreateBase({Logger? logger}) {
     // Flutter Arguments
     // Copyright 2014 The Flutter Authors. All rights reserved.
     argParser.addFlag(

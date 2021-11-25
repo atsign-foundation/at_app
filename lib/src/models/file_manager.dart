@@ -1,22 +1,20 @@
 import 'dart:io' show Directory, File, FileMode;
 
-import '../util/printer.dart';
+import 'package:at_app/src/services/logger.dart';
 import 'package:logger/logger.dart';
 import 'package:path/path.dart' show normalize, relative;
 
 abstract class FileManager {
   final String dir;
   File file;
-  final Logger _logger;
+  final Logger _logger = LoggerService().logger;
 
   static File fileFromPath(String filePath) =>
       File(relative(filePath, from: Directory.current.path));
 
-  FileManager(Directory projectDir, this.dir, String filename, {Logger? logger})
+  FileManager(Directory projectDir, this.dir, String filename)
       : file = fileFromPath(
-            normalize('${projectDir.absolute.path}/$dir/$filename')),
-        _logger =
-            logger ?? Logger(filter: ProductionFilter(), printer: Printer());
+            normalize('${projectDir.absolute.path}/$dir/$filename'));
 
   bool get existsSync => file.existsSync();
 

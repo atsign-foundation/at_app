@@ -1,5 +1,7 @@
+import 'package:at_app/src/services/logger.dart';
+
 import '../util/namespace.dart';
-import 'package:logger/logger.dart' show Logger, ProductionFilter;
+import 'package:logger/logger.dart' show Logger;
 import 'package:path/path.dart' show join, relative;
 
 import '../util/cache_package.dart';
@@ -8,7 +10,6 @@ import '../models/exceptions/android_build_exception.dart';
 import '../models/exceptions/env_exception.dart';
 import '../models/exceptions/package_exception.dart';
 import '../models/exceptions/template_exception.dart';
-import '../util/printer.dart';
 import '../util/template_manager.dart';
 import '../../version.dart';
 import '../models/command_status.dart';
@@ -20,11 +21,8 @@ import 'create_base.dart';
 class CreateCommand extends CreateBase {
   @override
   final String description = 'Create a new @platform Flutter project.';
-  final Logger _logger;
-  CreateCommand({Logger? logger})
-      : _logger =
-            logger ?? Logger(filter: ProductionFilter(), printer: Printer()),
-        super(logger: logger) {
+  final Logger _logger = LoggerService().logger;
+  CreateCommand({Logger? logger}) : super(logger: logger) {
     argParser.addOption(
       'namespace',
       abbr: 'n',
