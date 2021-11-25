@@ -1,4 +1,4 @@
-## 4.0.0-rc+3
+## 4.0.0
 
 - Added desktop support by replacing flutter_config with flutter_dotenv
 - Added the --platforms option so you can choose your platforms (web disabled until it's supported by the sdk)
