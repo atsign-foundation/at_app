@@ -1,5 +1,5 @@
 import 'dart:io' show Directory;
-import 'file_manager.dart';
+import '../../models/file_manager.dart';
 
 class PubspecManager extends FileManager {
   PubspecManager(Directory projectDir) : super(projectDir, '.', 'pubspec.yaml');

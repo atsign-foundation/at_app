@@ -1,18 +1,18 @@
 import 'dart:io';
 
 import 'package:args/args.dart' show ArgResults;
-import 'package:at_app/src/util/file/pubspec_manager.dart';
 import 'package:io/io.dart' show copyPath;
 import 'package:logger/logger.dart' show Logger, ProductionFilter;
 import 'package:path/path.dart' show absolute, join;
 
 import '../../version.dart';
 import 'cache_package.dart';
-import 'exceptions/env_exception.dart';
-import 'exceptions/template_exception.dart';
+import '../models/exceptions/env_exception.dart';
+import '../models/exceptions/template_exception.dart';
 import 'file/android_manager.dart';
 import 'file/env_manager.dart';
 import 'file/gitignore_manager.dart';
+import 'file/pubspec_manager.dart';
 import 'namespace.dart';
 import 'printer.dart';
 

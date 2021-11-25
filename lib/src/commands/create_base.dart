@@ -1,14 +1,14 @@
 import 'dart:io' show Directory, File;
 
 import 'package:args/command_runner.dart' show Command, UsageException;
-import 'package:at_app/src/commands/constants/create_args.dart';
 import 'package:logger/logger.dart' show Logger, ProductionFilter;
 import 'package:path/path.dart' show basename, normalize;
 
-import '../util/cli/flutter.dart';
+import '../constants/create_args.dart';
+import '../constants/dart_keywords.dart';
+import '../cli/flutter_cli.dart';
 import '../util/printer.dart';
-import 'command_status.dart';
-import 'constants/dart_keywords.dart';
+import '../models/command_status.dart';
 
 /// This class is an abstraction of the flutter create command
 /// It deletes the default main.dart file,
@@ -90,7 +90,7 @@ abstract class CreateBase extends Command<CommandStatus> {
 
   @override
   Future<CommandStatus> run() async {
-    if (!await Flutter.isInstalled()) {
+    if (!await FlutterCli.isInstalled()) {
       _logger.e("Flutter is not available");
       return CommandStatus.fail;
     }
@@ -119,7 +119,7 @@ abstract class CreateBase extends Command<CommandStatus> {
     }
 
     try {
-      await Flutter.create(
+      await FlutterCli.create(
         projectDir,
         pub: pub,
         offline: offline,

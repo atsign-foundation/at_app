@@ -1,8 +1,8 @@
 import 'dart:io' show Directory;
 
-import '../exceptions/android_build_exception.dart';
-import 'config/android_config.dart';
-import 'file_manager.dart';
+import '../../models/exceptions/android_build_exception.dart';
+import '../../config/android_config.dart';
+import '../../models/file_manager.dart';
 
 class AndroidManager {
   final Directory projectDir;
