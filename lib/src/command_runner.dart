@@ -5,7 +5,7 @@ import 'package:logger/logger.dart' show Logger, ProductionFilter;
 import 'commands/command_status.dart';
 import 'commands/create.dart';
 import 'util/printer.dart';
-import 'version.dart';
+import '../version.dart';
 
 class AtCommandRunner extends CommandRunner<CommandStatus> {
   final Logger _logger;

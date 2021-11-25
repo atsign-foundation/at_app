@@ -10,7 +10,7 @@ import '../util/exceptions/package_exception.dart';
 import '../util/exceptions/template_exception.dart';
 import '../util/printer.dart';
 import '../util/template_manager.dart';
-import '../version.dart';
+import '../../version.dart';
 import 'command_status.dart';
 import 'create_base.dart';
 

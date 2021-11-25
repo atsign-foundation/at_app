@@ -6,7 +6,7 @@ import 'package:io/io.dart' show copyPath;
 import 'package:logger/logger.dart' show Logger, ProductionFilter;
 import 'package:path/path.dart' show absolute, join;
 
-import '../version.dart';
+import '../../version.dart';
 import 'cache_package.dart';
 import 'exceptions/env_exception.dart';
 import 'exceptions/template_exception.dart';
