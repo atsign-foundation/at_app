@@ -5,10 +5,10 @@ import '../models/command_status.dart';
 
 class PackageCommand extends Command<CommandStatus> {
   @override
-  final String name = 'package';
+  final String name = 'packages';
 
   @override
-  final String description = 'View and modify @platform packages';
+  final String description = 'Commands for managing @platform packages.';
 
   PackageCommand() {
     addSubcommand(AddCommand());

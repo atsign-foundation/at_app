@@ -1,33 +1,43 @@
+import 'dart:io' show Platform;
+
 import 'package:args/command_runner.dart';
-import 'package:at_app/src/services/logger.dart';
 import 'package:logger/logger.dart';
+import 'package:tabular/tabular.dart';
+
 import '../../constants/at_platform_packages.dart';
 import '../../models/command_status.dart';
+import '../../services/logger.dart';
 
 class ListCommand extends Command<CommandStatus> {
   @override
   final String name = 'list';
 
   @override
-  final String description = 'List available packages on the @platform';
+  final String description = '''List available packages on the @platform.
+The packages are grouped into three categories: flutter, utility, core.''';
 
   final Logger _logger = LoggerService().logger;
 
   ListCommand() {
-    argParser.addFlag('flutter', defaultsTo: true);
+    argParser.addFlag('flutter', abbr: 'f', defaultsTo: true);
     argParser.addFlag('util', abbr: 'u');
     argParser.addFlag('core', abbr: 'c');
+    argParser.addFlag('all', abbr: 'a', negatable: false);
   }
 
   @override
   Future<CommandStatus> run() async {
     int flagCount = 0;
     const List<String> flags = ['flutter', 'util', 'core'];
-
-    /// Count the number of flags to see if we need headers
-    for (String flag in flags) {
-      if (argResults?[flag] ?? false) {
-        flagCount++;
+    final bool showAll = argResults!['all'] ?? false;
+    if (showAll) {
+      flagCount = flags.length;
+    } else {
+      /// Count the number of flags to see if we need headers
+      for (String flag in flags) {
+        if (argResults?[flag] ?? false) {
+          flagCount++;
+        }
       }
     }
 
@@ -38,29 +48,56 @@ class ListCommand extends Command<CommandStatus> {
       );
     }
 
-    /// Print flutter packages
-    if (argResults?['flutter'] ?? false) {
-      if (flagCount > 1) _logger.i('Flutter Packages:');
-      flutterPackages
-          .forEach((name, description) => _logger.i('$name\t$description'));
-      _logger.i('');
+    List<List<String>> display = [
+      ['PACKAGE', 'DESCRIPTION']
+    ];
+    List<int> rowDividers = [1];
+
+    /// Flutter Packages
+    if (showAll || (argResults?['flutter'] ?? false)) {
+      if (display.length > 1) rowDividers.add(display.length);
+      display.addAll([
+        if (flagCount > 1) ['FLUTTER PACKAGES'],
+        ...flutterPackages,
+      ]);
     }
 
-    /// Print utility packages
-    if (argResults?['util'] ?? false) {
-      if (flagCount > 1) _logger.i('Utility Packages');
-      utilPackages
-          .forEach((name, description) => _logger.i('$name\t$description'));
-      _logger.i('');
+    /// Utility Packages
+    if (showAll || (argResults?['util'] ?? false)) {
+      if (display.length > 1) rowDividers.add(display.length);
+      display.addAll([
+        if (flagCount > 1) ['UTILITY PACKAGES', ''],
+        ...utilPackages,
+      ]);
     }
 
-    /// Print core packages
-    if (argResults?['core'] ?? false) {
-      if (flagCount > 1) _logger.i('\nCore Packages');
-      corePackages
-          .forEach((name, description) => _logger.i('$name\t$description'));
-      _logger.i('');
+    /// Core Packages
+    if (showAll || (argResults?['core'] ?? false)) {
+      if (display.length > 1) rowDividers.add(display.length);
+      display.addAll([
+        if (flagCount > 1) ['CORE PACKAGES', ''],
+        ...corePackages,
+      ]);
     }
+
+    _logger.i('');
+    _logger.i(tabular(
+      display,
+      border: Border.none,
+      rowDividers: rowDividers,
+    ));
+
+    final String packageCount =
+        '''\nShowing $flagCount/${flags.length} package groups.
+
+To show available groups:
+at_app${Platform.isWindows ? '.bat' : ''} packages list --help''';
+
+    final String helpMessage = '''\nTo add a package:
+at_app${Platform.isWindows ? '.bat' : ''} packages add <package>''';
+
+    _logger.i(packageCount);
+    _logger.i(helpMessage);
 
     return CommandStatus.success;
   }
