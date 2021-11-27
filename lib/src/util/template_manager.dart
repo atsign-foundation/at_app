@@ -63,8 +63,12 @@ class TemplateManager {
       name,
     ));
 
-    String from = absolute(join(fromBase, 'lib'));
-    String to = absolute(join(projectDir.absolute.path, 'lib'));
+    await copyFolder(fromBase, 'lib');
+  }
+
+  Future<void> copyFolder(String fromBase, String folder) async {
+    String from = absolute(join(fromBase, folder));
+    String to = absolute(join(projectDir.absolute.path, folder));
 
     try {
       await copyPath(from, to);
