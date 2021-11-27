@@ -55,7 +55,7 @@ class TemplateManager {
     _logger.i('');
     _logger.i('Building your $name template...');
 
-    String from = absolute(join(
+    String fromBase = absolute(join(
       cachePackage.baseUrl,
       'lib',
       'src',
@@ -63,10 +63,9 @@ class TemplateManager {
       name,
     ));
 
-    String to = absolute(join(
-      projectDir.absolute.path,
-      'lib',
-    ));
+    String from = absolute(join(fromBase, 'lib'));
+    String to = absolute(join(projectDir.absolute.path, 'lib'));
+
     try {
       await copyPath(from, to);
     } catch (_) {
