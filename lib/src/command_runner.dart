@@ -1,25 +1,27 @@
 import 'package:args/args.dart' show ArgResults;
 import 'package:args/command_runner.dart' show CommandRunner, UsageException;
-import 'package:logger/logger.dart' show Logger, ProductionFilter;
+import 'package:at_app/src/services/logger.dart';
+import 'package:logger/logger.dart' show Logger;
 
-import 'commands/command_status.dart';
+import '../version.dart';
+import 'commands/package.dart';
+import 'models/command_status.dart';
 import 'commands/create.dart';
-import 'util/printer.dart';
-import 'version.dart';
+
+const String atAppName = 'at_app';
+const String atAppDescription = 'The @ protocol app developer cli toolkit.';
 
 class AtCommandRunner extends CommandRunner<CommandStatus> {
-  final Logger _logger;
+  final Logger _logger = LoggerService().logger;
 
-  AtCommandRunner({Logger? logger})
-      : _logger =
-            logger ?? Logger(filter: ProductionFilter(), printer: Printer()),
-        super('at_app', 'The @ protocol app developer cli toolkit.') {
+  AtCommandRunner() : super(atAppName, atAppDescription) {
     argParser.addFlag(
       'version',
       negatable: false,
       help: 'Print the current version.',
     );
-    addCommand(CreateCommand(logger: _logger));
+    addCommand(CreateCommand());
+    addCommand(PackageCommand());
   }
 
   @override

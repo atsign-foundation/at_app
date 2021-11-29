@@ -1,20 +1,20 @@
 import 'dart:io';
 
 import 'package:args/args.dart' show ArgResults;
-import 'package:at_app/src/util/file/pubspec_manager.dart';
+import 'package:at_app/src/services/logger.dart';
 import 'package:io/io.dart' show copyPath;
-import 'package:logger/logger.dart' show Logger, ProductionFilter;
+import 'package:logger/logger.dart' show Logger;
 import 'package:path/path.dart' show absolute, join;
 
-import '../version.dart';
+import '../../version.dart';
 import 'cache_package.dart';
-import 'exceptions/env_exception.dart';
-import 'exceptions/template_exception.dart';
+import '../models/exceptions/env_exception.dart';
+import '../models/exceptions/template_exception.dart';
 import 'file/android_manager.dart';
 import 'file/env_manager.dart';
 import 'file/gitignore_manager.dart';
+import 'file/pubspec_manager.dart';
 import 'namespace.dart';
-import 'printer.dart';
 
 class TemplateManager {
   // File Managers
@@ -28,14 +28,12 @@ class TemplateManager {
   final String name;
 
   CachePackage cachePackage;
-  final Logger _logger;
+  final Logger _logger = LoggerService().logger;
 
   Map<String, String> environment = {};
 
-  TemplateManager(this.name, this.projectDir, this.argResults, {Logger? logger})
-      : _logger =
-            logger ?? Logger(filter: ProductionFilter(), printer: Printer()),
-        envFileManager = EnvManager(projectDir),
+  TemplateManager(this.name, this.projectDir, this.argResults)
+      : envFileManager = EnvManager(projectDir),
         androidManager = AndroidManager(projectDir),
         gitignoreManager = GitignoreManager(projectDir),
         pubspecManager = PubspecManager(projectDir),

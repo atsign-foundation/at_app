@@ -1,8 +1,12 @@
 import 'dart:io' show Directory;
-import 'file_manager.dart';
+import 'package:at_app/src/services/logger.dart';
+import 'package:logger/logger.dart';
+
+import '../../models/file_manager.dart';
 
 class PubspecManager extends FileManager {
   PubspecManager(Directory projectDir) : super(projectDir, '.', 'pubspec.yaml');
+  final Logger _logger = LoggerService().logger;
 
   Future<bool> update() async {
     try {
@@ -44,7 +48,7 @@ class PubspecManager extends FileManager {
       // Write the updated yaml as a string to the file
       await write(lines);
     } catch (_) {
-      print('_ => ${_.toString()}');
+      _logger.e('_ => ${_.toString()}');
 
       return false;
     }

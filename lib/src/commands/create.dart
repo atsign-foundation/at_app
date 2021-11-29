@@ -1,17 +1,18 @@
-import 'package:at_app/src/util/namespace.dart';
-import 'package:logger/logger.dart' show Logger, ProductionFilter;
+import 'package:at_app/src/services/logger.dart';
+
+import '../util/namespace.dart';
+import 'package:logger/logger.dart' show Logger;
 import 'package:path/path.dart' show join, relative;
 
 import '../util/cache_package.dart';
-import '../util/cli/flutter.dart';
-import '../util/exceptions/android_build_exception.dart';
-import '../util/exceptions/env_exception.dart';
-import '../util/exceptions/package_exception.dart';
-import '../util/exceptions/template_exception.dart';
-import '../util/printer.dart';
+import '../cli/flutter_cli.dart';
+import '../models/exceptions/android_build_exception.dart';
+import '../models/exceptions/env_exception.dart';
+import '../models/exceptions/package_exception.dart';
+import '../models/exceptions/template_exception.dart';
 import '../util/template_manager.dart';
-import '../version.dart';
-import 'command_status.dart';
+import '../../version.dart';
+import '../models/command_status.dart';
 import 'create_base.dart';
 
 /// This class extends the flutter create abstraction,
@@ -20,11 +21,8 @@ import 'create_base.dart';
 class CreateCommand extends CreateBase {
   @override
   final String description = 'Create a new @platform Flutter project.';
-  final Logger _logger;
-  CreateCommand({Logger? logger})
-      : _logger =
-            logger ?? Logger(filter: ProductionFilter(), printer: Printer()),
-        super(logger: logger) {
+  final Logger _logger = LoggerService().logger;
+  CreateCommand({Logger? logger}) : super(logger: logger) {
     argParser.addOption(
       'namespace',
       abbr: 'n',
@@ -151,14 +149,14 @@ Happy coding!
         CachePackage(templatePackageName, projectDir);
         if (boolArg('pub')!) {
           try {
-            await Flutter.pubGet(directory: projectDir);
+            await FlutterCli.pubGet(directory: projectDir);
           } catch (e) {
             _logger.w('Unable to pub get in ${projectDir.path}');
           }
         }
         return;
       } catch (e) {
-        await Flutter.pubAdd(
+        await FlutterCli.pubAdd(
           '$templatePackageName:$packageVersion',
           directory: projectDir,
         );
