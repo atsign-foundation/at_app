@@ -1,7 +1,7 @@
 import 'dart:io' show Directory, File;
 
 import 'package:args/command_runner.dart' show Command, UsageException;
-import 'package:at_app/src/services/logger.dart';
+import 'package:at_app/src/util/logger.dart';
 import 'package:logger/logger.dart' show Logger;
 import 'package:path/path.dart' show basename, normalize;
 

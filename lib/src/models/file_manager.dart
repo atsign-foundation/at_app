@@ -1,6 +1,6 @@
 import 'dart:io' show Directory, File, FileMode;
 
-import 'package:at_app/src/services/logger.dart';
+import 'package:at_app/src/util/logger.dart';
 import 'package:logger/logger.dart';
 import 'package:path/path.dart' show normalize, relative;
 

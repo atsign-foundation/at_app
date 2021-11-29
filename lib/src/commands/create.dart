@@ -1,16 +1,16 @@
-import 'package:at_app/src/services/logger.dart';
+import 'package:at_app/src/util/logger.dart';
 
 import '../util/namespace.dart';
 import 'package:logger/logger.dart' show Logger;
 import 'package:path/path.dart' show join, relative;
 
-import '../util/cache_package.dart';
+import '../models/cache_package.dart';
 import '../cli/flutter_cli.dart';
 import '../models/exceptions/android_build_exception.dart';
 import '../models/exceptions/env_exception.dart';
 import '../models/exceptions/package_exception.dart';
 import '../models/exceptions/template_exception.dart';
-import '../util/template_manager.dart';
+import '../services/template_builder.dart';
 import '../../version.dart';
 import '../models/command_status.dart';
 import 'create_base.dart';
@@ -96,7 +96,7 @@ class CreateCommand extends CreateBase {
       await addDependency();
 
       /// Generate the template
-      await TemplateManager(
+      await TemplateBuilder(
               stringArg('template') ?? 'app', projectDir, argResults!)
           .generateTemplate();
     } on AndroidBuildException {
