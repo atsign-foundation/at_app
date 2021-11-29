@@ -157,14 +157,14 @@ Happy coding!
         return;
       } catch (e) {
         await FlutterCli.pubAdd(
-          '$templatePackageName:$packageVersion',
+          '$templatePackageName:$atAppFlutterVersion',
           directory: projectDir,
         );
       }
     }
 
     _logger.e(
-        'Unable to add $templatePackageName:$packageVersion to the project.');
+        'Unable to add $templatePackageName:$atAppFlutterVersion to the project.');
     _logger.i('Please try again later.');
     throw PackageException(templatePackageName);
   }
