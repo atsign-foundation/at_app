@@ -1,12 +1,22 @@
 import 'dart:io' show Directory, ProcessResult;
+
 import '../constants/create_args.dart';
 
 import 'cli_base.dart';
 
 class FlutterCli {
-  static Future<void> pubAdd(String package, {Directory? directory}) async {
-    await _FlutterCli.run(['pub', 'add', package],
-        directory: directory?.absolute.path);
+  static Future<ProcessResult> pubAdd(String package, {Directory? directory, String? localPath}) async {
+    List<String> command = ['pub', 'add', package];
+
+    if (localPath != null) {
+      command.addAll(['--path', localPath]);
+    }
+
+    return await _FlutterCli.run(
+      command,
+      directory: directory?.absolute.path,
+      throwOnError: false,
+    );
   }
 
   static Future<void> pubGet({Directory? directory}) async {
@@ -61,8 +71,7 @@ class FlutterCli {
 }
 
 class _FlutterCli extends Cli {
-  static Future<ProcessResult> run(List<String> args,
-      {bool throwOnError = true, String? directory}) {
+  static Future<ProcessResult> run(List<String> args, {bool throwOnError = true, String? directory}) {
     return Cli.run(
       'flutter',
       args,
