@@ -1,6 +1,6 @@
 import 'package:args/args.dart' show ArgResults;
 import 'package:args/command_runner.dart' show CommandRunner, UsageException;
-import 'package:at_app/src/util/logger.dart';
+import 'util/logger.dart';
 import 'package:logger/logger.dart' show Logger;
 
 import '../version.dart';

@@ -1,14 +1,14 @@
 import 'dart:io' show Directory, File;
 
 import 'package:args/command_runner.dart' show Command, UsageException;
-import 'package:at_app/src/util/logger.dart';
 import 'package:logger/logger.dart' show Logger;
 import 'package:path/path.dart' show basename, normalize;
 
+import '../cli/flutter_cli.dart';
 import '../constants/create_args.dart';
 import '../constants/dart_keywords.dart';
-import '../cli/flutter_cli.dart';
 import '../models/command_status.dart';
+import '../util/logger.dart';
 
 /// This class is an abstraction of the flutter create command
 /// It deletes the default main.dart file,
