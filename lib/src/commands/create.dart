@@ -1,4 +1,8 @@
-import 'package:at_app/src/util/logger.dart';
+import 'dart:io';
+
+import 'package:at_app/src/services/template_generator.dart';
+
+import '../util/logger.dart';
 
 import '../util/namespace.dart';
 import 'package:logger/logger.dart' show Logger;
@@ -10,7 +14,6 @@ import '../models/exceptions/android_build_exception.dart';
 import '../models/exceptions/env_exception.dart';
 import '../models/exceptions/package_exception.dart';
 import '../models/exceptions/template_exception.dart';
-import '../services/template_builder.dart';
 import '../../version.dart';
 import '../models/command_status.dart';
 import 'create_base.dart';
@@ -26,8 +29,7 @@ class CreateCommand extends CreateBase {
     argParser.addOption(
       'namespace',
       abbr: 'n',
-      help:
-          'The @protocol app namespace to use for the application. (Use an @sign you own)',
+      help: 'The @protocol app namespace to use for the application. (Use an @sign you own)',
       defaultsTo: '',
       valueHelp: '@youratsign',
     );
@@ -53,7 +55,14 @@ class CreateCommand extends CreateBase {
         defaultsTo: 'app',
         valueHelp: 'template-name',
         hide: true);
-    //TODO samples
+    //
+    argParser.addOption(
+      'template-path',
+      help: 'Template package path to override with for development',
+      defaultsTo: null,
+      valueHelp: 'path/to/package',
+      hide: true,
+    );
   }
 
   @override
@@ -63,8 +72,7 @@ class CreateCommand extends CreateBase {
     validateEnvironment();
 
     /// These variables are for print formatting
-    final bool creatingNewProject =
-        !projectDir.existsSync() || projectDir.listSync().isEmpty;
+    final bool creatingNewProject = !projectDir.existsSync() || projectDir.listSync().isEmpty;
 
     final String relativeOutputPath = relative(projectDir.absolute.path);
 
@@ -93,12 +101,20 @@ class CreateCommand extends CreateBase {
     try {
       /// pub add at_app_flutter before generating the template
       /// this ensures that we can pull the template from the pub cache
-      await addDependency();
+      await cacheTemplatePackage(
+        localPath: relative(
+          argResults!['template-path'],
+          from: projectDir.absolute.path,
+        ),
+      );
 
       /// Generate the template
-      await TemplateBuilder(
-              stringArg('template') ?? 'app', projectDir, argResults!)
-          .generateTemplate();
+      await TemplateGenerator(
+        name: stringArg('template') ?? 'app',
+        projectDir: projectDir,
+        argResults: argResults!,
+      ).generateTemplate();
+      // TODO reduce number of exceptions to be more useful
     } on AndroidBuildException {
       _logger.e('Failed to setup the android build configuration.');
       return CommandStatus.fail;
@@ -142,9 +158,23 @@ Happy coding!
   }
 
   /// Install at_app_flutter to pub cache and set version constraints
-  Future<void> addDependency() async {
-    const retries = 2;
-    for (int i = 0; i < retries; i++) {
+  Future<void> cacheTemplatePackage({String? localPath}) async {
+    const tries = 2;
+    for (int i = 0; i < tries; i++) {
+      /// Get the package from the local path
+      if (localPath != null) {
+        ProcessResult result = await FlutterCli.pubAdd(
+          templatePackageName,
+          directory: projectDir,
+          localPath: localPath,
+        );
+
+        /// Exit code 65 is when the package is already included
+        if (result.exitCode == 65 || result.exitCode == 0) return;
+        continue;
+      }
+
+      /// Get the package from the pub cache
       try {
         CachePackage(templatePackageName, projectDir);
         if (boolArg('pub')!) {
@@ -163,8 +193,7 @@ Happy coding!
       }
     }
 
-    _logger.e(
-        'Unable to add $templatePackageName:$atAppFlutterVersion to the project.');
+    _logger.e('Unable to add $templatePackageName:$atAppFlutterVersion to the project.');
     _logger.i('Please try again later.');
     throw PackageException(templatePackageName);
   }
