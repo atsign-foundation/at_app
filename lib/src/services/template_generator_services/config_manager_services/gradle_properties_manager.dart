@@ -1,16 +1,14 @@
 import 'dart:io';
 
-import '../../../constants/android_config.dart';
-import '../../../models/template_service_base.dart';
-import '../../../models/file_manager.dart';
+import 'package:at_app/src/models/template_file_manager_base.dart';
 
-class GradlePropertiesManager extends TemplateServiceBase with FileManager {
+import '../../../constants/android_config.dart';
+
+class GradlePropertiesManager extends FileTemplateServiceBase {
   Map<String, dynamic> options;
   GradlePropertiesManager(Directory projectDir, {Map<String, dynamic>? options})
       : options = options ?? defaultGradlePropertiesOptions,
-        super(projectDir) {
-    initFile();
-  }
+        super(projectDir);
 
   @override
   final String filePath = 'android/gradle.properties';

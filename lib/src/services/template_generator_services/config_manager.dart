@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:args/args.dart';
+import 'package:at_app/src/models/template_file_manager_base.dart';
 import 'package:at_app/src/models/template_service_base.dart';
 import 'package:at_app/src/models/file_manager.dart';
 
@@ -28,7 +29,7 @@ class ConfigManager extends TemplateServiceBase with FileManager {
     required this.templatePath,
     required this.argResults,
   }) : super(projectDir) {
-    initFile(overridePath: templatePath);
+    initFile(templatePath);
     yaml = loadYamlDocument(file.readAsStringSync()).contents.value;
   }
 

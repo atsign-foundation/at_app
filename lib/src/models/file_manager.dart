@@ -1,28 +1,23 @@
 import 'dart:io' show Directory, File, FileMode;
 
-import 'template_service_base.dart';
 import '../util/logger.dart';
 import 'package:logger/logger.dart';
 import 'package:path/path.dart' show relative, join;
 
-/// A mixin on [TemplateServiceBase]
 /// This mixin provides basic file operations
 /// for template services that are designed to modify a single file
-mixin FileManager on TemplateServiceBase {
+mixin FileManager {
   final Logger _logger = LoggerService().logger;
 
   abstract final String filePath;
 
   late File file;
 
-  /// Called in the constructor of the template service
-  /// By default the base path for the file is [projectDir]
-  /// but can be overridden with [overridePath]
-  void initFile({String? overridePath}) {
-    String basePath = overridePath ?? super.projectDir.absolute.path;
+  /// Must be called in the constructor
+  void initFile(path) {
     file = File(
       relative(
-        join(basePath, filePath),
+        join(path, filePath),
         from: Directory.current.path,
       ),
     );

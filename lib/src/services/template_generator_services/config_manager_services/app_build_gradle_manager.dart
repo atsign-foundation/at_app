@@ -1,20 +1,18 @@
 import 'dart:io';
 
 import 'package:at_app/src/models/exceptions/template_exception.dart';
+import 'package:at_app/src/models/template_file_manager_base.dart';
 
 import '../../../constants/android_config.dart';
-import '../../../models/template_service_base.dart';
-import '../../../models/file_manager.dart';
 
 const filePath = 'android/app/build.gradle';
 
-class AppBuildGradleManager extends TemplateServiceBase with FileManager {
+class AppBuildGradleManager extends FileTemplateServiceBase {
   final Map<String, dynamic> options;
+
   AppBuildGradleManager(Directory projectDir, {Map<String, dynamic>? options})
       : options = options ?? defaultAppBuildGradleOptions,
-        super(projectDir) {
-    initFile();
-  }
+        super(projectDir);
 
   @override
   final String filePath = 'android/app/build.gradle';

@@ -2,16 +2,12 @@ import 'dart:io' show Directory;
 
 import 'package:args/args.dart';
 import 'package:at_app/src/models/exceptions/template_exception.dart';
+import 'package:at_app/src/models/template_file_manager_base.dart';
 import 'package:at_app/src/util/namespace.dart';
 import 'package:at_app/src/util/root_domain.dart';
 
-import '../../../models/template_service_base.dart';
-
-import '../../../models/file_manager.dart';
-
-class EnvManager extends TemplateServiceBase with FileManager {
+class EnvManager extends FileTemplateServiceBase {
   EnvManager(Directory projectDir, {required ArgResults argResults}) : super(projectDir) {
-    initFile();
     _parseEnvArgs(argResults);
   }
 
