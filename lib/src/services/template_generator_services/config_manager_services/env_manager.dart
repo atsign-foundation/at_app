@@ -1,6 +1,7 @@
 import 'dart:io' show Directory;
 
 import 'package:args/args.dart';
+import 'package:at_app/src/models/exceptions/template_exception.dart';
 import 'package:at_app/src/util/namespace.dart';
 import 'package:at_app/src/util/root_domain.dart';
 
@@ -10,14 +11,17 @@ import '../../../models/file_manager.dart';
 
 class EnvManager extends TemplateServiceBase with FileManager {
   EnvManager(Directory projectDir, {required ArgResults argResults}) : super(projectDir) {
-    initFile('.env');
+    initFile();
     _parseEnvArgs(argResults);
   }
+
+  @override
+  final String filePath = '.env';
 
   final Map<String, String> environment = {};
 
   @override
-  Future<bool> run() async {
+  Future<void> run() async {
     try {
       await create();
       List<String> newFileContents = (await file.readAsLines()).map((line) {
@@ -38,9 +42,8 @@ class EnvManager extends TemplateServiceBase with FileManager {
 
       await write(newFileContents);
     } catch (error) {
-      return false;
+      throw TemplateException('Unable to configure environment in $filePath');
     }
-    return true;
   }
 
   /// Parses the environment variables from the command arguments

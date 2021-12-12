@@ -22,7 +22,7 @@ class TemplateBuilder extends TemplateServiceBase {
     try {
       await copyPath(from, to);
     } catch (_) {
-      throw TemplateException();
+      throw TemplateException('Unable to clone the app template to $projectDir');
     }
   }
 }

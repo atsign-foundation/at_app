@@ -1,19 +1,26 @@
 import 'dart:io';
 
+import 'package:at_app/src/models/exceptions/template_exception.dart';
+
 import '../../../constants/android_config.dart';
 import '../../../models/template_service_base.dart';
 import '../../../models/file_manager.dart';
+
+const filePath = 'android/app/build.gradle';
 
 class AppBuildGradleManager extends TemplateServiceBase with FileManager {
   final Map<String, dynamic> options;
   AppBuildGradleManager(Directory projectDir, {Map<String, dynamic>? options})
       : options = options ?? defaultAppBuildGradleOptions,
         super(projectDir) {
-    initFile('android/app/build.gradle');
+    initFile();
   }
 
   @override
-  Future<bool> run() async {
+  final String filePath = 'android/app/build.gradle';
+
+  @override
+  Future<void> run() async {
     try {
       List<String> lines = await file.readAsLines();
 
@@ -47,8 +54,7 @@ class AppBuildGradleManager extends TemplateServiceBase with FileManager {
 
       await write(lines);
     } catch (_) {
-      return false;
+      throw TemplateException('Unable to configure $filePath');
     }
-    return true;
   }
 }

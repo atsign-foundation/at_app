@@ -5,8 +5,11 @@ import '../../../models/file_manager.dart';
 
 class GitignoreManager extends TemplateServiceBase with FileManager {
   GitignoreManager(Directory projectDir) : super(projectDir) {
-    initFile('.gitignore');
+    initFile();
   }
+
+  @override
+  final String filePath = '.gitignore';
 
   @override
   Future<bool> run() async {

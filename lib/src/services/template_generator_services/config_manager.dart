@@ -28,9 +28,12 @@ class ConfigManager extends TemplateServiceBase with FileManager {
     required this.templatePath,
     required this.argResults,
   }) : super(projectDir) {
-    initFile('template.yaml', overridePath: templatePath);
+    initFile(overridePath: templatePath);
     yaml = loadYamlDocument(file.readAsStringSync()).contents.value;
   }
+
+  @override
+  final String filePath = 'template.yaml';
 
   @override
   Future<void> run() async {

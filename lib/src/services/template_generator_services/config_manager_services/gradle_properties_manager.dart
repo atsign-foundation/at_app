@@ -9,8 +9,11 @@ class GradlePropertiesManager extends TemplateServiceBase with FileManager {
   GradlePropertiesManager(Directory projectDir, {Map<String, dynamic>? options})
       : options = options ?? defaultGradlePropertiesOptions,
         super(projectDir) {
-    initFile('android/gradle.properties');
+    initFile();
   }
+
+  @override
+  final String filePath = 'android/gradle.properties';
 
   @override
   Future<bool> run() async {
