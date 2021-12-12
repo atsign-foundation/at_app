@@ -10,16 +10,19 @@ import 'package:path/path.dart' show relative, join;
 /// for template services that are designed to modify a single file
 mixin FileManager on TemplateServiceBase {
   final Logger _logger = LoggerService().logger;
+
+  abstract final String filePath;
+
   late File file;
 
   /// Called in the constructor of the template service
   /// By default the base path for the file is [projectDir]
   /// but can be overridden with [overridePath]
-  void initFile(String filepath, {String? overridePath}) {
+  void initFile({String? overridePath}) {
     String basePath = overridePath ?? super.projectDir.absolute.path;
     file = File(
       relative(
-        join(basePath, filepath),
+        join(basePath, filePath),
         from: Directory.current.path,
       ),
     );
