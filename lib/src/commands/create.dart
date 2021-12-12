@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:at_app/src/models/exceptions/flutter_exception.dart';
+import 'package:at_app/src/models/exceptions/template_exception.dart';
 import 'package:at_app/src/services/template_generator.dart';
 
 import '../util/logger.dart';
@@ -8,12 +10,8 @@ import '../util/namespace.dart';
 import 'package:logger/logger.dart' show Logger;
 import 'package:path/path.dart' show join, relative;
 
-import '../models/cache_package.dart';
 import '../cli/flutter_cli.dart';
-import '../models/exceptions/android_build_exception.dart';
-import '../models/exceptions/env_exception.dart';
-import '../models/exceptions/package_exception.dart';
-import '../models/exceptions/template_exception.dart';
+import '../models/exceptions/cache_package_exception.dart';
 import '../../version.dart';
 import '../models/command_status.dart';
 import 'create_base.dart';
@@ -114,21 +112,23 @@ class CreateCommand extends CreateBase {
         projectDir: projectDir,
         argResults: argResults!,
       ).generateTemplate();
-      // TODO reduce number of exceptions to be more useful
-    } on AndroidBuildException {
-      _logger.e('Failed to setup the android build configuration.');
+
+      if (boolArg('pub')!) {
+        await FlutterCli.pubGet(directory: projectDir);
+      }
+    } on TemplateException catch (e) {
+      _logger.e('There was an issue generating part of your template:\n$e');
       return CommandStatus.fail;
-    } on EnvException {
-      _logger.e('Failed to setup the @platform environment.');
+    } on CachePackageException catch (e) {
+      _logger.e('There was an issue pulling the templates from pub.dev:\n$e');
       return CommandStatus.fail;
-    } on TemplateException {
-      _logger.e('Failed to transfer a template file.');
-      return CommandStatus.fail;
-    } on PackageException {
-      _logger.e('Failed to get a package from the pub cache.');
+    } on FlutterException catch (e) {
+      _logger.e('There was an issue running pub get in $projectDir:\n$e');
       return CommandStatus.fail;
     } catch (e) {
-      _logger.e(e.toString(), e);
+      _logger.e('''An unknown issue occurred.
+Please file a ticket to prevent this from happening again:
+https://github.com/atsign-foundation/at_app''');
       return CommandStatus.fail;
     }
 
@@ -159,42 +159,27 @@ Happy coding!
 
   /// Install at_app_flutter to pub cache and set version constraints
   Future<void> cacheTemplatePackage({String? localPath}) async {
-    const tries = 2;
-    for (int i = 0; i < tries; i++) {
-      /// Get the package from the local path
-      if (localPath != null) {
-        ProcessResult result = await FlutterCli.pubAdd(
-          templatePackageName,
-          directory: projectDir,
-          localPath: localPath,
-        );
+    const maxTries = 2;
 
-        /// Exit code 65 is when the package is already included
-        if (result.exitCode == 65 || result.exitCode == 0) return;
-        continue;
-      }
+    for (int i = 0; i < maxTries; i++) {
+      ProcessResult result = await _tryCachePackage(localPath);
 
-      /// Get the package from the pub cache
-      try {
-        CachePackage(templatePackageName, projectDir);
-        if (boolArg('pub')!) {
-          try {
-            await FlutterCli.pubGet(directory: projectDir);
-          } catch (e) {
-            _logger.w('Unable to pub get in ${projectDir.path}');
-          }
-        }
-        return;
-      } catch (e) {
-        await FlutterCli.pubAdd(
-          '$templatePackageName:$atAppFlutterVersion',
-          directory: projectDir,
-        );
-      }
+      if (result.exitCode == 65 || result.exitCode == 0) return;
+
+      _logger.w('Failed to retrieve the template package...\nWaiting 1 second before trying again');
+
+      await Future.delayed(const Duration(seconds: 1));
     }
 
-    _logger.e('Unable to add $templatePackageName:$atAppFlutterVersion to the project.');
-    _logger.i('Please try again later.');
-    throw PackageException(templatePackageName);
+    throw CachePackageException(templatePackageName);
+  }
+
+  Future<ProcessResult> _tryCachePackage(String? localPath) async {
+    return await FlutterCli.pubAdd(
+      templatePackageName,
+      directory: projectDir,
+      localPath: localPath,
+      // dev: true // TODO enable once template package is separated from at_app_flutter
+    );
   }
 }
