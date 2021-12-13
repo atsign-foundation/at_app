@@ -3,7 +3,7 @@ import 'package:logger/logger.dart';
 
 import '../../cli/flutter_cli.dart';
 import '../../models/command_status.dart';
-import '../../services/logger.dart' show LoggerService;
+import '../../util/logger.dart' show LoggerService;
 
 class AddCommand extends Command<CommandStatus> {
   @override

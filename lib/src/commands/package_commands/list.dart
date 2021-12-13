@@ -6,7 +6,7 @@ import 'package:tabular/tabular.dart';
 
 import '../../constants/at_platform_packages.dart';
 import '../../models/command_status.dart';
-import '../../services/logger.dart';
+import '../../util/logger.dart';
 
 class ListCommand extends Command<CommandStatus> {
   @override
