@@ -7,6 +7,7 @@ import 'package:at_app/src/models/exceptions/template_exception.dart';
 import 'package:at_app/src/models/template_type.dart';
 import 'package:at_app/src/services/template_generator.dart';
 import 'package:at_app/src/util/local_path.dart';
+import 'package:tabular/tabular.dart';
 
 import '../util/logger.dart';
 
@@ -59,7 +60,10 @@ class CreateCommand extends CreateBase {
       valueHelp: 'template-name',
       hide: true,
     );
-    argParser.addFlag('list-templates');
+    argParser.addFlag(
+      'list-templates',
+      hide: true,
+    );
     argParser.addOption(
       'sample',
       abbr: 's',
@@ -68,7 +72,10 @@ class CreateCommand extends CreateBase {
       valueHelp: 'sample-name',
       hide: true,
     );
-    argParser.addFlag('list-samples');
+    argParser.addFlag(
+      'list-samples',
+      hide: true,
+    );
     argParser.addOption(
       'demo',
       abbr: 'd',
@@ -77,7 +84,10 @@ class CreateCommand extends CreateBase {
       valueHelp: 'demo-app-name',
       hide: true,
     );
-    argParser.addFlag('list-demos');
+    argParser.addFlag(
+      'list-demos',
+      hide: true,
+    );
     argParser.addFlag(
       'local',
       help: 'Use local copy of at_app for development',
@@ -88,8 +98,19 @@ class CreateCommand extends CreateBase {
 
   @override
   Future<CommandStatus> run() async {
-    validateOutputDirectoryArg();
+    if (argResults!.wasParsed('list-templates')) {
+      return _listOptions(templateNames, 'TEMPLATE');
+    }
 
+    if (argResults!.wasParsed('list-samples')) {
+      return _listOptions(sampleNames, 'SAMPLE');
+    }
+
+    if (argResults!.wasParsed('list-demo')) {
+      return _listOptions(demoNames, 'DEMO');
+    }
+
+    validateOutputDirectoryArg();
     validateEnvironment();
 
     /// These variables are for print formatting
@@ -239,5 +260,23 @@ Happy coding!
     }
 
     return Template(TemplateType.template, defaultTemplateName);
+  }
+
+  CommandStatus _listOptions(Map<String, String> options, String header) {
+    List<List<String>> display = [
+      [header, 'DESCRIPTION']
+    ];
+
+    display.addAll(
+      options.entries.map((entry) => [entry.key, entry.value]).toList(),
+    );
+
+    _logger.i('');
+    _logger.i(tabular(
+      display,
+      border: Border.none,
+    ));
+
+    return CommandStatus.success;
   }
 }
