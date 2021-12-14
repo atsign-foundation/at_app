@@ -7,4 +7,4 @@ final packageVersion = Version(4, 0, 0);
 const templatePackageName = 'at_app_templates';
 
 /// The version of at_app that is associated with this package
-final templatePackageVersion = Version(4, 0, 0);
+final templatePackageVersion = Version(1, 0, 0);
