@@ -10,6 +10,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  at_app_flutter: ^4.0.0
+  at_client_mobile: ^3.0.3
+  at_onboarding_flutter: ^3.0.1
+  at_utils: ^3.0.0
+  path_provider: ^2.0.5
 
 dev_dependencies:
   flutter_lints: ^1.0.0
