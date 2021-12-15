@@ -4,61 +4,33 @@
 
 # at_app
 
-A command line tool to help developers build an @ platform application.
+at_app is a command-line tool for app developers to quickly generate a starter @platform app. at_app was designed to be the @platform's version of flutter create, and uses it behind the scenes to help you get started with your app.
 
-## Who is this for?
+## Packages
 
-This is for flutter developers looking to build end to end encrypted apps.
+### at_app
 
-## Getting Started
+This is the core command-line tool that is responsible for generating app templates. [Learn More](https://pub.dev/packages/at_app).
 
-This application is an extension of `flutter create`, that replaces the main.dart file with our own custom template. We also perform the additional build configurations required for the onboarding package.
+[[View Source](/at_app)]
 
-The at_app toolkit also includes a library component called [at_app_flutter](https://pub.dev/packages/at_app_flutter) which is included with the app built by this executable.
+### at_app_flutter
 
-Together these two parts work together to provide app developers with the prerequisites of an @ platform app.
+This package is added to generated apps and provides additional functionality required by the templates. [Learn More](https://pub.dev/packages/at_app_flutter)
 
-### Executable
+[[View Source](/at_app_flutter)]
 
-The executable is an extension of the `flutter create` command, and can be used to create a new @ platform app from our template.
+### at_app_templates
 
-Activate the executable:
+This package provides the app templates that at_app uses to generate its applications (Coming Soon).
 
-```sh
-flutter pub global activate at_app
-```
-
-If necessary, pub will prompt you to update your PATH variable, please do as instructed.
-
-Create a new @ platform app:
-
-```sh
-at_app create [...options] <output directory>
-```
-
-Windows Users:
-
-```sh
-at_app.bat create [...options] <output directory>
-```
-
-#### Flags
-
-`at_app create` includes all of the `flutter create` flags, with the exception of --template, --sample, --list-samples
-
-| Flag          | Shorthand | Description                                             | Value                |
-| ------------- | --------- | ------------------------------------------------------- | -------------------- |
-| --namespace   | -n        | The @protocol app namespace to use for the application. | (defaults to "")     |
-| --root-domain | -r        | The @protocol root domain to use for the application.   | [prod (default), ve] |
-| --api-key     | -k        | The api key for at_onboarding_flutter.                  | (defaults to "")     |
-
-### Library
-
-Please see [at_app_flutter](https://pub.dev/packages/at_app_flutter) for library usage within your generated app.
+[[View Source](/at_app_templates)]
 
 ## Maintainers
 
 Created by [XavierChanth](https://github.com/xavierchanth)
+
+If you would like to contribute, please see [CONTRIBUTING.md](/CONTRIBUTING.md).
 
 ## Attribution
 
