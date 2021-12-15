@@ -1,8 +1,13 @@
 import 'dart:io';
 
+import 'package:args/command_runner.dart';
+import 'package:at_app/src/constants/template.dart';
 import 'package:at_app/src/models/exceptions/flutter_exception.dart';
 import 'package:at_app/src/models/exceptions/template_exception.dart';
+import 'package:at_app/src/models/template_type.dart';
 import 'package:at_app/src/services/template_generator.dart';
+import 'package:at_app/src/util/local_path.dart';
+import 'package:tabular/tabular.dart';
 
 import '../util/logger.dart';
 
@@ -37,7 +42,7 @@ class CreateCommand extends CreateBase {
       help: 'The @protocol root domain to use for the application.',
       allowed: ['prod', 've'],
       defaultsTo: 'prod',
-      valueHelp: 'prod | ve',
+      valueHelp: 'prod (production) | ve (virtual environment)',
     );
     argParser.addOption(
       'api-key',
@@ -46,27 +51,66 @@ class CreateCommand extends CreateBase {
       defaultsTo: '',
       valueHelp: 'api-key',
     );
-    argParser.addOption('template',
-        abbr: 't',
-        help: 'The template to generate.',
-        allowed: ['app'],
-        defaultsTo: 'app',
-        valueHelp: 'template-name',
-        hide: true);
-    //
     argParser.addOption(
-      'template-path',
-      help: 'Template package path to override with for development',
-      defaultsTo: null,
-      valueHelp: 'path/to/package',
+      'template',
+      abbr: 't',
+      help: 'The app template to generate.',
+      allowed: templateNames.keys,
+      defaultsTo: defaultTemplateName,
+      valueHelp: 'template-name',
+      hide: true,
+    );
+    argParser.addFlag(
+      'list-templates',
+      hide: true,
+    );
+    argParser.addOption(
+      'sample',
+      abbr: 's',
+      help: 'The package sample to generate.',
+      allowed: sampleNames.keys,
+      valueHelp: 'sample-name',
+      hide: true,
+    );
+    argParser.addFlag(
+      'list-samples',
+      hide: true,
+    );
+    argParser.addOption(
+      'demo',
+      abbr: 'd',
+      help: 'The demo app to generate.',
+      allowed: demoNames.keys,
+      valueHelp: 'demo-app-name',
+      hide: true,
+    );
+    argParser.addFlag(
+      'list-demos',
+      hide: true,
+    );
+    argParser.addFlag(
+      'local',
+      help: 'Use local copy of at_app for development',
+      defaultsTo: false,
       hide: true,
     );
   }
 
   @override
   Future<CommandStatus> run() async {
-    validateOutputDirectoryArg();
+    if (argResults!.wasParsed('list-templates')) {
+      return _listOptions(templateNames, 'TEMPLATE');
+    }
 
+    if (argResults!.wasParsed('list-samples')) {
+      return _listOptions(sampleNames, 'SAMPLE');
+    }
+
+    if (argResults!.wasParsed('list-demo')) {
+      return _listOptions(demoNames, 'DEMO');
+    }
+
+    validateOutputDirectoryArg();
     validateEnvironment();
 
     /// These variables are for print formatting
@@ -99,16 +143,11 @@ class CreateCommand extends CreateBase {
     try {
       /// pub add at_app_flutter before generating the template
       /// this ensures that we can pull the template from the pub cache
-      await cacheTemplatePackage(
-        localPath: relative(
-          argResults!['template-path'],
-          from: projectDir.absolute.path,
-        ),
-      );
+      await cacheTemplatePackage(local: boolArg('local') ?? false);
 
       /// Generate the template
       await TemplateGenerator(
-        name: stringArg('template') ?? 'app',
+        template: _parseTemplate(),
         projectDir: projectDir,
         argResults: argResults!,
       ).generateTemplate();
@@ -126,7 +165,11 @@ class CreateCommand extends CreateBase {
       _logger.e('There was an issue running pub get in $projectDir:\n$e');
       return CommandStatus.fail;
     } catch (e) {
-      _logger.e('''An unknown issue occurred.
+      _logger.e(
+          '''An unknown issue occurred:
+
+$e
+
 Please file a ticket to prevent this from happening again:
 https://github.com/atsign-foundation/at_app''');
       return CommandStatus.fail;
@@ -136,7 +179,8 @@ https://github.com/atsign-foundation/at_app''');
     _logger.i('All done!');
 
     // Copyright 2014 The Flutter Authors. All rights reserved.
-    _logger.i('''
+    _logger.i(
+        '''
 
 In order to run your @platform application, type:
 
@@ -158,8 +202,14 @@ Happy coding!
   }
 
   /// Install at_app_flutter to pub cache and set version constraints
-  Future<void> cacheTemplatePackage({String? localPath}) async {
+  Future<void> cacheTemplatePackage({bool local = false}) async {
     const maxTries = 2;
+
+    String? localPath;
+
+    if (local) {
+      localPath = getLocalPath('at_app_templates', from: projectDir.path);
+    }
 
     for (int i = 0; i < maxTries; i++) {
       ProcessResult result = await _tryCachePackage(localPath);
@@ -179,7 +229,54 @@ Happy coding!
       templatePackageName,
       directory: projectDir,
       localPath: localPath,
-      // dev: true // TODO enable once template package is separated from at_app_flutter
+      dev: true,
     );
+  }
+
+  Template _parseTemplate() {
+    bool templateParsed = argResults!.wasParsed('template');
+    bool sampleParsed = argResults!.wasParsed('sample');
+    bool demoParsed = argResults!.wasParsed('demo');
+
+    int parseCount = 0;
+    for (bool wasParsed in [templateParsed, sampleParsed, demoParsed]) {
+      if (wasParsed) parseCount++;
+    }
+
+    if (parseCount > 1) {
+      throw UsageException('Only specify one of the following: [template, sample, demo]', '');
+    }
+
+    if (templateParsed) {
+      return Template(TemplateType.template, stringArg('template')!);
+    }
+
+    if (sampleParsed) {
+      return Template(TemplateType.sample, stringArg('sample')!);
+    }
+
+    if (demoParsed) {
+      return Template(TemplateType.demo, stringArg('demo')!);
+    }
+
+    return Template(TemplateType.template, defaultTemplateName);
+  }
+
+  CommandStatus _listOptions(Map<String, String> options, String header) {
+    List<List<String>> display = [
+      [header, 'DESCRIPTION']
+    ];
+
+    display.addAll(
+      options.entries.map((entry) => [entry.key, entry.value]).toList(),
+    );
+
+    _logger.i('');
+    _logger.i(tabular(
+      display,
+      border: Border.none,
+    ));
+
+    return CommandStatus.success;
   }
 }

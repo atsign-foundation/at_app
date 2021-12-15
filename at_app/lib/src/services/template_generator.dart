@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:args/args.dart';
 import 'package:at_app/src/models/cache_package.dart';
+import 'package:at_app/src/models/template_type.dart';
 import 'package:at_app/version.dart';
 import 'package:path/path.dart' show absolute, join;
 
@@ -14,19 +15,19 @@ class TemplateGenerator {
   late String templatePath;
 
   TemplateGenerator({
-    required name,
+    required Template template,
     required this.projectDir,
     required this.argResults,
   }) {
     /// Get the [templatePath] using the [CachePackage] model
-    String baseUrl = argResults['template-path'] ?? CachePackage(templatePackageName, projectDir).baseUrl;
+    String baseUrl = CachePackage(templatePackageName, projectDir).baseUrl;
     templatePath = absolute(
       join(
         baseUrl,
         'lib',
         'src',
-        'templates',
-        name,
+        template.type.path,
+        template.name,
       ),
     );
   }
