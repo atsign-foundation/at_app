@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:args/args.dart';
 import 'package:at_app/src/models/template_service_base.dart';
 import 'package:at_app/src/models/file_manager.dart';
+import 'package:at_app/src/util/namespace.dart';
+import 'package:at_app/src/util/root_domain.dart';
 
 import 'package:at_app/src/util/yaml.dart';
 import 'package:at_app/version.dart';
@@ -42,6 +44,7 @@ class ConfigManager extends TemplateServiceBase with FileManager {
     Map<String, dynamic> androidConfig = parsePlatformConfig('android');
 
     bool includeEnv = envConfig['include'] ?? false;
+    bool envOverride = envConfig['override'] ?? false;
 
     // Check if we need to add a pubspec manager
     if (dependencies.isNotEmpty || includeEnv) {
@@ -54,7 +57,8 @@ class ConfigManager extends TemplateServiceBase with FileManager {
       );
 
       if (includeEnv) {
-        managers.add(EnvManager(projectDir, argResults: argResults));
+        Map<String, String> environment = (envOverride) ? parseEnvOverride() : parseEnvArgs();
+        managers.add(EnvManager(projectDir, environment: environment));
       }
     }
 
@@ -93,7 +97,7 @@ class ConfigManager extends TemplateServiceBase with FileManager {
 
   Map<String, bool> parseEnvConfig() {
     Map<String, bool> parsed = YamlMapParser<String, bool>(yaml['config']?['env'])?.toMap() ?? {};
-    for (String key in ['include', 'gitignore']) {
+    for (String key in ['include', 'gitignore', 'override']) {
       if (!parsed.containsKey(key)) {
         parsed[key] = false;
       }
@@ -108,5 +112,28 @@ class ConfigManager extends TemplateServiceBase with FileManager {
       parsed[key] = YamlMapParser<String, dynamic>(yaml['config']?[platform]?[key])?.toMap() ?? {};
     }
     return parsed;
+  }
+
+  Map<String, String> parseEnvOverride() {
+    return YamlMapParser<String, String>(yaml['config']?['env_override'])?.toMap() ?? {};
+  }
+
+  /// Parses the environment variables from the command arguments
+  Map<String, String> parseEnvArgs() {
+    Map<String, String> environment = {};
+    if (argResults.wasParsed('namespace')) {
+      environment['NAMESPACE'] = normalizeNamespace(
+        argResults['namespace'] as String,
+      );
+    }
+    if (argResults.wasParsed('root-domain')) {
+      environment['ROOT_DOMAIN'] = getRootDomain(
+        argResults['root-domain'] as String,
+      );
+    }
+    if (argResults.wasParsed('api-key')) {
+      environment['API_KEY'] = argResults['api-key'] as String;
+    }
+    return environment;
   }
 }
