@@ -106,7 +106,7 @@ class CreateCommand extends CreateBase {
       return _listOptions(sampleNames, 'SAMPLE');
     }
 
-    if (argResults!.wasParsed('list-demo')) {
+    if (argResults!.wasParsed('list-demos')) {
       return _listOptions(demoNames, 'DEMO');
     }
 
