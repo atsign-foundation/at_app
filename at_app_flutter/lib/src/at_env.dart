@@ -1,22 +1,31 @@
-import 'package:at_onboarding_flutter/at_onboarding_flutter.dart'
-    show RootEnvironment;
+import 'package:at_onboarding_flutter/at_onboarding_flutter.dart' show RootEnvironment;
+import 'package:at_utils/at_logger.dart' show AtSignLogger;
 import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
+import 'package:flutter_dotenv/src/errors.dart';
 
 /// AtEnv is a helper class to load in the environment variables from the .env file
 class AtEnv {
   /// Load the environment variables from the .env file.
   /// Directly calls load from the dotenv package.
-  static Future<void> load() => dotenv.load();
+  static Future<void> load() async {
+    try {
+      await dotenv.load();
+    } on FileNotFoundError {
+      AtSignLogger('AtEnv').warning('The .env file was not found, environment has not been loaded.');
+    } on EmptyEnvFileError {
+      AtSignLogger('AtEnv').warning('The .env file was empty, environment has not been loaded.');
+    } catch (e) {
+      AtSignLogger('AtEnv').warning('Unable to load the .env file:', e);
+    }
+  }
 
   /// Returns the root domain from the environment.
   /// Root domain is used to control what root server you want to use for the app.
-  static final String rootDomain =
-      dotenv.get('ROOT_DOMAIN', fallback: 'root.atsign.org');
+  static final String rootDomain = dotenv.get('ROOT_DOMAIN', fallback: 'root.atsign.org');
 
   /// Returns the namespace from the environment.
   /// Namespace is used to filter by an app's namespace from the secondary server.
-  static final String appNamespace =
-      dotenv.get('NAMESPACE', fallback: 'at_skeleton_app');
+  static final String appNamespace = dotenv.get('NAMESPACE', fallback: 'at_skeleton_app');
 
   /// Returns the app api key from the environment.
   /// The api key used to generate free @signs by at_onboarding_flutter.
@@ -26,7 +35,6 @@ class AtEnv {
   /// Returns Staging environment if the API_KEY is null
   /// Returns Production environment if the API_KEY is set in .env
   /// Used by Onboarding in the templates
-  static RootEnvironment get rootEnvironment => (appApiKey == null)
-      ? RootEnvironment.Staging
-      : RootEnvironment.Production;
+  static RootEnvironment get rootEnvironment =>
+      (appApiKey == null) ? RootEnvironment.Staging : RootEnvironment.Production;
 }

@@ -12,6 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
   at_onboarding_flutter: ^3.0.1
+  at_utils: ^3.0.0
   flutter_dotenv: ^5.0.2
 
 dev_dependencies:
