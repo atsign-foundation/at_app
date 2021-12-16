@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:args/args.dart';
-import 'package:at_app/src/models/template_file_manager_base.dart';
 import 'package:at_app/src/models/template_service_base.dart';
 import 'package:at_app/src/models/file_manager.dart';
 

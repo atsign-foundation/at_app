@@ -1,4 +1,5 @@
 import 'dart:io' show Directory;
+import 'package:at_app/src/models/exceptions/template_exception.dart';
 import 'package:pubspec/pubspec.dart';
 
 import '../../../models/template_service_base.dart';
@@ -15,7 +16,7 @@ class PubspecManager extends TemplateServiceBase {
   final bool includeEnvFile;
 
   @override
-  Future<bool> run() async {
+  Future<void> run() async {
     try {
       PubSpec pubSpec = await PubSpec.load(projectDir);
 
@@ -40,8 +41,7 @@ class PubspecManager extends TemplateServiceBase {
 
       await newPubSpec.save(projectDir);
     } catch (_) {
-      // TODO throw
+      throw TemplateException('Unable to update pubspec.yaml in the project.');
     }
-    return true;
   }
 }

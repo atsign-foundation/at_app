@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:at_app/src/models/exceptions/template_exception.dart';
 import 'package:at_app/src/models/template_file_manager_base.dart';
 
 import '../../../constants/android_config.dart';
@@ -14,7 +15,7 @@ class GradlePropertiesManager extends FileTemplateServiceBase {
   final String filePath = 'android/gradle.properties';
 
   @override
-  Future<bool> run() async {
+  Future<void> run() async {
     try {
       var lines = await file.readAsLines();
 
@@ -30,8 +31,7 @@ class GradlePropertiesManager extends FileTemplateServiceBase {
 
       await write(lines);
     } catch (_) {
-      return false;
+      throw TemplateException('Unable to update the gradle.properties file.');
     }
-    return true;
   }
 }
