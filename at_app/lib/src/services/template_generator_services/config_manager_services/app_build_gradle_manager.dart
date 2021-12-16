@@ -22,37 +22,27 @@ class AppBuildGradleManager extends FileTemplateServiceBase {
     try {
       List<String> lines = await file.readAsLines();
 
-      // Update minSdkVersion
-      int index = lines.indexWhere((line) => line.contains('minSdkVersion'));
-
-      var minSdkVersion = options['minSdkVersion'] ?? defaultAppBuildGradleOptions['minSdkVersion'];
-      var compileSdkVersion = options['compileSdkVersion'] ?? defaultAppBuildGradleOptions['compileSdkVersion'];
-      var targetSdkVersion = options['targetSdkVersion'] ?? defaultAppBuildGradleOptions['targetSdkVersion'];
-
-      lines[index] = lines[index].replaceFirst(
-        RegExp('minSdkVersion .*'),
-        'minSdkVersion $minSdkVersion',
-      );
-
-      // Update compileSdkVersion
-      index = lines.indexWhere((line) => line.contains('compileSdkVersion'));
-
-      lines[index] = lines[index].replaceFirst(
-        RegExp('compileSdkVersion .*'),
-        'compileSdkVersion $compileSdkVersion',
-      );
-
-      // Update targetSdkVersion
-      index = lines.indexWhere((line) => line.contains('targetSdkVersion'));
-
-      lines[index] = lines[index].replaceFirst(
-        RegExp('targetSdkVersion .*'),
-        'targetSdkVersion $targetSdkVersion',
-      );
+      for (String key in defaultAppBuildGradleOptions.keys) {
+        var value = options[key] ?? defaultAppBuildGradleOptions[key];
+        int index = lines.indexWhere((line) => line.contains(key));
+        lines[index] = lines[index].replaceFirst(
+          RegExp('$key.*'),
+          _formatLine(key, value),
+        );
+      }
 
       await write(lines);
     } catch (_) {
       throw TemplateException('Unable to configure $filePath');
+    }
+  }
+
+  String _formatLine(String key, dynamic value) {
+    switch (key) {
+      case 'ext.kotlin_version':
+        return "$key='$value'";
+      default:
+        return '$key $value';
     }
   }
 }
