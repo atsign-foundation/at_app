@@ -1,5 +1,6 @@
 import 'dart:io' show Directory;
 
+import 'package:at_app/src/models/exceptions/template_exception.dart';
 import 'package:at_app/src/models/template_file_manager_base.dart';
 
 class GitignoreManager extends FileTemplateServiceBase {
@@ -9,7 +10,7 @@ class GitignoreManager extends FileTemplateServiceBase {
   final String filePath = '.gitignore';
 
   @override
-  Future<bool> run() async {
+  Future<void> run() async {
     try {
       var lines = (await file.readAsLines());
       if (!lines.contains('.env')) {
@@ -17,8 +18,7 @@ class GitignoreManager extends FileTemplateServiceBase {
       }
       await write(lines);
     } catch (_) {
-      return false;
+      throw TemplateException('Unable to update the environment file.');
     }
-    return true;
   }
 }
