@@ -44,8 +44,8 @@ class ConfigManager extends TemplateServiceBase with FileManager {
     Map<String, bool> envConfig = parseEnvConfig();
     Map<String, dynamic> androidConfig = parsePlatformConfig('android');
 
-    bool includeEnv = envConfig['include'] ?? false;
     bool envOverride = envConfig['override'] ?? false;
+    bool includeEnv = (envConfig['include'] ?? false) || envOverride;
 
     // Check if we need to add a pubspec manager
     if (dependencies.isNotEmpty || includeEnv) {
@@ -100,6 +100,7 @@ class ConfigManager extends TemplateServiceBase with FileManager {
 
   Map<String, bool> parseEnvConfig() {
     Map<String, bool> parsed = YamlMapParser<String, bool>(yaml['config']?['env'])?.toMap() ?? {};
+
     for (String key in ['include', 'gitignore', 'override']) {
       if (!parsed.containsKey(key)) {
         parsed[key] = false;
