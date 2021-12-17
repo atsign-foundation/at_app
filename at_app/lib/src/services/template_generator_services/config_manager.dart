@@ -72,6 +72,8 @@ class ConfigManager extends TemplateServiceBase with FileManager {
 
     managers.add(AppBuildGradleManager(projectDir, options: androidConfig['app.build.gradle']));
 
+    managers.add(AppBuildGradleManager(projectDir, options: androidConfig['build.gradle']));
+
     // Call the run function on each config_manager in parallel
     await Future.wait(managers.map((m) => m.run()));
   }

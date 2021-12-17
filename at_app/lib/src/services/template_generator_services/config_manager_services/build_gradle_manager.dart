@@ -13,15 +13,15 @@ class AppBuildGradleManager extends FileTemplateServiceBase {
         super(projectDir);
 
   @override
-  final String filePath = 'android/app/build.gradle';
+  final String filePath = 'android/build.gradle';
 
   @override
   Future<void> run() async {
     try {
       List<String> lines = await file.readAsLines();
 
-      for (String key in defaultAppBuildGradleOptions.keys) {
-        var value = options[key] ?? defaultAppBuildGradleOptions[key];
+      for (String key in defaultBuildGradleOptions.keys) {
+        var value = options[key] ?? defaultBuildGradleOptions[key];
         int index = lines.indexWhere((line) => line.contains(key));
         if (index < 0) continue;
         lines[index] = lines[index].replaceFirst(
@@ -38,6 +38,8 @@ class AppBuildGradleManager extends FileTemplateServiceBase {
 
   String _formatLine(String key, dynamic value) {
     switch (key) {
+      case 'ext.kotlin_version':
+        return "$key = '$value'";
       default:
         return '$key $value';
     }
