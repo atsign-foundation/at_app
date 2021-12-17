@@ -17,6 +17,9 @@ The following provides a full guide on the various ways to use at_app.
         - [root-domain](#root-domain)
         - [api-key](#api-key)
       - [Flutter Configuration](#flutter-configuration)
+  - [Working with @platform Packages](#working-with-platform-packages)
+    - [Discovering @platform Packages](#discovering-platform-packages)
+    - [Adding packages](#adding-packages)
 
 ## Installing and Updating
 
@@ -188,4 +191,60 @@ at_app create -k <api-key> <path/to/output/directory>
 These are all the same as `flutter create` with one minor exception:
 
 Since the @platform is currently not supported on web, that option has been disabled in `--platforms`
+
+## Working with @platform Packages
+
+The packages command serves as an easy way to discover @platform packages that you may want to use in your new application.
+
+### Discovering @platform Packages
+
+The packages have been sorted into three categories so you can filter and list based on your needs:
+- Flutter packages
+- Core packages
+- Utility packages
+
+In most scenarios, your project will require either the Flutter or Core packages, utility packages can be relevant to either category.
+
+To list packages use the `list` subcommand:
+
+```sh
+at_app packages list
+```
+
+If you don't specify a category, then at_app will show you the Flutter category.
+
+| Flag      | Shorthand | Description                |
+| --------- | --------- | -------------------------- |
+| --flutter | -f        | Show the Flutter category. |
+| --core    | -c        | Show the core category.    |
+| --util    | -u        | Show the utility category. |
+| --all     | -a        | Show all categories.       |
+
+Any combination of flags will work, however specifying `--all` or `-a` will override the other flags.
+
+Examples:
+
+```sh
+at_app packages list     # Just Flutter
+at_app packages list -f  # Just Flutter
+at_app packages list -u  # Just Utility
+at_app packages list -c  # Just Core
+at_app packages list -fu # Flutter and Utility
+at_app packages list -cu # Core and Utility
+at_app packages list -fc # Flutter and Core
+at_app packages list -a  # All Categories
+```
+
+### Adding packages
+
+You can also add a package using `at_app packages add`.
+You can use this, the same way as `flutter pub add`, and it can be used for any pub.dev package.
+
+For now, we don't support the ability to specify a version, but this will be coming soon.
+
+For example:
+
+```sh
+at_app packages add at_client_mobile
+```
 
