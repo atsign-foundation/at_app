@@ -1,19 +1,20 @@
 import 'dart:io';
 
 import 'package:args/args.dart';
-import 'package:at_app/src/models/template_service_base.dart';
-import 'package:at_app/src/models/file_manager.dart';
-import 'package:at_app/src/util/namespace.dart';
-import 'package:at_app/src/util/root_domain.dart';
-
-import 'package:at_app/src/util/yaml.dart';
-import 'package:at_app/version.dart';
+import 'package:path/path.dart' show relative;
 import 'package:pub_semver/pub_semver.dart';
 import 'package:pubspec/pubspec.dart';
 import 'package:yaml/yaml.dart';
-import 'package:path/path.dart' show relative;
+
+import 'package:at_app/src/models/file_manager.dart';
+import 'package:at_app/src/models/template_service_base.dart';
+import 'package:at_app/src/util/namespace.dart';
+import 'package:at_app/src/util/root_domain.dart';
+import 'package:at_app/src/util/yaml.dart';
+import 'package:at_app/version.dart';
 
 import 'config_manager_services/app_build_gradle_manager.dart';
+import 'config_manager_services/build_gradle_manager.dart';
 import 'config_manager_services/env_manager.dart';
 import 'config_manager_services/gitignore_manager.dart';
 import 'config_manager_services/gradle_properties_manager.dart';
@@ -72,7 +73,7 @@ class ConfigManager extends TemplateServiceBase with FileManager {
 
     managers.add(AppBuildGradleManager(projectDir, options: androidConfig['app.build.gradle']));
 
-    managers.add(AppBuildGradleManager(projectDir, options: androidConfig['build.gradle']));
+    managers.add(BuildGradleManager(projectDir, options: androidConfig['build.gradle']));
 
     // Call the run function on each config_manager in parallel
     await Future.wait(managers.map((m) => m.run()));
