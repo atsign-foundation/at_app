@@ -29,9 +29,9 @@ class PubspecManager extends TemplateServiceBase {
 
       if (includeEnvFile) {
         workingUnParsedYaml ??= {};
-        Set<dynamic> workingAssets = Set.from(workingUnParsedYaml['assets'] ?? {});
+        Set<dynamic> workingAssets = Set.from(workingUnParsedYaml['flutter'] ?? {});
         workingAssets.add('.env');
-        workingUnParsedYaml['assets'] = workingAssets.toList();
+        workingUnParsedYaml['flutter']['assets'] = workingAssets.toList();
       }
 
       PubSpec newPubSpec = pubSpec.copy(

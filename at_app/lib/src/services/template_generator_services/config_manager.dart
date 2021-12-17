@@ -53,7 +53,7 @@ class ConfigManager extends TemplateServiceBase with FileManager {
         PubspecManager(
           projectDir,
           dependencies: dependencies,
-          includeEnvFile: envConfig['include'],
+          includeEnvFile: includeEnv,
         ),
       );
 
