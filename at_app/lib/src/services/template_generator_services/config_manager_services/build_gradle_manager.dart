@@ -24,7 +24,6 @@ class BuildGradleManager extends FileTemplateServiceBase {
         var value = options[key] ?? defaultBuildGradleOptions[key];
         int index = lines.indexWhere((line) => line.contains(key));
         if (index < 0) continue;
-        print('$key, $value, ${_formatLine(key, value)}');
         lines[index] = lines[index].replaceFirst(
           RegExp('$key.*'),
           _formatLine(key, value),
