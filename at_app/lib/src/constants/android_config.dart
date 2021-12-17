@@ -4,6 +4,9 @@ Map<String, dynamic> defaultAppBuildGradleOptions = {
   'targetSdkVersion': 30,
   'minSdkVersion': 24,
   'compileSdkVersion': 31,
+};
+
+Map<String, dynamic> defaultBuildGradleOptions = {
   'ext.kotlin_version': '1.4.31',
 };
 
