@@ -156,7 +156,7 @@ class CreateCommand extends CreateBase {
         await FlutterCli.pubGet(directory: projectDir);
       }
     } on TemplateException catch (e) {
-      _logger.e('There was an issue generating part of your template:', e.toString());
+      _logger.e('There was an issue generating part of your template:', e);
       return CommandStatus.fail;
     } on CachePackageException catch (e) {
       _logger.e('There was an issue pulling the templates from pub.dev:', e);
@@ -165,7 +165,7 @@ class CreateCommand extends CreateBase {
       _logger.e('There was an issue running pub get in $projectDir:', e);
       return CommandStatus.fail;
     } catch (e) {
-      _logger.e('An unknown issue occurred:', e);
+      _logger.e('An unknown issue occurred:', e.toString());
       _logger
           .i('Please file a ticket to prevent this from happening again:\nhttps://github.com/atsign-foundation/at_app');
 
