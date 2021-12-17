@@ -19,7 +19,7 @@ The packages are grouped into three categories: flutter, utility, core.''';
   final Logger _logger = LoggerService().logger;
 
   ListCommand() {
-    argParser.addFlag('flutter', abbr: 'f', defaultsTo: false);
+    argParser.addFlag('flutter', abbr: 'f');
     argParser.addFlag('util', abbr: 'u');
     argParser.addFlag('core', abbr: 'c');
     argParser.addFlag('all', abbr: 'a', negatable: false);
