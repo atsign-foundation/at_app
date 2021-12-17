@@ -9,4 +9,6 @@ Map<String, String> templateNames = {
 Map<String, String> sampleNames = {};
 
 /// Demo name: description for --list-demos
-Map<String, String> demoNames = {};
+Map<String, String> demoNames = {
+  'snackbar' : 'Send and receive end to end encrypted snackbars',
+};
