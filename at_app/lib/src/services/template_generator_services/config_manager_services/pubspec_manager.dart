@@ -21,17 +21,18 @@ class PubspecManager extends TemplateServiceBase {
       PubSpec pubSpec = await PubSpec.load(projectDir);
 
       Map<String, DependencyReference> workingDependencies = pubSpec.dependencies;
-      Map<dynamic, dynamic>? workingUnParsedYaml = pubSpec.unParsedYaml;
+      Map<dynamic, dynamic> workingUnParsedYaml = pubSpec.unParsedYaml ?? {};
 
       dependencies.forEach((key, value) {
         workingDependencies[key] = value;
       });
 
       if (includeEnvFile) {
-        workingUnParsedYaml ??= {};
-        Set<dynamic> workingAssets = Set.from(workingUnParsedYaml['flutter'] ?? {});
+        Map<dynamic, dynamic> workingFlutter = Map.from(workingUnParsedYaml['flutter'] ?? {});
+        Set<dynamic> workingAssets = Set.from(workingFlutter['assets'] ?? {});
         workingAssets.add('.env');
-        workingUnParsedYaml['flutter']['assets'] = workingAssets.toList();
+        workingFlutter['assets'] = workingAssets.toList();
+        workingUnParsedYaml['flutter'] = workingFlutter;
       }
 
       PubSpec newPubSpec = pubSpec.copy(
