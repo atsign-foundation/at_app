@@ -10,7 +10,7 @@ dependencies:
 config:
   env:
     override: true
-  
+
   android:
     build.gradle:
       ext.kotlin_version: '1.4.31'
@@ -18,5 +18,3 @@ config:
   env_override:
     NAMESPACE: fourballcorporate9
     API_KEY: 477b-876u-bcez-c42z-6a3d
-
-    
