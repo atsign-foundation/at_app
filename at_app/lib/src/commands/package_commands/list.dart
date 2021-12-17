@@ -19,7 +19,7 @@ The packages are grouped into three categories: flutter, utility, core.''';
   final Logger _logger = LoggerService().logger;
 
   ListCommand() {
-    argParser.addFlag('flutter', abbr: 'f', defaultsTo: true);
+    argParser.addFlag('flutter', abbr: 'f', defaultsTo: false);
     argParser.addFlag('util', abbr: 'u');
     argParser.addFlag('core', abbr: 'c');
     argParser.addFlag('all', abbr: 'a', negatable: false);
@@ -41,12 +41,7 @@ The packages are grouped into three categories: flutter, utility, core.''';
       }
     }
 
-    /// Nothing to print
-    if (flagCount == 0) {
-      throw const FormatException(
-        'At least one group of packages must be specified',
-      );
-    }
+    final bool justFlutter = flagCount == 0;
 
     List<List<String>> display = [
       ['PACKAGE', 'DESCRIPTION']
@@ -54,7 +49,7 @@ The packages are grouped into three categories: flutter, utility, core.''';
     List<int> rowDividers = [1];
 
     /// Flutter Packages
-    if (showAll || (argResults?['flutter'] ?? false)) {
+    if (showAll || justFlutter || (argResults?['flutter'] ?? false)) {
       if (display.length > 1) rowDividers.add(display.length);
       display.addAll([
         if (flagCount > 1) ['FLUTTER PACKAGES'],
@@ -87,8 +82,7 @@ The packages are grouped into three categories: flutter, utility, core.''';
       rowDividers: rowDividers,
     ));
 
-    final String packageCount =
-        '''\nShowing $flagCount/${flags.length} package groups.
+    final String packageCount = '''\nShowing $flagCount/${flags.length} package groups.
 
 To show available groups:
 at_app${Platform.isWindows ? '.bat' : ''} packages list --help''';
