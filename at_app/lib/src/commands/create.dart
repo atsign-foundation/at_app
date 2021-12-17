@@ -156,22 +156,19 @@ class CreateCommand extends CreateBase {
         await FlutterCli.pubGet(directory: projectDir);
       }
     } on TemplateException catch (e) {
-      _logger.e('There was an issue generating part of your template:\n$e');
+      _logger.e('There was an issue generating part of your template:', e.message);
       return CommandStatus.fail;
     } on CachePackageException catch (e) {
-      _logger.e('There was an issue pulling the templates from pub.dev:\n$e');
+      _logger.e('There was an issue pulling the templates from pub.dev:', e.message);
       return CommandStatus.fail;
     } on FlutterException catch (e) {
-      _logger.e('There was an issue running pub get in $projectDir:\n$e');
+      _logger.e('There was an issue running pub get in $projectDir:', e.message);
       return CommandStatus.fail;
     } catch (e) {
-      _logger.e(
-          '''An unknown issue occurred:
+      _logger.e('An unknown issue occurred:', e.toString());
+      _logger
+          .i('Please file a ticket to prevent this from happening again:\nhttps://github.com/atsign-foundation/at_app');
 
-$e
-
-Please file a ticket to prevent this from happening again:
-https://github.com/atsign-foundation/at_app''');
       return CommandStatus.fail;
     }
 
@@ -179,8 +176,7 @@ https://github.com/atsign-foundation/at_app''');
     _logger.i('All done!');
 
     // Copyright 2014 The Flutter Authors. All rights reserved.
-    _logger.i(
-        '''
+    _logger.i('''
 
 In order to run your @platform application, type:
 
