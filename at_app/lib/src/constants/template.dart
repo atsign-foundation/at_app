@@ -11,4 +11,5 @@ Map<String, String> sampleNames = {};
 /// Demo name: description for --list-demos
 Map<String, String> demoNames = {
   'snackbar' : 'Send and receive end to end encrypted snackbars',
+  'snackbarsender' : 'Send snackbars to a flutter web application publically',
 };
