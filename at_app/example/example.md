@@ -134,7 +134,7 @@ These arguments are loaded into a .env file in the application and read into the
 
 In short, the namespace is what distinguishes the data stored by your app from other apps on the @platform.
 To ensure that you are not colliding with other namespaces, the best practice is to use an atsign that you own.
-By convention, if you own the atsign, then you also own the namespace. [Learn more](). <!--- TODO add link to atsign.dev page -->
+By convention, if you own the atsign, then you also own the namespace. <!--- TODO add "learn more" link to atsign.dev page -->
 
 Example usage:
 
