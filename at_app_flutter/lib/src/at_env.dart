@@ -17,12 +17,11 @@ class AtEnv {
 
   /// Returns the app api key from the environment.
   /// The api key used to generate free @signs by at_onboarding_flutter.
-  /// Also used to pay commissions to developers (email )
   static final String? appApiKey = dotenv.maybeGet('API_KEY');
 
-  /// Returns Staging environment if the API_KEY is null
-  /// Returns Production environment if the API_KEY is set in .env
-  /// Used by Onboarding in the templates
+  /// Returns [RootEnvironment.Staging] if [appApiKey] is null.
+  /// Returns [RootEnvironment.Production] if [appApiKey] is set in .env.
+  /// Used by Onboarding in the templates.
   static RootEnvironment get rootEnvironment =>
       (appApiKey == null) ? RootEnvironment.Staging : RootEnvironment.Production;
 }
