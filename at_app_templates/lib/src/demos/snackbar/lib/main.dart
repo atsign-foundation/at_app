@@ -101,7 +101,9 @@ class _HomeScreenState extends State<HomeScreen> {
     final myController = TextEditingController();
 
     var notificationService = atClientManager.notificationService;
-    notificationService.subscribe(regex: AtEnv.appNamespace).listen((notification) {
+    notificationService
+        .subscribe(regex: AtEnv.appNamespace)
+        .listen((notification) {
       getAtsignData(context, notification.key);
     });
 
@@ -127,10 +129,11 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             ElevatedButton(
               onPressed: () {
-                sendAtsignData(myController.text);
+                sendAtsignData(context, myController.text);
               },
               child: const Text('Send a snack'),
-            )
+            ),
+            const Spacer(flex: 1),
           ],
         ),
       ),
@@ -158,7 +161,8 @@ void getAtsignData(context, String notificationKey) async {
   var notificationList = notificationKey.split(':');
   String sharedByAtsign = '@' + notificationList[1].split('@').last;
   String keyAtsign = notificationList[1];
-  keyAtsign = keyAtsign.replaceAll('.${preference.namespace.toString()}$sharedByAtsign', '');
+  keyAtsign = keyAtsign.replaceAll(
+      '.${preference.namespace.toString()}$sharedByAtsign', '');
 
   var metaData = Metadata()
     ..isPublic = false
@@ -173,30 +177,19 @@ void getAtsignData(context, String notificationKey) async {
 
   // The magic line that picks up the snack
   var snackKey = await atClient.get(key);
-  // Yes that is all you need to do! 
+  // Yes that is all you need to do!
   var snack = snackKey.value.toString();
 
-  final snackBar = SnackBar(
-    content: Text('Yay! A$snack ! From $sharedByAtsign'),
-    action: SnackBarAction(
-      label: 'Undo',
-      onPressed: () {
-        // Some code to undo the change.
-      },
-    ),
-  );
-
-  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  popSnackBar(context, 'Yay! A$snack ! From $sharedByAtsign');
 }
 
-void sendAtsignData(String sendSnackTo) async {
+void sendAtsignData(context, String sendSnackTo) async {
   /// Get the AtClientManager instance
   var atClientManager = AtClientManager.getInstance();
 
   Future<AtClientPreference> futurePreference = loadAtClientPreference();
 
   var preference = await futurePreference;
-
 
   var snacks = [
     ' Milky Way',
@@ -212,6 +205,8 @@ void sendAtsignData(String sendSnackTo) async {
     ' Twix Bar',
     ' KitKat Bar',
   ];
+
+  String snack = snacks[Random().nextInt(snacks.length)];
   String? currentAtsign;
   late AtClient atClient;
   atClient = atClientManager.atClient;
@@ -231,5 +226,22 @@ void sendAtsignData(String sendSnackTo) async {
     ..metadata = metaData;
 
   // The magic line to send the snack
-  await atClient.put(key, snacks[Random().nextInt(snacks.length)]);
+  await atClient.put(key, snack);
+  atClientManager.syncService.sync;
+
+  popSnackBar(context, 'We just sent. A$snack, to $sendSnackTo');
+}
+
+void popSnackBar(context, String snackmessage) {
+  final snackBar = SnackBar(
+    content: Text(snackmessage),
+    action: SnackBarAction(
+      label: 'Undo',
+      onPressed: () {
+        // Some code to undo the change.
+      },
+    ),
+  );
+
+  ScaffoldMessenger.of(context).showSnackBar(snackBar);
 }
