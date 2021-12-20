@@ -20,7 +20,6 @@ Features of the @platform include:
 - Private and surveillance free connectivity
 - Integrate packages quickly and easily
 
-
 We call giving people control of access to their data “flipping the internet”
 and you can learn more about how it works by reading this
 [overview](https://atsign.dev/docs/overview/).
@@ -46,6 +45,7 @@ If you would like to see a particular package sample, check the readme of that p
 For complete usage, please see the example tab.
 
 ## Open source usage and contributions
+
 This is open source code, so feel free to use it as is, suggest changes or
 enhancements or create your own version. See [CONTRIBUTING.md](../CONTRIBUTING.md)
 for detailed guidance on how to setup tools, tests and make a pull request.
