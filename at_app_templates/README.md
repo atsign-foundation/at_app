@@ -7,13 +7,11 @@
 
 at_app_templates contains the template code for [at_app](https://pub.dev/packages/at_app).
 
-
-
-#### How it works
+### How it works
 
 at_app caches at_app_templates as a dev dependency, then later retrieves the template that you would like to use from the pub cache.
 
-##### Usage
+### Usage
 
 See [at_app](https://pub.dev/packages/at_app) for usage.
 
