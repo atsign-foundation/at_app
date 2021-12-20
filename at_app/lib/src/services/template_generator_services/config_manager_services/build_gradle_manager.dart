@@ -5,10 +5,10 @@ import 'package:at_app/src/models/template_file_manager_base.dart';
 
 import '../../../constants/android_config.dart';
 
-class AppBuildGradleManager extends FileTemplateServiceBase {
+class BuildGradleManager extends FileTemplateServiceBase {
   final Map<String, dynamic> options;
 
-  AppBuildGradleManager(Directory projectDir, {Map<String, dynamic>? options})
+  BuildGradleManager(Directory projectDir, {Map<String, dynamic>? options})
       : options = options ?? defaultAppBuildGradleOptions,
         super(projectDir);
 
