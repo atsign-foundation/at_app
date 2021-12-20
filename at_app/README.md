@@ -1,69 +1,68 @@
-<img src="https://atsign.dev/assets/img/@dev.png?sanitize=true">
-
-### Now for a little internet optimism
-
 # at_app
 
-A command line tool to help developers build an @ platform application.
+<img width=250px src="https://atsign.dev/assets/img/@platform_logo_grey.svg?sanitize=true">
 
-## Who is this for?
+[![pub package](https://img.shields.io/pub/v/at_app)](https://pub.dev/packages/at_app) [![pub points](https://badges.bar/at_app/pub%20points)](https://pub.dev/packages/at_app/score) [![gitHub license](https://img.shields.io/badge/license-BSD3-blue.svg)](./LICENSE)
+## Overview
 
-This is for flutter developers looking to build end to end encrypted apps.
+at_app is the one-stop shop for Flutter developers developing with, or trying out the @platform.
 
-## Getting Started
+This open source application is written in Dart, and is designed to help you run apps on the
+@platform's decentralized, edge computing model. at_app can help you to:
+- Build an app using our @platform application templates, which include the basic prerequisites
+- Discover packages available on the @platform that may be useful to your project
+- Quickly download and run a sample of an @platform package or demo app in 4 commands or less
 
-This application is an extension of `flutter create`, that replaces the main.dart file with our own custom template. We also perform the additional build configurations required for the onboarding package.
+Features of the @platform include:
+- Cryptographic control of data access through personal data stores
+- No application backend needed
+- End to end encryption where only the data owner has the keys
+- Private and surveillance free connectivity
+- Integrate packages quickly and easily
 
-The at_app toolkit also includes a library component called [at_app_flutter](https://pub.dev/packages/at_app_flutter) which is included with the app built by this executable.
 
-Together these two parts work together to provide app developers with the prerequisites of an @ platform app.
+We call giving people control of access to their data “flipping the internet”
+and you can learn more about how it works by reading this
+[overview](https://atsign.dev/docs/overview/).
 
-### Executable
+## Get started
 
-The executable is an extension of the `flutter create` command, and can be used to create a new @ platform app from our template.
-
-Activate the executable:
+To get started, install the tool using pub:
 
 ```sh
 flutter pub global activate at_app
 ```
 
-If necessary, pub will prompt you to update your PATH variable, please do as instructed.
+*Additionally, pub may prompt you to add the global bin to your PATH variable, please do so before proceeding.
 
-Create a new @ platform app:
+#### How it works
 
-```sh
-at_app create [...options] <output directory>
-```
+at_app uses a combination of `flutter create` as well as our own custom templating system to generate Flutter apps.
 
-Windows Users:
+##### Usage
 
-```sh
-at_app.bat create [...options] <output directory>
-```
+If you would like to see a particular package sample, check the readme of that package for instructions.
 
-#### Flags
+For complete usage, please see the example tab.
 
-`at_app create` includes all of the `flutter create` flags, with the exception of --template, --sample, --list-samples
+## Open source usage and contributions
+This is open source code, so feel free to use it as is, suggest changes or
+enhancements or create your own version. See [CONTRIBUTING.md](../CONTRIBUTING.md)
+for detailed guidance on how to setup tools, tests and make a pull request.
 
-| Flag          | Shorthand | Description                                             | Value                |
-| ------------- | --------- | ------------------------------------------------------- | -------------------- |
-| --namespace   | -n        | The @protocol app namespace to use for the application. | (defaults to "")     |
-| --root-domain | -r        | The @protocol root domain to use for the application.   | [prod (default), ve] |
-| --api-key     | -k        | The api key for at_onboarding_flutter.                  | (defaults to "")     |
-
-### Library
-
-Please see [at_app_flutter](https://pub.dev/packages/at_app_flutter) for library usage within your generated app.
-
-## Maintainers
-
-Created by [XavierChanth](https://github.com/xavierchanth)
-
-## Attribution
+## Acknowledgement/attribution
 
 Copyright 2014 The Flutter Authors. All rights reserved.
 
-This project is an extension of, and utilises flutter create to generate templates.
-Code used from the flutter sdk is marked with the copyright.
+This project is an extension of, and utilises `flutter create` to generate templates.
+Code reused from the flutter sdk is marked with the copyright.
 Please see the original license [here.](https://github.com/flutter/flutter/blob/master/LICENSE)
+
+## Maintainers
+
+This package is currently maintained by [Xavier Chanthavong](https://github.com/xavierchanth).
+
+If you found a bug or would like to request a change, please open an issue.
+If you need help using at_app, please contact us in our [Discord server](https://discord.gg/55sHTQFxfz).
+
+If you would like to contribute to this project, please note it in an issue, and submit a PR with your completed changes. Contributions are more than welcome!
