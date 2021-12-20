@@ -229,7 +229,7 @@ void sendAtsignData(context, String sendSnackTo) async {
   await atClient.put(key, snack);
   atClientManager.syncService.sync;
 
-  popSnackBar(context, 'We just sent. A$snack, to $sendSnackTo');
+  popSnackBar(context, 'You just sent. A$snack, to $sendSnackTo');
 }
 
 void popSnackBar(context, String snackmessage) {
