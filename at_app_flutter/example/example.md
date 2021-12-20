@@ -1,67 +1,58 @@
-# Examples
+# Usage
+
+- [Usage](#usage)
+  - [Using AtEnv](#using-atenv)
+    - [Loading the environment](#loading-the-environment)
+    - [Get the root domain](#get-the-root-domain)
+    - [Get the app namespace](#get-the-app-namespace)
+    - [Get the at_onboarding_flutter api key](#get-the-at_onboarding_flutter-api-key)
+    - [Get the at_onboarding_flutter RootEnvironment](#get-the-at_onboarding_flutter-rootenvironment)
 
 ## Using AtEnv
 
-Loading the environment
+### Loading the environment
 
 ```dart
 AtEnv.load();
 ```
 
-Get the root domain
+In some cases, `AtEnv.load()` can throw an error, which should not be caught.
+You must ensure the following:
+- The .env file exists (even if it is empty)
+- The .env file is listed as a Flutter asset in pubspec.yaml
+
+### Get the root domain
 
 ```dart
-var rootDomain = AtEnv.rootDomain;
+String rootDomain = AtEnv.rootDomain;
 ```
 
-Get the app namespace
+[Learn more](https://pub.dev/packages/at_app/example#root-domain) about the root domain.
+
+### Get the app namespace
 
 ```dart
-var namespace = AtEnv.appNamespace;
+String namespace = AtEnv.appNamespace;
 ```
 
-Get the app api key
+[Learn more](https://pub.dev/packages/at_app/example#namespace) about the namespace.
+
+### Get the [at_onboarding_flutter](https://pub.dev/packages/at_onboarding_flutter) api key
 
 ```dart
-var apiKey = AtEnv.appApiKey;
+String? apiKey = AtEnv.appApiKey;
 ```
 
-## Using AtContext
+[Learn more](https://pub.dev/packages/at_app/example#api-key) about the api key.
 
-### Get the AtContext instance from the BuildContext
+### Get the [at_onboarding_flutter](https://pub.dev/packages/at_onboarding_flutter) RootEnvironment
 
 ```dart
-AtContext atContext = AtContext.of(context);
+var apiKey = AtEnv.rootEnvironment;
 ```
 
-### Using the AtContext instance
+The rootEnvironment is interpreted by AtEnv depending on whether the api key is available.
+If the api key is not null, then AtEnv will return `RootEnvironment.Production`.
+If the api key is null, then AtEnv will return `RootEnvironment.Staging`.
 
-Get the AtClientService
-
-```dart
-AtClientService atClientService = atContext.atClientService;
-```
-
-Get the AtClientInstance
-
-```dart
-AtClientImpl? atClientInstance = atContext.atClient;
-```
-
-Get the Currently Onboarded AtSign
-
-```dart
-String? currentAtSign = atContext.currentAtSign;
-```
-
-Get the AtClientPreference
-
-```dart
-AtClientPreference atClientPreference = atContext.atClientPreference;
-```
-
-Onboard with another Atsign
-
-```dart
-atContext.switchAtsign("@example");
-```
+*Make sure to include an api key in your .env file, before publishing your app to the store.

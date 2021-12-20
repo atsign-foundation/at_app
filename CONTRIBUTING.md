@@ -1,6 +1,4 @@
-<img src="https://atsign.dev/assets/img/@dev.png?sanitize=true">
-
-### Now for a little internet optimism
+<img width=250px src="https://atsign.dev/assets/img/@platform_logo_grey.svg?sanitize=true">
 
 # Contributing guidelines
 
@@ -25,14 +23,27 @@ describe.
 
 ## Development Environment Setup
 
-
 ### Prerequisites
 
-Run the tool using:
+This repository uses [melos](https://pub.dev/packages/melos) to manage the various packages contained within it.
+To setup the environment, there are two paths.
+
+#### 1 Run melos through pub global
+
+This method does not install melos onto your machine. If you don't need to use melos outside of this project, this method is preferred. Run the following command from within the repository:
+
 ```sh
-dart bin/at_app.dart ...options
+flutter pub global run melos bootstrap
 ```
 
+#### 2 Install the melos binaries
+
+This method installs melos onto your machine. If you intend to use melos again in another project, this method is preferred. Run the following commands from within the repository:
+
+```sh
+flutter pub global activate melos
+melos bootstrap
+```
 
 ### GitHub Repository Clone
 
@@ -88,11 +99,15 @@ To prepare your dedicated GitHub repository:
    git push
    ```
 
+
+
 1. How to run tests:
 
+   By default at_app uses the version that has been published on pub.dev to generate projects.
+   If you would like to run it using your local version of code, then specify the hidden `--local` flag:
 
-   ``` sh
-   flutter test
+   ```sh
+   at_app create [...options] --local <path/to/output/folder>
    ```
 
 1. Open a new Pull Request to the main repository using your `trunk` branch
