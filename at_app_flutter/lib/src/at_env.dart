@@ -1,23 +1,11 @@
 import 'package:at_onboarding_flutter/at_onboarding_flutter.dart' show RootEnvironment;
-import 'package:at_utils/at_logger.dart' show AtSignLogger;
 import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
-import 'package:flutter_dotenv/src/errors.dart';
 
 /// AtEnv is a helper class to load in the environment variables from the .env file
 class AtEnv {
   /// Load the environment variables from the .env file.
   /// Directly calls load from the dotenv package.
-  static Future<void> load() async {
-    try {
-      await dotenv.load();
-    } on FileNotFoundError {
-      AtSignLogger('AtEnv').warning('The .env file was not found, environment has not been loaded.');
-    } on EmptyEnvFileError {
-      AtSignLogger('AtEnv').warning('The .env file was empty, environment has not been loaded.');
-    } catch (e) {
-      AtSignLogger('AtEnv').warning('Unable to load the .env file:', e);
-    }
-  }
+  static Future<void> load() => dotenv.load();
 
   /// Returns the root domain from the environment.
   /// Root domain is used to control what root server you want to use for the app.

@@ -9,4 +9,7 @@ Map<String, String> templateNames = {
 Map<String, String> sampleNames = {};
 
 /// Demo name: description for --list-demos
-Map<String, String> demoNames = {};
+Map<String, String> demoNames = {
+  'snackbar_sender' : 'Send snackbars to a flutter web application publically',
+  'snackbar' : 'Send and receive end to end encrypted snackbars',
+};
