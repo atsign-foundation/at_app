@@ -36,6 +36,7 @@ class TemplateGenerator {
     TemplateBuilder templateService = TemplateBuilder(
       projectDir: projectDir,
       templatePath: templatePath,
+      overwrite: argResults['overwrite'] as bool? ?? false,
     );
 
     ConfigManager configService = ConfigManager(
