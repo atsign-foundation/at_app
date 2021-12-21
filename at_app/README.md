@@ -58,6 +58,11 @@ This project is an extension of, and utilises `flutter create` to generate templ
 Code reused from the flutter sdk is marked with the copyright.
 Please see the original license [here.](https://github.com/flutter/flutter/blob/master/LICENSE)
 
+Copyright 2017, the Dart project authors. All rights reserved.
+
+This project has rewritten small parts of the Dart SDK.
+Please see the original license [here.](https://github.com/dart-lang/sdk/blob/main/LICENSE)
+
 ## Maintainers
 
 This package is currently maintained by [Xavier Chanthavong](https://github.com/xavierchanth).

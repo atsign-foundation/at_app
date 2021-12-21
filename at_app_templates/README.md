@@ -2,7 +2,7 @@
 
 <img width=250px src="https://atsign.dev/assets/img/@platform_logo_grey.svg?sanitize=true">
 
-[![pub package](https://img.shields.io/pub/v/at_app)](https://pub.dev/packages/at_app) [![pub points](https://badges.bar/at_app/pub%20points)](https://pub.dev/packages/at_app/score) [![gitHub license](https://img.shields.io/badge/license-BSD3-blue.svg)](./LICENSE)
+[![pub package](https://img.shields.io/pub/v/at_app_templates)](https://pub.dev/packages/at_app_templates) [![pub points](https://badges.bar/at_app_templates/pub%20points)](https://pub.dev/packages/at_app_templates/score) [![gitHub license](https://img.shields.io/badge/license-BSD3-blue.svg)](./LICENSE)
 ## Overview
 
 at_app_templates contains the template code for [at_app](https://pub.dev/packages/at_app).
