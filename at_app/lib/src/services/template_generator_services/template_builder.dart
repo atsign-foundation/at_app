@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:at_app/src/models/template_service_base.dart';
-import 'package:io/io.dart' show copyPath;
 import 'package:path/path.dart' show absolute, canonicalize, isWithin, join, relative;
 
 import '../../models/exceptions/template_exception.dart';

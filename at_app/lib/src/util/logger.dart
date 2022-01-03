@@ -16,9 +16,7 @@ class _Printer extends LogPrinter {
   List<String> log(LogEvent event) {
     var messageStr = _stringifyMessage(event.message ?? '');
     var errorStr = event.error ?? '';
-    return [
-      _color(event.level)('${_labelFor(event.level)}$messageStr$errorStr')
-    ];
+    return [_color(event.level)('${_labelFor(event.level)}$messageStr$errorStr')];
   }
 
   AnsiColor _color(Level level) => {

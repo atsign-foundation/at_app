@@ -9,8 +9,7 @@ class Cli {
     bool throwOnError = true,
     String? directory,
   }) async {
-    final result = await Process.run(cmd, args,
-        workingDirectory: directory, runInShell: true);
+    final result = await Process.run(cmd, args, workingDirectory: directory, runInShell: true);
 
     if (throwOnError) {
       _throwIfProcessFailed(result, cmd, args);

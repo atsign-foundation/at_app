@@ -1,6 +1,5 @@
 import 'dart:io';
 
-
 /// A base class that defines a template service
 /// A template service can be responsible for:
 /// - generating part of the template
@@ -15,4 +14,3 @@ abstract class TemplateServiceBase {
   /// R
   Future<void> run();
 }
-
