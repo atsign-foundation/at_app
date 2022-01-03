@@ -74,7 +74,8 @@ class FlutterCli {
 }
 
 class _FlutterCli extends Cli {
-  static Future<ProcessResult> run(List<String> args, {bool throwOnError = true, String? directory}) {
+  static Future<ProcessResult> run(List<String> args,
+      {bool throwOnError = true, String? directory}) {
     return Cli.run(
       'flutter',
       args,

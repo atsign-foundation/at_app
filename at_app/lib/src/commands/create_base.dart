@@ -25,14 +25,12 @@ abstract class CreateBase extends Command<CommandStatus> {
     argParser.addFlag(
       'pub',
       defaultsTo: true,
-      help:
-          'Whether to run "flutter pub get" after the project has been created.',
+      help: 'Whether to run "flutter pub get" after the project has been created.',
     );
     argParser.addFlag(
       'offline',
       defaultsTo: false,
-      help:
-          'When "flutter pub get" is run by the create command, this indicates '
+      help: 'When "flutter pub get" is run by the create command, this indicates '
           'whether to run it in offline mode or not. In offline mode, it will need to '
           'have all dependencies already available in the pub cache to succeed.',
     );
@@ -107,12 +105,10 @@ abstract class CreateBase extends Command<CommandStatus> {
     File mainFile = File('${projectDir.absolute.path}/lib/main.dart');
     final bool exists = mainFile.existsSync();
 
-    var packageName =
-        projectName ?? basename(normalize(projectDir.absolute.path));
+    var packageName = projectName ?? basename(normalize(projectDir.absolute.path));
 
     if (!validatePackageName(packageName)) {
-      throw FormatException(
-          '"$packageName" is not a valid Dart package name.\n\n'
+      throw FormatException('"$packageName" is not a valid Dart package name.\n\n'
           'See https://dart.dev/tools/pub/pubspec#name for more information.');
     }
 
@@ -150,8 +146,7 @@ abstract class CreateBase extends Command<CommandStatus> {
 
   void validateOutputDirectoryArg() {
     if (argResults?.rest.isEmpty ?? false) {
-      throw UsageException(
-          'No option specified for the output directory.', usage);
+      throw UsageException('No option specified for the output directory.', usage);
     }
 
     if (argResults!.rest.length > 1) {
@@ -169,9 +164,7 @@ abstract class CreateBase extends Command<CommandStatus> {
   // Copyright 2014 The Flutter Authors. All rights reserved.
   bool validatePackageName(String name) {
     final Match? match = RegExp('[a-z_][a-z0-9_]*').matchAsPrefix(name);
-    return match != null &&
-        match.end == name.length &&
-        !dartKeywords.contains(name);
+    return match != null && match.end == name.length && !dartKeywords.contains(name);
   }
 
   Directory get projectDir {
