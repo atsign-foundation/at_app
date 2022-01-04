@@ -7,7 +7,7 @@
   - ```--list-demos``` - list all demo applications
   - ```--list-templates``` - list all templates
   - ```--list-samples``` - list all samples (currently there are none available but they are coming soon)
-- Updated the behaviour of the packages command
+- Added the packages subcommand
 - Updated the README.md and usage documentation for at_app
 
 ## 4.0.0
