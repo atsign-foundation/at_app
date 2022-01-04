@@ -46,24 +46,16 @@ class ConfigManager extends TemplateServiceBase with FileManager {
 
     bool envOverride = envConfig['override'] ?? false;
     bool includeEnv = (envConfig['include'] ?? false) || envOverride;
-    Map<String, String> environment = {};
-
-    if (includeEnv) {
-      environment = (envOverride) ? parseEnvOverride() : parseEnvArgs();
-      includeEnv = environment.isNotEmpty;
-    }
 
     // Check if we need to add a pubspec manager
     if (dependencies.isNotEmpty || includeEnv) {
       managers.add(
-        PubspecManager(
-          projectDir,
-          dependencies: dependencies,
-          includeEnvFile: includeEnv,
-        ),
+        PubspecManager(projectDir,
+            dependencies: dependencies, includeEnvFile: includeEnv, isLocal: argResults['local'] ?? false),
       );
 
       if (includeEnv) {
+        Map<String, String> environment = (envOverride) ? parseEnvOverride() : parseEnvArgs();
         managers.add(EnvManager(projectDir, environment: environment));
       }
     }
