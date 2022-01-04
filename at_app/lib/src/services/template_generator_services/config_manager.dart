@@ -68,8 +68,7 @@ class ConfigManager extends TemplateServiceBase with FileManager {
     }
 
     if (androidConfig['gradle.properties']?.isNotEmpty ?? false) {
-      managers
-          .add(GradlePropertiesManager(projectDir, options: androidConfig['gradle.properties']));
+      managers.add(GradlePropertiesManager(projectDir, options: androidConfig['gradle.properties']));
     }
 
     managers.add(AppBuildGradleManager(projectDir, options: androidConfig['app.build.gradle']));
@@ -81,8 +80,7 @@ class ConfigManager extends TemplateServiceBase with FileManager {
   }
 
   Map<String, DependencyReference> parseDependencies() {
-    Map<String, String?> parsed =
-        YamlMapParser<String, String?>(yaml['dependencies'])?.toMap() ?? {};
+    Map<String, String?> parsed = YamlMapParser<String, String?>(yaml['dependencies'])?.toMap() ?? {};
     return parsed.map<String, DependencyReference>((key, value) {
       if (key == templatePackageName && argResults['template-path'] != null) {
         return MapEntry(

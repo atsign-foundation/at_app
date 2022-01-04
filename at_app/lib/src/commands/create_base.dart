@@ -42,35 +42,30 @@ abstract class CreateBase extends Command<CommandStatus> {
     argParser.addOption(
       'description',
       defaultsTo: 'A new Flutter project.',
-      help:
-          'The description to use for your new Flutter project. This string ends up in the pubspec.yaml file.',
+      help: 'The description to use for your new Flutter project. This string ends up in the pubspec.yaml file.',
     );
     argParser.addOption(
       'org',
       defaultsTo: 'com.example',
-      help:
-          'The organization responsible for your new Flutter project, in reverse domain name notation. '
+      help: 'The organization responsible for your new Flutter project, in reverse domain name notation. '
           'This string is used in Java package names and as prefix in the iOS bundle identifier.',
     );
     argParser.addOption(
       'project-name',
       defaultsTo: null,
-      help:
-          'The project name for this new Flutter project. This must be a valid dart package name.',
+      help: 'The project name for this new Flutter project. This must be a valid dart package name.',
     );
     argParser.addOption('ios-language',
         abbr: 'i',
         defaultsTo: 'swift',
         allowed: <String>['objc', 'swift'],
-        help:
-            'The language to use for iOS-specific code, either ObjectiveC (legacy) or Swift (recommended).');
+        help: 'The language to use for iOS-specific code, either ObjectiveC (legacy) or Swift (recommended).');
     argParser.addOption(
       'android-language',
       abbr: 'a',
       defaultsTo: 'kotlin',
       allowed: <String>['java', 'kotlin'],
-      help:
-          'The language to use for Android-specific code, either Java (legacy) or Kotlin (recommended).',
+      help: 'The language to use for Android-specific code, either Java (legacy) or Kotlin (recommended).',
     );
     argParser.addMultiOption(
       'platforms',

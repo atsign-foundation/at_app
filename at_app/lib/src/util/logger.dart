@@ -1,7 +1,6 @@
 import 'dart:convert' show JsonEncoder;
 
-import 'package:logger/logger.dart'
-    show Logger, ProductionFilter, AnsiColor, Level, LogEvent, LogPrinter;
+import 'package:logger/logger.dart' show Logger, ProductionFilter, AnsiColor, Level, LogEvent, LogPrinter;
 
 class LoggerService {
   static final LoggerService _singleton = LoggerService._();

@@ -5,11 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:at_client_mobile/at_client_mobile.dart';
 import 'package:at_commons/at_commons.dart';
 
-import 'package:at_onboarding_flutter/at_onboarding_flutter.dart'
-    show Onboarding;
+import 'package:at_onboarding_flutter/at_onboarding_flutter.dart' show Onboarding;
 import 'package:at_utils/at_logger.dart' show AtSignLogger;
-import 'package:path_provider/path_provider.dart'
-    show getApplicationSupportDirectory;
+import 'package:path_provider/path_provider.dart' show getApplicationSupportDirectory;
 import 'package:at_app_flutter/at_app_flutter.dart' show AtEnv;
 
 //String snack = '';
@@ -109,8 +107,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Center(
         child: Column(
           children: [
-            const Text(
-                'Successfully onboarded and navigated to FirstAppScreen'),
+            const Text('Successfully onboarded and navigated to FirstAppScreen'),
 
             /// Use the AtClientManager instance to get the current atsign
             Text('Current @sign: $currentAtsign'),

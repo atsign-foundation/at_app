@@ -21,8 +21,7 @@ void main() {
     });
 
     test('main.dart template exists in the pub cache', () {
-      String hostedPubCachePath =
-          path.normalize('${pc.location.absolute.path}/hosted/pub.dartlang.org');
+      String hostedPubCachePath = path.normalize('${pc.location.absolute.path}/hosted/pub.dartlang.org');
 
       String templatePath = path.join(
           hostedPubCachePath,
