@@ -1,3 +1,7 @@
+## 4.0.0+1
+
+- Updated the README.md and inline code annotations
+
 ## 4.0.0
 
 - Added desktop support by replacing flutter_config with flutter_dotenv

@@ -1,5 +1,5 @@
 name: at_app_templates
-description: A starting point for Dart libraries or applications.
+description: Flutter app templates built using the @platform that can be generated using the at_app package.
 version: 1.0.0
 repository: https://github.com/atsign-foundation/at_app/tree/trunk/at_app_templates/
 homepage: https://atsign.dev/
