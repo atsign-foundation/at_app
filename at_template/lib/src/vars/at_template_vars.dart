@@ -62,6 +62,12 @@ class AtTemplateVars implements AndroidVars, BaseVars, IosVars {
   @override
   String? gradleVersion;
 
+  @JsonKey(ignore: true)
+  final Set<String> _bundles = {'base'};
+
+  @JsonKey(ignore: true)
+  Iterable<String> get bundles => _bundles;
+
   AtTemplateVars({
     this.projectName,
     this.description,
@@ -80,19 +86,36 @@ class AtTemplateVars implements AndroidVars, BaseVars, IosVars {
   factory AtTemplateVars.fromJson(Map<String, dynamic> json) => _$AtTemplateVarsFromJson(json);
 
   @override
-  Map<String, dynamic> toJson() => _$AtTemplateVarsToJson(this);
-
-  @override
-  void validate() {}
-
-  @override
-  void setDefaultValues() {}
-
-  static Version? _versionFromJson(String json) {
-    return Version.parse(json);
+  Map<String, dynamic> toJson() {
+    validate();
+    return _$AtTemplateVarsToJson(this);
   }
 
-  static String? _versionToJson(Version? version) {
-    return version?.toString();
+  @override
+  void validate() {
+    if (projectName == null) throw Exception();
+    description ??= 'A new project';
+    dependencies ??= [];
+    flutterConfig ??= [];
+    orgTld ??= 'com';
+    orgDomainName ??= 'example';
+    minSdkVersion ??= 'flutter.minSdkVersion';
+    targetSdkVersion ??= 'flutter.targetSdkVersion';
+    compileSdkVersion ??= 'flutter.compileSdkVersion';
+    enableR8 ??= true;
+    kotlinVersion ??= Version(1, 3, 50);
+    gradleVersion ??= '6.7';
   }
+
+  void includeBundle(String platform) => _bundles.add(platform);
+
+  void includeBundles(Iterable<String> platforms) => platforms.forEach(includeBundle);
+
+  void excludeBundle(String platform) => _bundles.remove(platform);
+
+  void excludeBundles(Iterable<String> platforms) => platforms.forEach(excludeBundle);
+
+  static Version? _versionFromJson(String json) => Version.parse(json);
+
+  static String? _versionToJson(Version? version) => version?.toString();
 }

@@ -33,11 +33,16 @@ class BaseVars implements AtVars {
   factory BaseVars.fromJson(Map<String, dynamic> json) => _$BaseVarsFromJson(json);
 
   @override
-  Map<String, dynamic> toJson() => _$BaseVarsToJson(this);
+  Map<String, dynamic> toJson() {
+    validate();
+    return _$BaseVarsToJson(this);
+  }
 
   @override
-  void validate() {}
-
-  @override
-  void setDefaultValues() {}
+  void validate() {
+    if (projectName == null) throw Exception();
+    description ??= 'A new project';
+    dependencies ??= [];
+    flutterConfig ??= [];
+  }
 }

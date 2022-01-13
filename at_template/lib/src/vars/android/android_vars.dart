@@ -50,13 +50,23 @@ class AndroidVars implements AtVars {
   factory AndroidVars.fromJson(Map<String, dynamic> json) => _$AndroidVarsFromJson(json);
 
   @override
-  Map<String, dynamic> toJson() => _$AndroidVarsToJson(this);
+  Map<String, dynamic> toJson() {
+    validate();
+    return _$AndroidVarsToJson(this);
+  }
 
   @override
-  void validate() {}
-
-  @override
-  void setDefaultValues() {}
+  void validate() {
+    if (projectName == null) throw Exception();
+    orgTld ??= 'com';
+    orgDomainName ??= 'example';
+    minSdkVersion ??= 'flutter.minSdkVersion';
+    targetSdkVersion ??= 'flutter.targetSdkVersion';
+    compileSdkVersion ??= 'flutter.compileSdkVersion';
+    enableR8 ??= true;
+    kotlinVersion ??= Version(1, 3, 50);
+    gradleVersion ??= '6.7';
+  }
 
   static Version? _versionFromJson(String json) {
     return Version.parse(json);

@@ -24,11 +24,15 @@ class IosVars implements AtVars {
   factory IosVars.fromJson(Map<String, dynamic> json) => _$IosVarsFromJson(json);
 
   @override
-  Map<String, dynamic> toJson() => _$IosVarsToJson(this);
+  Map<String, dynamic> toJson() {
+    validate();
+    return _$IosVarsToJson(this);
+  }
 
   @override
-  void validate() {}
-
-  @override
-  void setDefaultValues() {}
+  void validate() {
+    if (projectName == null) throw Exception();
+    orgTld ??= 'com';
+    orgDomainName ??= 'example';
+  }
 }

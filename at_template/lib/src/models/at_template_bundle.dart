@@ -7,5 +7,9 @@ abstract class AtTemplateBundle<V extends AtVars> extends MasonBundle {
 
   AtTemplateBundle(MasonBundle m) : super(m.name, m.description, m.vars, m.files, m.hooks);
 
-  Future<int> generate() => throw UnimplementedError();
+  Future<int> generate(DirectoryGeneratorTarget target, V vars) async {
+    MasonGenerator generator = await MasonGenerator.fromBundle(this);
+    vars.validate();
+    return generator.generate(target, vars: vars.toJson());
+  }
 }
