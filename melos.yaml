@@ -5,3 +5,8 @@ packages:
   - at_app/*
   - at_app_flutter/*
   - at_app_templates/*
+  - at_template/*
+
+scripts:
+  build_t:
+    run: 'sh tools/full_build_at_template.sh'
