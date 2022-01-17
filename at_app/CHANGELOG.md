@@ -1,4 +1,4 @@
-## 4.1.0-rc+3
+## 4.1.0
 
 - Added multiple template support to at_app (the default template is called app)
 - Added the ability configure templates, and override certain build configurations
