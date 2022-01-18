@@ -1,8 +1,13 @@
-class Template {
-  final TemplateType type;
-  final String name;
+import 'package:at_template/at_template.dart';
 
-  Template(this.type, this.name);
+class AtAppTemplate extends AtTemplate {
+  final String name;
+  final String description;
+
+  @override
+  final List<AtTemplateBundle> bundles;
+
+  AtAppTemplate(this.name, this.description, this.bundles);
 }
 
 enum TemplateType {
