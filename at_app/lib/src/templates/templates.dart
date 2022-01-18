@@ -12,7 +12,7 @@ final List<AtAppTemplate> templates = [
   AtAppTemplate(
     name: defaultTemplateName,
     description: 'The default @platform template',
-    vars: AtTemplateVars(),
+    vars: AtTemplateVars(includeBundles: {'app'}),
     bundles: [...defaultBundles, AppTemplateBundle()],
   ),
 ];
