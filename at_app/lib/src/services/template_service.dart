@@ -1,4 +1,4 @@
-import 'package:at_app/src/constants/templates.dart' as c;
+import 'package:at_app/src/templates/templates.dart' as c;
 import 'package:at_app/src/models/at_app_template.dart';
 
 class TemplateService {
