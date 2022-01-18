@@ -1,12 +1,12 @@
-import 'dart:io';
-
 import 'package:args/command_runner.dart';
-import 'package:at_app/src/constants/template.dart';
 import 'package:at_app/src/models/exceptions/flutter_exception.dart';
+import 'package:at_app/src/templates/templates.dart';
 import 'package:at_app/src/models/exceptions/template_exception.dart';
-import 'package:at_app/src/models/template_type.dart';
-import 'package:at_app/src/services/template_generator.dart';
-import 'package:at_app/src/util/local_path.dart';
+import 'package:at_app/src/models/at_app_template.dart';
+import 'package:at_app/src/services/env_manager.dart';
+import 'package:at_app/src/services/template_service.dart';
+import 'package:at_app/src/util/root_domain.dart';
+import 'package:at_template/at_template.dart';
 import 'package:tabular/tabular.dart';
 
 import '../util/logger.dart';
@@ -15,9 +15,6 @@ import '../util/namespace.dart';
 import 'package:logger/logger.dart' show Logger;
 import 'package:path/path.dart' show join, relative;
 
-import '../cli/flutter_cli.dart';
-import '../models/exceptions/cache_package_exception.dart';
-import '../../version.dart';
 import '../models/command_status.dart';
 import 'create_base.dart';
 
@@ -28,7 +25,7 @@ class CreateCommand extends CreateBase {
   @override
   final String description = 'Create a new @platform Flutter project.';
   final Logger _logger = LoggerService().logger;
-  CreateCommand({Logger? logger}) : super(logger: logger) {
+  CreateCommand({Logger? logger}) : super() {
     argParser.addOption(
       'namespace',
       abbr: 'n',
@@ -55,7 +52,7 @@ class CreateCommand extends CreateBase {
       'template',
       abbr: 't',
       help: 'The app template to generate.',
-      allowed: templateNames.keys,
+      allowed: TemplateService.templateNames.keys,
       defaultsTo: defaultTemplateName,
       valueHelp: 'template-name',
       hide: true,
@@ -68,7 +65,7 @@ class CreateCommand extends CreateBase {
       'sample',
       abbr: 's',
       help: 'The package sample to generate.',
-      allowed: sampleNames.keys,
+      allowed: TemplateService.sampleNames.keys,
       valueHelp: 'sample-name',
       hide: true,
     );
@@ -80,7 +77,7 @@ class CreateCommand extends CreateBase {
       'demo',
       abbr: 'd',
       help: 'The demo app to generate.',
-      allowed: demoNames.keys,
+      allowed: TemplateService.demoNames.keys,
       valueHelp: 'demo-app-name',
       hide: true,
     );
@@ -99,15 +96,15 @@ class CreateCommand extends CreateBase {
   @override
   Future<CommandStatus> run() async {
     if (argResults!.wasParsed('list-templates')) {
-      return _listOptions(templateNames, 'TEMPLATE');
+      return _listOptions(TemplateService.templateNames, 'TEMPLATE');
     }
 
     if (argResults!.wasParsed('list-samples')) {
-      return _listOptions(sampleNames, 'SAMPLE');
+      return _listOptions(TemplateService.sampleNames, 'SAMPLE');
     }
 
     if (argResults!.wasParsed('list-demos')) {
-      return _listOptions(demoNames, 'DEMO');
+      return _listOptions(TemplateService.demoNames, 'DEMO');
     }
 
     validateOutputDirectoryArg();
@@ -127,7 +124,7 @@ class CreateCommand extends CreateBase {
       _logger.i('Recreating project in $relativeOutputPath');
     }
 
-    /// Run create_base before running the rest of create
+    /// Run the base class' validation checks
     CommandStatus flutterCreateResult = await super.run();
     if (flutterCreateResult != CommandStatus.success) {
       return flutterCreateResult;
@@ -141,25 +138,21 @@ class CreateCommand extends CreateBase {
     }
 
     try {
-      /// pub add at_app_flutter before generating the template
-      /// this ensures that we can pull the template from the pub cache
-      await cacheTemplatePackage(local: boolArg('local') ?? false);
+      final bool overwrite = boolArg('overwrite') ?? false;
 
       /// Generate the template
-      await TemplateGenerator(
-        template: _parseTemplate(),
-        projectDir: projectDir,
-        argResults: argResults!,
-      ).generateTemplate();
+      AtAppTemplate template = _parseTemplate();
+      AtTemplateTarget target = AtTemplateTarget(projectDir, overwrite);
+      AtTemplateVars vars = _parseVars(template);
 
-      if (boolArg('pub')!) {
-        await FlutterCli.pubGet(directory: projectDir);
-      }
+      EnvManager envManager = EnvManager(projectDir, environment: _parseEnvironment(template));
+
+      List<dynamic> futures = await Future.wait([template.generate(target, vars: vars), envManager.run()]);
+
+      _logger.i('');
+      _logger.i('Generated ${futures[0]} files.');
     } on TemplateException catch (e) {
       _logger.e('There was an issue generating part of your template:', e.message);
-      return CommandStatus.fail;
-    } on CachePackageException catch (e) {
-      _logger.e('There was an issue pulling the templates from pub.dev:', e.message);
       return CommandStatus.fail;
     } on FlutterException catch (e) {
       _logger.e('There was an issue running pub get in $projectDir:', e.message);
@@ -201,39 +194,7 @@ Happy coding!
     }
   }
 
-  /// Install at_app_flutter to pub cache and set version constraints
-  Future<void> cacheTemplatePackage({bool local = false}) async {
-    const maxTries = 2;
-
-    String? localPath;
-
-    if (local) {
-      localPath = getLocalPath('at_app_templates', from: projectDir.path);
-    }
-
-    for (int i = 0; i < maxTries; i++) {
-      ProcessResult result = await _tryCachePackage(localPath);
-
-      if (result.exitCode == 65 || result.exitCode == 0) return;
-
-      _logger.w('Failed to retrieve the template package...\nWaiting 1 second before trying again');
-
-      await Future.delayed(const Duration(seconds: 1));
-    }
-
-    throw CachePackageException(templatePackageName);
-  }
-
-  Future<ProcessResult> _tryCachePackage(String? localPath) async {
-    return await FlutterCli.pubAdd(
-      templatePackageName,
-      directory: projectDir,
-      localPath: localPath,
-      dev: true,
-    );
-  }
-
-  Template _parseTemplate() {
+  AtAppTemplate _parseTemplate() {
     bool templateParsed = argResults!.wasParsed('template');
     bool sampleParsed = argResults!.wasParsed('sample');
     bool demoParsed = argResults!.wasParsed('demo');
@@ -248,18 +209,56 @@ Happy coding!
     }
 
     if (templateParsed) {
-      return Template(TemplateType.template, stringArg('template')!);
+      return TemplateService.getTemplate(stringArg('template') ?? 'app');
     }
 
     if (sampleParsed) {
-      return Template(TemplateType.sample, stringArg('sample')!);
+      return TemplateService.getSample(stringArg('sample')!);
     }
 
     if (demoParsed) {
-      return Template(TemplateType.demo, stringArg('demo')!);
+      return TemplateService.getDemo(stringArg('demo')!);
     }
 
-    return Template(TemplateType.template, defaultTemplateName);
+    return TemplateService.getTemplate(defaultTemplateName);
+  }
+
+  AtTemplateVars _parseVars(AtAppTemplate template) {
+    AtTemplateVars vars = template.vars;
+    vars.projectName = packageName;
+    if (argResults!.wasParsed('description')) vars.description = stringArg(description)!;
+    if (argResults!.wasParsed('org')) {
+      List<String> orgParts = stringArg('org')!.split('.');
+      vars.orgTld = orgParts[0];
+      vars.orgDomainName = orgParts[1];
+    }
+    if (argResults!.wasParsed('platforms')) {
+      vars.includeBundles(argResults!['platforms'] as List<String>);
+    } else {
+      vars.includeBundles(['android', 'ios']);
+    }
+    return vars;
+  }
+
+  Map<String, String> _parseEnvironment(AtAppTemplate template) {
+    if (template.overrideEnv) {
+      return template.env!;
+    }
+    Map<String, String> environment = {};
+    if (argResults!.wasParsed('namespace')) {
+      environment['NAMESPACE'] = normalizeNamespace(
+        argResults!['namespace'] as String,
+      );
+    }
+    if (argResults!.wasParsed('root-domain')) {
+      environment['ROOT_DOMAIN'] = getRootDomain(
+        argResults!['root-domain'] as String,
+      );
+    }
+    if (argResults!.wasParsed('api-key')) {
+      environment['API_KEY'] = argResults!['api-key'] as String;
+    }
+    return environment;
   }
 
   CommandStatus _listOptions(Map<String, String> options, String header) {
