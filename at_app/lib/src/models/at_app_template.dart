@@ -4,28 +4,20 @@ class AtAppTemplate extends AtTemplate {
   final String name;
   final String description;
 
+  final AtTemplateVars vars;
+
+  final bool overrideEnv;
+  final Map<String, String>? env;
+
   @override
   final List<AtTemplateBundle> bundles;
 
-  AtAppTemplate(this.name, this.description, this.bundles);
-}
-
-enum TemplateType {
-  template,
-  sample,
-  demo,
-}
-
-extension TemplateTypeString on TemplateType {
-  String get path {
-    switch (this) {
-      case TemplateType.sample:
-        return 'samples';
-      case TemplateType.demo:
-        return 'demos';
-      case TemplateType.template:
-      default:
-        return 'templates';
-    }
-  }
+  AtAppTemplate({
+    required this.name,
+    required this.description,
+    required this.vars,
+    required this.bundles,
+    bool? overrideEnv,
+    this.env,
+  }) : overrideEnv = overrideEnv ?? false;
 }
