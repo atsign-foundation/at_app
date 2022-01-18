@@ -10,3 +10,5 @@ packages:
 scripts:
   build_t:
     run: 'sh tools/full_build_at_template.sh'
+  build_ta:
+    run: 'sh tools/full_build_at_app_templates.sh'
