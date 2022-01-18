@@ -139,6 +139,7 @@ class CreateCommand extends CreateBase {
 
     try {
       final bool overwrite = boolArg('overwrite') ?? false;
+      final bool pub = boolArg('pub') ?? false;
 
       /// Generate the template
       AtAppTemplate template = _parseTemplate();
@@ -147,7 +148,7 @@ class CreateCommand extends CreateBase {
 
       EnvManager envManager = EnvManager(projectDir, environment: _parseEnvironment(template));
 
-      List<dynamic> futures = await Future.wait([template.generate(target, vars: vars), envManager.run()]);
+      List<dynamic> futures = await Future.wait([template.generate(target, vars: vars, pub: pub), envManager.run()]);
 
       _logger.i('');
       _logger.i('Generated ${futures[0]} files.');
@@ -226,6 +227,7 @@ Happy coding!
   AtTemplateVars _parseVars(AtAppTemplate template) {
     AtTemplateVars vars = template.vars;
     vars.projectName = packageName;
+    _logger.i(packageName);
     if (argResults!.wasParsed('description')) vars.description = stringArg(description)!;
     if (argResults!.wasParsed('org')) {
       List<String> orgParts = stringArg('org')!.split('.');
