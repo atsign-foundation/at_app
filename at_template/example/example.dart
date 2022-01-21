@@ -13,9 +13,8 @@ void main() async {
   vars.includeBundles(['android', 'ios', 'my_brick']);
 
   Directory dir = Directory(join(Directory.current.absolute.path, 'my_project'));
-  AtTemplateTarget target = AtTemplateTarget(dir);
 
-  int count = await template.generate(target, vars: vars);
+  int count = await template.generate(dir, vars: vars);
   print('count => $count');
   print('done');
 }

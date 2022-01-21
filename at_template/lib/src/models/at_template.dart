@@ -1,3 +1,7 @@
+import 'dart:io';
+
+import 'package:mason/mason.dart';
+
 import '../util/cli.dart';
 import '../util/sum.dart';
 import '../vars/vars.dart';
@@ -13,19 +17,19 @@ abstract class AtTemplate {
     );
   }
 
-  Future<int> generate(AtTemplateTarget target, {required AtTemplateVars vars, bool pub = true}) async {
+  Future<int> generate(Directory dir, {required AtTemplateVars vars, bool pub = true, bool overwrite = false}) async {
     List<Future<int>> fileCounts = [];
 
     for (String key in vars.bundles) {
       AtTemplateBundle bundle = this[key];
 
-      fileCounts.add(bundle.generate(target, vars));
+      fileCounts.add(bundle.generate(DirectoryGeneratorTarget(dir), vars, overwrite: overwrite));
     }
 
     int fileCount = (await Future.wait(fileCounts)).reduce(sum);
 
     if (pub && await FlutterCli.isInstalled()) {
-      await FlutterCli.pubGet(directory: target.dir);
+      await FlutterCli.pubGet(directory: dir);
     }
 
     return fileCount;
