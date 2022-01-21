@@ -144,8 +144,7 @@ class CreateCommand extends CreateBase {
       /// Generate the template
       AtAppTemplate template = _parseTemplate();
       AtTemplateVars vars = _parseVars(template);
-      _logger.i('vars => ${vars.dependencies}');
-      _logger.i('vars => ${vars.dependencies!.length}');
+
       EnvManager envManager = EnvManager(projectDir, environment: _parseEnvironment(template));
 
       List<dynamic> futures = await Future.wait(
