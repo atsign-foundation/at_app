@@ -203,14 +203,14 @@ packages:
       name: mason
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.0-dev.3"
+    version: "0.1.0-dev.4"
   mason_logger:
     dependency: transitive
     description:
       name: mason_logger
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.0-dev.3"
+    version: "0.1.0-dev.4"
   matcher:
     dependency: transitive
     description:

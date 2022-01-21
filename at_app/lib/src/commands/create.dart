@@ -143,12 +143,13 @@ class CreateCommand extends CreateBase {
 
       /// Generate the template
       AtAppTemplate template = _parseTemplate();
-      AtTemplateTarget target = AtTemplateTarget(projectDir, overwrite);
       AtTemplateVars vars = _parseVars(template);
-
+      _logger.i('vars => ${vars.dependencies}');
+      _logger.i('vars => ${vars.dependencies!.length}');
       EnvManager envManager = EnvManager(projectDir, environment: _parseEnvironment(template));
 
-      List<dynamic> futures = await Future.wait([template.generate(target, vars: vars, pub: pub), envManager.run()]);
+      List<dynamic> futures = await Future.wait(
+          [template.generate(projectDir, vars: vars, pub: pub, overwrite: overwrite), envManager.run()]);
 
       _logger.i('');
       _logger.i('Generated ${futures[0]} files.');
@@ -174,7 +175,8 @@ class CreateCommand extends CreateBase {
     _logger.i('All done!');
 
     // Copyright 2014 The Flutter Authors. All rights reserved.
-    _logger.i('''
+    _logger.i(
+        '''
 
 In order to run your @platform application, type:
 
