@@ -1,0 +1,13 @@
+name: android
+description: Android folder for Flutter application templates.
+version: 0.0.1
+vars:
+  - projectName
+  - orgDomainName
+  - orgTld
+  - minSdkVersion
+  - targetSdkVersion
+  - compileSdkVersion
+  - enableR8
+  - kotlinVersion
+  - gradleVersion

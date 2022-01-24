@@ -23,10 +23,8 @@ class Cli {
     List<String> args,
   ) {
     if (pr.exitCode != 0) {
-      final values = {
-        'Standard out': pr.stdout.toString().trim(),
-        'Standard error': pr.stderr.toString().trim()
-      }..removeWhere((k, v) => v.isEmpty);
+      final values = {'Standard out': pr.stdout.toString().trim(), 'Standard error': pr.stderr.toString().trim()}
+        ..removeWhere((k, v) => v.isEmpty);
 
       var message = 'Unknown error';
       if (values.isNotEmpty) {

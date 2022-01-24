@@ -1,3 +1,15 @@
+## 4.1.0-rc+3
+
+- Added multiple template support to at_app (the default template is called app)
+- Added the ability configure templates, and override certain build configurations
+- Introduced two new demo applications (snackbar and snackbar_sender)
+- Added 3 flags to create command:
+  - ```--list-demos``` - list all demo applications
+  - ```--list-templates``` - list all templates
+  - ```--list-samples``` - list all samples (currently there are none available but they are coming soon)
+- Added the packages subcommand
+- Updated the README.md and usage documentation for at_app
+
 ## 4.0.0
 
 - Added desktop support by replacing flutter_config with flutter_dotenv

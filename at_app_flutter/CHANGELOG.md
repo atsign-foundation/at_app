@@ -1,3 +1,11 @@
+## 4.0.1
+
+- Bug fix: Allow fallbacks to persist even if the .env file is empty.
+
+## 4.0.0+1
+
+- Updated the README.md and inline code annotations
+
 ## 4.0.0
 
 - Added desktop support by replacing flutter_config with flutter_dotenv

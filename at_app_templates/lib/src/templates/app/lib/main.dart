@@ -9,15 +9,22 @@ import 'package:path_provider/path_provider.dart' show getApplicationSupportDire
 
 import 'home_screen.dart';
 
+final AtSignLogger _logger = AtSignLogger(AtEnv.appNamespace);
+
 Future<void> main() async {
   // * AtEnv is an abtraction of the flutter_dotenv package used to
   // * load the environment variables set by at_app
-  await AtEnv.load();
+  try {
+    await AtEnv.load();
+  } catch (e) {
+    _logger.finer('Environment failed to load from .env: ', e);
+  }
   runApp(const MyApp());
 }
 
 Future<AtClientPreference> loadAtClientPreference() async {
   var dir = await getApplicationSupportDirectory();
+
   return AtClientPreference()
     ..rootDomain = AtEnv.rootDomain
     ..namespace = AtEnv.appNamespace
@@ -39,8 +46,6 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   // * load the AtClientPreference in the background
   Future<AtClientPreference> futurePreference = loadAtClientPreference();
-
-  final AtSignLogger _logger = AtSignLogger(AtEnv.appNamespace);
 
   @override
   Widget build(BuildContext context) {

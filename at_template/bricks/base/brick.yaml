@@ -1,0 +1,8 @@
+name: base
+description: Base for Flutter application templates.
+version: 0.0.1
+vars:
+  - projectName
+  - description
+  - dependencies
+  - flutterConfig

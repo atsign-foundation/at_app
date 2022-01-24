@@ -1,7 +1,7 @@
 import 'package:pub_semver/pub_semver.dart' show Version;
 
 /// Current version of this package
-final packageVersion = Version(4, 0, 0);
+final packageVersion = Version(4, 1, 0);
 
 /// Name of the package containing the templates
 const templatePackageName = 'at_app_templates';

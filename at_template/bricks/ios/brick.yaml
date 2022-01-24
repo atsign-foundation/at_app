@@ -1,0 +1,7 @@
+name: ios
+description: ios folder for Flutter application templates.
+version: 0.0.1
+vars:
+  - projectName
+  - orgDomainName
+  - orgTld
