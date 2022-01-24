@@ -1,17 +1,18 @@
-import 'dart:io' show Directory;
+import 'dart:io';
 
-import 'package:at_app/src/models/exceptions/template_exception.dart';
-import 'package:at_app/src/models/template_file_manager_base.dart';
+import '../models/exceptions/template_exception.dart';
+import '../models/file_manager.dart';
 
-class EnvManager extends FileTemplateServiceBase {
-  EnvManager(Directory projectDir, {required this.environment}) : super(projectDir);
+class EnvManager with FileManager {
+  EnvManager(Directory projectDir, {required this.environment}) {
+    initFile(projectDir.absolute.path);
+  }
 
   @override
   final String filePath = '.env';
 
   final Map<String, String> environment;
 
-  @override
   Future<void> run() async {
     try {
       await create();

@@ -63,7 +63,7 @@ class AtTemplateVars implements AndroidVars, BaseVars, IosVars {
   String? gradleVersion;
 
   @JsonKey(ignore: true)
-  final Set<String> _bundles = {'base'};
+  final Set<String> _bundles;
 
   @JsonKey(ignore: true)
   Iterable<String> get bundles => _bundles;
@@ -81,7 +81,8 @@ class AtTemplateVars implements AndroidVars, BaseVars, IosVars {
     this.enableR8,
     this.kotlinVersion,
     this.gradleVersion,
-  });
+    Iterable<String>? includeBundles,
+  }) : _bundles = {...includeBundles ?? [], 'base'};
 
   factory AtTemplateVars.fromJson(Map<String, dynamic> json) => _$AtTemplateVarsFromJson(json);
 

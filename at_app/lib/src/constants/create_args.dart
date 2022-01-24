@@ -21,9 +21,9 @@ const atAppArgs = <String>[
 const List<String> kAvailablePlatforms = <String>[
   'ios',
   'android',
-  'windows',
-  'linux',
-  'macos',
+  // 'windows',
+  // 'linux',
+  // 'macos',
   // 'web',
 ];
 
@@ -31,11 +31,11 @@ const List<String> kAvailablePlatforms = <String>[
 const List<String> kAllCreatePlatforms = <String>[
   'ios',
   'android',
-  'windows',
-  'linux',
-  'macos',
+  // 'windows',
+  // 'linux',
+  // 'macos',
   // 'web',
-  'winuwp',
+  // 'winuwp',
 ];
 
 // Copyright 2014 The Flutter Authors. All rights reserved.

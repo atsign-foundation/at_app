@@ -8,5 +8,7 @@ packages:
   - at_template/*
 
 scripts:
-  build_t:
+  build_at:
     run: 'sh tools/full_build_at_template.sh'
+  build_aat:
+    run: 'sh tools/full_build_at_app_templates.sh'
