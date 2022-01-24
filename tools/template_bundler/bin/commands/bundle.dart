@@ -107,7 +107,7 @@ class AtBundleCommand extends Command<int> {
     result.add('),');
     if (templateConfig['env']['override'] ?? false) {
       result.add('overrideEnv: true,');
-      result.add("env: ${jsonEncode(templateConfig['override_env'])},");
+      result.add("env: ${jsonEncode(templateConfig['env_override'])},");
     }
     return result.join('\n  ');
   }
