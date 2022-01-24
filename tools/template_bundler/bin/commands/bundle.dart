@@ -85,25 +85,25 @@ class AtBundleCommand extends Command<int> {
     }
 
     if ((templateConfig['dependencies'] as List<String>).isNotEmpty) {
-      result.add("dependencies: ${jsonEncode(templateConfig['dependencies'])},");
+      result.add("  dependencies: ${jsonEncode(templateConfig['dependencies'])},");
     }
     Map<String, dynamic> android = templateConfig['android'];
     if (android.isNotEmpty) {
       android.forEach((key, value) {
         switch (key) {
           case 'enableR8':
-            result.add("$key: $value,");
+            result.add("  $key: $value,");
             break;
           case 'kotlinVersion': // pub_semver Version object
-            result.add("$key: Version.parse('$value'),");
+            result.add("  $key: Version.parse('$value'),");
             break;
           default: // String value
-            result.add("$key: '$value',");
+            result.add("  $key: '$value',");
         }
       });
     }
 
-    result.add("flutterConfig: ${jsonEncode(flutterConfig)},");
+    result.add("  flutterConfig: ${jsonEncode(flutterConfig)},");
     result.add('),');
     if (templateConfig['env']['override'] ?? false) {
       result.add('overrideEnv: true,');
