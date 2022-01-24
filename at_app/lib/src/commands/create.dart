@@ -1,6 +1,6 @@
 import 'package:args/command_runner.dart';
 import 'package:at_app/src/models/exceptions/flutter_exception.dart';
-import 'package:at_app/src/templates/templates.dart';
+import 'package:at_app/src/templates.dart';
 import 'package:at_app/src/models/exceptions/template_exception.dart';
 import 'package:at_app/src/models/at_app_template.dart';
 import 'package:at_app/src/services/env_manager.dart';
@@ -17,6 +17,8 @@ import 'package:path/path.dart' show join, relative;
 
 import '../models/command_status.dart';
 import 'create_base.dart';
+
+const defaultTemplateName = 'app';
 
 /// This class extends the flutter create abstraction,
 /// It will pull templates from at_app_flutter

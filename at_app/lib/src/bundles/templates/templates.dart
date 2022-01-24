@@ -1,1 +1,1 @@
-export 'app/app_template_bundle.dart';
+export 'app/app.dart';

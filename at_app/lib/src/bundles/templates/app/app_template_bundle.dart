@@ -1,5 +1,6 @@
-import 'package:at_template/at_template.dart';
+// GENERATED CODE - DO NOT MODIFY BY HAND
 
+import 'package:at_template/at_template.dart';
 import 'app_bundle.dart';
 
 class AppTemplateBundle extends AtTemplateBundle<AtTemplateVars> {

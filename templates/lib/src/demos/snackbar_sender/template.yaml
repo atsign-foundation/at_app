@@ -4,7 +4,7 @@ dependencies:
   at_utils: ^3.0.0
   path_provider: ^2.0.5
   flutter_dotenv: ^5.0.2
-  timer_builder: ^2.0.0
+  # timer_builder: ^2.0.0
   at_app_flutter:
 
 config:
@@ -16,6 +16,5 @@ config:
     API_KEY: 477b-876u-bcez-c42z-6a3d
 
   android:
-    build.gradle:
-      ext.kotlin_version: '1.4.31'
+    kotlinVersion: '1.4.31'
 
