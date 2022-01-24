@@ -20,6 +20,6 @@ final snackbarSenderTemplate = AtAppTemplate(
     flutterConfig: [],
   ),
   overrideEnv: true,
-  env: null,
+  env: {"NAMESPACE":"fourballcorporate9","API_KEY":"477b-876u-bcez-c42z-6a3d"},
   bundles: [BaseTemplateBundle(), AndroidTemplateBundle(), IosTemplateBundle(), SnackbarSenderTemplateBundle()],
 );
