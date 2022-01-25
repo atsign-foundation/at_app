@@ -16,6 +16,9 @@ class DartCli {
       directory: directory?.absolute.path,
     );
   }
+
+  static Future<ProcessResult> runCommand(List<String> args, {bool throwOnError = true, String? directory}) =>
+      _DartCli.run(args, throwOnError: throwOnError, directory: directory);
 }
 
 class _DartCli {
