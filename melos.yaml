@@ -9,7 +9,7 @@ packages:
   - templates/*
   - tools/template_bundler/*
 scripts:
-  build_at:
+  build_at_template:
     run: 'sh tools/full_build_at_template.sh'
-  build_aat:
+  build_templates:
     run: 'sh tools/full_build_at_app_templates.sh'
