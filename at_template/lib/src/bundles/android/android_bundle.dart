@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: prefer_single_quotes, public_member_api_docs, lines_longer_than_80_chars, implicit_dynamic_list_literal
+// ignore_for_file: prefer_single_quotes, public_member_api_docs, lines_longer_than_80_chars, implicit_dynamic_list_literal, implicit_dynamic_map_literal
 
 import 'package:mason/mason.dart';
 
@@ -123,15 +123,16 @@ final androidBundle = MasonBundle.fromJson(<String, dynamic>{
   "hooks": [],
   "name": "android",
   "description": "Android folder for Flutter application templates.",
-  "vars": [
-    "projectName",
-    "orgDomainName",
-    "orgTld",
-    "minSdkVersion",
-    "targetSdkVersion",
-    "compileSdkVersion",
-    "enableR8",
-    "kotlinVersion",
-    "gradleVersion"
-  ]
+  "version": "0.0.1",
+  "vars": {
+    "projectName": {"type": "string"},
+    "orgDomainName": {"type": "string"},
+    "orgTld": {"type": "string"},
+    "minSdkVersion": {"type": "string"},
+    "targetSdkVersion": {"type": "string"},
+    "compileSdkVersion": {"type": "string"},
+    "enableR8": {"type": "string"},
+    "kotlinVersion": {"type": "string"},
+    "gradleVersion": {"type": "string"}
+  }
 });

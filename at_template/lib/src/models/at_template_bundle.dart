@@ -5,11 +5,23 @@ import 'at_vars.dart';
 abstract class AtTemplateBundle<V extends AtVars> extends MasonBundle {
   Type get varsType => V;
 
-  AtTemplateBundle(MasonBundle m) : super(m.name, m.description, m.vars, m.files, m.hooks);
+  AtTemplateBundle(MasonBundle m)
+      : super(
+          name: m.name,
+          version: m.version,
+          description: m.description,
+          vars: m.vars,
+          files: m.files,
+          hooks: m.hooks,
+        );
 
-  Future<int> generate(DirectoryGeneratorTarget target, V vars) async {
+  Future<int> generate(DirectoryGeneratorTarget target, V vars, {bool overwrite = false}) async {
     MasonGenerator generator = await MasonGenerator.fromBundle(this);
     vars.validate();
-    return generator.generate(target, vars: vars.toJson());
+    return generator.generate(
+      target,
+      vars: vars.toJson(),
+      fileConflictResolution: overwrite ? FileConflictResolution.overwrite : FileConflictResolution.skip,
+    );
   }
 }

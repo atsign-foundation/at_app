@@ -4,9 +4,12 @@ repository: https://github.com/atsign-foundation/at_app
 packages:
   - at_app/*
   - at_app_flutter/*
-  - at_app_templates/*
   - at_template/*
-
+  # Non published packages (included for pub get when bootstrapping)
+  - templates/*
+  - tools/template_bundler/*
 scripts:
-  build_t:
+  build_at:
     run: 'sh tools/full_build_at_template.sh'
+  build_aat:
+    run: 'sh tools/full_build_at_app_templates.sh'

@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: prefer_single_quotes, public_member_api_docs, lines_longer_than_80_chars, implicit_dynamic_list_literal
+// ignore_for_file: prefer_single_quotes, public_member_api_docs, lines_longer_than_80_chars, implicit_dynamic_list_literal, implicit_dynamic_map_literal
 
 import 'package:mason/mason.dart';
 
@@ -223,5 +223,10 @@ final iosBundle = MasonBundle.fromJson(<String, dynamic>{
   "hooks": [],
   "name": "ios",
   "description": "ios folder for Flutter application templates.",
-  "vars": ["projectName", "orgDomainName", "orgTld"]
+  "version": "0.0.1",
+  "vars": {
+    "projectName": {"type": "string"},
+    "orgDomainName": {"type": "string"},
+    "orgTld": {"type": "string"}
+  }
 });

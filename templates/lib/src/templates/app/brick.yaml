@@ -1,0 +1,4 @@
+name: app
+description: code for the default @platform app template
+version: 0.1.0
+vars:
