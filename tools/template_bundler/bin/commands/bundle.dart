@@ -80,7 +80,7 @@ class AtBundleCommand extends Command<int> {
     List<String> result = ["AtTemplateVars(", "  includeBundles: {'${bundle.name}'},"];
     List<String> flutterConfig = [];
 
-    if (templateConfig['env']['include'] ?? false || templateConfig['env']['override'] ?? false) {
+    if ((templateConfig['env']['include'] ?? false) || (templateConfig['env']['override'] ?? false)) {
       flutterConfig.addAll(['assets:', '  - .env']);
     }
 
