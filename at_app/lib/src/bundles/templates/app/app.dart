@@ -15,7 +15,8 @@ final appTemplate = AtAppTemplate(
   vars: AtTemplateVars(
     includeBundles: {'app'},
     dependencies: ["at_client_mobile: ^3.0.3","at_onboarding_flutter: ^3.0.1","at_utils: ^3.0.0","path_provider: ^2.0.5","flutter_dotenv: ^5.0.2","at_app_flutter: "],
-    flutterConfig: [],
+    enableR8: true,
+    flutterConfig: ["assets:","  - .env"],
   ),
   bundles: [BaseTemplateBundle(), AndroidTemplateBundle(), IosTemplateBundle(), AppTemplateBundle()],
 );
