@@ -17,12 +17,12 @@ class DartCli {
     );
   }
 
-  static Future<ProcessResult> run(List<String> args, {bool throwOnError = true, String? directory}) =>
-      _Cli.run(
+  static Future<ProcessResult> run(List<String> args, {bool throwOnError = true, String? directory}) {
+    return _Cli.run(
       'dart',
       args,
       throwOnError: throwOnError,
       directory: directory,
     );
+  }
 }
-
