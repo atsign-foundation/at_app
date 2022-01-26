@@ -66,13 +66,14 @@ class AtBundleCommand extends Command<int> {
 
     if (!lockLine.contains(RegExp('true', caseSensitive: false))) {
       await varFile.writeAsString(
-          "// GENERATED CODE - MODIFY AS NECESSARY\n// PREVENT OVERWRITING THIS FILE BELOW:\n// LOCKED = FALSE\n\nimport 'package:at_template/at_template.dart';\nimport 'package:at_app/src/models/at_app_template.dart';${(includePubSemver) ? "\nimport 'package:pub_semver/pub_semver.dart';" : ''}\n\nimport '${dirName}_template_bundle.dart';\n\nexport '${dirName}_template_bundle.dart';\n\nfinal $varName = AtAppTemplate(\n  name: '${bundle.name}',\n  description: '${bundle.description}',\n  vars: $parsedVars\n  bundles: [BaseTemplateBundle(), AndroidTemplateBundle(), IosTemplateBundle(), $className()],\n);");
+        "// GENERATED CODE - MODIFY AS NECESSARY\n// PREVENT OVERWRITING THIS FILE BELOW:\n// LOCKED = FALSE\n\nimport 'package:at_template/at_template.dart';\nimport 'package:at_app/src/models/at_app_template.dart';${(includePubSemver) ? "\nimport 'package:pub_semver/pub_semver.dart';" : ''}\n\nimport '${dirName}_template_bundle.dart';\n\nexport '${dirName}_template_bundle.dart';\n\nfinal $varName = AtAppTemplate(\n  name: '${bundle.name}',\n  description: '${bundle.description}',\n  vars: $parsedVars\n  bundles: [BaseTemplateBundle(), AndroidTemplateBundle(), IosTemplateBundle(), $className()],\n);\n",
+      );
     }
 
     await bundleFile.create(recursive: true);
 
     await bundleFile.writeAsString(
-      "// GENERATED CODE - DO NOT MODIFY BY HAND\n\nimport 'package:at_template/at_template.dart';\nimport '${bundle.name}_bundle.dart';\n\nclass $className extends AtTemplateBundle<AtTemplateVars> {\n  $className() : super(${bundle.name.camelCase()}Bundle);\n}",
+      "// GENERATED CODE - DO NOT MODIFY BY HAND\n\nimport 'package:at_template/at_template.dart';\nimport '${bundle.name}_bundle.dart';\n\nclass $className extends AtTemplateBundle<AtTemplateVars> {\n  $className() : super(${bundle.name.camelCase()}Bundle);\n}\n",
     );
   }
 
