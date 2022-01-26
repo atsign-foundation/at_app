@@ -4,13 +4,15 @@ dependencies:
   at_utils: ^3.0.0
   path_provider: ^2.0.5
   flutter_dotenv: ^5.0.2
+  at_chat_flutter: ^3.0.3
+  at_contacts_flutter: ^4.0.0
   at_app_flutter:
 
 config:
   env:
-    include: true
-    gitignore: true
-  android:
-    enableR8: true
-    
+    override: true
+
+  env_override:
+    NAMESPACE: interiorwolverine
+    API_KEY: 400b-806u-bzez-z42z-6a3p
 
