@@ -6,11 +6,11 @@ dependencies:
   flutter_dotenv: ^5.0.2
   at_app_flutter:
 
-config:
-  env:
-    include: true
-    gitignore: true
-  android:
-    enableR8: true
-    
+env:
+  include: true
+  gitignore: true
+
+android:
+  enableR8: true
+
 

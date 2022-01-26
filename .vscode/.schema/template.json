@@ -141,77 +141,71 @@
     "dependencies": {
       "$ref": "#/definitions/dependencies"
     },
-    "config": {
-      "$comment": "The main configuration of the generated app",
+    "env": {
       "type": "object",
       "properties": {
-        "env": {
-          "type": "object",
-          "properties": {
-            "include": {
-              "$comment": "Allow the app to generate a .env file",
-              "type": "boolean"
-            },
-            "gitignore": {
-              "$comment": "Whether to include .env in the gitignore",
-              "type": "boolean"
-            },
-            "override": {
-              "$comment": "Enable this to override the default environment variables passed into 'env_override'",
-              "type": "boolean"
-            }
-          }
+        "include": {
+          "$comment": "Allow the app to generate a .env file",
+          "type": "boolean"
         },
-        "env_override": {
-          "$comment": "Override the default app environment\nNOTE: This is only enabled when env.override is set to true.",
-          "type": "object",
-          "properties": {
-            "NAMESPACE": {
-              "$comment": "Set the default @platform namespace to use for the generated app.",
-              "type": "string"
-            },
-            "API_KEY": {
-              "$comment": "Set the default api key to use for @platform onboarding in the generated app.",
-              "type": "string",
-              "pattern": "^([a-z0-9]{4}-){4}[a-z0-9]{4}$"
-            },
-            "ROOT_DOMAIN": {
-              "$comment": "Set the default @platform root domain for the generated app.",
-              "type": "string",
-              "format": "uri"
-            }
-          }
+        "gitignore": {
+          "$comment": "Whether to include .env in the gitignore",
+          "type": "boolean"
         },
-        "android": {
-          "type": "object",
-          "properties": {
-            "enableR8": {
-              "$comment": "Enable R8 minification for Android bundles of the generated app. (recommended)",
-              "type": "boolean"
-            },
-            "gradleVersion": {
-              "$comment": "Set the gradle version to use for building the generated app.",
-              "type": "string",
-              "pattern": "^\\d+\\.\\d+$"
-            },
-            "kotlinVersion": {
-              "$comment": "Set the kotlin version to use for the generated app.",
-              "type": "string",
-              "pattern": "^\\d+\\.\\d+\\.\\d+$"
-            },
-            "minSdkVersion": {
-              "$comment": "Set the minimum Android SDK version to use for the generated app.",
-              "type": "string"
-            },
-            "compileSdkVersion": {
-              "$comment": "Set the compile Android SDK version to use for the generated app.",
-              "type": "string"
-            },
-            "targetSdkVersion": {
-              "$comment": "Set the target Android SDK version to use for the generated app.",
-              "type": "string"
-            }
-          }
+        "override": {
+          "$comment": "Enable this to override the default environment variables passed into 'env_override'",
+          "type": "boolean"
+        }
+      }
+    },
+    "env_override": {
+      "$comment": "Override the default app environment\nNOTE: This is only enabled when env.override is set to true.",
+      "type": "object",
+      "properties": {
+        "NAMESPACE": {
+          "$comment": "Set the default @platform namespace to use for the generated app.",
+          "type": "string"
+        },
+        "API_KEY": {
+          "$comment": "Set the default api key to use for @platform onboarding in the generated app.",
+          "type": "string",
+          "pattern": "^([a-z0-9]{4}-){4}[a-z0-9]{4}$"
+        },
+        "ROOT_DOMAIN": {
+          "$comment": "Set the default @platform root domain for the generated app.",
+          "type": "string",
+          "format": "uri"
+        }
+      }
+    },
+    "android": {
+      "type": "object",
+      "properties": {
+        "enableR8": {
+          "$comment": "Enable R8 minification for Android bundles of the generated app. (recommended)",
+          "type": "boolean"
+        },
+        "gradleVersion": {
+          "$comment": "Set the gradle version to use for building the generated app.",
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+$"
+        },
+        "kotlinVersion": {
+          "$comment": "Set the kotlin version to use for the generated app.",
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$"
+        },
+        "minSdkVersion": {
+          "$comment": "Set the minimum Android SDK version to use for the generated app.",
+          "type": "string"
+        },
+        "compileSdkVersion": {
+          "$comment": "Set the compile Android SDK version to use for the generated app.",
+          "type": "string"
+        },
+        "targetSdkVersion": {
+          "$comment": "Set the target Android SDK version to use for the generated app.",
+          "type": "string"
         }
       }
     }
