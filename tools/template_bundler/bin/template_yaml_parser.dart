@@ -58,7 +58,7 @@ extension _YamlMapParser<K, V> on YamlMap {
   List<String> toLines() {
     List<String> result = [];
     forEach((key, value) {
-      result.add('$key: $value');
+      result.add('$key: ${value ?? ''}');
     });
     return result;
   }

@@ -83,8 +83,8 @@ class AtBundleCommand extends Command<int> {
     if ((templateConfig['env']['include'] ?? false) || (templateConfig['env']['override'] ?? false)) {
       flutterConfig.addAll(['assets:', '  - .env']);
     }
-
-    if ((templateConfig['dependencies'] as List<String>).isNotEmpty) {
+    List<String>? dependencies = templateConfig['dependencies'];
+    if ((dependencies ?? []).isNotEmpty) {
       result.add("  dependencies: ${jsonEncode(templateConfig['dependencies'])},");
     }
     Map<String, dynamic> android = templateConfig['android'];
