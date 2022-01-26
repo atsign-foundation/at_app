@@ -1,4 +1,4 @@
 name: app
-description: code for the default @platform app template
+description: The @platform skeleton app template.
 version: 0.1.0
 vars:

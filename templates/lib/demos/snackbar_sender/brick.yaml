@@ -1,4 +1,4 @@
 name: snackbar_sender
-description: code for the snackbar_sender demo app
+description: Send snackbars to a flutter web application publically.
 version: 0.1.0
 vars:
