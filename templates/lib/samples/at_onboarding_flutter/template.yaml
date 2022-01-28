@@ -1,6 +1,5 @@
 dependencies:
-  cupertino_icons: ^1.0.2
-  at_app_flutter: 4.0.0
+  at_app_flutter: 4.0.0 # at_onboarding_flutter is a dependency of at_app_flutter
 
 env:
   override: true
