@@ -21,6 +21,6 @@ final chitChatTemplate = AtAppTemplate(
     flutterConfig: ["assets:","  - .env"],
   ),
   overrideEnv: true,
-  env: {"NAMESPACE":"tapiradded13","API_KEY":"400b-806u-bzez-z42z-6a3p"},
+  env: {"NAMESPACE":"tapiradded13","API_KEY":"477b-876u-bcez-c42z-6a3d"},
   bundles: [BaseTemplateBundle(), AndroidTemplateBundle(), IosTemplateBundle(), ChitChatTemplateBundle()],
 );

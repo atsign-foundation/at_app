@@ -33,6 +33,7 @@ class LoginScreen extends StatelessWidget {
                 atClientPreference: clientSdkService.atClientPreference,
                 domain: AtEnv.rootDomain,
                 rootEnvironment: AtEnv.rootEnvironment,
+                appAPIKey: AtEnv.appApiKey,
                 onboard: (value, atsign) {
                   _logger.finer('Successfully onboarded $atsign');
                 },
