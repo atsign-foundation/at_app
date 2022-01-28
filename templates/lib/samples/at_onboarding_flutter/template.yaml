@@ -1,0 +1,11 @@
+dependencies:
+  cupertino_icons: ^1.0.2
+  at_app_flutter: 4.0.0
+
+env:
+  override: true
+
+env_override:
+  NAMESPACE: TODO #TODO
+  API_KEY: 477b-876u-bcez-c42z-6a3d
+
