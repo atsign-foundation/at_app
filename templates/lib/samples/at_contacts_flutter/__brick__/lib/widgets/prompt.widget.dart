@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Dialogs {
-  static Future<dynamic> customDialog(
-      BuildContext context, String title, String body, VoidCallback? onPressed,
+  static Future<dynamic> customDialog(BuildContext context, String title, String body, VoidCallback? onPressed,
       {required String? buttonText, Widget? childContent}) async {
     await showDialog(
       context: context,

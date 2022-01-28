@@ -25,8 +25,7 @@ class ClientSdkService {
   Future<bool> onboard({String? atsign}) async {
     atClientServiceInstance = AtClientService();
 
-    final appSupportDirectory =
-        await path_provider.getApplicationSupportDirectory();
+    final appSupportDirectory = await path_provider.getApplicationSupportDirectory();
     var path = appSupportDirectory.path;
     atClientPreference = AtClientPreference();
     atClientPreference.isLocalStoreRequired = true;

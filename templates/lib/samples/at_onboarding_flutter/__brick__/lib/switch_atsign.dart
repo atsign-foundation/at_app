@@ -1,6 +1,6 @@
 import 'package:at_app_flutter/at_app_flutter.dart';
-import 'package:at_onboarding_flutter/at_onboarding_flutter.dart';
 import 'package:at_client_mobile/at_client_mobile.dart';
+import 'package:at_onboarding_flutter/at_onboarding_flutter.dart';
 import 'package:at_utils/at_logger.dart' show AtSignLogger;
 
 import 'package:flutter/material.dart';
@@ -11,10 +11,7 @@ import 'main.dart';
 class AtSignBottomSheet extends StatefulWidget {
   final List<String> atSignList;
   final Function? showLoader;
-  const AtSignBottomSheet(
-      {Key key = const Key('atsign'),
-      this.atSignList = const [],
-      this.showLoader})
+  const AtSignBottomSheet({Key key = const Key('atsign'), this.atSignList = const [], this.showLoader})
       : super(key: key);
 
   @override
@@ -24,7 +21,7 @@ class AtSignBottomSheet extends StatefulWidget {
 class _AtSignBottomSheetState extends State<AtSignBottomSheet> {
 //  var atClientManager = AtClientManager.getInstance();
   bool isLoading = false;
-  var atClientPreferenceLocal;
+  late AtClientPreference atClientPreferenceLocal;
   final AtSignLogger _logger = AtSignLogger(AtEnv.appNamespace);
 
   @override
@@ -39,8 +36,7 @@ class _AtSignBottomSheetState extends State<AtSignBottomSheet> {
             onClosing: () {},
             backgroundColor: Colors.transparent,
             builder: (context) => ClipRRect(
-              borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(10), topRight: Radius.circular(10)),
+              borderRadius: const BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10)),
               child: Container(
                 height: 100,
                 width: screenSize.width,
@@ -66,15 +62,12 @@ class _AtSignBottomSheetState extends State<AtSignBottomSheet> {
                                   // This domain parameter is optional.
                                   domain: AtEnv.rootDomain,
                                   atClientPreference: atClientPreferenceLocal,
-                                  appColor:
-                                      const Color.fromARGB(255, 240, 94, 62),
+                                  appColor: const Color.fromARGB(255, 240, 94, 62),
                                   onboard: (value, atsign) {
-                                    _logger.finer(
-                                        'Successfully onboarded $atsign');
+                                    _logger.finer('Successfully onboarded $atsign');
                                   },
                                   onError: (Object? error) {
-                                    _logger.severe(
-                                        'Onboarding throws $error error');
+                                    _logger.severe('Onboarding throws $error error');
                                   },
                                   rootEnvironment: RootEnvironment.Staging,
                                   // API Key is mandatory for production environment.
@@ -89,8 +82,7 @@ class _AtSignBottomSheetState extends State<AtSignBottomSheet> {
                                 }
                               },
                         child: Padding(
-                          padding: const EdgeInsets.only(
-                              left: 10, right: 10, top: 20),
+                          padding: const EdgeInsets.only(left: 10, right: 10, top: 20),
                           child: Column(
                             children: [
                               ContactInitial(
@@ -136,7 +128,7 @@ class _AtSignBottomSheetState extends State<AtSignBottomSheet> {
                         }
                       },
                       child: Container(
-                        margin: EdgeInsets.only(right: 10),
+                        margin: const EdgeInsets.only(right: 10),
                         height: 40,
                         width: 40,
                         child: const Icon(
@@ -154,7 +146,7 @@ class _AtSignBottomSheetState extends State<AtSignBottomSheet> {
         isLoading
             ? Center(
                 child: Column(
-                  children: [
+                  children: const [
                     Text(
                       'Switching atsign...',
                       style: TextStyle(
@@ -165,9 +157,7 @@ class _AtSignBottomSheetState extends State<AtSignBottomSheet> {
                       ),
                     ),
                     SizedBox(height: 10),
-                    CircularProgressIndicator(
-                        valueColor:
-                            AlwaysStoppedAnimation<Color>(Color(0xFFF05E3E))),
+                    CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Color(0xFFF05E3E))),
                   ],
                 ),
               )

@@ -3,8 +3,7 @@ import '../services/client.sdk.services.dart';
 import 'package:flutter/material.dart';
 import 'package:at_utils/at_logger.dart' show AtSignLogger;
 
-import 'package:at_onboarding_flutter/at_onboarding_flutter.dart'
-    show Onboarding;
+import 'package:at_onboarding_flutter/at_onboarding_flutter.dart' show Onboarding;
 
 import 'home.screen.dart';
 

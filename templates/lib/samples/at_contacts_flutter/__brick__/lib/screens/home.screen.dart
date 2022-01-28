@@ -18,8 +18,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     Future.microtask(() async {
-      var currentAtSign =
-          await clientSdkService.getAtSignAndInitializeContacts();
+      var currentAtSign = await clientSdkService.getAtSignAndInitializeContacts();
       setState(() {
         activeAtSign = currentAtSign;
       });

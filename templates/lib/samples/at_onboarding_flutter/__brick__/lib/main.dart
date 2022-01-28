@@ -1,14 +1,16 @@
 import 'dart:async';
-import 'switch_atsign.dart';
-import 'package:flutter/material.dart';
+
 import 'package:at_client_mobile/at_client_mobile.dart';
-import 'package:at_onboarding_flutter/at_onboarding_flutter.dart'
-    show Onboarding;
-import 'package:at_utils/at_logger.dart' show AtSignLogger;
-import 'package:path_provider/path_provider.dart'
-    show getApplicationSupportDirectory;
-import 'package:at_app_flutter/at_app_flutter.dart' show AtEnv;
+import 'package:at_onboarding_flutter/at_onboarding_flutter.dart' show Onboarding;
 import 'package:at_onboarding_flutter/widgets/custom_reset_button.dart';
+import 'package:at_utils/at_logger.dart' show AtSignLogger;
+import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart' show getApplicationSupportDirectory;
+
+import 'package:at_app_flutter/at_app_flutter.dart' show AtEnv;
+
+import 'switch_atsign.dart';
+import 'theme.dart';
 
 Future<void> main() async {
   await AtEnv.load();
@@ -27,8 +29,7 @@ Future<AtClientPreference> loadAtClientPreference() async {
       ;
 }
 
-final StreamController<ThemeMode> updateThemeMode =
-    StreamController<ThemeMode>.broadcast();
+final StreamController<ThemeMode> updateThemeMode = StreamController<ThemeMode>.broadcast();
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -52,19 +53,11 @@ class _MyAppState extends State<MyApp> {
         ThemeMode themeMode = snapshot.data ?? ThemeMode.light;
         return MaterialApp(
           // * The onboarding screen (first screen)
-          theme: ThemeData(
-            brightness: Brightness.light,
-            primaryColor: const Color(0xFFf4533d),
-            accentColor: Colors.black,
-            backgroundColor: Colors.white,
-            scaffoldBackgroundColor: Colors.white,
+          theme: lightTheme.copyWith(
+            colorScheme: lightTheme.colorScheme.copyWith(secondary: Colors.black)
           ),
-          darkTheme: ThemeData(
-            brightness: Brightness.dark,
-            primaryColor: Colors.blue,
-            accentColor: Colors.white,
-            backgroundColor: Colors.grey[850],
-            scaffoldBackgroundColor: Colors.grey[850],
+          darkTheme: darkTheme.copyWith(
+            colorScheme: darkTheme.colorScheme.copyWith(secondary: Colors.white),
           ),
           themeMode: themeMode,
           home: Scaffold(
@@ -73,9 +66,7 @@ class _MyAppState extends State<MyApp> {
               actions: <Widget>[
                 IconButton(
                   onPressed: () {
-                    updateThemeMode.sink.add(themeMode == ThemeMode.light
-                        ? ThemeMode.dark
-                        : ThemeMode.light);
+                    updateThemeMode.sink.add(themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light);
                   },
                   icon: Icon(
                     Theme.of(context).brightness == Brightness.light
@@ -150,8 +141,7 @@ class HomeScreen extends StatelessWidget {
               await showModalBottomSheet(
                 context: context,
                 backgroundColor: Colors.transparent,
-                builder: (context) =>
-                    AtSignBottomSheet(atSignList: atSignList ?? []),
+                builder: (context) => AtSignBottomSheet(atSignList: atSignList ?? []),
               );
             },
           ),
@@ -160,15 +150,14 @@ class HomeScreen extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
-            const Text(
-                'Successfully onboarded and navigated to FirstAppScreen'),
+            const Text('Successfully onboarded and navigated to FirstAppScreen'),
 
             /// Use the AtClientManager instance to get the current atsign
-            Text(
-                'Current @sign: ${atClientManager.atClient.getCurrentAtSign()}'),
+            Text('Current @sign: ${atClientManager.atClient.getCurrentAtSign()}'),
           ],
         ),
       ),
     );
   }
 }
+

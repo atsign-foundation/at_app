@@ -3,21 +3,13 @@ import 'package:flutter/material.dart';
 class ContactInitial extends StatelessWidget {
   final double size;
   final String initials;
-  int index;
+  final int index;
 
-  ContactInitial(
-      {Key key = const Key('contact_initial'),
-      this.size = 40,
-      this.initials = 'AT',
-      this.index = 2})
-      : super(key: key);
+  const ContactInitial({Key key = const Key('contact_initial'), this.size = 40, this.initials = 'AT', index = 2})
+      : index = (initials.length < 3) ? initials.length : 3,
+        super(key: key);
   @override
   Widget build(BuildContext context) {
-    if (initials.length < 3) {
-      index = initials.length;
-    } else {
-      index = 3;
-    }
 
     return Container(
       height: size,
@@ -27,14 +19,13 @@ class ContactInitial extends StatelessWidget {
         borderRadius: BorderRadius.circular(size),
       ),
       child: Center(
-        child:
-            Text(initials.substring((index == 1) ? 0 : 1, index).toUpperCase(),
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 12.0,
-                  letterSpacing: 0.1,
-                  fontWeight: FontWeight.w700,
-                )),
+        child: Text(initials.substring((index == 1) ? 0 : 1, index).toUpperCase(),
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 12.0,
+              letterSpacing: 0.1,
+              fontWeight: FontWeight.w700,
+            )),
       ),
     );
   }
