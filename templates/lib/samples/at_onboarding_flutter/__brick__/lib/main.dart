@@ -53,9 +53,7 @@ class _MyAppState extends State<MyApp> {
         ThemeMode themeMode = snapshot.data ?? ThemeMode.light;
         return MaterialApp(
           // * The onboarding screen (first screen)
-          theme: lightTheme.copyWith(
-            colorScheme: lightTheme.colorScheme.copyWith(secondary: Colors.black)
-          ),
+          theme: lightTheme.copyWith(colorScheme: lightTheme.colorScheme.copyWith(secondary: Colors.black)),
           darkTheme: darkTheme.copyWith(
             colorScheme: darkTheme.colorScheme.copyWith(secondary: Colors.white),
           ),
@@ -160,4 +158,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-

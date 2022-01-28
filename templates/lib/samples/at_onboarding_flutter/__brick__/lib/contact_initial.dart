@@ -10,7 +10,6 @@ class ContactInitial extends StatelessWidget {
         super(key: key);
   @override
   Widget build(BuildContext context) {
-
     return Container(
       height: size,
       width: size,
