@@ -12,5 +12,5 @@ env:
 
 android:
   enableR8: true
-
-
+  kotlinVersion: 1.4.31
+  minSdkVersion: '23'
