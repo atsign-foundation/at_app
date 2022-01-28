@@ -4,6 +4,7 @@
 
 import 'package:at_template/at_template.dart';
 import 'package:at_app/src/models/at_app_template.dart';
+import 'package:pub_semver/pub_semver.dart';
 
 import 'at_contacts_flutter_template_bundle.dart';
 
@@ -15,6 +16,8 @@ final atContactsFlutterTemplate = AtAppTemplate(
   vars: AtTemplateVars(
     includeBundles: {'at_contacts_flutter'},
     dependencies: ["at_app_flutter: 4.0.0","at_contacts_flutter: ^4.0.0"],
+    kotlinVersion: Version.parse('1.4.31'),
+    minSdkVersion: '23',
     flutterConfig: ["assets:","  - .env"],
   ),
   overrideEnv: true,
