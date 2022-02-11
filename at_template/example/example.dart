@@ -1,4 +1,3 @@
-import 'package:at_template/at_template.dart';
 import 'package:universal_io/io.dart';
 
 import 'src/my_template.dart';
