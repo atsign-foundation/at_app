@@ -1,3 +1,9 @@
+## 4.2.0
+
+  - Separated template generation functionality to [at_template](pub.dev/packages/at_template)
+  - Added chit_chat demo application
+  - Added at_onboarding_flutter and at_contacts_flutter samples
+
 ## 4.1.0
 
 - Added multiple template support to at_app (the default template is called app)

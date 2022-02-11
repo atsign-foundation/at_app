@@ -1,3 +1,3 @@
-## 0.1.0-rc
+## 0.1.0-rc.1
 
-- Initial version.
+- Initial release.
