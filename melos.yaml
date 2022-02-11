@@ -13,3 +13,5 @@ scripts:
     run: 'sh tools/full_build_at_template.sh'
   build_templates:
     run: 'sh tools/full_build_at_app_templates.sh'
+  build_apps:
+    run: 'sh tools/build_apps.sh'
