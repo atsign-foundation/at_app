@@ -1,6 +1,5 @@
 import 'package:args/command_runner.dart';
 import 'package:at_app/src/models/exceptions/flutter_exception.dart';
-import 'package:at_app/src/templates.dart';
 import 'package:at_app/src/models/exceptions/template_exception.dart';
 import 'package:at_app/src/models/at_app_template.dart';
 import 'package:at_app/src/services/env_manager.dart';
@@ -176,8 +175,7 @@ class CreateCommand extends CreateBase {
     _logger.i('All done!');
 
     // Copyright 2014 The Flutter Authors. All rights reserved.
-    _logger.i(
-        '''
+    _logger.i('''
 
 In order to run your @platform application, type:
 
