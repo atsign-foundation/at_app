@@ -32,9 +32,9 @@ packages:
   at_app_flutter:
     dependency: "direct main"
     description:
-      name: at_app_flutter
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: "../at_app_flutter"
+      relative: true
+    source: path
     version: "4.0.1"
   at_backupkey_flutter:
     dependency: transitive

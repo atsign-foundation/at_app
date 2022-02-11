@@ -1,0 +1,13 @@
+dependencies:
+  at_app_flutter: 4.0.0 # at_onboarding_flutter is a dependency of at_app_flutter
+
+env:
+  override: true
+
+env_override:
+  NAMESPACE: productive2227
+  API_KEY: 477b-876u-bcez-c42z-6a3d
+
+android:
+  kotlinVersion: 1.4.31
+  minSdkVersion: '23'

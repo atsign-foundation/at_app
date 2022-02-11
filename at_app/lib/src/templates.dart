@@ -5,7 +5,10 @@ final List<AtAppTemplate> templates = [
   appTemplate,
 ];
 
-final List<AtAppTemplate> samples = [];
+final List<AtAppTemplate> samples = [
+  atOnboardingFlutterTemplate,
+  atContactsFlutterTemplate,
+];
 
 final List<AtAppTemplate> demos = [
   snackbarTemplate,

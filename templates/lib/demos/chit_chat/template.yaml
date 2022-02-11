@@ -12,6 +12,9 @@ env:
   override: true
 
 env_override:
-  NAMESPACE: interiorwolverine
-  API_KEY: 400b-806u-bzez-z42z-6a3p
+  NAMESPACE: tapiradded13
+  API_KEY: 477b-876u-bcez-c42z-6a3d
 
+android:
+  kotlinVersion: 1.4.31
+  minSdkVersion: '23'
