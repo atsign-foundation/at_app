@@ -230,7 +230,6 @@ Happy coding!
   AtTemplateVars _parseVars(AtAppTemplate template) {
     AtTemplateVars vars = template.vars;
     vars.projectName = packageName;
-    _logger.i(packageName);
     if (argResults!.wasParsed('description')) vars.description = stringArg(description)!;
     if (argResults!.wasParsed('org')) {
       List<String> orgParts = stringArg('org')!.split('.');

@@ -10,4 +10,5 @@ final List<AtAppTemplate> samples = [];
 final List<AtAppTemplate> demos = [
   snackbarTemplate,
   snackbarSenderTemplate,
+  chitChatTemplate,
 ];

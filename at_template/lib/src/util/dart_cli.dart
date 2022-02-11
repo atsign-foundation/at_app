@@ -1,6 +1,6 @@
 part of 'cli.dart';
 
-class FlutterCli {
+class DartCli {
   static Future<bool> isInstalled() async {
     try {
       await run([]);
@@ -19,7 +19,7 @@ class FlutterCli {
 
   static Future<ProcessResult> run(List<String> args, {bool throwOnError = true, String? directory}) {
     return _Cli.run(
-      'flutter',
+      'dart',
       args,
       throwOnError: throwOnError,
       directory: directory,

@@ -1,5 +1,6 @@
 import 'dart:io' show Directory, Process, ProcessException, ProcessResult;
 part 'flutter_cli.dart';
+part 'dart_cli.dart';
 
 /// An abstraction layer to run commands using dart:io Process.
 class _Cli {

@@ -1,0 +1,213 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "https://json.schemastore.org/at_app-template",
+  "title": "template.yaml",
+  "description": "at_app Template Configuration File",
+  "definitions": {
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+(?:[+-]\\S+)?$"
+    },
+    "versionConstraint": {
+      "description": "Version range of the package or SDK to use",
+      "oneOf": [
+        {
+          "type": "string",
+          "description": "Allows any version of the package. This is not recommended for performance reasons",
+          "enum": ["any", ""]
+        },
+        {
+          "$ref": "#/definitions/version"
+        },
+        {
+          "type": "string",
+          "examples": [">1.0.0 <2.3.0-beta", ">=1.0.0-pre.1 <=3.0.0"],
+          "pattern": "^(?:(?:>=|>|<=|<)\\d+\\.\\d+\\.\\d+(?:[+-]\\S+)?\\s*)+$"
+        },
+        {
+          "type": "string",
+          "examples": ["^1.0.0"],
+          "pattern": "^\\^\\d+\\.\\d+\\.\\d+(?:[+-]\\S+)?$"
+        }
+      ]
+    },
+    "dependency": {
+      "oneOf": [
+        {
+          "$ref": "#/definitions/versionConstraint",
+          "$comment": "Syntax in yaml: `foo: ^1.2.3`"
+        },
+        {
+          "description": "Default dependency, matches any version of the package",
+          "type": "null",
+          "$comment": "Syntax in yaml: `foo:` or `foo: null`"
+        },
+        {
+          "title": "SDK dependency",
+          "type": "object",
+          "properties": {
+            "sdk": {
+              "description": "The SDK which contains this package",
+              "type": "string"
+            },
+            "version": { "$ref": "#/definitions/versionConstraint" }
+          },
+          "required": ["sdk"],
+          "additionalProperties": false
+        },
+        {
+          "title": "Hosted dependency",
+          "type": "object",
+          "properties": {
+            "hosted": {
+              "oneOf": [
+                {
+                  "type": "string",
+                  "description": "URL of the package server hosting this package",
+                  "format": "uri"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "name": { "type": "string" },
+                    "url": {
+                      "description": "The package server hosting this package",
+                      "type": "string",
+                      "format": "uri"
+                    }
+                  },
+                  "required": ["url"]
+                }
+              ]
+            },
+            "version": { "$ref": "#/definitions/versionConstraint" }
+          },
+          "required": ["hosted"],
+          "additionalProperties": false
+        },
+        {
+          "description": "Git dependency",
+          "type": "object",
+          "properties": {
+            "git": {
+              "$comment": "Can either be a string (uri) or an object with ref etc.",
+              "oneOf": [
+                {
+                  "description": "URI of the repository hosting this package",
+                  "type": "string"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "url": {
+                      "type": "string",
+                      "description": "URI of the repository hosting this package"
+                    },
+                    "path": {
+                      "type": "string",
+                      "description": "Path of this package relative to the Git repo's root"
+                    },
+                    "ref": {
+                      "type": "string",
+                      "description": "The branch, tag, or anything else Git allows to identify a commit."
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "required": ["git"],
+          "additionalProperties": false
+        },
+        {
+          "description": "Path dependency",
+          "type": "object",
+          "properties": {
+            "path": { "type": "string" }
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "dependencies": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/dependency"
+      }
+    }
+  },
+  "type": "object",
+  "properties": {
+    "dependencies": {
+      "$ref": "#/definitions/dependencies"
+    },
+    "env": {
+      "type": "object",
+      "properties": {
+        "include": {
+          "$comment": "Allow the app to generate a .env file",
+          "type": "boolean"
+        },
+        "gitignore": {
+          "$comment": "Whether to include .env in the gitignore",
+          "type": "boolean"
+        },
+        "override": {
+          "$comment": "Enable this to override the default environment variables passed into 'env_override'",
+          "type": "boolean"
+        }
+      }
+    },
+    "env_override": {
+      "$comment": "Override the default app environment\nNOTE: This is only enabled when env.override is set to true.",
+      "type": "object",
+      "properties": {
+        "NAMESPACE": {
+          "$comment": "Set the default @platform namespace to use for the generated app.",
+          "type": "string"
+        },
+        "API_KEY": {
+          "$comment": "Set the default api key to use for @platform onboarding in the generated app.",
+          "type": "string",
+          "pattern": "^([a-z0-9]{4}-){4}[a-z0-9]{4}$"
+        },
+        "ROOT_DOMAIN": {
+          "$comment": "Set the default @platform root domain for the generated app.",
+          "type": "string",
+          "format": "uri"
+        }
+      }
+    },
+    "android": {
+      "type": "object",
+      "properties": {
+        "enableR8": {
+          "$comment": "Enable R8 minification for Android bundles of the generated app. (recommended)",
+          "type": "boolean"
+        },
+        "gradleVersion": {
+          "$comment": "Set the gradle version to use for building the generated app.",
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+$"
+        },
+        "kotlinVersion": {
+          "$comment": "Set the kotlin version to use for the generated app.",
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$"
+        },
+        "minSdkVersion": {
+          "$comment": "Set the minimum Android SDK version to use for the generated app.",
+          "type": "string"
+        },
+        "compileSdkVersion": {
+          "$comment": "Set the compile Android SDK version to use for the generated app.",
+          "type": "string"
+        },
+        "targetSdkVersion": {
+          "$comment": "Set the target Android SDK version to use for the generated app.",
+          "type": "string"
+        }
+      }
+    }
+  }
+}

@@ -1,3 +1,6 @@
 {
-  "dart.runPubGetOnPubspecChanges": false
+  "dart.runPubGetOnPubspecChanges": false,
+  "yaml.schemas": {
+    "./.vscode/.schema/template.json": "template.yaml",
+  }
 }

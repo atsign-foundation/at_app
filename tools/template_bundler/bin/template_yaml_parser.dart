@@ -32,7 +32,7 @@ class TemplateYamlParser {
   List<String> _parseDependencies() => _YamlMapParser<String, String?>(yaml['dependencies'])?.toLines() ?? [];
 
   Map<String, bool> _parseEnv() {
-    Map<String, bool> parsed = _YamlMapParser<String, bool>(yaml['config']?['env'])?.toMap() ?? {};
+    Map<String, bool> parsed = _YamlMapParser<String, bool>(yaml['env'])?.toMap() ?? {};
     for (String key in ['include', 'gitignore', 'override']) {
       parsed[key] ??= false;
     }
@@ -40,10 +40,10 @@ class TemplateYamlParser {
   }
 
   Map<String, dynamic> _parsePlatformConfig(String platform) =>
-      _YamlMapParser<String, dynamic>(yaml['config']?[platform])?.toMap() ?? {};
+      _YamlMapParser<String, dynamic>(yaml[platform])?.toMap() ?? {};
 
   Map<String, String> _parseEnvOverride() =>
-      _YamlMapParser<String, String>(yaml['config']?['env_override'])?.toMap() ?? {};
+      _YamlMapParser<String, String>(yaml['env_override'])?.toMap() ?? {};
 }
 
 extension _YamlMapParser<K, V> on YamlMap {
@@ -58,7 +58,7 @@ extension _YamlMapParser<K, V> on YamlMap {
   List<String> toLines() {
     List<String> result = [];
     forEach((key, value) {
-      result.add('$key: $value');
+      result.add('$key: ${value ?? ''}');
     });
     return result;
   }
