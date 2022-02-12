@@ -4,6 +4,21 @@ BASE_PATH="$TOOL_PATH/../templates"
 BRICK_PATH="$BASE_PATH/lib"
 OUTPUT_PATH="$TOOL_PATH/../at_app"
 
+# ARGS
+FORMAT=1
+
+# ARG PARSER
+while [ $# -gt 0 ];
+do
+  case "$1" in
+    --no-format)
+      FORMAT=0
+    ;;
+  esac
+  shift
+done
+
+# Bundle the templates from templates/ into at_app/
 rm "$OUTPUT_PATH/lib/src/bundles/bundles.dart"
 touch "$OUTPUT_PATH/lib/src/bundles/bundles.dart"
 for x in "$BRICK_PATH"/*;
@@ -19,3 +34,9 @@ for x in "$BRICK_PATH"/*;
     dart run "$TOOL_PATH/template_bundler/bin/main.dart" bundle -o "$OUTPUT_PATH/lib/src/bundles/$xbase/$ybase" "$y";
   done
 done
+
+# Format and analyze at_app
+if [ $FORMAT -gt 0 ] ;
+then
+  "$TOOL_PATH"/format_and_analyze.sh "at_app"
+fi
