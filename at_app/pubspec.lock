@@ -42,7 +42,7 @@ packages:
       path: "../at_template"
       relative: true
     source: path
-    version: "0.1.0-rc"
+    version: "0.1.0-rc.1"
   at_utils:
     dependency: "direct main"
     description:
