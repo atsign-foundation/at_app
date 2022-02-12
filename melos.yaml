@@ -5,9 +5,11 @@ packages:
   - at_app/*
   - at_app_flutter/*
   - at_template/*
+
   # Non published packages (included for pub get when bootstrapping)
   - templates/*
   - tools/template_bundler/*
+
 scripts:
   build: sh tools/build_all.sh
   build:at_template: sh tools/build_at_template.sh
@@ -15,5 +17,4 @@ scripts:
   build:generated: sh tools/build_generated.sh
 
   format: melos exec -- dart format -l 120 .
-
   analyze: 'melos exec -- dart analyze .'
