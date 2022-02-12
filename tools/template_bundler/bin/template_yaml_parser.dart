@@ -42,8 +42,7 @@ class TemplateYamlParser {
   Map<String, dynamic> _parsePlatformConfig(String platform) =>
       _YamlMapParser<String, dynamic>(yaml[platform])?.toMap() ?? {};
 
-  Map<String, String> _parseEnvOverride() =>
-      _YamlMapParser<String, String>(yaml['env_override'])?.toMap() ?? {};
+  Map<String, String> _parseEnvOverride() => _YamlMapParser<String, String>(yaml['env_override'])?.toMap() ?? {};
 }
 
 extension _YamlMapParser<K, V> on YamlMap {
