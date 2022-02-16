@@ -33,7 +33,7 @@ To setup the environment, there are two paths.
 This method does not install melos onto your machine. If you don't need to use melos outside of this project, this method is preferred. Run the following command from within the repository:
 
 ```sh
-flutter pub global run melos bootstrap
+dart pub global run melos bootstrap
 ```
 
 #### 2 Install the melos binaries
@@ -41,7 +41,7 @@ flutter pub global run melos bootstrap
 This method installs melos onto your machine. If you intend to use melos again in another project, this method is preferred. Run the following commands from within the repository:
 
 ```sh
-flutter pub global activate melos
+dart pub global activate melos
 melos bootstrap
 ```
 
