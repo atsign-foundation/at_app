@@ -26,13 +26,13 @@ The following provides a full guide on the various ways to use at_app.
 Activate the latest version of at_app using pub:
 
 ```sh
-flutter pub global activate at_app
+dart pub global activate at_app
 ```
 
 Or specify a specific version:
 
 ```sh
-flutter pub global activate at_app <version>
+dart pub global activate at_app <version>
 ```
 
 *Additionally, pub may prompt you to add the global bin to your PATH variable, please do so before proceeding.

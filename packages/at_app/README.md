@@ -29,7 +29,7 @@ and you can learn more about how it works by reading this
 To get started, install the tool using pub:
 
 ```sh
-flutter pub global activate at_app
+dart pub global activate at_app
 ```
 
 *Additionally, pub may prompt you to add the global bin to your PATH variable, please do so before proceeding.
