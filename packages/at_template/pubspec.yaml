@@ -1,7 +1,7 @@
 name: at_template
 description: A templating library for generating flutter apps using mason.
 version: 0.1.0-rc.1
-repository: https://github.com/atsign-foundation/at_app/tree/trunk/at_template/
+repository: https://github.com/atsign-foundation/at_app/tree/trunk/packages/at_template/
 homepage: https://atsign.dev/
 
 environment:

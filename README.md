@@ -12,7 +12,7 @@ at_app is a command-line tool for app developers to quickly generate a starter @
 
 This is the core command-line tool that is responsible for generating app templates. [Learn More](https://pub.dev/packages/at_app).
 
-[[View Source](/at_app)]
+[[View Source](/packages/at_app)]
 
 ### at_app_flutter
 
@@ -20,7 +20,7 @@ This is the core command-line tool that is responsible for generating app templa
 
 This package is added to generated apps and provides additional functionality required by the templates. [Learn More](https://pub.dev/packages/at_app_flutter)
 
-[[View Source](/at_app_flutter)]
+[[View Source](/packages/at_app_flutter)]
 
 ### at_app_templates
 
@@ -28,7 +28,7 @@ This package is added to generated apps and provides additional functionality re
 
 This package provides the app templates that at_app uses to generate its applications (Coming Soon).
 
-[[View Source](/at_app_templates)]
+[[View Source](/packages/at_app_templates)]
 
 ## Maintainers
 

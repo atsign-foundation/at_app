@@ -32,7 +32,7 @@ packages:
   at_app_flutter:
     dependency: "direct main"
     description:
-      path: "../at_app_flutter"
+      path: "../packages/at_app_flutter"
       relative: true
     source: path
     version: "4.0.1"

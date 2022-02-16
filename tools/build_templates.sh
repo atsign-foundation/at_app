@@ -1,8 +1,8 @@
 #!/bin/bash
 TOOL_PATH="${BASH_SOURCE%/*}"
-BASE_PATH="$TOOL_PATH/../templates"
+BASE_PATH="$TOOL_PATH/../packages/templates"
 BRICK_PATH="$BASE_PATH/lib"
-OUTPUT_PATH="$TOOL_PATH/../at_app"
+OUTPUT_PATH="$TOOL_PATH/../packages/at_app"
 
 # ARGS
 FORMAT=1
@@ -38,5 +38,5 @@ done
 # Format and analyze at_app
 if [ $FORMAT -gt 0 ] ;
 then
-  "$TOOL_PATH"/format_and_analyze.sh "at_app"
+  "$TOOL_PATH"/format_and_analyze.sh "packages/at_app"
 fi

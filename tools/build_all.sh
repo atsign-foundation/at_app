@@ -10,8 +10,8 @@ dart pub global run melos run build:templates -- --no-format  <<< n;
 dart pub global run melos run build:generated <<< n;
 
 # Format and analyze manually, so that the output appears at the end
-dart format -l 120 at_template/
-dart format -l 120 at_app/
+dart format -l 120 packages/at_template/
+dart format -l 120 packages/at_app/
 
-dart analyze at_template/
-dart analyze at_app/
+dart analyze packages/at_template/
+dart analyze packages/at_app/
