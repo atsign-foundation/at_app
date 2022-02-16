@@ -1,7 +1,7 @@
 #!/bin/bash
 CURRENT_DIR=$(pwd)
 TOOL_PATH="${BASH_SOURCE%/*}"
-BASE_PATH="$TOOL_PATH/../at_template"
+BASE_PATH="$TOOL_PATH/../packages/at_template"
 BRICK_PATH="$BASE_PATH/bricks"
 
 # ARGS
@@ -33,5 +33,5 @@ done
 if [ $FORMAT -gt 0 ] ;
 then
   echo 'CALLED FORMAT'
-  "$TOOL_PATH"/format_and_analyze.sh '.'
+  "$TOOL_PATH"/format_and_analyze.sh 'packages/at_template'
 fi

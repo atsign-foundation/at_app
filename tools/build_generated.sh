@@ -1,6 +1,6 @@
 #!/bin/bash
 TOOL_PATH="${BASH_SOURCE%/*}"
-BASE_PATH="$TOOL_PATH/../at_app"
+BASE_PATH="$TOOL_PATH/../packages/at_app"
 OUTPUT_PATH="$TOOL_PATH/../build"
 
 MAIN_FILE="$BASE_PATH/bin/at_app.dart"
