@@ -8,6 +8,9 @@ cd "$TOOL_PATH/.." || exit 1
 dart pub global run melos run build:at_template -- --no-format <<< n;
 dart pub global run melos run build:templates -- --no-format  <<< n;
 
+# Build at_app
+dart pub global run melos run build:at_app <<< n;
+
 # Build the demo applications
 dart pub global run melos run build:generated <<< n;
 

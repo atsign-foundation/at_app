@@ -3,7 +3,7 @@ import 'package:args/command_runner.dart' show CommandRunner, UsageException;
 import 'util/logger.dart';
 import 'package:logger/logger.dart' show Logger;
 
-import '../version.dart';
+import 'version.dart';
 import 'commands/package.dart';
 import 'models/command_status.dart';
 import 'commands/create.dart';
