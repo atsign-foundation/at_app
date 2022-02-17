@@ -14,7 +14,9 @@ build_apps() {
     NAME=$(tr -d '[:space:]' <<< "$x")
 
     echo "BUILDING $NAME"
-    dart run "$MAIN_FILE" create "-$TYPE" "$NAME" --overwrite --project-name "${NAME}_test_app" "$OUTPUT_PATH/$NAME"
+    dart run "$MAIN_FILE" create "-$TYPE" "$NAME" --overwrite --no-pub --project-name "${NAME}_test_app" "$OUTPUT_PATH/$NAME"
+    echo -e "dependency_overrides:\n  at_app_flutter:\n    path: ../../packages/at_app_flutter" >> "$OUTPUT_PATH/$NAME/pubspec.yaml"
+    dart pub get --directory="$OUTPUT_PATH/$NAME"
   done;
 }
 
