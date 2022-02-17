@@ -1,0 +1,57 @@
+name: functional_test
+
+on:
+  push:
+    branches:
+      - trunk
+  pull_request:
+    branches:
+      - trunk
+
+jobs:
+  build_test:
+    env:
+      at_template_dir: ./packages/at_template
+      at_app_dir: ./packages/at_app
+      at_app_flutter_dir: ./packages/at_app_flutter
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: dart-lang/setup-dart@v1.3
+        with:
+          sdk: stable
+
+      # Bootstraping with melos calls `pub get` on all packages
+      # And links local packages together
+      - name: Install melos and bootstrap packages
+        run: |
+          dart pub global activate melos
+          dart pub global run melos bootstrap
+
+      - name: Analyze at_app_flutter
+        working-directory: ${{ env.at_app_flutter_dir }}
+        run: dart analyze
+
+      - name: Build and format at_template package
+        run: dart pub global run melos run build:at_template <<< n;
+
+      - name: Analyze at_template
+        working-directory: ${{ env.at_template_dir }}
+        run: dart analyze
+
+      - name: Bundle templates into at_app and format at_app
+        run: dart pub global run melos run build:templates <<< n;
+
+      - name: Analyze at_app
+        working-directory: ${{ env.at_app_dir }}
+        run: dart analyze
+
+      - name: Build generated apps
+        run: dart pub global run melos run build:generated <<< n;
+
+      - name: Analyze generated apps
+        working-directory: ./build
+        run: dart analyze
+
+
