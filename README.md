@@ -8,7 +8,7 @@ at_app is a command-line tool for app developers to quickly generate a starter @
 
 ### at_app
 
-[![pub package](https://img.shields.io/pub/v/at_app)](https://pub.dev/packages/at_app) [![pub points](https://badges.bar/at_app/pub%20points)](https://pub.dev/packages/at_app/score) [![gitHub license](https://img.shields.io/badge/license-BSD3-blue.svg)](at_app/LICENSE)
+[![pub package](https://img.shields.io/pub/v/at_app)](https://pub.dev/packages/at_app) [![pub points](https://badges.bar/at_app/pub%20points)](https://pub.dev/packages/at_app/score) [![gitHub license](https://img.shields.io/badge/license-BSD3-blue.svg)](packages/at_app/LICENSE)
 
 This is the core command-line tool that is responsible for generating app templates. [Learn More](https://pub.dev/packages/at_app).
 
@@ -16,15 +16,15 @@ This is the core command-line tool that is responsible for generating app templa
 
 ### at_app_flutter
 
-[![pub package](https://img.shields.io/pub/v/at_app_flutter)](https://pub.dev/packages/at_app_flutter) [![pub points](https://badges.bar/at_app_flutter/pub%20points)](https://pub.dev/packages/at_app_flutter/score) [![gitHub license](https://img.shields.io/badge/license-BSD3-blue.svg)](at_app_flutter/LICENSE)
+[![pub package](https://img.shields.io/pub/v/at_app_flutter)](https://pub.dev/packages/at_app_flutter) [![pub points](https://badges.bar/at_app_flutter/pub%20points)](https://pub.dev/packages/at_app_flutter/score) [![gitHub license](https://img.shields.io/badge/license-BSD3-blue.svg)](packages/at_app_flutter/LICENSE)
 
 This package is added to generated apps and provides additional functionality required by the templates. [Learn More](https://pub.dev/packages/at_app_flutter)
 
 [[View Source](/packages/at_app_flutter)]
 
-### at_app_templates
+### at_template
 
-[![pub package](https://img.shields.io/pub/v/at_app_templates)](https://pub.dev/packages/at_app_templates) [![pub points](https://badges.bar/at_app_templates/pub%20points)](https://pub.dev/packages/at_app_templates/score) [![gitHub license](https://img.shields.io/badge/license-BSD3-blue.svg)](at_app_templates/LICENSE)
+[![pub package](https://img.shields.io/pub/v/at_template)](https://pub.dev/packages/at_template) [![pub points](https://badges.bar/at_template/pub%20points)](https://pub.dev/packages/at_app_templates/score) [![gitHub license](https://img.shields.io/badge/license-BSD3-blue.svg)](/packages/at_template/LICENSE)
 
 This package provides the app templates that at_app uses to generate its applications (Coming Soon).
 
