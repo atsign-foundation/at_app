@@ -5,7 +5,7 @@ dependencies:
   path_provider: ^2.0.5
   flutter_dotenv: ^5.0.2
   timer_builder: ^2.0.0
-  at_app_flutter:
+  at_app_flutter: ^5.0.0
 
 env:
   override: true
@@ -15,5 +15,5 @@ env_override:
   API_KEY: 477b-876u-bcez-c42z-6a3d
 
 android:
-  kotlinVersion: 1.4.31
+  kotlinVersion: 1.5.32
   minSdkVersion: '23'
