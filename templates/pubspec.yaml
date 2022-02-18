@@ -2,7 +2,7 @@ name: templates
 description: Flutter app templates built using the @platform that can be generated using the at_app package.
 version: 1.0.1
 
-publish_to: none;
+publish_to: none
 
 environment:
   sdk: '>=2.12.0 <3.0.0'
@@ -10,15 +10,15 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  at_app_flutter: ^4.0.0
-  at_client_mobile: ^3.1.4
-  at_onboarding_flutter: ^3.1.2
-  at_chat_flutter: ^3.0.3
+  at_app_flutter:
+    path: ../packages/at_app_flutter
+  at_client_mobile: ^3.1.5
+  at_chat_flutter: ^3.0.5
   at_contacts_flutter: ^4.0.0
-  at_utils: ^3.0.2
-  path_provider: ^2.0.8
+  at_utils: ^3.0.5
+  path_provider: ^2.0.9
   timer_builder: ^2.0.0
-  at_commons: ^3.0.2
+  at_commons: ^3.0.5
 
 
 dev_dependencies:

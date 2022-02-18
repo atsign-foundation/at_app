@@ -2,15 +2,14 @@ name: at_app
 repository: https://github.com/atsign-foundation/at_app
 
 packages:
-  - packages/*/*
-
-  # Non published packages (included for pub get when bootstrapping)
-  - templates/*
-  - tools/template_bundler/*
+  - packages/*/* # Published packages
+  - templates/* # The at_app templates
+  - tools/template_bundler/* # A tool that bundles templates into dart code in at_app
 
 scripts:
   build: sh tools/build_all.sh
   build:at_template: sh tools/build_at_template.sh
+  build:at_app: sh tools/build_at_app.sh
   build:templates: sh tools/build_templates.sh
   build:generated: sh tools/build_generated.sh
 

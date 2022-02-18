@@ -101,8 +101,7 @@ class _MyAppState extends State<MyApp> {
                       },
                       child: const Text('Onboard an @sign'),
                     ),
-                    CustomResetButton(
-                      loading: false,
+                    const CustomResetButton(
                       buttonText: 'Reset',
                       width: 90,
                       height: 40,

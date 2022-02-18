@@ -15,8 +15,8 @@ final atOnboardingFlutterTemplate = AtAppTemplate(
   description: 'A sample of how to use the at_onboarding_flutter package.',
   vars: AtTemplateVars(
     includeBundles: {'at_onboarding_flutter'},
-    dependencies: ["at_app_flutter: 4.0.0"],
-    kotlinVersion: Version.parse('1.4.31'),
+    dependencies: ["at_app_flutter: ^5.0.0"],
+    kotlinVersion: Version.parse('1.5.32'),
     minSdkVersion: '23',
     flutterConfig: ["assets:", "  - .env"],
   ),

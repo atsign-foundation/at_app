@@ -1,6 +1,6 @@
 #!/bin/bash
 TOOL_PATH="${BASH_SOURCE%/*}"
-BASE_PATH="$TOOL_PATH/../packages/templates"
+BASE_PATH="$TOOL_PATH/../templates"
 BRICK_PATH="$BASE_PATH/lib"
 OUTPUT_PATH="$TOOL_PATH/../packages/at_app"
 
