@@ -14,9 +14,6 @@ dart pub global run melos run build:at_app <<< n;
 # Build the demo applications
 dart pub global run melos run build:generated <<< n;
 
-# Bootstrap to link at_app_flutter to local version
-dart pub global run melos bootstrap
-
 # Format and analyze manually, so that the output appears at the end
 dart format -l 120 packages/at_template/
 dart format -l 120 packages/at_app/
