@@ -1,18 +1,17 @@
 #!/bin/bash
-TOOL_PATH="${BASH_SOURCE%/*}"
 
 # cd to project root
-cd "$TOOL_PATH/.." || exit 1
+cd "$MELOS_ROOT_PATH" || exit 1
 
 # Run the builds without format and analyze
-dart pub global run melos run build:at_template -- --no-format <<< n;
-dart pub global run melos run build:templates -- --no-format  <<< n;
+dart pub global run melos run build:at_template -- --no-format;
+dart pub global run melos run build:templates -- --no-format;
 
 # Build at_app
-dart pub global run melos run build:at_app <<< n;
+dart pub global run melos run build:at_app;
 
 # Build the demo applications
-dart pub global run melos run build:generated <<< n;
+dart pub global run melos run build:generated;
 
 # Format and analyze manually, so that the output appears at the end
 dart format -l 120 packages/at_template/
