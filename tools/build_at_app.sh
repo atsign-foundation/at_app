@@ -1,8 +1,7 @@
 #!/bin/bash
-CURRENT_DIR=$(pwd)
-TOOL_PATH="${BASH_SOURCE%/*}"
-BASE_PATH="$TOOL_PATH/../packages/at_app"
 
-cd "$BASE_PATH" || exit 1
-dart run build_runner build
+CURRENT_DIR=$(pwd)
+
+cd "$MELOS_ROOT_PATH/packages/at_app" || exit 1
+dart run build_runner build --delete-conflicting-outputs
 cd "$CURRENT_DIR" || exit 1

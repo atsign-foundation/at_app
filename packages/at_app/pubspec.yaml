@@ -30,3 +30,4 @@ dev_dependencies:
   test: ^1.16.8
   build_runner: ^2.1.7
   build_version: ^2.1.0
+  lints: ^1.0.0
