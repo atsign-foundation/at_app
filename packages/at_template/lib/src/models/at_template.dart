@@ -16,7 +16,8 @@ abstract class AtTemplate {
     );
   }
 
-  Future<List<GeneratedFile>> generate(Directory dir, {required AtTemplateVars vars, bool pub = true, bool overwrite = false}) async {
+  Future<List<GeneratedFile>> generate(Directory dir,
+      {required AtTemplateVars vars, bool pub = true, bool overwrite = false}) async {
     List<Future<List<GeneratedFile>>> generatedFiles = [];
 
     for (String key in vars.bundles) {
