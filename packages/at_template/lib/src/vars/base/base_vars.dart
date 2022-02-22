@@ -34,15 +34,7 @@ class BaseVars implements AtVars {
 
   @override
   Map<String, dynamic> toJson() {
-    validate();
+    if (projectName == null) throw Exception('Project Name is null');
     return _$BaseVarsToJson(this);
-  }
-
-  @override
-  void validate() {
-    if (projectName == null) throw Exception();
-    description ??= 'A new project';
-    dependencies ??= [];
-    flutterConfig ??= [];
   }
 }

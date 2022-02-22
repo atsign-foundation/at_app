@@ -17,7 +17,6 @@ abstract class AtTemplateBundle<V extends AtVars> extends MasonBundle {
 
   Future<List<GeneratedFile>> generate(DirectoryGeneratorTarget target, V vars, {bool overwrite = false}) async {
     MasonGenerator generator = await MasonGenerator.fromBundle(this);
-    vars.validate();
     return generator.generate(
       target,
       vars: vars.toJson(),

@@ -3,3 +3,4 @@ include: package:lints/recommended.yaml
 analyzer:
   exclude:
     - example/**
+    - bricks/app_base/__brick__/pubspec.yaml
