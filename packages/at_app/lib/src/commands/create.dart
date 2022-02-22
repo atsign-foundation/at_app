@@ -6,6 +6,7 @@ import 'package:at_app/src/services/env_manager.dart';
 import 'package:at_app/src/services/template_service.dart';
 import 'package:at_app/src/util/root_domain.dart';
 import 'package:at_template/at_template.dart';
+import 'package:mason/mason.dart' hide Logger;
 import 'package:tabular/tabular.dart';
 
 import '../util/logger.dart';
@@ -151,8 +152,10 @@ class CreateCommand extends CreateBase {
       List<dynamic> futures = await Future.wait(
           [template.generate(projectDir, vars: vars, pub: pub, overwrite: overwrite), envManager.run()]);
 
+      List<GeneratedFile> generatedFiles = futures[0];
+
       _logger.i('');
-      _logger.i('Generated ${futures[0]} files.');
+      _logger.i('Generated ${generatedFiles.length} files.');
     } on TemplateException catch (e) {
       _logger.e('There was an issue generating part of your template:', e.message);
       return CommandStatus.fail;
