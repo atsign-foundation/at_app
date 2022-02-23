@@ -1,4 +1,3 @@
-import 'package:at_template/at_app_create.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:pub_semver/pub_semver.dart';
 
