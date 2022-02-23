@@ -8,7 +8,7 @@ final baseBundle = MasonBundle.fromJson(<String, dynamic>{
     {
       "path": ".gitignore",
       "data":
-          "IyBNaXNjZWxsYW5lb3VzCiouY2xhc3MKKi5sb2cKKi5weWMKKi5zd3AKLkRTX1N0b3JlCi5hdG9tLwouYnVpbGRsb2cvCi5oaXN0b3J5Ci5zdm4vCgojIEludGVsbGlKIHJlbGF0ZWQKKi5pbWwKKi5pcHIKKi5pd3MKLmlkZWEvCgojIFRoZSAudnNjb2RlIGZvbGRlciBjb250YWlucyBsYXVuY2ggY29uZmlndXJhdGlvbiBhbmQgdGFza3MgeW91IGNvbmZpZ3VyZSBpbgojIFZTIENvZGUgd2hpY2ggeW91IG1heSB3aXNoIHRvIGJlIGluY2x1ZGVkIGluIHZlcnNpb24gY29udHJvbCwgc28gdGhpcyBsaW5lCiMgaXMgY29tbWVudGVkIG91dCBieSBkZWZhdWx0LgojLnZzY29kZS8KCiMgRmx1dHRlci9EYXJ0L1B1YiByZWxhdGVkCioqL2RvYy9hcGkvCioqL2lvcy9GbHV0dGVyLy5sYXN0X2J1aWxkX2lkCi5kYXJ0X3Rvb2wvCi5mbHV0dGVyLXBsdWdpbnMKLmZsdXR0ZXItcGx1Z2lucy1kZXBlbmRlbmNpZXMKLnBhY2thZ2VzCi5wdWItY2FjaGUvCi5wdWIvCi9idWlsZC8KCiMgV2ViIHJlbGF0ZWQKbGliL2dlbmVyYXRlZF9wbHVnaW5fcmVnaXN0cmFudC5kYXJ0CgojIFN5bWJvbGljYXRpb24gcmVsYXRlZAphcHAuKi5zeW1ib2xzCgojIE9iZnVzY2F0aW9uIHJlbGF0ZWQKYXBwLioubWFwLmpzb24KCiMgQW5kcm9pZCBTdHVkaW8gd2lsbCBwbGFjZSBidWlsZCBhcnRpZmFjdHMgaGVyZQovYW5kcm9pZC9hcHAvZGVidWcKL2FuZHJvaWQvYXBwL3Byb2ZpbGUKL2FuZHJvaWQvYXBwL3JlbGVhc2UK",
+          "IyBhdF90ZW1wbGF0ZSBnZW5lcmF0ZWQgcGF0dGVybnMKe3sjZ2l0aWdub3JlfX17ey59fQp7ey9naXRpZ25vcmV9fQoKIyBNaXNjZWxsYW5lb3VzCiouY2xhc3MKKi5sb2cKKi5weWMKKi5zd3AKLkRTX1N0b3JlCi5hdG9tLwouYnVpbGRsb2cvCi5oaXN0b3J5Ci5zdm4vCgojIEludGVsbGlKIHJlbGF0ZWQKKi5pbWwKKi5pcHIKKi5pd3MKLmlkZWEvCgojIFRoZSAudnNjb2RlIGZvbGRlciBjb250YWlucyBsYXVuY2ggY29uZmlndXJhdGlvbiBhbmQgdGFza3MgeW91IGNvbmZpZ3VyZSBpbgojIFZTIENvZGUgd2hpY2ggeW91IG1heSB3aXNoIHRvIGJlIGluY2x1ZGVkIGluIHZlcnNpb24gY29udHJvbCwgc28gdGhpcyBsaW5lCiMgaXMgY29tbWVudGVkIG91dCBieSBkZWZhdWx0LgojLnZzY29kZS8KCiMgRmx1dHRlci9EYXJ0L1B1YiByZWxhdGVkCioqL2RvYy9hcGkvCioqL2lvcy9GbHV0dGVyLy5sYXN0X2J1aWxkX2lkCi5kYXJ0X3Rvb2wvCi5mbHV0dGVyLXBsdWdpbnMKLmZsdXR0ZXItcGx1Z2lucy1kZXBlbmRlbmNpZXMKLnBhY2thZ2VzCi5wdWItY2FjaGUvCi5wdWIvCi9idWlsZC8KCiMgV2ViIHJlbGF0ZWQKbGliL2dlbmVyYXRlZF9wbHVnaW5fcmVnaXN0cmFudC5kYXJ0CgojIFN5bWJvbGljYXRpb24gcmVsYXRlZAphcHAuKi5zeW1ib2xzCgojIE9iZnVzY2F0aW9uIHJlbGF0ZWQKYXBwLioubWFwLmpzb24KCiMgQW5kcm9pZCBTdHVkaW8gd2lsbCBwbGFjZSBidWlsZCBhcnRpZmFjdHMgaGVyZQovYW5kcm9pZC9hcHAvZGVidWcKL2FuZHJvaWQvYXBwL3Byb2ZpbGUKL2FuZHJvaWQvYXBwL3JlbGVhc2UK",
       "type": "text"
     },
     {
@@ -35,6 +35,11 @@ final baseBundle = MasonBundle.fromJson(<String, dynamic>{
     "flutterConfig": {
       "type": "string",
       "description": "A json encoded list of the flutter map in pubspec.yaml",
+      "default": "[]"
+    },
+    "gitignore": {
+      "type": "string",
+      "description": "A json encoded list of additional glob patterns to include in the .gitignore",
       "default": "[]"
     }
   }
