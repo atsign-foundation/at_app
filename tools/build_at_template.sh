@@ -33,6 +33,6 @@ done
 # Format and analyze
 if [ $FORMAT -gt 0 ] ;
 then
-dart format -l 120 "$MELOS_ROOT_PATH/packages/at_template";
+  dart format -l 120 "$MELOS_ROOT_PATH/packages/at_template";
   dart analyze "$MELOS_ROOT_PATH/packages/at_template";
 fi

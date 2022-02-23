@@ -25,14 +25,7 @@ class IosVars implements AtVars {
 
   @override
   Map<String, dynamic> toJson() {
-    validate();
+    if (projectName == null) throw Exception('Project Name is null');
     return _$IosVarsToJson(this);
-  }
-
-  @override
-  void validate() {
-    if (projectName == null) throw Exception();
-    orgTld ??= 'com';
-    orgDomainName ??= 'example';
   }
 }

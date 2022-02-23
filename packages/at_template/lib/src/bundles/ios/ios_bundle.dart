@@ -224,9 +224,14 @@ final iosBundle = MasonBundle.fromJson(<String, dynamic>{
   "name": "ios",
   "description": "ios folder for Flutter application templates.",
   "version": "0.0.1",
+  "environment": {"mason": "any"},
   "vars": {
-    "projectName": {"type": "string"},
-    "orgDomainName": {"type": "string"},
-    "orgTld": {"type": "string"}
+    "projectName": {"type": "string", "description": "The name of the project"},
+    "orgDomainName": {
+      "type": "string",
+      "description": "The org domain name (e.g. example in com.example)",
+      "default": "example"
+    },
+    "orgTld": {"type": "string", "description": "The org top-level domain (e.g. com in com.example)", "default": "com"}
   }
 });

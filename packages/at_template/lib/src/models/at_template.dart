@@ -12,7 +12,7 @@ abstract class AtTemplate {
   operator [](String name) {
     return bundles.firstWhere(
       (bundle) => bundle.name == name,
-      orElse: () => throw Exception(), // TODO impl better exception
+      orElse: () => throw Exception('No bundle named $name.'),
     );
   }
 

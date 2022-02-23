@@ -88,24 +88,8 @@ class AtTemplateVars implements AndroidVars, BaseVars, IosVars {
 
   @override
   Map<String, dynamic> toJson() {
-    validate();
+    if (projectName == null) throw Exception('Project Name is null');
     return _$AtTemplateVarsToJson(this);
-  }
-
-  @override
-  void validate() {
-    if (projectName == null) throw Exception();
-    description ??= 'A new project';
-    dependencies ??= [];
-    flutterConfig ??= [];
-    orgTld ??= 'com';
-    orgDomainName ??= 'example';
-    minSdkVersion ??= 'flutter.minSdkVersion';
-    targetSdkVersion ??= 'flutter.targetSdkVersion';
-    compileSdkVersion ??= 'flutter.compileSdkVersion';
-    enableR8 ??= true;
-    kotlinVersion ??= Version(1, 3, 50);
-    gradleVersion ??= '6.7';
   }
 
   void includeBundle(String platform) => _bundles.add(platform);

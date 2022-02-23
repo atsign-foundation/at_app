@@ -51,21 +51,8 @@ class AndroidVars implements AtVars {
 
   @override
   Map<String, dynamic> toJson() {
-    validate();
+    if (projectName == null) throw Exception('Project Name is null');
     return _$AndroidVarsToJson(this);
-  }
-
-  @override
-  void validate() {
-    if (projectName == null) throw Exception();
-    orgTld ??= 'com';
-    orgDomainName ??= 'example';
-    minSdkVersion ??= 'flutter.minSdkVersion';
-    targetSdkVersion ??= 'flutter.targetSdkVersion';
-    compileSdkVersion ??= 'flutter.compileSdkVersion';
-    enableR8 ??= true;
-    kotlinVersion ??= Version(1, 3, 50);
-    gradleVersion ??= '6.7';
   }
 
   static Version? _versionFromJson(String json) {
