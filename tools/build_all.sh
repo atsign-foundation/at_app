@@ -1,5 +1,11 @@
 #!/bin/bash
 
+if [ "$GITHUB_ACTION" ];
+then
+  echo "ERROR: This script should only be run locally, do not use for github actions."
+  exit 1
+fi
+
 # cd to project root
 cd "$MELOS_ROOT_PATH" || exit 1
 
@@ -19,3 +25,4 @@ dart format -l 120 packages/at_app/
 
 dart analyze packages/at_template/
 dart analyze packages/at_app/
+dart analyze build/
