@@ -124,6 +124,7 @@ final androidBundle = MasonBundle.fromJson(<String, dynamic>{
   "name": "android",
   "description": "Android folder for Flutter application templates.",
   "version": "0.0.1",
+  "environment": {"mason": "any"},
   "vars": {
     "projectName": {"type": "string", "description": "The name of the project"},
     "orgDomainName": {

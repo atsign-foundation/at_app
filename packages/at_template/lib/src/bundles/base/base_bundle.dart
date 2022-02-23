@@ -23,6 +23,7 @@ final baseBundle = MasonBundle.fromJson(<String, dynamic>{
   "name": "base",
   "description": "Base for Flutter application templates.",
   "version": "0.0.1",
+  "environment": {"mason": "any"},
   "vars": {
     "projectName": {"type": "string", "description": "The name of the project"},
     "description": {
