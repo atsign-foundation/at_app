@@ -1,7 +1,7 @@
 #!/bin/bash
 
-AT_TEMPLATE_PATH="$MELOS_ROOT_PATH/packages/at_template"
-BRICK_PATH="$AT_TEMPLATE_PATH/bricks"
+AT_APP_CREATE_PATH="$MELOS_ROOT_PATH/packages/at_app_create"
+BRICK_PATH="$AT_APP_CREATE_PATH/bricks"
 
 CURRENT_DIR=$(pwd)
 
@@ -20,19 +20,19 @@ do
 done
 
 # Run build_runner build on json_serializable classes
-cd "$AT_TEMPLATE_PATH" || exit 1
+cd "$AT_APP_CREATE_PATH" || exit 1
 dart run build_runner build --delete-conflicting-outputs
 cd "$CURRENT_DIR" || exit 1
 
 # Build the mason bricks in at_template and output them into at_app
 for BRICK in "$BRICK_PATH"/*;
 do
-  dart pub global run mason_cli:mason bundle -t dart -o "$AT_TEMPLATE_PATH/lib/src/bundles/$(basename "$BRICK")" "$BRICK";
+  dart pub global run mason_cli:mason bundle -t dart -o "$AT_APP_CREATE_PATH/lib/src/bundles/$(basename "$BRICK")" "$BRICK";
 done
 
 # Format and analyze
 if [ $FORMAT -gt 0 ] ;
 then
-  dart format -l 120 "$MELOS_ROOT_PATH/packages/at_template";
-  dart analyze "$MELOS_ROOT_PATH/packages/at_template";
+  dart format -l 120 "$MELOS_ROOT_PATH/packages/at_app_create";
+  dart analyze "$MELOS_ROOT_PATH/packages/at_app_create";
 fi

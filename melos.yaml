@@ -8,7 +8,7 @@ packages:
 
 scripts:
   build: sh tools/build_all.sh
-  build:at_template: sh tools/build_at_template.sh
+  build:at_app_create: sh tools/build_at_app_create.sh
   build:at_app: sh tools/build_at_app.sh
   build:templates: sh tools/build_templates.sh
   build:generated: sh tools/build_generated.sh
