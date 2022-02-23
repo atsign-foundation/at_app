@@ -31,16 +31,11 @@ final baseBundle = MasonBundle.fromJson(<String, dynamic>{
       "description": "The description of the project",
       "default": "A new Flutter project"
     },
-    "dependencies": {"type": "string", "description": "A json encoded list of the app's dependencies", "default": "[]"},
-    "flutterConfig": {
-      "type": "string",
-      "description": "A json encoded list of the flutter map in pubspec.yaml",
-      "default": "[]"
-    },
+    "dependencies": {"type": "string", "description": "A json encoded list of the app's dependencies"},
+    "flutterConfig": {"type": "string", "description": "A json encoded list of the flutter map in pubspec.yaml"},
     "gitignore": {
       "type": "string",
-      "description": "A json encoded list of additional glob patterns to include in the .gitignore",
-      "default": "[]"
+      "description": "A json encoded list of additional glob patterns to include in the .gitignore"
     }
   }
 });

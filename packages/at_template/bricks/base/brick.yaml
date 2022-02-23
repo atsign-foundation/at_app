@@ -15,14 +15,14 @@ vars:
   dependencies:
     type: string
     description: A json encoded list of the app's dependencies
-    default: '[]'
+    default: null
 
   flutterConfig:
     type: string
     description: A json encoded list of the flutter map in pubspec.yaml
-    default: '[]'
+    default: null
 
   gitignore:
     type: string
     description: A json encoded list of additional glob patterns to include in the .gitignore
-    default: '[]'
+    default: null

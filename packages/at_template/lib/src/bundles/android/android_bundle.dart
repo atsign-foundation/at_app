@@ -133,12 +133,6 @@ final androidBundle = MasonBundle.fromJson(<String, dynamic>{
       "default": "example"
     },
     "orgTld": {"type": "string", "description": "The org top-level domain (e.g. com in com.example)", "default": "com"},
-    "dependencies": {"type": "string", "description": "A json encoded list of the app's dependencies", "default": "[]"},
-    "flutterConfig": {
-      "type": "string",
-      "description": "A json encoded list of the flutter map in pubspec.yaml",
-      "default": "[]"
-    },
     "minSdkVersion": {
       "type": "string",
       "description": "Set the minSdkVersion in the Android configuration",
