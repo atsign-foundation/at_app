@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:mason/mason.dart';
 
 import '../util/cli.dart';
-import '../vars/vars.dart';
 import 'models.dart';
 
 abstract class AtTemplate {

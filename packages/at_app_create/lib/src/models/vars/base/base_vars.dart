@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import '../../models/models.dart';
+import '../../models.dart';
 
 part 'base_vars.g.dart';
 

@@ -1,7 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:pub_semver/pub_semver.dart';
 
-import '../../models/models.dart';
+import '../../models.dart';
 
 part 'android_vars.g.dart';
 
