@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:args/command_runner.dart';
-import '../template_yaml_parser.dart';
+import '../util/template_yaml_parser.dart';
 import 'package:mason/mason.dart';
 import 'package:mason_cli/src/commands/bundle.dart';
 import 'package:path/path.dart' as path;

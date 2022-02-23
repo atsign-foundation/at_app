@@ -1,5 +1,5 @@
-name: template_bundler
-description: A command-line generator for at_app_templates.
+name: at_app_bundler
+description: A command-line bundler for at_app_create templates.
 version: 1.0.0
 
 publish_to: none
