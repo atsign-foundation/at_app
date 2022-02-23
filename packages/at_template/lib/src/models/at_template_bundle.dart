@@ -15,7 +15,7 @@ abstract class AtTemplateBundle<V extends AtVars> extends MasonBundle {
           hooks: m.hooks,
         );
 
-  Future<int> generate(DirectoryGeneratorTarget target, V vars, {bool overwrite = false}) async {
+  Future<List<GeneratedFile>> generate(DirectoryGeneratorTarget target, V vars, {bool overwrite = false}) async {
     MasonGenerator generator = await MasonGenerator.fromBundle(this);
     vars.validate();
     return generator.generate(

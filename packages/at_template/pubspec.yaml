@@ -5,11 +5,11 @@ repository: https://github.com/atsign-foundation/at_app/tree/trunk/packages/at_t
 homepage: https://atsign.dev/
 
 environment:
-  sdk: '>=2.15.1 <3.0.0'
+  sdk: '>=2.16.0 <3.0.0'
 
 dependencies:
   json_annotation: ^4.4.0
-  mason: 0.1.0-dev.4
+  mason: 0.1.0-dev.7
   pub_semver: ^2.1.0
   universal_io: ^2.0.4
 
