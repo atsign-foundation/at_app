@@ -1,4 +1,4 @@
-# at_template generated patterns
+# at_app_create generated patterns
 {{#gitignore}}{{.}}
 {{/gitignore}}
 

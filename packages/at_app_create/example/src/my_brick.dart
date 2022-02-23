@@ -1,4 +1,4 @@
-import 'package:at_template/at_template.dart';
+import 'package:at_app_create/at_app_create.dart';
 
 import 'my_brick_bundle.dart';
 

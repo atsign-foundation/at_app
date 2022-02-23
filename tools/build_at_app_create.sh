@@ -24,7 +24,7 @@ cd "$AT_APP_CREATE_PATH" || exit 1
 dart run build_runner build --delete-conflicting-outputs
 cd "$CURRENT_DIR" || exit 1
 
-# Build the mason bricks in at_template and output them into at_app
+# Build the mason bricks in at_app_create and output them into at_app
 for BRICK in "$BRICK_PATH"/*;
 do
   dart pub global run mason_cli:mason bundle -t dart -o "$AT_APP_CREATE_PATH/lib/src/bundles/$(basename "$BRICK")" "$BRICK";
