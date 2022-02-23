@@ -17,9 +17,18 @@ abstract class AtTemplateBundle<V extends AtVars> extends MasonBundle {
 
   Future<List<GeneratedFile>> generate(DirectoryGeneratorTarget target, V vars, {bool overwrite = false}) async {
     MasonGenerator generator = await MasonGenerator.fromBundle(this);
+
+    Map<String, dynamic> json = vars.toJson();
+
+    // Use default values for missing or null json values.
+    for (String key in this.vars.keys) {
+      json[key] ??= this.vars[key]!.defaultValue;
+      if (json[key] == null) {}
+    }
+
     return generator.generate(
       target,
-      vars: vars.toJson(),
+      vars: json,
       fileConflictResolution: overwrite ? FileConflictResolution.overwrite : FileConflictResolution.skip,
     );
   }
