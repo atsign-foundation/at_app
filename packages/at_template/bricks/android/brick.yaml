@@ -2,12 +2,57 @@ name: android
 description: Android folder for Flutter application templates.
 version: 0.0.1
 vars:
-  - projectName
-  - orgDomainName
-  - orgTld
-  - minSdkVersion
-  - targetSdkVersion
-  - compileSdkVersion
-  - enableR8
-  - kotlinVersion
-  - gradleVersion
+
+  projectName:
+    type: string
+    description: The name of the project
+
+  orgDomainName:
+    type: string
+    description: The org domain name (e.g. example in com.example)
+    default: example
+
+  orgTld:
+    type: string
+    description: The org top-level domain (e.g. com in com.example)
+    default: com
+
+  dependencies:
+    type: string
+    description: A json encoded list of the app's dependencies
+    default: '[]'
+
+  flutterConfig:
+    type: string
+    description: A json encoded list of the flutter map in pubspec.yaml
+    default: '[]'
+
+  minSdkVersion:
+    type: string
+    description: Set the minSdkVersion in the Android configuration
+    default: flutter.minSdkVersion
+
+  targetSdkVersion:
+    type: string
+    description: Set the targetSdkVersion in the Android configuration
+    default: flutter.targetSdkVersion
+
+  compileSdkVersion:
+    type: string
+    description: Set the compileSdkVersion in the Android configuration
+    default: flutter.compileSdkVersion
+
+  enableR8:
+    type: boolean
+    description: Enable Android R8 code shrinking.
+    default: true
+
+  kotlinVersion:
+    type: string
+    description: Set the ext.kotlinVersion in the Android configuration
+    default: '1.5.32'
+
+  gradleVersion:
+    type: string
+    description: Set the Gradle version used in the Android configuration
+    default: '6.7'
