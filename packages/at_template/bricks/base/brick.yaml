@@ -21,3 +21,8 @@ vars:
     type: string
     description: A json encoded list of the flutter map in pubspec.yaml
     default: '[]'
+
+  gitignore:
+    type: string
+    description: A json encoded list of additional glob patterns to include in the .gitignore
+    default: '[]'

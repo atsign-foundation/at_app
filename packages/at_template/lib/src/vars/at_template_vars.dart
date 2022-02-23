@@ -29,6 +29,10 @@ class AtTemplateVars implements AndroidVars, BaseVars, IosVars {
   @override
   List<String>? flutterConfig;
 
+  /// Additional glob patterns to include in the .gitignore
+  @override
+  List<String>? gitignore;
+
   /// The domain name part of the org name
   @override
   String? orgDomainName;
@@ -73,6 +77,7 @@ class AtTemplateVars implements AndroidVars, BaseVars, IosVars {
     this.description,
     this.dependencies,
     this.flutterConfig,
+    this.gitignore,
     this.orgTld,
     this.orgDomainName,
     this.minSdkVersion,

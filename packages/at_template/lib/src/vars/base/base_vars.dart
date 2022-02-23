@@ -23,11 +23,15 @@ class BaseVars implements AtVars {
   /// The map under 'flutter:' in pubspec.yaml
   List<String>? flutterConfig;
 
+  /// Additional glob patterns to include in the .gitignore
+  List<String>? gitignore;
+
   BaseVars({
     this.projectName,
     this.description,
     this.dependencies,
     this.flutterConfig,
+    this.gitignore,
   });
 
   factory BaseVars.fromJson(Map<String, dynamic> json) => _$BaseVarsFromJson(json);

@@ -1,3 +1,7 @@
+# at_template generated patterns
+{{#gitignore}}{{.}}
+{{/gitignore}}
+
 # Miscellaneous
 *.class
 *.log
