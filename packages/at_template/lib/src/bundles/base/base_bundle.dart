@@ -24,9 +24,17 @@ final baseBundle = MasonBundle.fromJson(<String, dynamic>{
   "description": "Base for Flutter application templates.",
   "version": "0.0.1",
   "vars": {
-    "projectName": {"type": "string"},
-    "description": {"type": "string"},
-    "dependencies": {"type": "string"},
-    "flutterConfig": {"type": "string"}
+    "projectName": {"type": "string", "description": "The name of the project"},
+    "description": {
+      "type": "string",
+      "description": "The description of the project",
+      "default": "A new Flutter project"
+    },
+    "dependencies": {"type": "string", "description": "A json encoded list of the app's dependencies", "default": "[]"},
+    "flutterConfig": {
+      "type": "string",
+      "description": "A json encoded list of the flutter map in pubspec.yaml",
+      "default": "[]"
+    }
   }
 });
