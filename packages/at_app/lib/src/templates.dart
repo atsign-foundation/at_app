@@ -1,5 +1,6 @@
+import 'package:at_app_create/at_app_create.dart' show AtAppTemplate;
+
 import 'bundles/bundles.dart';
-import 'models/at_app_template.dart';
 
 final List<AtAppTemplate> templates = [
   appTemplate,
