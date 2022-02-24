@@ -1,0 +1,31 @@
+name: at_template_bundle
+description: Generated bundle for an AtTemplate from at_app_create package.
+version: 0.1.0
+vars:
+  name:
+    type: string
+    description: The name of the AtTemplate
+
+  description:
+    type: string
+    description: The description of the AtTemplate
+
+  additionalImports:
+    type: string
+    description: A JSON encoded list of additional import lines to include
+    default: null
+
+  additionalVars:
+    type: string
+    description: A JSON encoded list of additional parameters to include in AtTemplateVars
+    default: null
+
+  overrideEnv:
+    type: boolean
+    description: Whether to override the environment
+    default: false
+
+  env:
+    type: string
+    description: A JSON encoded map of the override environment
+    default: {}
