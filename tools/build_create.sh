@@ -33,6 +33,8 @@ done
 # Format and analyze
 if [ $FORMAT -gt 0 ] ;
 then
-  dart format -l 120 "$MELOS_ROOT_PATH/packages/at_app_create";
+  # Cannot format at_app_create directory directly
+  # it will non-zero exit due to the dart templates in the bricks directory
+  dart format -l 120 "$MELOS_ROOT_PATH/packages/at_app_create/lib";
   dart analyze "$MELOS_ROOT_PATH/packages/at_app_create";
 fi

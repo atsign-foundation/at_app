@@ -1,5 +1,5 @@
 import 'package:args/command_runner.dart';
-import 'commands/bundle.dart';
+import 'commands/commands.dart';
 
 const exectuableName = 'at_template';
 const executableDescription = 'Generate at_templates from the commandline';

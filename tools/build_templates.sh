@@ -2,8 +2,7 @@
 
 OUTPUT_PATH="$MELOS_ROOT_PATH/packages/at_app"
 BRICK_PATH="$MELOS_ROOT_PATH/templates/lib"
-TOOL_PATH="$MELOS_ROOT_PATH/tools"
-BUNDLER_MAIN="$TOOL_PATH/template_bundler/bin/main.dart"
+BUNDLER_MAIN="$MELOS_ROOT_PATH/packages/at_app_bundler/bin/main.dart"
 
 # ARGS
 FORMAT=1

@@ -4,12 +4,12 @@ repository: https://github.com/atsign-foundation/at_app
 packages:
   - packages/*/* # Published packages
   - templates/* # The at_app templates
-  - tools/template_bundler/* # A tool that bundles templates into dart code in at_app
 
 scripts:
   build: sh tools/build_all.sh
-  build:at_app_create: sh tools/build_at_app_create.sh
   build:at_app: sh tools/build_at_app.sh
+  build:bundler: sh tools/build_bundler.sh
+  build:create: sh tools/build_create.sh
   build:templates: sh tools/build_templates.sh
   build:generated: sh tools/build_generated.sh
 

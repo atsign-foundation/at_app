@@ -16,5 +16,6 @@ final snackbarBundle = MasonBundle.fromJson(<String, dynamic>{
   "name": "snackbar",
   "description": "Send and receive end-to-end encrypted snackbars!",
   "version": "0.1.0",
+  "environment": {"mason": "any"},
   "vars": {}
 });
