@@ -32,8 +32,11 @@ jobs:
         working-directory: ./packages/at_app_flutter
         run: dart analyze
 
+      - name: Build the bundler tool
+        run: dart pub global run melos run build:bundler;
+
       - name: Build, format, and analyze at_app_create
-        run: dart pub global run melos run build:at_app_create;
+        run: dart pub global run melos run build:create;
 
       - name: Bundle templates into, format, and analyze at_app
         run: dart pub global run melos run build:templates;
