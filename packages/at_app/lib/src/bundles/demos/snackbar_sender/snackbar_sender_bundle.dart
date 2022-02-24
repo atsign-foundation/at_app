@@ -16,5 +16,6 @@ final snackbarSenderBundle = MasonBundle.fromJson(<String, dynamic>{
   "name": "snackbar_sender",
   "description": "Send snackbars to a flutter web application publically.",
   "version": "0.1.0",
+  "environment": {"mason": "any"},
   "vars": {}
 });

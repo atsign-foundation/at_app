@@ -34,5 +34,6 @@ final atOnboardingFlutterBundle = MasonBundle.fromJson(<String, dynamic>{
   "name": "at_onboarding_flutter",
   "description": "A sample of how to use the at_onboarding_flutter package.",
   "version": "0.1.0",
+  "environment": {"mason": "any"},
   "vars": {}
 });
