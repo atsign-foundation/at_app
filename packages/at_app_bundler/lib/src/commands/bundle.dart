@@ -3,10 +3,10 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:args/command_runner.dart';
+import 'package:at_app_bundler/src/bundles/at_template_bundle/at_template_bundle_bundle.dart';
 import '../util/template_yaml_parser.dart';
 import 'package:mason/mason.dart';
 import 'package:mason_cli/src/commands/bundle.dart';
-import 'package:path/path.dart' as path;
 
 class AtBundleCommand extends Command<int> {
   AtBundleCommand() {
@@ -39,82 +39,74 @@ class AtBundleCommand extends Command<int> {
 
     Map<String, dynamic> templateConfig = await parser.parse();
     await _generateFiles(brick, bundle, templateConfig);
-    // todo log $bundlePath generated
+
     return masonResult ?? 0;
   }
 
   Future<void> _generateFiles(Directory brick, MasonBundle bundle, Map<String, dynamic> templateConfig) async {
-    String dirName = path.basename(brick.absolute.path);
+    List<String>? additionalImports;
 
-    File varFile = File(path.join(outputDir!, '$dirName.dart'));
-    File bundleFile = File(path.join(outputDir!, '${dirName}_template_bundle.dart'));
-
-    String className = '${bundle.name.pascalCase()}TemplateBundle';
-    String varName = '${bundle.name.camelCase()}Template';
-
-    String parsedVars = _parseVars(bundle, templateConfig);
-
-    bool includePubSemver = parsedVars.contains('kotlinVersion');
-
-    await varFile.create(recursive: true);
-
-    List<String> varFileLines = await varFile.readAsLines();
-    String lockLine = varFileLines.firstWhere(
-      (element) => element.startsWith('// LOCKED ='),
-      orElse: () => 'FALSE', // Unlocked by default (to write when empty)
-    );
-
-    if (!lockLine.contains(RegExp('true', caseSensitive: false))) {
-      await varFile.writeAsString(
-        "// GENERATED CODE - MODIFY AS NECESSARY\n// PREVENT OVERWRITING THIS FILE BELOW:\n// LOCKED = FALSE\n\nimport 'package:at_app_create/at_app_create.dart';\nimport 'package:at_app/src/models/at_app_template.dart';${(includePubSemver) ? "\nimport 'package:pub_semver/pub_semver.dart';" : ''}\n\nimport '${dirName}_template_bundle.dart';\n\nexport '${dirName}_template_bundle.dart';\n\nfinal $varName = AtAppTemplate(\n  name: '${bundle.name}',\n  description: '${bundle.description}',\n  vars: $parsedVars\n  bundles: [BaseTemplateBundle(), AndroidTemplateBundle(), IosTemplateBundle(), $className()],\n);\n",
-      );
+    bool includePubSemver = templateConfig['android']?.containsKey('kotlinVersion') ?? false;
+    if (includePubSemver) {
+      additionalImports ??= [];
+      additionalImports.add("import 'package:pub_semver/pub_semver.dart';");
     }
 
-    await bundleFile.create(recursive: true);
+    Map<String, dynamic> templateVars = {
+      'name': bundle.name,
+      'description': bundle.description,
+      'additionalImports': additionalImports,
+      'additionalVars': _parseVars(bundle, templateConfig),
+      'overrideEnv': templateConfig['env']['override'] ?? false,
+      'env': jsonEncode(templateConfig['env_override']),
+    };
 
-    await bundleFile.writeAsString(
-      "// GENERATED CODE - DO NOT MODIFY BY HAND\n\nimport 'package:at_app_create/at_app_create.dart';\nimport '${bundle.name}_bundle.dart';\n\nclass $className extends AtTemplateBundle<AtTemplateVars> {\n  $className() : super(${bundle.name.camelCase()}Bundle);\n}\n",
-    );
+    MasonGenerator generator = await MasonGenerator.fromBundle(atTemplateBundleBundle);
+    DirectoryGeneratorTarget target = DirectoryGeneratorTarget(Directory(outputDir!));
+    await generator.generate(target, vars: templateVars, fileConflictResolution: FileConflictResolution.overwrite);
   }
 
-  String _parseVars(MasonBundle bundle, Map<String, dynamic> templateConfig) {
-    List<String> result = ["AtTemplateVars(", "  includeBundles: {'${bundle.name}'},"];
+  List<String>? _parseVars(MasonBundle bundle, Map<String, dynamic> templateConfig) {
+    List<String> result = [];
     List<String> flutterConfig = [];
+
+    List<String>? dependencies = templateConfig['dependencies'];
+    Map<String, dynamic>? android = templateConfig['android'];
+    List<String>? gitignore = templateConfig['gitignore'];
 
     if ((templateConfig['env']['include'] ?? false) || (templateConfig['env']['override'] ?? false)) {
       flutterConfig.addAll(['assets:', '  - .env']);
     }
-    List<String>? dependencies = templateConfig['dependencies'];
-    if ((dependencies ?? []).isNotEmpty) {
-      result.add("  dependencies: ${jsonEncode(dependencies)},");
+
+    if (dependencies?.isNotEmpty ?? false) {
+      result.add("dependencies: ${jsonEncode(dependencies)},");
     }
-    Map<String, dynamic> android = templateConfig['android'];
-    if (android.isNotEmpty) {
-      android.forEach((key, value) {
+
+    if (android?.isNotEmpty ?? false) {
+      android!.forEach((key, value) {
         switch (key) {
           case 'enableR8':
-            result.add("  $key: $value,");
+            result.add("$key: $value,");
             break;
           case 'kotlinVersion': // pub_semver Version object
-            result.add("  $key: Version.parse('$value'),");
+            result.add("$key: Version.parse('$value'),");
             break;
           default: // String value
-            result.add("  $key: '$value',");
+            result.add("$key: '$value',");
         }
       });
     }
-    List<String>? gitignore = templateConfig['gitignore'];
-    if ((gitignore ?? []).isNotEmpty) {
-      result.add("  gitignore: ${jsonEncode(gitignore)},");
+
+    if (gitignore?.isNotEmpty ?? false) {
+      result.add("gitignore: ${jsonEncode(gitignore)},");
     }
 
-    result.add("  flutterConfig: ${jsonEncode(flutterConfig)},");
-    result.add('),');
-    if (templateConfig['env']['override'] ?? false) {
-      result.add('overrideEnv: true,');
-      result.add("env: ${jsonEncode(templateConfig['env_override'])},");
+    if (flutterConfig.isNotEmpty) {
+      result.add("flutterConfig: ${jsonEncode(flutterConfig)},");
     }
-    return result.join('\n  ');
+
+    if (result.isEmpty) return null;
+    return result;
   }
 
   String? get outputDir => argResults?['output-dir'];
@@ -123,38 +115,5 @@ class AtBundleCommand extends Command<int> {
 class _BundleCommandRunner extends CommandRunner<int> {
   _BundleCommandRunner() : super('bundler', 'internal bundler used by AtBundleCommand') {
     addCommand(BundleCommand());
-  }
-}
-
-extension _StringExtension on String {
-  String capitalize() {
-    return "${this[0].toUpperCase()}${substring(1).toLowerCase()}";
-  }
-
-  String uncapitalize() {
-    return "${this[0].toLowerCase()}${substring(1).toLowerCase()}";
-  }
-
-  String camelCase() {
-    List<String> parts = split('_');
-
-    if (parts.isEmpty) {
-      return '';
-    }
-
-    String first = parts[0].uncapitalize();
-    List<String> rest = parts.sublist(1).map((String x) => x.capitalize()).toList();
-
-    return first + rest.join('');
-  }
-
-  String pascalCase() {
-    List<String> parts = split('_');
-
-    if (parts.isEmpty) {
-      return '';
-    }
-
-    return parts.map((String x) => x.capitalize()).toList().join('');
   }
 }
