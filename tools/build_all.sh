@@ -23,7 +23,8 @@ dart pub global run melos run build:at_app;
 dart pub global run melos run build:generated;
 
 # Format and analyze manually, so that the output appears at the end
-dart format -l 120 packages/at_app_bundler/
+dart format -l 120 packages/at_app_bundler/lib
+dart format -l 120 packages/at_app_bundler/bin
 dart format -l 120 packages/at_app_create/
 dart format -l 120 packages/at_app/
 
