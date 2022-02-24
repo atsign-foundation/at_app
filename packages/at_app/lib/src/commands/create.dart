@@ -1,7 +1,6 @@
 import 'package:args/command_runner.dart';
 import 'package:at_app/src/models/exceptions/flutter_exception.dart';
 import 'package:at_app/src/models/exceptions/template_exception.dart';
-import 'package:at_app/src/models/at_app_template.dart';
 import 'package:at_app/src/services/env_manager.dart';
 import 'package:at_app/src/services/template_service.dart';
 import 'package:at_app/src/util/root_domain.dart';
