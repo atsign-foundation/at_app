@@ -42,7 +42,7 @@ This is a command-line bundler tool for at_app_create, it allows you to easily b
 
 ## Open source usage and contributions
 
-This is open source code, so feel free to use it as is, suggest changes or enhancements or create your own version. See CONTRIBUTING.md for detailed guidance on how to setup tools, tests and make a pull request.
+This is open source code, so feel free to use it as is, suggest changes or enhancements or create your own version. See [CONTRIBUTING.md](/CONTRIBUTING.md) for detailed guidance on how to setup tools, tests and make a pull request.
 
 ## Acknowledgement/attribution
 
