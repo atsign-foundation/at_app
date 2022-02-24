@@ -25,24 +25,36 @@ describe.
 
 ### Prerequisites
 
-This repository uses [melos](https://pub.dev/packages/melos) to manage the various packages contained within it.
-To setup the environment, there are two paths.
+This repository uses a number of tools, including [melos](https://pub.dev/packages/melos) and [mason_cli](https://pub.dev/packages/mason_cli).
 
-#### 1 Run melos through pub global
+1. Install it using the following command
 
-This method does not install melos onto your machine. If you don't need to use melos outside of this project, this method is preferred. Run the following command from within the repository:
+   ```sh
+   dart pub global activate melos
+   ```
 
-```sh
-dart pub global run melos bootstrap
-```
+   > If the previous command prompted you to add a directory to your PATH, it is recommended you do so.  
+   > Once added to the PATH, you can use the shorter commands listed in steps 2 & 3, otherwise you will have to run them through dart.
 
-#### 2 Install the melos binaries
+2. Bootstrap the project using melos
+   ```sh
+   melos bootstrap
+   ```
 
-This method installs melos onto your machine. If you intend to use melos again in another project, this method is preferred. Run the following commands from within the repository:
+   If `melos` wasn't added to the PATH, you can also run it through `dart`:
+   ```sh
+   dart pub global run melos bootstrap
+   ```
 
-```sh
-dart pub global activate melos
-melos bootstrap
+3. Run the setup script using melos
+
+   ```sh
+   melos run setup
+   ```
+
+   If `melos` wasn't added to the PATH, you can also run it through `dart`:
+   ```sh
+   dart pub global run melos run setup
 ```
 
 ### GitHub Repository Clone
@@ -71,7 +83,7 @@ To prepare your dedicated GitHub repository:
    The use of `upstream --push DISABLED` is to prevent those
    with `write` access to the main repository from accidentally pushing changes
    directly.
-   
+
 ### Development Process
 
 1. Fetch latest changes from main repository:
@@ -99,16 +111,15 @@ To prepare your dedicated GitHub repository:
    git push
    ```
 
-
-
-1. How to run tests:
-
-   By default at_app uses the version that has been published on pub.dev to generate projects.
-   If you would like to run it using your local version of code, then specify the hidden `--local` flag:
-
+1. How to run tests:  
+   First build the entire project:
    ```sh
-   at_app create [...options] --local <path/to/output/folder>
+   melos run build
    ```
+   `melos` will dump a copy of every generated app into `build/`.  
+   From there, you can run each of the generated apps to determine if they were built correctly.
+
+   *More automated tests coming soon*
 
 1. Open a new Pull Request to the main repository using your `trunk` branch
 
