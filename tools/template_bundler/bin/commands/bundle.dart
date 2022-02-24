@@ -86,7 +86,7 @@ class AtBundleCommand extends Command<int> {
     }
     List<String>? dependencies = templateConfig['dependencies'];
     if ((dependencies ?? []).isNotEmpty) {
-      result.add("  dependencies: ${jsonEncode(templateConfig['dependencies'])},");
+      result.add("  dependencies: ${jsonEncode(dependencies)},");
     }
     Map<String, dynamic> android = templateConfig['android'];
     if (android.isNotEmpty) {
@@ -102,6 +102,10 @@ class AtBundleCommand extends Command<int> {
             result.add("  $key: '$value',");
         }
       });
+    }
+    List<String>? gitignore = templateConfig['gitignore'];
+    if ((gitignore ?? []).isNotEmpty) {
+      result.add("  gitignore: ${jsonEncode(gitignore)},");
     }
 
     result.add("  flutterConfig: ${jsonEncode(flutterConfig)},");

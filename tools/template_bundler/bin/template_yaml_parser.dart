@@ -13,10 +13,13 @@ class TemplateYamlParser {
     File configFile = File(path.join(brick.absolute.path, 'template.yaml'));
     String fileContents = await configFile.readAsString();
     yaml = loadYamlDocument(fileContents).contents.value;
+
     Map<String, bool> env = _parseEnv();
     List<String> dependencies = _parseDependencies();
     Map<String, dynamic> android = _parsePlatformConfig('android');
     Map<String, String> envOverride = {};
+    List<String> gitignore = _parseGitignore();
+
     if (env['override'] ?? false) {
       envOverride = _parseEnvOverride();
     }
@@ -26,6 +29,7 @@ class TemplateYamlParser {
       'dependencies': dependencies,
       'android': android,
       'env_override': envOverride,
+      'gitignore': gitignore,
     };
   }
 
@@ -43,16 +47,12 @@ class TemplateYamlParser {
       _YamlMapParser<String, dynamic>(yaml[platform])?.toMap() ?? {};
 
   Map<String, String> _parseEnvOverride() => _YamlMapParser<String, String>(yaml['env_override'])?.toMap() ?? {};
+
+  List<String> _parseGitignore() => _YamlListParser<String>(yaml['gitignore'])?.toList() ?? [];
 }
 
 extension _YamlMapParser<K, V> on YamlMap {
-  Map<K, V> toMap() {
-    Map<K, V> result = {};
-    forEach((key, value) {
-      result[key] = value;
-    });
-    return result;
-  }
+  Map<K, V> toMap() => Map<K, V>.from(this);
 
   List<String> toLines() {
     List<String> result = [];
@@ -61,4 +61,8 @@ extension _YamlMapParser<K, V> on YamlMap {
     });
     return result;
   }
+}
+
+extension _YamlListParser<T> on YamlList {
+  List<T> toList() => List<T>.from(this);
 }

@@ -11,6 +11,7 @@ BaseVars _$BaseVarsFromJson(Map<String, dynamic> json) => BaseVars(
       description: json['description'] as String?,
       dependencies: (json['dependencies'] as List<dynamic>?)?.map((e) => e as String).toList(),
       flutterConfig: (json['flutterConfig'] as List<dynamic>?)?.map((e) => e as String).toList(),
+      gitignore: (json['gitignore'] as List<dynamic>?)?.map((e) => e as String).toList(),
     );
 
 Map<String, dynamic> _$BaseVarsToJson(BaseVars instance) => <String, dynamic>{
@@ -18,4 +19,5 @@ Map<String, dynamic> _$BaseVarsToJson(BaseVars instance) => <String, dynamic>{
       'description': instance.description,
       'dependencies': instance.dependencies,
       'flutterConfig': instance.flutterConfig,
+      'gitignore': instance.gitignore,
     };
