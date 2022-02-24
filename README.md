@@ -22,13 +22,13 @@ This package is added to generated apps and provides additional functionality re
 
 [[View Source](/packages/at_app_flutter)]
 
-### at_template
+### at_app_create
 
-[![pub package](https://img.shields.io/pub/v/at_template)](https://pub.dev/packages/at_template) [![pub points](https://badges.bar/at_template/pub%20points)](https://pub.dev/packages/at_template/score) [![gitHub license](https://img.shields.io/badge/license-BSD3-blue.svg)](/packages/at_template/LICENSE)
+[![pub package](https://img.shields.io/pub/v/at_app_create)](https://pub.dev/packages/at_app_create) [![pub points](https://badges.bar/at_app_create/pub%20points)](https://pub.dev/packages/at_app_create/score) [![gitHub license](https://img.shields.io/badge/license-BSD3-blue.svg)](/packages/at_app_create/LICENSE)
 
 This package provides the app templates that at_app uses to generate its applications (Coming Soon).
 
-[[View Source](/packages/at_template)]
+[[View Source](/packages/at_app_create)]
 
 ## Maintainers
 

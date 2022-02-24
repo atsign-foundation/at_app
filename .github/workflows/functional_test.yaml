@@ -10,10 +10,6 @@ on:
 
 jobs:
   build_test:
-    env:
-      at_template_dir: ./packages/at_template
-      at_app_dir: ./packages/at_app
-      at_app_flutter_dir: ./packages/at_app_flutter
     runs-on: ubuntu-latest
 
     steps:
@@ -33,22 +29,14 @@ jobs:
         run: dart pub global run melos bootstrap
 
       - name: Analyze at_app_flutter
-        working-directory: ${{ env.at_app_flutter_dir }}
+        working-directory: ./packages/at_app_flutter
         run: dart analyze
 
-      - name: Build and format at_template package
-        run: dart pub global run melos run build:at_template;
+      - name: Build, format, and analyze at_app_create
+        run: dart pub global run melos run build:at_app_create;
 
-      - name: Analyze at_template
-        working-directory: ${{ env.at_template_dir }}
-        run: dart analyze
-
-      - name: Bundle templates into at_app and format at_app
+      - name: Bundle templates into, format, and analyze at_app
         run: dart pub global run melos run build:templates;
-
-      - name: Analyze at_app
-        working-directory: ${{ env.at_app_dir }}
-        run: dart analyze
 
       - name: Build generated apps
         run: dart pub global run melos run build:generated;

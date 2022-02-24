@@ -5,7 +5,7 @@ import 'package:at_app/src/models/at_app_template.dart';
 import 'package:at_app/src/services/env_manager.dart';
 import 'package:at_app/src/services/template_service.dart';
 import 'package:at_app/src/util/root_domain.dart';
-import 'package:at_template/at_template.dart';
+import 'package:at_app_create/at_app_create.dart';
 import 'package:mason/mason.dart' hide Logger;
 import 'package:tabular/tabular.dart';
 
