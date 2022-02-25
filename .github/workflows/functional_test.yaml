@@ -44,7 +44,7 @@ jobs:
           dart analyze ./bin
 
       - name: Bundle at_app_create
-        run: dart pub global run melos run build:create -- --no-analyze
+        run: dart pub global run melos run bundle:create -- --no-analyze
 
       - name: Analyze at_app_create
         working-directory: ./packages/at_app_create
