@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import '../models/exceptions/template_exception.dart';
 import '../models/file_manager.dart';
 
 class EnvManager with FileManager {
@@ -34,7 +33,7 @@ class EnvManager with FileManager {
 
       await write(newFileContents);
     } catch (error) {
-      throw TemplateException('Unable to configure environment in $filePath');
+      throw Exception('Unable to configure environment in $filePath');
     }
   }
 }

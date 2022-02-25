@@ -155,19 +155,8 @@ class CreateCommand extends CreateBase {
 
       _logger.i('');
       _logger.i('Generated ${generatedFiles.length} files.');
-    } on TemplateException catch (e) {
-      _logger.e('There was an issue generating part of your template:', e.message);
-      return CommandStatus.fail;
-    } on FlutterException catch (e) {
-      _logger.e('There was an issue running pub get in $projectDir:', e.message);
-      return CommandStatus.fail;
-    } on Error catch (e) {
-      _logger.e('An unknown error occurred: ', e.stackTrace?.toString());
-      _logger
-          .i('Please file a ticket to prevent this from happening again:\nhttps://github.com/atsign-foundation/at_app');
-      return CommandStatus.fail;
     } catch (e) {
-      _logger.e('An unknown issue occurred: ', e.toString());
+      _logger.e('There was an issue generating your template:\n', e.toString());
       _logger
           .i('Please file a ticket to prevent this from happening again:\nhttps://github.com/atsign-foundation/at_app');
 
