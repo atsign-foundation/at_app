@@ -12,6 +12,7 @@ dependencies:
   mason: 0.1.0-dev.8
   pub_semver: ^2.1.0
   universal_io: ^2.0.4
+  args: ^2.3.0
 
 dev_dependencies:
   build_runner: ^2.1.7
