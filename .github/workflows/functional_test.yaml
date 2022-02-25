@@ -26,23 +26,42 @@ jobs:
         run: dart pub global run melos bootstrap
 
       - name: Install mason_cli
-        run: dart pub global run melos run setup:mason;
+        run: dart pub global run melos run setup:mason
 
       - name: Analyze at_app_flutter
         working-directory: ./packages/at_app_flutter
         run: dart analyze
 
-      - name: Build the bundler tool
-        run: dart pub global run melos run build:bundler;
+      - name: Bundle at_app_bundler
+        run: dart pub global run melos run bundle:bundler -- --no-analyze
 
-      - name: Build, format, and analyze at_app_create
-        run: dart pub global run melos run build:create;
+      - name: Analyze at_app_bundler
+        working-directory: ./packages/at_app_bundler
+        # The mason brick in at_app_bundler is not valid dart code
+        # Must analyze each directory individually
+        run: |
+          dart analyze ./lib
+          dart analyze ./bin
 
-      - name: Bundle templates into, format, and analyze at_app
-        run: dart pub global run melos run build:templates;
+      - name: Bundle at_app_create
+        run: dart pub global run melos run build:create -- --no-analyze
+
+      - name: Analyze at_app_create
+        working-directory: ./packages/at_app_create
+        run: dart analyze
+
+      - name: Bundle templates into at_app
+        run: dart pub global run melos run build:templates -- --no-analyze
+
+      - name: Build at_app
+        run: dart pub global run melos run build:at_app
+
+      - name: Analyze at_app
+        working-directory: ./packages/at_app
+        run: dart analyze
 
       - name: Build generated apps
-        run: dart pub global run melos run build:generated;
+        run: dart pub global run melos run build:generated
 
       - name: Analyze generated apps
         working-directory: ./build

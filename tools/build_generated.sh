@@ -15,23 +15,38 @@ build_apps() {
   done;
 }
 
-echo "CLEANING build/"
-rm -rf "${OUTPUT_PATH:?}/"*
+if [ "$#" -gt 0 ];
+then
+  # Build a list of templates
+  # Args come in pairs:
+  # 1: type <d|s|t>
+  # 2: name <template-name>
+  while [ "$#" -gt 0 ];
+  do
+    echo "BUILDING $2"
+    build_apps "$1" "$2"
+    shift 2
+  done
+else
+  # Build all templates
+  echo "CLEANING build/"
+  rm -rf "${OUTPUT_PATH:?}/"*
 
-echo "READING TEMPLATES"
-TEMPLATES="$(dart run "$MAIN_FILE" create --list-templates | cut -f1 -d '|' | sed -e '1,3d' | tr '\n' ' ')"
-echo "BUILDING TEMPLATES"
-echo "$TEMPLATES"
-build_apps t "$TEMPLATES"
+  echo "READING TEMPLATES"
+  TEMPLATES="$(dart run "$MAIN_FILE" create --list-templates | cut -f1 -d '|' | sed -e '1,3d' | tr '\n' ' ')"
+  echo "BUILDING TEMPLATES"
+  echo "$TEMPLATES"
+  build_apps t "$TEMPLATES"
 
-echo "READING SAMPLES"
-SAMPLES="$(dart run "$MAIN_FILE" create --list-samples | cut -f1 -d '|' | sed -e '1,3d' | tr '\n' ' ')"
-echo "BUILDING SAMPLES"
-echo "$SAMPLES"
-build_apps s "$SAMPLES"
+  echo "READING SAMPLES"
+  SAMPLES="$(dart run "$MAIN_FILE" create --list-samples | cut -f1 -d '|' | sed -e '1,3d' | tr '\n' ' ')"
+  echo "BUILDING SAMPLES"
+  echo "$SAMPLES"
+  build_apps s "$SAMPLES"
 
-echo "READING DEMOS"
-DEMOS="$(dart run "$MAIN_FILE" create --list-demos | cut -f1 -d '|' | sed -e '1,3d' | tr '\n' ' ')"
-echo "BUILDING DEMOS"
-echo "$DEMOS"
-build_apps d "$DEMOS"
+  echo "READING DEMOS"
+  DEMOS="$(dart run "$MAIN_FILE" create --list-demos | cut -f1 -d '|' | sed -e '1,3d' | tr '\n' ' ')"
+  echo "BUILDING DEMOS"
+  echo "$DEMOS"
+  build_apps d "$DEMOS"
+fi
