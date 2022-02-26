@@ -22,11 +22,11 @@ jobs:
       - name: Install melos
         run: dart pub global activate melos
 
-      - name: Install mason_cli
-        run: dart pub global activate mason_cli 0.1.0-dev.12
-
       - name: Bootstrap project with melos
         run: dart pub global run melos bootstrap
+
+      - name: Install mason_cli
+        run: dart pub global run melos run setup:mason;
 
       - name: Analyze at_app_flutter
         working-directory: ./packages/at_app_flutter
