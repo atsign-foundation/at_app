@@ -7,14 +7,15 @@ CURRENT_DIR=$(pwd)
 
 # ARGS
 FORMAT=1
-
+ANALYZE=1
 # ARG PARSER
 while [ $# -gt 0 ];
 do
   case "$1" in
     --no-format)
-      FORMAT=0
-    ;;
+      FORMAT=0;;
+    --no-analyze)
+      ANALYZE=0;;
   esac
   shift
 done
@@ -31,10 +32,14 @@ do
 done
 
 # Format and analyze
-if [ $FORMAT -gt 0 ] ;
+if [ $FORMAT -gt 0 ];
 then
   # Cannot format at_app_create directory directly
   # it will non-zero exit due to the dart templates in the bricks directory
   dart format -l 120 "$MELOS_ROOT_PATH/packages/at_app_create/lib";
+fi
+
+if [ $ANALYZE -gt 0 ];
+then
   dart analyze "$MELOS_ROOT_PATH/packages/at_app_create";
 fi
