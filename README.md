@@ -36,7 +36,13 @@ Created by [XavierChanth](https://github.com/xavierchanth)
 
 If you would like to contribute, please see [CONTRIBUTING.md](/CONTRIBUTING.md).
 
-## Attribution
+[[View Source](/packages/at_app_bundler)]
+
+## Open source usage and contributions
+
+This is open source code, so feel free to use it as is, suggest changes or enhancements or create your own version. See [CONTRIBUTING.md](/CONTRIBUTING.md) for detailed guidance on how to setup tools, tests and make a pull request.
+
+## Acknowledgement/attribution
 
 Copyright 2014 The Flutter Authors. All rights reserved.
 
