@@ -1,7 +1,4 @@
 import 'package:args/command_runner.dart';
-import 'package:at_app/src/models/exceptions/flutter_exception.dart';
-import 'package:at_app/src/models/exceptions/template_exception.dart';
-import 'package:at_app/src/models/at_app_template.dart';
 import 'package:at_app/src/services/env_manager.dart';
 import 'package:at_app/src/services/template_service.dart';
 import 'package:at_app/src/util/root_domain.dart';
@@ -16,18 +13,25 @@ import 'package:logger/logger.dart' show Logger;
 import 'package:path/path.dart' show join, relative;
 
 import '../models/command_status.dart';
-import 'create_base.dart';
+import 'package:at_app_create/commands.dart';
 
 const defaultTemplateName = 'app';
+
+const platforms = ['android', 'ios'];
 
 /// This class extends the flutter create abstraction,
 /// It will pull templates from at_app_flutter
 /// and uses the respective template generator to generate the full template.
-class CreateCommand extends CreateBase {
+class CreateCommand extends AtCreateCommand<CommandStatus> {
   @override
   final String description = 'Create a new @platform Flutter project.';
   final Logger _logger = LoggerService().logger;
-  CreateCommand({Logger? logger}) : super() {
+  CreateCommand({Logger? logger})
+      : super(
+          successValue: CommandStatus.success,
+          availablePlatforms: platforms,
+          allCreatePlatforms: platforms,
+        ) {
     argParser.addOption(
       'namespace',
       abbr: 'n',
