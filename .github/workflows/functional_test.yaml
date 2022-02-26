@@ -51,7 +51,7 @@ jobs:
         run: dart analyze
 
       - name: Bundle templates into at_app
-        run: dart pub global run melos run build:templates -- --no-analyze
+        run: dart pub global run melos run bundle:templates -- --no-analyze
 
       - name: Build at_app
         run: dart pub global run melos run build:at_app
