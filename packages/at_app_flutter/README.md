@@ -36,14 +36,6 @@ This is open source code, so feel free to use it as is, suggest changes or
 enhancements or create your own version. See [CONTRIBUTING.md](../CONTRIBUTING.md)
 for detailed guidance on how to setup tools, tests and make a pull request.
 
-## Acknowledgement/attribution
-
-Copyright 2014 The Flutter Authors. All rights reserved.
-
-This project is an extension of, and utilises `flutter create` to generate templates.
-Code reused from the flutter sdk is marked with the copyright.
-Please see the original license [here.](https://github.com/flutter/flutter/blob/master/LICENSE)
-
 ## Maintainers
 
 This package is currently maintained by [Xavier Chanthavong](https://github.com/xavierchanth).
