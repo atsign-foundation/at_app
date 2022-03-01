@@ -37,13 +37,13 @@ dart pub global activate at_app
 
 *Additionally, pub may prompt you to add the global bin to your PATH variable, please do so before proceeding.
 
-#### How it works
+## How it works
 
 at_app contains an internal templating engine which is an extension of the [mason package](https://pub.dev/packages/mason).
 The templating engine is contained within it's own package called [at_app_create](https://pub.dev/packages/at_app_create),
 which you can depend on if you would like to create your own version of this application.
 
-##### Usage
+### Usage
 
 See the [Example tab](https://pub.dev/packages/at_app/example) on pub.dev.
 Alternatively, follow our [5 step introductory tutorial](https://atsign.dev/docs/get-started/tryatplatform/) which uses this application to help you get started on the @platform.

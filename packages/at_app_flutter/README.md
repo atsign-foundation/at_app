@@ -25,11 +25,11 @@ and you can learn more about how it works by reading this
 
 This package is automatically included in your application when you generate an app using [at_app](https://pub.dev/packages/at_app). See the [at_app usage](https://pub.dev/packages/at_app/example) to learn how to generate an app that includes this package.
 
-#### How it works
+## How it works
 
 This package includes the `AtEnv` model which interprets @platform specific environment variables from a .env file.
 
-##### Usage
+### Usage
 
 See the [Example tab](https://pub.dev/packages/at_app_flutter/example) on pub.dev.
 
