@@ -51,7 +51,7 @@ Alternatively, follow our [5 step introductory tutorial](https://atsign.dev/docs
 ## Open source usage and contributions
 
 This is open source code, so feel free to use it as is, suggest changes or
-enhancements or create your own version. See [CONTRIBUTING.md](../CONTRIBUTING.md)
+enhancements or create your own version. See [CONTRIBUTING.md](../../CONTRIBUTING.md)
 for detailed guidance on how to setup tools, tests and make a pull request.
 
 ## Acknowledgement/attribution
