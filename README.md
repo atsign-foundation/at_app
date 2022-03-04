@@ -4,13 +4,15 @@
 
 at_app is a command-line tool for app developers to quickly generate a starter @platform app. at_app was designed to be the @platform's version of flutter create, and uses it behind the scenes to help you get started with your app.
 
+![Functional Test](https://github.com/atsign-foundation/at_app/actions/workflows/functional_test.yaml/badge.svg)
+
 ## Packages
 
 ### at_app
 
 [![pub package](https://img.shields.io/pub/v/at_app)](https://pub.dev/packages/at_app) [![pub points](https://badges.bar/at_app/pub%20points)](https://pub.dev/packages/at_app/score) [![gitHub license](https://img.shields.io/badge/license-BSD3-blue.svg)](packages/at_app/LICENSE)
 
-This is the core command-line tool that is responsible for generating app templates. [Learn More](https://pub.dev/packages/at_app).
+This is a command-line to make learning the @platform and building on it easier. If you are a developer working on the @platform, it is recommended that you try out this tool. [Learn More](https://pub.dev/packages/at_app).
 
 [[View Source](/packages/at_app)]
 
@@ -18,7 +20,7 @@ This is the core command-line tool that is responsible for generating app templa
 
 [![pub package](https://img.shields.io/pub/v/at_app_flutter)](https://pub.dev/packages/at_app_flutter) [![pub points](https://badges.bar/at_app_flutter/pub%20points)](https://pub.dev/packages/at_app_flutter/score) [![gitHub license](https://img.shields.io/badge/license-BSD3-blue.svg)](packages/at_app_flutter/LICENSE)
 
-This package is added to generated apps and provides additional functionality required by the templates. [Learn More](https://pub.dev/packages/at_app_flutter)
+This package is added to generated apps and provides additional functionality required by the templates. For now, all it does is read the .env file into a model called AtEnv. [Learn More](https://pub.dev/packages/at_app_flutter)
 
 [[View Source](/packages/at_app_flutter)]
 
@@ -26,25 +28,31 @@ This package is added to generated apps and provides additional functionality re
 
 [![pub package](https://img.shields.io/pub/v/at_app_create)](https://pub.dev/packages/at_app_create) [![pub points](https://badges.bar/at_app_create/pub%20points)](https://pub.dev/packages/at_app_create/score) [![gitHub license](https://img.shields.io/badge/license-BSD3-blue.svg)](/packages/at_app_create/LICENSE)
 
-This package provides the app templates that at_app uses to generate its applications (Coming Soon).
+This package provides the core code for the create command in at_app, you can depend on this package if you would like to build your own package of the tool. (Coming to pub.dev soon)
 
 [[View Source](/packages/at_app_create)]
 
-## Maintainers
+### at_app_bundler
 
-Created by [XavierChanth](https://github.com/xavierchanth)
+[![pub package](https://img.shields.io/pub/v/at_app_bundler)](https://pub.dev/packages/at_app_bundler) [![pub points](https://badges.bar/at_app_bundler/pub%20points)](https://pub.dev/packages/at_app_bundler/score) [![gitHub license](https://img.shields.io/badge/license-BSD3-blue.svg)](/packages/at_app_bundler/LICENSE)
 
-If you would like to contribute, please see [CONTRIBUTING.md](/CONTRIBUTING.md).
+This is a command-line bundler tool for at_app_create, it allows you to easily bundle a mason brick (with an additional template.yaml file) into the necessary at_app_create models to generate an entire Flutter application from. (Coming to pub.dev soon)
 
-## Attribution
+[[View Source](/packages/at_app_bundler)]
+
+## Open source usage and contributions
+
+This is open source code, so feel free to use it as is, suggest changes or enhancements or create your own version. See [CONTRIBUTING.md](/CONTRIBUTING.md) for detailed guidance on how to setup tools, tests and make a pull request.
+
+## Acknowledgement/attribution
 
 Copyright 2014 The Flutter Authors. All rights reserved.
 
-This project is an extension of, and utilises `flutter create` to generate templates.
-Code reused from the flutter sdk is marked with the copyright.
-Please see the original license [here.](https://github.com/flutter/flutter/blob/master/LICENSE)
+This project has copied some variables from the `flutter create` tool in order to give developers a familiar experience.
+Variables have been annotated with the copyright.
 
-Copyright 2017, the Dart project authors. All rights reserved.
+Please see the original license [here](https://github.com/flutter/flutter/blob/master/LICENSE).
 
-This project has rewritten small parts of the Dart SDK.
-Please see the original license [here.](https://github.com/dart-lang/sdk/blob/main/LICENSE)
+## Maintainers
+
+Created by [Xavier Chanthavong](https://github.com/xavierchanth)
