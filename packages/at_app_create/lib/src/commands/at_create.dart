@@ -3,19 +3,22 @@ import 'dart:io' show Directory;
 import 'package:args/command_runner.dart' show Command, UsageException;
 import 'package:path/path.dart' show basename, normalize;
 
-import '../constants/create_args.dart';
+import '../constants/platforms.dart';
 import '../constants/dart_keywords.dart';
-import '../models/command_status.dart';
 
-/// This class is an abstraction of the flutter create command
-/// It deletes the default main.dart file,
-/// but will keep the existing one if it exists.
-abstract class CreateBase extends Command<CommandStatus> {
+abstract class AtCreateCommand<T> extends Command<T> {
   @override
   final String name = 'create';
 
-  CreateBase() {
-    // Flutter Arguments
+  final T successValue;
+
+  AtCreateCommand({
+    required this.successValue,
+    List<String>? availablePlatforms,
+    List<String>? allCreatePlatforms,
+    String? platformHelp,
+  }) {
+    // flutter create Arguments
     // Copyright 2014 The Flutter Authors. All rights reserved.
     argParser.addFlag(
       'pub',
@@ -45,9 +48,9 @@ abstract class CreateBase extends Command<CommandStatus> {
     );
     argParser.addMultiOption(
       'platforms',
-      defaultsTo: kAvailablePlatforms,
-      allowed: kAllCreatePlatforms,
-      help: kPlatformHelp,
+      defaultsTo: availablePlatforms ?? defaultAvailablePlatforms,
+      allowed: allCreatePlatforms ?? defaultAllCreatePlatforms,
+      help: platformHelp ?? defaultPlatformHelp,
     );
   }
 
@@ -56,7 +59,7 @@ abstract class CreateBase extends Command<CommandStatus> {
   List<String>? lStringArg(String name) => argResults?[name] as List<String>?;
 
   @override
-  Future<CommandStatus> run() async {
+  Future<T> run() async {
     validateOutputDirectoryArg();
 
     if (!validatePackageName(packageName)) {
@@ -69,7 +72,7 @@ abstract class CreateBase extends Command<CommandStatus> {
           'See https://en.wikipedia.org/wiki/Uniform_Type_Identifier for more information');
     }
 
-    return CommandStatus.success;
+    return successValue;
   }
 
   void validateOutputDirectoryArg() {

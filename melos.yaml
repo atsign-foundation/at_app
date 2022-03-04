@@ -6,12 +6,16 @@ packages:
   - templates/* # The at_app templates
 
 scripts:
-  build: sh tools/build_all.sh
-  build:at_app: sh tools/build_at_app.sh
-  build:bundler: sh tools/build_bundler.sh
-  build:create: sh tools/build_create.sh
-  build:templates: sh tools/build_templates.sh
-  build:generated: sh tools/build_generated.sh
+  # BUILD PIPELINE SCRIPTS
+  build: sh tools/build_all.sh # Run the full build/bundle pipeline
 
-  format: melos exec -- dart format -l 120 .
-  analyze: melos exec -- dart analyze .
+  build:at_app: sh tools/build_at_app.sh # Build at_app
+  build:generated: sh tools/build_generated.sh # Build generated apps in at_app
+
+  bundle:bundler: sh tools/bundle_bundler.sh # Bundle the templates in at_app_bundler
+  bundle:create: sh tools/bundle_create.sh # Bundle the base templates in at_app_create
+  bundle:templates: sh tools/bundle_templates.sh # Bundle the templates in templates/ into at_app
+
+  # SETUP SCRIPTS
+  setup: sh tools/setup_all.sh # Run all setup steps
+  setup:mason: sh tools/setup_mason.sh # Setup mason_cli

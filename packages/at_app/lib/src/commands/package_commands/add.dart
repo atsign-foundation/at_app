@@ -27,7 +27,7 @@ class AddCommand extends Command<CommandStatus> {
       try {
         FlutterCli.pubAdd(package);
       } catch (_) {
-        result = CommandStatus.warning;
+        result = CommandStatus.fail;
         _logger.w('package "$package" wasn\'t able to be added.');
       }
     }

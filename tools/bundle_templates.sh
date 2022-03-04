@@ -2,18 +2,19 @@
 
 OUTPUT_PATH="$MELOS_ROOT_PATH/packages/at_app"
 BRICK_PATH="$MELOS_ROOT_PATH/templates/lib"
-BUNDLER_MAIN="$MELOS_ROOT_PATH/packages/at_app_bundler/bin/main.dart"
+BUNDLER_MAIN="$MELOS_ROOT_PATH/packages/at_app_bundler/bin/at_app_bundler.dart"
 
 # ARGS
 FORMAT=1
-
+ANALYZE=1
 # ARG PARSER
 while [ $# -gt 0 ];
 do
   case "$1" in
     --no-format)
-      FORMAT=0
-    ;;
+      FORMAT=0;;
+    --no-analyze)
+      ANALYZE=0;;
   esac
   shift
 done
@@ -60,8 +61,12 @@ for TEMPLATE_TYPE in "$BRICK_PATH"/*;
 done
 
 # Format and analyze at_app
-if [ $FORMAT -gt 0 ] ;
+if [ $FORMAT -gt 0 ];
 then
   dart format -l 120 "$MELOS_ROOT_PATH/packages/at_app";
+fi
+
+if [ $ANALYZE -gt 0 ];
+then
   dart analyze "$MELOS_ROOT_PATH/packages/at_app";
 fi

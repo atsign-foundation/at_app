@@ -32,11 +32,11 @@ class AtCommandRunner extends CommandRunner<CommandStatus> {
     } on FormatException catch (e, stackTrace) {
       _logger.e(e.message, e, stackTrace);
       _logger.i(usage);
-      return CommandStatus.warning;
+      return CommandStatus.fail;
     } on UsageException catch (e) {
       _logger.e(e.message);
       _logger.i(e.usage);
-      return CommandStatus.warning;
+      return CommandStatus.fail;
     }
   }
 

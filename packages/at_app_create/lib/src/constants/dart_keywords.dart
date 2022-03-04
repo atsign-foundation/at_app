@@ -1,6 +1,6 @@
 // Copyright 2014 The Flutter Authors. All rights reserved.
 // dart keywords for package name validation
-const Set<String> dartKeywords = <String>{
+const List<String> dartKeywords = <String>[
   'abstract',
   'as',
   'assert',
@@ -70,4 +70,4 @@ const Set<String> dartKeywords = <String>{
   'while',
   'with',
   'yield',
-};
+];

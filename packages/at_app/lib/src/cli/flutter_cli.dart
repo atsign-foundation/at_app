@@ -1,7 +1,5 @@
 import 'dart:io' show Directory, ProcessResult;
 
-import '../constants/create_args.dart';
-
 import 'cli_base.dart';
 
 class FlutterCli {
@@ -22,10 +20,6 @@ class FlutterCli {
     );
   }
 
-  static Future<void> pubGet({Directory? directory}) async {
-    await _FlutterCli.run(['pub', 'get'], directory: directory?.absolute.path);
-  }
-
   static Future<bool> isInstalled() async {
     try {
       await _FlutterCli.run([]);
@@ -33,43 +27,6 @@ class FlutterCli {
     } catch (_) {
       return false;
     }
-  }
-
-  static Future<void> create(
-    Directory directory, {
-    bool? pub,
-    bool? offline,
-    bool? overwrite,
-    String? description,
-    String? org,
-    String? projectName,
-    String? iosLanguage,
-    String? androidLanguage,
-    List<String>? platforms,
-  }) async {
-    List<String> args = ['create'];
-
-    if (pub != null) args.add(createBoolFlag('pub', pub));
-    if (offline != null) args.add(createBoolFlag('offline', offline));
-    if (overwrite != null) args.add(createBoolFlag('overwrite', overwrite));
-    if (description != null) args.add('--description=$description');
-    if (org != null) args.add('--org=$org');
-    if (projectName != null) args.add('--project-name=$projectName');
-    if (iosLanguage != null) args.add('--ios-language=$iosLanguage');
-    if (androidLanguage != null) {
-      args.add('--android-language=$androidLanguage');
-    }
-    List<String> resolvedPlatforms = platforms ?? kAvailablePlatforms;
-    args.addAll([
-      '--platforms=${resolvedPlatforms.join(',')}',
-      directory.absolute.path,
-    ]);
-
-    await _FlutterCli.run(args);
-  }
-
-  static String createBoolFlag(String name, bool value) {
-    return '--' + (value ? '' : 'no-') + name;
   }
 }
 
