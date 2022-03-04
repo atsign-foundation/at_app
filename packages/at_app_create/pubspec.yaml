@@ -1,6 +1,6 @@
 name: at_app_create
-description: A templating library for generating flutter apps using mason.
-version: 0.1.0-rc.1
+description: A library to build your own custom implementation of flutter create.
+version: 0.1.0
 repository: https://github.com/atsign-foundation/at_app/tree/trunk/packages/at_app_create/
 homepage: https://atsign.dev/
 
