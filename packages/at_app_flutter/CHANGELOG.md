@@ -1,10 +1,15 @@
+## 5.0.0+1
+
+- **Docs**: Updated README.md
+- **Docs**: Updated AtEnv annotations
+
 ## 5.0.0
 
 - **BREAKING CHANGE**: dependency at_onboarding_flutter has a breaking change.
 
 ## 4.0.1
 
-- **FIX**: Allow fallback values to persist even if the .env file is empty.
+- **Fix**: Allow fallback values to persist even if the .env file is empty.
 
 ## 4.0.0
 
@@ -12,8 +17,8 @@
 
 ## 3.0.0
 
-- **CHORE**: Cleaned imports to reduce autocomplete pollution for the developer
 - **BREAKING CHANGE**: Replace dotenv with flutter_config
+- **Chore**: Cleaned imports to reduce autocomplete pollution for the developer
 
 ## 2.0.0
 
@@ -21,14 +26,14 @@
 
 ## 1.1.1
 
-- **FIX**: Fixed a bug causing atContext to be including in the widget tree prematurely.
+- **Fix**: Fixed a bug causing atContext to be including in the widget tree prematurely.
 
 ## 1.1.0
 
-- Skipped version to match [at_app](https://pub.dev/packages/at_app)
-- **CHORE**: Added rsdk support [at_client_mobile version 3.x.x](https://pub.dev/packages/at_client_mobile)
-- **CHORE**: Updated the default AtClientPreference configuration
-- **CHORE**: Adjusted folder structure to support multiple template types (more templates will come in a later update)
+- **N.B.** Skipped version 1.0.0 in order to match [at_app](https://pub.dev/packages/at_app)'s version.
+- **Chore**: Added rsdk support [at_client_mobile version 3.x.x](https://pub.dev/packages/at_client_mobile)
+- **Chore**: Updated the default AtClientPreference configuration
+- **Chore**: Adjusted folder structure to support multiple template types (more templates will come in a later update)
 
 ## 0.1.0
 

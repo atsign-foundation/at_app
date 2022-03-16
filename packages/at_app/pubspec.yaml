@@ -1,6 +1,6 @@
 name: at_app
 description: A command line tool to help developers build an @ platform application.
-version: 4.2.1
+version: 4.2.2
 repository: https://github.com/atsign-foundation/at_app/tree/trunk/packages/at_app/
 homepage: https://atsign.dev/
 
@@ -23,7 +23,7 @@ dependencies:
   tabular: ^0.6.3+1
   yaml: ^3.1.0
   mason: 0.1.0-dev.8
-  at_app_create: 0.1.0-rc.1
+  at_app_create: ^0.1.0
 
 dev_dependencies:
   flutter_lints: ^1.0.4

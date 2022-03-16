@@ -1,0 +1,11 @@
+name: my_brick
+description: An example brick for at_app_create
+version: 0.1.0
+vars:
+  myExtraVar:
+    type: string
+    description: A nullable variable for the template
+
+  myRequiredVar:
+    type: string
+    description: A non-nullable variable for the template
