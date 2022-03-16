@@ -32,6 +32,7 @@ class CreateCommand extends AtCreateCommand<CommandStatus> {
           availablePlatforms: platforms,
           allCreatePlatforms: platforms,
         ) {
+    /// at_app specific options and flags
     argParser.addOption(
       'namespace',
       abbr: 'n',
@@ -113,6 +114,7 @@ class CreateCommand extends AtCreateCommand<CommandStatus> {
       return _listOptions(TemplateService.demoNames, 'DEMO');
     }
 
+    /// Input validation checks
     validateOutputDirectoryArg();
     validateEnvironment();
 
