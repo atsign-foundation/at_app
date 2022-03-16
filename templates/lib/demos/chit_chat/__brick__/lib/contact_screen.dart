@@ -15,7 +15,6 @@ class _ContactScreenState extends State<ContactScreen> {
   @override
   Widget build(BuildContext context) {
     return ContactsScreen(
-      context: context,
       // * When the send icon is pressed for a particular contact
       onSendIconPressed: (String atsign) {
         // * Set the [atsign] that you will be chatting with on the chat screen
