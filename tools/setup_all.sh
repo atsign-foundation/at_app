@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ "$GITHUB_ACTION" ];
+if [ ! -z "$GITHUB_ACTION" ];
 then
   echo "ERROR: This script should only be run locally, do not use for github actions."
   exit 1
