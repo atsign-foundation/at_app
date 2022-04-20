@@ -1,0 +1,24 @@
+name: generated_app_job
+description: Build and analyze a generated app
+
+inputs:
+  type:
+    required: true
+    description: Can be one of "t" "s" "d"
+  name:
+    required: true
+    description: Name of the template
+
+runs:
+  using: composite
+  steps:
+    - name: Build generated app
+      run: |
+        chmod +x ./tools/build_generated.sh
+        ./tools/build_generated.sh ${{inputs.type}} ${{inputs.name}}
+      shell: bash
+
+    - name: Analyze generated app
+      working-directory: ./build/${{inputs.type}}/${{inputs.name}}
+      run: dart analyze
+      shell: bash
