@@ -1,4 +1,4 @@
-name: analyze at_app_flutter
+name: at_app_flutter
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
       - trunk
 
 jobs:
-  analyze_build:
+  at_app_flutter:
     runs-on: ubuntu-latest
 
     steps:
@@ -19,3 +19,7 @@ jobs:
       - name: Dart Analyze
         working-directory: ./packages/at_app_flutter
         run: dart analyze
+
+      - name: Unit Tests
+        working-directory: ./packages/at_app_flutter
+        run: flutter test

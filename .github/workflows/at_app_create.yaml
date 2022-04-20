@@ -1,4 +1,4 @@
-name: analyze at_app
+name: at_app_create
 
 on:
   push:
@@ -17,6 +17,5 @@ jobs:
       - uses: ./.github/workflows/setup_job
 
       - name: Dart Analyze
-        working-directory: ./packages/at_app
+        working-directory: ./packages/at_app_create
         run: dart analyze
-

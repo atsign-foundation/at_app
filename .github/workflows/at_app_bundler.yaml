@@ -1,4 +1,4 @@
-name: analyze at_app_bundler
+name: at_app_bundler
 
 on:
   push:
