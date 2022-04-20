@@ -4,7 +4,7 @@ description: Build and analyze a generated app
 inputs:
   type:
     required: true
-    description: Can be one of "t" "s" "d"
+    description: Can be one of "template" "sample" "demo"
   name:
     required: true
     description: Name of the template
