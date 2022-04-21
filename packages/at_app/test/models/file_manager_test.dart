@@ -7,7 +7,7 @@ class EmptyFileManager with FileManager {
 }
 
 void main() {
-  group("FileManager", () {
+  group('FileManager', () {
     FileManager fileManager = EmptyFileManager();
 
     setUpAll(() {
@@ -21,23 +21,23 @@ void main() {
       fileManager.file.deleteSync();
     });
 
-    test("initFile", () {
+    test('initFile', () {
       expect(fileManager.file.path, fileManager.filePath);
     });
 
-    test("existsSync", () {
+    test('existsSync', () {
       expect(fileManager.existsSync, false);
     });
 
-    test("create", () async {
+    test('create', () async {
       expect(await fileManager.create(), true);
       expect(fileManager.existsSync, true);
     });
 
-    test("write", () async {
-      await fileManager.write(["Line 1", "Line 2"]);
+    test('write', () async {
+      await fileManager.write(['Line 1', 'Line 2']);
       List<String> contents = await fileManager.file.readAsLines();
-      expect(contents, ["Line 1", "Line 2"]);
+      expect(contents, ['Line 1', 'Line 2']);
     });
   });
 }
