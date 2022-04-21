@@ -1,4 +1,4 @@
-name: analyze at_app_create
+name: at_app
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
       - trunk
 
 jobs:
-  analyze_build:
+  at_app:
     runs-on: ubuntu-latest
 
     steps:
@@ -17,5 +17,10 @@ jobs:
       - uses: ./.github/workflows/setup_job
 
       - name: Dart Analyze
-        working-directory: ./packages/at_app_create
+        working-directory: ./packages/at_app
         run: dart analyze
+
+      - name: Unit Tests
+        working-directory: ./packages/at_app
+        run: dart test
+

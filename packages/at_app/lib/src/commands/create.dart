@@ -210,18 +210,18 @@ Happy coding!
     }
 
     if (templateParsed) {
-      return TemplateService.getTemplate(stringArg('template') ?? 'app');
+      return TemplateService.getTemplate(stringArg('template') ?? 'app')!;
     }
 
     if (sampleParsed) {
-      return TemplateService.getSample(stringArg('sample')!);
+      return TemplateService.getSample(stringArg('sample')!)!;
     }
 
     if (demoParsed) {
-      return TemplateService.getDemo(stringArg('demo')!);
+      return TemplateService.getDemo(stringArg('demo')!)!;
     }
 
-    return TemplateService.getTemplate(defaultTemplateName);
+    return TemplateService.getTemplate(defaultTemplateName)!;
   }
 
   AtTemplateVars _parseVars(AtAppTemplate template) {

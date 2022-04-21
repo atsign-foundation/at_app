@@ -19,3 +19,5 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   lints: ^1.0.0
+  mockito: ^5.1.0
+  meta: ^1.7.0
