@@ -12,19 +12,19 @@ void main() {
       AtEnv.dotenvInstance = MockDotEnv();
     });
 
-    test("Get rootDomain", () {
-      when(AtEnv.dotenvInstance.maybeGet("ROOT_DOMAIN")).thenReturn("Mock Root Domain");
-      expect(AtEnv.rootDomain, "Mock Root Domain");
+    test('Get rootDomain', () {
+      when(AtEnv.dotenvInstance.maybeGet('ROOT_DOMAIN')).thenReturn('Mock Root Domain');
+      expect(AtEnv.rootDomain, 'Mock Root Domain');
     });
 
-    test("Get appNamespace", () {
-      when(AtEnv.dotenvInstance.maybeGet("NAMESPACE")).thenReturn("Mock Namespace");
-      expect(AtEnv.appNamespace, "Mock Namespace");
+    test('Get appNamespace', () {
+      when(AtEnv.dotenvInstance.maybeGet('NAMESPACE')).thenReturn('Mock Namespace');
+      expect(AtEnv.appNamespace, 'Mock Namespace');
     });
 
-    test("Get appApiKey", () {
-      when(AtEnv.dotenvInstance.maybeGet("API_KEY")).thenReturn("Mock Api Key");
-      expect(AtEnv.appApiKey, "Mock Api Key");
+    test('Get appApiKey', () {
+      when(AtEnv.dotenvInstance.maybeGet('API_KEY')).thenReturn('Mock Api Key');
+      expect(AtEnv.appApiKey, 'Mock Api Key');
       expect(AtEnv.rootEnvironment, RootEnvironment.Production);
     });
   });

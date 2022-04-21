@@ -12,18 +12,18 @@ void main() {
       AtEnv.dotenvInstance = MockDotEnv();
     });
 
-    test("Get rootDomain fallback", () {
-      when(AtEnv.dotenvInstance.maybeGet("ROOT_DOMAIN")).thenReturn(null);
-      expect(AtEnv.rootDomain, "root.atsign.org");
+    test('Get rootDomain fallback', () {
+      when(AtEnv.dotenvInstance.maybeGet('ROOT_DOMAIN')).thenReturn(null);
+      expect(AtEnv.rootDomain, 'root.atsign.org');
     });
 
-    test("Get appNamespace", () {
-      when(AtEnv.dotenvInstance.maybeGet("NAMESPACE")).thenReturn(null);
-      expect(AtEnv.appNamespace, "at_skeleton_app");
+    test('Get appNamespace', () {
+      when(AtEnv.dotenvInstance.maybeGet('NAMESPACE')).thenReturn(null);
+      expect(AtEnv.appNamespace, 'at_skeleton_app');
     });
 
-    test("Get appApiKey", () {
-      when(AtEnv.dotenvInstance.maybeGet("API_KEY")).thenReturn(null);
+    test('Get appApiKey', () {
+      when(AtEnv.dotenvInstance.maybeGet('API_KEY')).thenReturn(null);
       expect(AtEnv.appApiKey, null);
       expect(AtEnv.rootEnvironment, RootEnvironment.Staging);
     });
