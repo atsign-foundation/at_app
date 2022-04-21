@@ -20,3 +20,7 @@ jobs:
         working-directory: ./packages/at_app
         run: dart analyze
 
+      - name: Unit Tests
+        working-directory: ./packages/at_app
+        run: dart test
+
