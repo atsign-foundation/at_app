@@ -1,0 +1,25 @@
+name: at_app_bundler
+
+on:
+  push:
+    branches:
+      - trunk
+  pull_request:
+    branches:
+      - trunk
+
+jobs:
+  analyze_build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/workflows/setup_job # Installs the environment and builds the whole repository
+
+      - name: Dart Analyze
+        working-directory: ./packages/at_app_bundler
+        # The mason brick in at_app_bundler is not valid dart code
+        # Must analyze each directory individually
+        run: |
+          dart analyze ./lib
+          dart analyze ./bin

@@ -1,12 +1,20 @@
 import 'package:at_onboarding_flutter/at_onboarding_flutter.dart' show RootEnvironment;
-import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
+import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv, DotEnv;
+import 'package:meta/meta.dart';
+
+const String apiKeyWarning =
+    '''\x1B[33mWARNING: API_KEY is not set in .env file
+Make sure to set the API_KEY before releasing to production.\x1B[0m''';
 
 /// AtEnv is a helper class to load in the environment variables from the .env file
 class AtEnv {
+  @visibleForTesting
+  static DotEnv dotenvInstance = dotenv;
+
   /// Load the environment variables from the .env file.
   ///
   /// Calls [load()] from flutter_dotenv package.
-  static Future<void> load() => dotenv.load();
+  static Future<void> load() => dotenvInstance.load();
 
   /// Returns the value for ['ROOT_DOMAIN'] from the .env file.
   ///
@@ -40,8 +48,13 @@ class AtEnv {
   ///
   /// N.B. You should have your [API_KEY] set before publishing to the stores,
   /// otherwise the free @sign generator will not work.
-  static RootEnvironment get rootEnvironment =>
-      (appApiKey == null) ? RootEnvironment.Staging : RootEnvironment.Production;
+  static RootEnvironment get rootEnvironment {
+    if (appApiKey == null) {
+      print(apiKeyWarning);
+      return RootEnvironment.Staging;
+    }
+    return RootEnvironment.Production;
+  }
 
   /// Returns the value for [key] in the .env file.
   ///
@@ -50,7 +63,7 @@ class AtEnv {
   /// Can be used to get additional values from the .env file.
   static dynamic getEnv(String key, {dynamic fallback}) {
     try {
-      dynamic result = dotenv.maybeGet(key);
+      dynamic result = dotenvInstance.maybeGet(key);
       if (result == null) return fallback;
       return result;
     } catch (_) {

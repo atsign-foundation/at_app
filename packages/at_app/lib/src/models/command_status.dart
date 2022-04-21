@@ -3,7 +3,7 @@
 enum CommandStatus { success, fail }
 
 extension Value on CommandStatus {
-  get code {
+  int get code {
     switch (this) {
       case CommandStatus.success:
         return 0;

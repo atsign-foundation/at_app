@@ -5,6 +5,8 @@
 [![pub package](https://img.shields.io/pub/v/at_app_create)](https://pub.dev/packages/at_app_create)
 [![pub points](https://badges.bar/at_app_create/pub%20points)](https://pub.dev/packages/at_app_create/score)
 [![gitHub license](https://img.shields.io/badge/license-BSD3-blue.svg)](./LICENSE)
+[![Generated App Tests](https://github.com/atsign-foundation/at_app/actions/workflows/generated_app_test.yaml/badge.svg?branch=trunk)](https://github.com/atsign-foundation/at_app/actions/workflows/generated_app_test.yaml)
+[![Dart Analysis](https://github.com/atsign-foundation/at_app/actions/workflows/analyze_at_app_create.yaml/badge.svg?branch=trunk)](https://github.com/atsign-foundation/at_app/actions/workflows/analyze_at_app_create.yaml)
 
 ## Overview
 
