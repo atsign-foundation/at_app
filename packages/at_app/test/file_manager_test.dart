@@ -1,39 +1,43 @@
-import 'package:pub_cache/pub_cache.dart';
-import 'package:path/path.dart' as path;
-import 'dart:io';
+import 'package:at_app/src/models/file_manager.dart';
 import 'package:test/test.dart';
 
+class EmptyFileManager with FileManager {
+  @override
+  final String filePath = 'test_file.txt';
+}
+
 void main() {
-  const templatePackage = 'at_app_flutter';
+  group("FileManager", () {
+    FileManager fileManager = EmptyFileManager();
 
-  group('Template Manager', () {
-    late PubCache pc;
-
-    setUp(() => pc = PubCache());
-    test('pub cache is found', () {
-      String pubCachePath = pc.location.absolute.path;
-      expect(pubCachePath.isNotEmpty, true);
+    setUpAll(() {
+      fileManager.initFile('.');
+      if (fileManager.file.existsSync()) {
+        fileManager.file.deleteSync();
+      }
     });
 
-    test('at_app_flutter is found in pub cache', () {
-      PackageRef? latest = pc.getLatestVersion(templatePackage);
-      expect(latest == null, false);
+    tearDownAll(() {
+      fileManager.file.deleteSync();
     });
 
-    test('main.dart template exists in the pub cache', () {
-      String hostedPubCachePath = path.normalize('${pc.location.absolute.path}/hosted/pub.dartlang.org');
+    test("initFile", () {
+      expect(fileManager.file.path, fileManager.filePath);
+    });
 
-      String templatePath = path.join(
-          hostedPubCachePath,
-          '$templatePackage-${pc.getLatestVersion(templatePackage)?.version.toString()}',
-          'lib',
-          'src',
-          'templates',
-          'main.dart');
+    test("existsSync", () {
+      expect(fileManager.existsSync, false);
+    });
 
-      File templateFile = File(templatePath);
+    test("create", () async {
+      expect(await fileManager.create(), true);
+      expect(fileManager.existsSync, true);
+    });
 
-      expect(templateFile.existsSync(), true);
+    test("write", () async {
+      await fileManager.write(["Line 1", "Line 2"]);
+      List<String> contents = await fileManager.file.readAsLines();
+      expect(contents, ["Line 1", "Line 2"]);
     });
   });
 }
