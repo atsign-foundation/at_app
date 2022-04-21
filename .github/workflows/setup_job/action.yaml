@@ -30,11 +30,6 @@ runs:
       run: dart pub global run melos run bundle:create -- --no-analyze
       shell: bash
 
-    - name: Analyze at_app_create
-      working-directory: ./packages/at_app_create
-      run: dart analyze
-      shell: bash
-
     - name: Bundle templates into at_app
       run: dart pub global run melos run bundle:templates -- --no-analyze
       shell: bash
