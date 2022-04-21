@@ -1,4 +1,7 @@
+import 'dart:convert' show Encoding, utf8;
 import 'dart:io' show Directory, File, FileMode;
+
+import 'package:meta/meta.dart';
 
 import '../util/logger.dart';
 import 'package:logger/logger.dart';
@@ -11,6 +14,7 @@ mixin FileManager {
 
   abstract final String filePath;
 
+  @visibleForTesting
   late File file;
 
   /// Must be called in the constructor
@@ -25,6 +29,9 @@ mixin FileManager {
 
   /// Calls [file.existsSync()]
   bool get existsSync => file.existsSync();
+
+  /// Calls [file.readAsLines()]
+  Future<List<String>> readAsLines({Encoding encoding = utf8}) => file.readAsLines(encoding: encoding);
 
   /// Recursively create [file] if it doesn't already exist
   Future<bool> create() async {

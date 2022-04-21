@@ -34,9 +34,9 @@ void main() {
       expect(fileManager.existsSync, true);
     });
 
-    test('write', () async {
+    test('write + read', () async {
       await fileManager.write(['Line 1', 'Line 2']);
-      List<String> contents = await fileManager.file.readAsLines();
+      List<String> contents = await fileManager.readAsLines();
       expect(contents, ['Line 1', 'Line 2']);
     });
   });
