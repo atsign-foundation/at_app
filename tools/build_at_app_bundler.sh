@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [ ! -z "$GITHUB_ACTION" ];
+then
+  MELOS_ROOT_PATH="$GITHUB_WORKSPACE"
+fi
+
 BUNDLER_PATH="$MELOS_ROOT_PATH/packages/at_app_bundler"
 BRICK_PATH="$BUNDLER_PATH/bricks"
 
@@ -27,7 +32,7 @@ done
 # Format and analyze
 if [ $FORMAT -gt 0 ];
 then
-  # Cannot format at_app_create directory directly
+  # Cannot format at_app_bundler directory directly
   # it will non-zero exit due to the dart templates in the bricks directory
   dart format -l 120 "$MELOS_ROOT_PATH/packages/at_app_bundler/lib";
   dart format -l 120 "$MELOS_ROOT_PATH/packages/at_app_bundler/bin";

@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [ ! -z "$GITHUB_ACTION" ];
+then
+  MELOS_ROOT_PATH="$GITHUB_WORKSPACE"
+fi
+
 OUTPUT_PATH="$MELOS_ROOT_PATH/packages/at_app"
 BRICK_PATH="$MELOS_ROOT_PATH/templates/lib"
 BUNDLER_MAIN="$MELOS_ROOT_PATH/packages/at_app_bundler/bin/at_app_bundler.dart"

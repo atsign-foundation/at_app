@@ -1,0 +1,17 @@
+name: install_dependencies_job
+description: Install dependencies for at_app repo
+
+runs:
+  using: composite
+  steps:
+    - name: Install melos
+      run: dart pub global activate melos
+      shell: bash
+
+    - name: Bootstrap project with melos
+      run: dart pub global run melos bootstrap
+      shell: bash
+
+    - name: Install mason_cli
+      run: dart pub global activate mason_cli
+      shell: bash
