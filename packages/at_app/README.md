@@ -5,8 +5,7 @@
 [![pub package](https://img.shields.io/pub/v/at_app)](https://pub.dev/packages/at_app)
 [![pub points](https://badges.bar/at_app/pub%20points)](https://pub.dev/packages/at_app/score)
 [![gitHub license](https://img.shields.io/badge/license-BSD3-blue.svg)](./LICENSE)
-[![Generated App Tests](https://github.com/atsign-foundation/at_app/actions/workflows/generated_app_test.yaml/badge.svg?branch=trunk)](https://github.com/atsign-foundation/at_app/actions/workflows/generated_app_test.yaml)
-[![Dart Analysis](https://github.com/atsign-foundation/at_app/actions/workflows/analyze_at_app.yaml/badge.svg?branch=trunk)](https://github.com/atsign-foundation/at_app/actions/workflows/analyze_at_app.yaml)
+[![CI](https://github.com/atsign-foundation/at_app/actions/workflows/CI.yaml/badge.svg?branch=trunk)](https://github.com/atsign-foundation/at_app/actions/workflows/CI.yaml)
 
 ## Overview
 

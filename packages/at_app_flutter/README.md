@@ -5,8 +5,7 @@
 [![pub package](https://img.shields.io/pub/v/at_app_flutter)](https://pub.dev/packages/at_app_flutter)
 [![pub points](https://badges.bar/at_app_flutter/pub%20points)](https://pub.dev/packages/at_app_flutter/score)
 [![gitHub license](https://img.shields.io/badge/license-BSD3-blue.svg)](./LICENSE)
-[![Generated App Tests](https://github.com/atsign-foundation/at_app/actions/workflows/generated_app_test.yaml/badge.svg?branch=trunk)](https://github.com/atsign-foundation/at_app/actions/workflows/generated_app_test.yaml)
-[![Dart Analysis](https://github.com/atsign-foundation/at_app/actions/workflows/analyze_at_app_bundler.yaml/badge.svg?branch=trunk)](https://github.com/atsign-foundation/at_app/actions/workflows/analyze_at_app_bundler.yaml)
+[![CI](https://github.com/atsign-foundation/at_app/actions/workflows/CI.yaml/badge.svg?branch=trunk)](https://github.com/atsign-foundation/at_app/actions/workflows/CI.yaml)
 
 ## Overview
 
