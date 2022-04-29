@@ -10,15 +10,12 @@ fi
 cd "$MELOS_ROOT_PATH" || exit 1
 
 # Bundle everything without formatting or analysis
-dart pub global run melos run bundle:bundler -- --no-format --no-analyze
-dart pub global run melos run bundle:create -- --no-format --no-analyze
-dart pub global run melos run bundle:templates -- --no-format --no-analyze
+./tools/build_at_app_bundler.sh --no-format --no-analyze
+./tools/build_at_app_create.sh --no-format --no-analyze
+./tools/bundle_templates.sh --no-format --no-analyze
 
 # Build at_app
-dart pub global run melos run build:at_app
-
-# Build the generated applications
-dart pub global run melos run build:generated
+./tools/build_at_app.sh --no-format --no-analyze
 
 # Format all generated code
 dart format -l 120 packages/at_app_bundler/lib
@@ -31,4 +28,3 @@ dart analyze packages/at_app_flutter/
 dart analyze packages/at_app_bundler/
 dart analyze packages/at_app_create/
 dart analyze packages/at_app/
-dart analyze build/

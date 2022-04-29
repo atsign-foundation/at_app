@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [ ! -z "$GITHUB_ACTION" ];
+then
+  MELOS_ROOT_PATH="$GITHUB_WORKSPACE"
+fi
+
 AT_APP_CREATE_PATH="$MELOS_ROOT_PATH/packages/at_app_create"
 BRICK_PATH="$AT_APP_CREATE_PATH/bricks"
 

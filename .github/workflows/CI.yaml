@@ -1,0 +1,263 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - trunk
+  pull_request:
+    branches:
+      - trunk
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      build_key: ${{ steps.build_key.outputs.build_key }}
+      commit_id: ${{ steps.commit_id.outputs.changes_detected && steps.commit_id.outputs.commit_hash || github.sha }}
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true
+
+      - run: flutter --version
+
+      - uses: ./.github/workflows/install_dependencies_job
+      - uses: ./.github/workflows/build_job
+
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        id: commit_id
+        with:
+          commit_message: Commit automated build
+
+  at_app_bundler:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ needs.build.outputs.commit_id }}
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true
+
+
+      - run: dart pub global run melos bootstrap
+
+      - name: Dart Analyze
+        working-directory: ./packages/at_app_bundler
+        # The mason brick in at_app_bundler is not valid dart code
+        # Must analyze each directory individually
+        run: |
+          dart analyze ./lib
+          dart analyze ./bin
+
+  at_app_create:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ needs.build.outputs.commit_id }}
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true
+
+
+      - run: dart pub global run melos bootstrap
+
+      - name: Dart Analyze
+        working-directory: ./packages/at_app_create
+        run: dart analyze
+
+  at_app_flutter:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ needs.build.outputs.commit_id }}
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true
+
+
+      - run: dart pub global run melos bootstrap
+
+      - name: Dart Analyze
+        working-directory: ./packages/at_app_flutter
+        run: dart analyze
+
+      - name: Unit Tests
+        working-directory: ./packages/at_app_flutter
+        run: flutter test
+
+  at_app:
+    needs: build
+    runs-on: ubuntu-latest
+    outputs:
+      build_key: ${{ needs.build.outputs.build_key }}
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ needs.build.outputs.commit_id }}
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true
+
+
+      - run: dart pub global run melos bootstrap
+
+      - name: Dart Analyze
+        working-directory: ./packages/at_app
+        run: dart analyze
+
+      - name: Unit Tests
+        working-directory: ./packages/at_app
+        run: dart test
+
+  # GENERATED APP TESTS
+
+  # App Templates
+  generate-app_template:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ needs.build.outputs.commit_id }}
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true
+
+
+      - run: dart pub global run melos bootstrap
+
+      - uses: ./.github/workflows/generated_app_job
+        with:
+          type: template
+          name: app
+
+  # Sample Apps
+  generate-at_onboarding_flutter_sample:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ needs.build.outputs.commit_id }}
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true
+
+
+      - run: dart pub global run melos bootstrap
+
+      - uses: ./.github/workflows/generated_app_job
+        with:
+          type: sample
+          name: at_onboarding_flutter
+
+  generate-at_contacts_flutter_sample:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ needs.build.outputs.commit_id }}
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true
+
+
+      - run: dart pub global run melos bootstrap
+
+      - uses: ./.github/workflows/generated_app_job
+        with:
+          type: sample
+          name: at_contacts_flutter
+
+  # Demo Apps
+  generate-snackbar_demo:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ needs.build.outputs.commit_id }}
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true
+
+
+      - run: dart pub global run melos bootstrap
+
+      - uses: ./.github/workflows/generated_app_job
+        with:
+          type: demo
+          name: snackbar
+
+  generate-snackbar_sender_demo:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ needs.build.outputs.commit_id }}
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true
+
+
+      - run: dart pub global run melos bootstrap
+
+      - uses: ./.github/workflows/generated_app_job
+        with:
+          type: demo
+          name: snackbar_sender
+
+  generate-chit_chat_demo:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ needs.build.outputs.commit_id }}
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true
+
+
+      - run: dart pub global run melos bootstrap
+
+      - uses: ./.github/workflows/generated_app_job
+        with:
+          type: demo
+          name: chit_chat
+
