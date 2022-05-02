@@ -1,6 +1,6 @@
 name: at_app_create
 description: A library to build your own custom implementation of flutter create.
-version: 0.1.0
+version: 0.1.0+1
 repository: https://github.com/atsign-foundation/at_app/tree/trunk/packages/at_app_create/
 homepage: https://atsign.dev/
 
