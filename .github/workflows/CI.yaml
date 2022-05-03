@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - trunk
-  pull_request:
+  pull_request_target:
     branches:
       - trunk
 
@@ -16,8 +16,6 @@ jobs:
       commit_id: ${{ steps.commit_id.outputs.changes_detected && steps.commit_id.outputs.commit_hash || github.sha }}
     steps:
       - uses: actions/checkout@v3
-        with:
-          token: ${{ secrets.AUTO_COMMIT_TOKEN }}
 
       - uses: subosito/flutter-action@v2
         with:
@@ -33,6 +31,7 @@ jobs:
         id: commit_id
         with:
           commit_message: Commit automated build
+          commit_author: library-action[bot] <41898282+github-actions[bot]@users.noreply.github.com>
 
   at_app_bundler:
     needs: build
