@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - trunk
-  pull_request:
+  pull_request_target:
     branches:
       - trunk
 
@@ -17,7 +17,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          token: ${{ secrets.AUTO_COMMIT_TOKEN }}
+          token: ${{ secrets.MY_GITHUB_TOKEN || '' }}
 
       - uses: subosito/flutter-action@v2
         with:
@@ -33,6 +33,7 @@ jobs:
         id: commit_id
         with:
           commit_message: Commit automated build
+
 
   at_app_bundler:
     needs: build
