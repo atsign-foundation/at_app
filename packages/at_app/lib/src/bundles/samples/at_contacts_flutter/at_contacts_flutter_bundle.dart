@@ -3,8 +3,12 @@
 
 import 'package:mason/mason.dart';
 
-final atContactsFlutterBundle = MasonBundle.fromJson(<String, dynamic>{
+final atContactsFlutterBundle = 
+
+MasonBundle.fromJson(<String, dynamic>{
   "files": [
+    
+    
     {
       "path": "lib/main.dart",
       "data":
