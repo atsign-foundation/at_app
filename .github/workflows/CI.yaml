@@ -7,15 +7,22 @@ on:
   pull_request_target:
     branches:
       - trunk
+      - actions-testing
 
 jobs:
   build:
+    permissions:
+      pull-requests: write
+
     runs-on: ubuntu-latest
     outputs:
       build_key: ${{ steps.build_key.outputs.build_key }}
       commit_id: ${{ steps.commit_id.outputs.changes_detected && steps.commit_id.outputs.commit_hash || github.sha }}
     steps:
       - uses: actions/checkout@v3
+        with:
+          ref: ${{github.event.pull_request.head.ref}}
+          repository: ${{github.event.pull_request.head.repo.full_name}}
 
       - uses: subosito/flutter-action@v2
         with:
@@ -31,7 +38,6 @@ jobs:
         id: commit_id
         with:
           commit_message: Commit automated build
-          commit_author: library-action[bot] <41898282+github-actions[bot]@users.noreply.github.com>
 
   at_app_bundler:
     needs: build
