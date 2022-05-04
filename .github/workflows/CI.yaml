@@ -24,7 +24,7 @@ jobs:
       - run: echo ${{ github.sha }}
       - uses: actions/checkout@v3
         with:
-          ref: ${{ github.head_ref }}
+          ref: ${{ github.event.pull_request.head.sha }}
 
       - uses: subosito/flutter-action@v2
         with:
