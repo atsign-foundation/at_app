@@ -11,14 +11,23 @@ jobs:
     permissions:
       contents: write # Enable temporary branch creation for testing
 
+    env:
+      is_pr: ${{ github.event.pull_request && github.event.pull_request.head.repo.full_name != github.repository }}
+      branch: ${{ github.event.pull_request && github.event.pull_request.head.repo.full_name != github.repository && format('build_action-{0}-{1}', github.run_id, github.run_attempt) || github.sha }}
+
     outputs:
-      commit_id: ${{ steps.commit_id.outputs.changes_detected && steps.commit_id.outputs.commit_hash || github.sha }}
+      commit_ref: ${{ env.is_pr && format('build_action-{0}-{1}', github.run_id, github.run_attempt) || steps.commit_id.outputs.changes_detected && steps.commit_id.outputs.commit_hash || github.sha }}
 
     steps:
+      - uses: peterjgrainger/action-create-branch@v2.2.0
+        if: ${{ env.is_pr }}
+        with:
+          branch: ${{ env.branch }}
+          sha: ${{ github.event.pull_request.head.sha }}
+
       - uses: actions/checkout@v3
         with:
-          repository: ${{ github.event.pull_request.head.repo.full_name }}
-          ref: ${{ github.head_ref }}
+          ref: ${{ env.branch }}
 
       - uses: subosito/flutter-action@v2
         with:
@@ -35,10 +44,10 @@ jobs:
         with:
           commit_message: Commit automated build
           # Create a temporary branch to run tests on if it is a PR from a fork
-          create_branch: ${{ github.event.pull_request && github.event.pull_request.head.repo.full_name != github.repository }}
+          create_branch: ${{ env.is_pr }}
           # Label the branch by run_id and run_attempt if it is a PR from a fork
           # OR use the head branch if it is not
-          branch: ${{ github.event.pull_request && github.event.pull_request.head.repo.full_name != github.repository && format('build_action-{0}-{1}', github.run_id, github.run_attempt) || github.head_ref }}
+          branch: ${{ env.branch }}
           repository: ${{ github.repo }}
 
       - run: echo ${{ steps.commit_id.outputs.commit_hash }}
@@ -50,7 +59,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          ref: ${{ github.event.pull_request && github.event.pull_request.head.repo.full_name != github.repository && format('build_action-{0}-{1}', github.run_id, github.run_attempt) || needs.build.outputs.commit_id }}
+          ref: ${{ needs.build.outputs.commit_ref }}
 
       - uses: subosito/flutter-action@v2
         with:
@@ -74,7 +83,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          ref: ${{ github.event.pull_request && github.event.pull_request.head.repo.full_name != github.repository && format('build_action-{0}-{1}', github.run_id, github.run_attempt) || needs.build.outputs.commit_id }}
+          ref: ${{ needs.build.outputs.commit_ref }}
 
       - uses: subosito/flutter-action@v2
         with:
@@ -94,7 +103,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          ref: ${{ github.event.pull_request && github.event.pull_request.head.repo.full_name != github.repository && format('build_action-{0}-{1}', github.run_id, github.run_attempt) || needs.build.outputs.commit_id }}
+          ref: ${{ needs.build.outputs.commit_ref }}
 
       - uses: subosito/flutter-action@v2
         with:
@@ -120,7 +129,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          ref: ${{ github.event.pull_request && github.event.pull_request.head.repo.full_name != github.repository && format('build_action-{0}-{1}', github.run_id, github.run_attempt) || needs.build.outputs.commit_id }}
+          ref: ${{ needs.build.outputs.commit_ref }}
 
       - uses: subosito/flutter-action@v2
         with:
@@ -146,7 +155,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          ref: ${{ github.event.pull_request && github.event.pull_request.head.repo.full_name != github.repository && format('build_action-{0}-{1}', github.run_id, github.run_attempt) || needs.build.outputs.commit_id }}
+          ref: ${{ needs.build.outputs.commit_ref }}
 
       - uses: subosito/flutter-action@v2
         with:
@@ -167,7 +176,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          ref: ${{ github.event.pull_request && github.event.pull_request.head.repo.full_name != github.repository && format('build_action-{0}-{1}', github.run_id, github.run_attempt) || needs.build.outputs.commit_id }}
+          ref: ${{ needs.build.outputs.commit_ref }}
 
       - uses: subosito/flutter-action@v2
         with:
@@ -187,7 +196,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          ref: ${{ github.event.pull_request && github.event.pull_request.head.repo.full_name != github.repository && format('build_action-{0}-{1}', github.run_id, github.run_attempt) || needs.build.outputs.commit_id }}
+          ref: ${{ needs.build.outputs.commit_ref }}
 
       - uses: subosito/flutter-action@v2
         with:
@@ -208,7 +217,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          ref: ${{ github.event.pull_request && github.event.pull_request.head.repo.full_name != github.repository && format('build_action-{0}-{1}', github.run_id, github.run_attempt) || needs.build.outputs.commit_id }}
+          ref: ${{ needs.build.outputs.commit_ref }}
 
       - uses: subosito/flutter-action@v2
         with:
@@ -228,7 +237,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          ref: ${{ github.event.pull_request && github.event.pull_request.head.repo.full_name != github.repository && format('build_action-{0}-{1}', github.run_id, github.run_attempt) || needs.build.outputs.commit_id }}
+          ref: ${{ needs.build.outputs.commit_ref }}
 
       - uses: subosito/flutter-action@v2
         with:
@@ -248,7 +257,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          ref: ${{ github.event.pull_request && github.event.pull_request.head.repo.full_name != github.repository && format('build_action-{0}-{1}', github.run_id, github.run_attempt) || needs.build.outputs.commit_id }}
+          ref: ${{ needs.build.outputs.commit_ref }}
 
       - uses: subosito/flutter-action@v2
         with:
