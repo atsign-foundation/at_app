@@ -13,7 +13,7 @@ jobs:
 
     env:
       is_pr: ${{ github.event.pull_request && github.event.pull_request.head.repo.full_name != github.repository }}
-      branch: ${{ github.event.pull_request && github.event.pull_request.head.repo.full_name != github.repository && format('build_action-{0}-{1}', github.run_id, github.run_attempt) || github.sha }}
+      branch: ${{ github.event.pull_request && github.event.pull_request.head.repo.full_name != github.repository && format('build_action-{0}-{1}', github.run_id, github.run_attempt) || github.head_ref }}
 
     outputs:
       commit_ref: ${{ env.is_pr && format('build_action-{0}-{1}', github.run_id, github.run_attempt) || steps.commit_id.outputs.changes_detected && steps.commit_id.outputs.commit_hash || github.sha }}
