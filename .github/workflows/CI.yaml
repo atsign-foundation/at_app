@@ -22,7 +22,7 @@ jobs:
       commit_id: ${{ steps.should_commit.outputs.changes_detected && steps.commit_id.outputs.commit_hash || github.sha }}
     steps:
       - name: Checkout PR
-        run: gh pr checkout ${{ github.event.pull_request.number }}
+        run: gh pr checkout ${{ github.event.pull_request.number }} --repo atsign-foundation/at_app
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
