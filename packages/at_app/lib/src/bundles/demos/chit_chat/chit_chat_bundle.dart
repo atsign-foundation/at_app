@@ -9,7 +9,6 @@ MasonBundle.fromJson(
   <String, dynamic>{
   
   
-  
   "files": [
     {
       "path": "lib/chats_screen.dart",
