@@ -35,6 +35,7 @@ jobs:
           branch: ${{ github.event.pull_request.head.repo.full_name != github.repository && join([github.run_id, github.run_attempt], '-') || github.head_ref }}
 
       - name: COMMIT HASH ${{ steps.commit_id.outputs.commit_hash }}
+        run: exit 0
 
   at_app_bundler:
     needs: build
