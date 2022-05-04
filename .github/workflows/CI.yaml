@@ -4,12 +4,11 @@ on:
   push:
     branches:
       - trunk
-  pull_request_target:
+  pull_request:
     branches:
       - trunk
       - actions-testing
 
-# Test
 jobs:
   build:
     permissions:
