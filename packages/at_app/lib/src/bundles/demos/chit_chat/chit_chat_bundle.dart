@@ -3,10 +3,7 @@
 
 import 'package:mason/mason.dart';
 
-final chitChatBundle = MasonBundle.fromJson(
-  
-  
-  <String, dynamic>{
+final chitChatBundle = MasonBundle.fromJson(<String, dynamic>{
   "files": [
     {
       "path": "lib/chats_screen.dart",
