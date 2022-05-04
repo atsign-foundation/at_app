@@ -1,3 +1,6 @@
+## 4.2.2+1
+
+  - **Chore**: Updated CI badge to refer to the new CI process.
 ## 4.2.2
 
   - **Chore**: Migrated some models to [at_app_create](https://pub.dev/packages/at_app_create) package.

@@ -4,12 +4,17 @@ on:
   push:
     branches:
       - trunk
-  pull_request:
+  pull_request_target:
     branches:
       - trunk
+      - actions-testing
 
+# Test
 jobs:
   build:
+    permissions:
+      pull-requests: write
+
     runs-on: ubuntu-latest
     outputs:
       build_key: ${{ steps.build_key.outputs.build_key }}

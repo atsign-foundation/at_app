@@ -1,7 +1,11 @@
+## 5.0.0+2
+
+  - **Chore**: Updated CI badge to refer to the new CI process.
+
 ## 5.0.0+1
 
-- **Docs**: Updated README.md
-- **Docs**: Updated AtEnv annotations
+- **Docs**: Updated README.md.
+- **Docs**: Updated AtEnv annotations.
 
 ## 5.0.0
 
