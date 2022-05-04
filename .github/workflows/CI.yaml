@@ -21,6 +21,8 @@ jobs:
       build_key: ${{ steps.build_key.outputs.build_key }}
       commit_id: ${{ steps.should_commit.outputs.changes_detected && steps.commit_id.outputs.commit_hash || github.sha }}
     steps:
+      - uses: actions/checkout@v3
+
       - name: Checkout PR
         run: gh pr checkout ${{ github.event.pull_request.number }} --repo atsign-foundation/at_app
         env:
