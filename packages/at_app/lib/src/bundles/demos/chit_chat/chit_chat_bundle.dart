@@ -7,7 +7,6 @@ final chitChatBundle =    MasonBundle.fromJson(
 
 
 
-
 <String, dynamic>{
   "files": [
     {

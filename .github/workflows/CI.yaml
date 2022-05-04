@@ -55,8 +55,9 @@ jobs:
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git add .
-          git commit -m 'Automated build'
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git commit -am "Automated build action"
           git push
           COMMIT_ID=$(git log --format="%H" -n 1)
           echo "::set-output name=changes_hash::$COMMIT_ID"
