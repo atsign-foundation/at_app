@@ -5,6 +5,7 @@ import 'package:mason/mason.dart';
 
 final chitChatBundle = MasonBundle.fromJson(
   
+  
   <String, dynamic>{
   "files": [
     {
