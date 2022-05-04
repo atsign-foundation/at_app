@@ -19,14 +19,11 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       build_key: ${{ steps.build_key.outputs.build_key }}
-      commit_id: ${{ steps.should_commit.outputs.changes_detected && steps.commit_id.outputs.commit_hash || github.sha }}
+      commit_id: ${{ steps.commit_id.outputs.changes_detected && steps.commit_id.outputs.commit_hash || github.sha }}
     steps:
       - uses: actions/checkout@v3
-
-      - name: Checkout PR
-        run: gh pr checkout ${{ github.event.pull_request.number }} --repo atsign-foundation/at_app
-        env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          ref: ${{ github.head_ref }}
 
       - uses: subosito/flutter-action@v2
         with:
@@ -38,30 +35,10 @@ jobs:
       - uses: ./.github/workflows/install_dependencies_job
       - uses: ./.github/workflows/build_job
 
-      - id: should_commit
-        name: Check for new build
-        run: |
-          if [ -z "$(git status --porcelain)" ]; then
-            echo 'No changes post-build'
-            echo "::set-output name=changes_detected::0"
-            exit 0
-          else
-            echo "::set-output name=changes_detected::1"
-          fi
-
-      - id: commit_build
-        name: Commit new build
-        if: ${{ steps.should_commit.outputs.changes_detected }}
-        env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git commit -am "Automated build action"
-          git push
-          COMMIT_ID=$(git log --format="%H" -n 1)
-          echo "::set-output name=changes_hash::$COMMIT_ID"
-
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        id: commit_id
+        with:
+          commit_message: Commit automated build
 
   at_app_bundler:
     needs: build
