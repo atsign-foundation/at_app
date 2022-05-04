@@ -2,17 +2,23 @@ name: CI
 
 on:
   push:
-  pull_request:
+  pull_request_target:
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: write # Enable temporary branch creation for testing
 
     outputs:
       commit_id: ${{ steps.commit_id.outputs.changes_detected && steps.commit_id.outputs.commit_hash || github.sha }}
 
     steps:
       - uses: actions/checkout@v3
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.head_ref }}
 
       - uses: subosito/flutter-action@v2
         with:
@@ -32,7 +38,8 @@ jobs:
           create_branch: ${{ github.event.pull_request && github.event.pull_request.head.repo.full_name != github.repository }}
           # Label the branch by run_id and run_attempt if it is a PR from a fork
           # OR use the head branch if it is not
-          branch: ${{ github.event.pull_request.head.repo.full_name != github.repository && format('build_action-{0}-{1}', github.run_id, github.run_attempt) || github.head_ref }}
+          branch: ${{ github.event.pull_request && github.event.pull_request.head.repo.full_name != github.repository && format('build_action-{0}-{1}', github.run_id, github.run_attempt) || github.head_ref }}
+          repository: ${{ github.repo }}
 
       - run: echo ${{ steps.commit_id.outputs.commit_hash }}
 
