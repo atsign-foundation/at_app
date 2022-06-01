@@ -1,3 +1,7 @@
+## 4.2.3
+
+  - **Chore**: Use `at_app_create ^0.1.1`.
+
 ## 4.2.2+1
 
   - **Chore**: Updated CI badge to refer to the new CI process.
@@ -7,7 +11,7 @@
     - Developers can now depend on at_app_create to build their own version of at_app.
 
 ## 4.2.1
-  - **Chore**: Update templates to use [at_app_flutter](https://pub.dev/packages/at_app_flutter) 5.0.0
+  - **Chore**: Update templates to use [at_app_flutter](https://pub.dev/packages/at_app_flutter) ^5.0.0
 
 ## 4.2.0
 
