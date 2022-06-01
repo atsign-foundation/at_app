@@ -15,10 +15,14 @@ class IosVars implements AtVars {
   /// The top level domain part of the org name
   String? orgTld;
 
+  /// The minimum ios version
+  String? minIosVersion;
+
   IosVars({
     required this.projectName,
     required this.orgDomainName,
     required this.orgTld,
+    required this.minIosVersion,
   });
 
   factory IosVars.fromJson(Map<String, dynamic> json) => _$IosVarsFromJson(json);

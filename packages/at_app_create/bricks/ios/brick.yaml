@@ -16,3 +16,8 @@ vars:
     type: string
     description: The org top-level domain (e.g. com in com.example)
     default: com
+
+  minIosVersion:
+    type: string
+    description: The minimum supported IOS version.
+    default: '13.0'
