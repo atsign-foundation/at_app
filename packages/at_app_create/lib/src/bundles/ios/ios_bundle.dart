@@ -14,7 +14,7 @@ final iosBundle = MasonBundle.fromJson(<String, dynamic>{
     {
       "path": "ios/Flutter/AppFrameworkInfo.plist",
       "data":
-          "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPCFET0NUWVBFIHBsaXN0IFBVQkxJQyAiLS8vQXBwbGUvL0RURCBQTElTVCAxLjAvL0VOIiAiaHR0cDovL3d3dy5hcHBsZS5jb20vRFREcy9Qcm9wZXJ0eUxpc3QtMS4wLmR0ZCI+CjxwbGlzdCB2ZXJzaW9uPSIxLjAiPgo8ZGljdD4KICA8a2V5PkNGQnVuZGxlRGV2ZWxvcG1lbnRSZWdpb248L2tleT4KICA8c3RyaW5nPmVuPC9zdHJpbmc+CiAgPGtleT5DRkJ1bmRsZUV4ZWN1dGFibGU8L2tleT4KICA8c3RyaW5nPkFwcDwvc3RyaW5nPgogIDxrZXk+Q0ZCdW5kbGVJZGVudGlmaWVyPC9rZXk+CiAgPHN0cmluZz5pby5mbHV0dGVyLmZsdXR0ZXIuYXBwPC9zdHJpbmc+CiAgPGtleT5DRkJ1bmRsZUluZm9EaWN0aW9uYXJ5VmVyc2lvbjwva2V5PgogIDxzdHJpbmc+Ni4wPC9zdHJpbmc+CiAgPGtleT5DRkJ1bmRsZU5hbWU8L2tleT4KICA8c3RyaW5nPkFwcDwvc3RyaW5nPgogIDxrZXk+Q0ZCdW5kbGVQYWNrYWdlVHlwZTwva2V5PgogIDxzdHJpbmc+Rk1XSzwvc3RyaW5nPgogIDxrZXk+Q0ZCdW5kbGVTaG9ydFZlcnNpb25TdHJpbmc8L2tleT4KICA8c3RyaW5nPjEuMDwvc3RyaW5nPgogIDxrZXk+Q0ZCdW5kbGVTaWduYXR1cmU8L2tleT4KICA8c3RyaW5nPj8/Pz88L3N0cmluZz4KICA8a2V5PkNGQnVuZGxlVmVyc2lvbjwva2V5PgogIDxzdHJpbmc+MS4wPC9zdHJpbmc+CiAgPGtleT5NaW5pbXVtT1NWZXJzaW9uPC9rZXk+CiAgPHN0cmluZz57e21pbk9zVmVyc2lvbn19PC9zdHJpbmc+CjwvZGljdD4KPC9wbGlzdD4K",
+          "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPCFET0NUWVBFIHBsaXN0IFBVQkxJQyAiLS8vQXBwbGUvL0RURCBQTElTVCAxLjAvL0VOIiAiaHR0cDovL3d3dy5hcHBsZS5jb20vRFREcy9Qcm9wZXJ0eUxpc3QtMS4wLmR0ZCI+CjxwbGlzdCB2ZXJzaW9uPSIxLjAiPgo8ZGljdD4KICA8a2V5PkNGQnVuZGxlRGV2ZWxvcG1lbnRSZWdpb248L2tleT4KICA8c3RyaW5nPmVuPC9zdHJpbmc+CiAgPGtleT5DRkJ1bmRsZUV4ZWN1dGFibGU8L2tleT4KICA8c3RyaW5nPkFwcDwvc3RyaW5nPgogIDxrZXk+Q0ZCdW5kbGVJZGVudGlmaWVyPC9rZXk+CiAgPHN0cmluZz5pby5mbHV0dGVyLmZsdXR0ZXIuYXBwPC9zdHJpbmc+CiAgPGtleT5DRkJ1bmRsZUluZm9EaWN0aW9uYXJ5VmVyc2lvbjwva2V5PgogIDxzdHJpbmc+Ni4wPC9zdHJpbmc+CiAgPGtleT5DRkJ1bmRsZU5hbWU8L2tleT4KICA8c3RyaW5nPkFwcDwvc3RyaW5nPgogIDxrZXk+Q0ZCdW5kbGVQYWNrYWdlVHlwZTwva2V5PgogIDxzdHJpbmc+Rk1XSzwvc3RyaW5nPgogIDxrZXk+Q0ZCdW5kbGVTaG9ydFZlcnNpb25TdHJpbmc8L2tleT4KICA8c3RyaW5nPjEuMDwvc3RyaW5nPgogIDxrZXk+Q0ZCdW5kbGVTaWduYXR1cmU8L2tleT4KICA8c3RyaW5nPj8/Pz88L3N0cmluZz4KICA8a2V5PkNGQnVuZGxlVmVyc2lvbjwva2V5PgogIDxzdHJpbmc+MS4wPC9zdHJpbmc+CiAgPGtleT5NaW5pbXVtT1NWZXJzaW9uPC9rZXk+CiAgPHN0cmluZz57e21pbklvc1ZlcnNpb259fTwvc3RyaW5nPgo8L2RpY3Q+CjwvcGxpc3Q+Cg==",
       "type": "text"
     },
     {"path": "ios/Flutter/Debug.xcconfig", "data": "I2luY2x1ZGUgIkdlbmVyYXRlZC54Y2NvbmZpZyIK", "type": "text"},
@@ -232,6 +232,7 @@ final iosBundle = MasonBundle.fromJson(<String, dynamic>{
       "description": "The org domain name (e.g. example in com.example)",
       "default": "example"
     },
-    "orgTld": {"type": "string", "description": "The org top-level domain (e.g. com in com.example)", "default": "com"}
+    "orgTld": {"type": "string", "description": "The org top-level domain (e.g. com in com.example)", "default": "com"},
+    "minIosVersion": {"type": "string", "description": "The minimum supported IOS version.", "default": "13.0"}
   }
 });

@@ -40,6 +40,10 @@ class AtTemplateVars implements AndroidVars, BaseVars, IosVars {
   @override
   String? orgTld;
 
+  /// The minimum ios version
+  @override
+  String? minIosVersion;
+
   /// The minSdkVersion in app/build.gradle
   @override
   String? minSdkVersion;
@@ -79,6 +83,7 @@ class AtTemplateVars implements AndroidVars, BaseVars, IosVars {
     this.gitignore,
     this.orgTld,
     this.orgDomainName,
+    this.minIosVersion,
     this.minSdkVersion,
     this.targetSdkVersion,
     this.compileSdkVersion,
