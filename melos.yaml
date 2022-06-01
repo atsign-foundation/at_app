@@ -5,7 +5,7 @@ packages:
   - packages/*/* # Published packages
 
 scripts:
-  postbootstrap: cd templates && dart pub get
+  postbootstrap: dart pub get -C templates
 
   build: sh tools/build_local.sh
 
