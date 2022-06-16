@@ -1,12 +1,12 @@
 #!/bin/bash
 
-if [ ! -z "$GITHUB_ACTION" ];
+if [ -n "$GITHUB_ACTION" ];
 then
   MELOS_ROOT_PATH="$GITHUB_WORKSPACE"
 fi
 
 OUTPUT_PATH="$MELOS_ROOT_PATH/packages/at_app"
-BRICK_PATH="$MELOS_ROOT_PATH/templates/lib"
+BRICK_PATH="$MELOS_ROOT_PATH/templates"
 BUNDLER_MAIN="$MELOS_ROOT_PATH/packages/at_app_bundler/bin/at_app_bundler.dart"
 
 # ARGS
@@ -32,11 +32,11 @@ rm "$BUNDLE_FILE"
 touch "$BUNDLE_FILE"
 
 # Iterate over each type of templates
-for TEMPLATE_TYPE in "$BRICK_PATH"/*;
+for TEMPLATE_TYPE_BASE in demos samples templates;
   do
 
-  # Get the basename for the template type
-  TEMPLATE_TYPE_BASE=$(basename "$TEMPLATE_TYPE")
+  # Get the path for the template type
+  TEMPLATE_TYPE="$BRICK_PATH/$TEMPLATE_TYPE_BASE";
   echo "FOUND $TEMPLATE_TYPE_BASE"
   # Export the template type
   echo "export '$TEMPLATE_TYPE_BASE/$TEMPLATE_TYPE_BASE.dart';" >> "$BUNDLE_FILE"

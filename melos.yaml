@@ -5,7 +5,6 @@ packages:
   - packages/*/* # Published packages
 
 scripts:
-  postbootstrap: dart pub get -C templates
+  postbootstrap: sh tools/postbootstrap.sh
 
   build: sh tools/build_local.sh
-
