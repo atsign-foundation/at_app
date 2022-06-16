@@ -1,19 +1,18 @@
+name: at_onboarding_flutter_template
+publish_to: none
+environment:
+  sdk: '>=2.12.0 <3.0.0'
+
 dependencies:
-  at_client_mobile: ^3.0.3
-  at_utils: ^3.0.0
-  path_provider: ^2.0.5
-  flutter_dotenv: ^5.0.2
-  # timer_builder: ^2.0.0
   at_app_flutter: ^5.0.0
 
 env:
   override: true
 
 env_override:
-  NAMESPACE: fourballcorporate9
+  NAMESPACE: productive2227
   API_KEY: 477b-876u-bcez-c42z-6a3d
 
 android:
   kotlinVersion: 1.5.32
   minSdkVersion: '23'
-
