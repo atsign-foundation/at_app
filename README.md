@@ -5,7 +5,7 @@
 [![gitHub license](https://img.shields.io/badge/license-BSD3-blue.svg)](packages/at_app/LICENSE)
 [![CI](https://github.com/atsign-foundation/at_app/actions/workflows/CI.yaml/badge.svg?branch=trunk)](https://github.com/atsign-foundation/at_app/actions/workflows/CI.yaml)
 
-at_app is a command-line tool for app developers to quickly generate a starter @platform app. at_app was designed to be the @platform's version of flutter create, and uses it behind the scenes to help you get started with your app.
+at_app is a command-line tool for app developers to quickly generate a starter atPlatform app. at_app was designed to be the atPlatform's version of flutter create, and uses it behind the scenes to help you get started with your app.
 
 ## Packages
 
@@ -15,7 +15,7 @@ at_app is a command-line tool for app developers to quickly generate a starter @
 [![pub points](https://badges.bar/at_app/pub%20points)](https://pub.dev/packages/at_app/score)
 [![gitHub license](https://img.shields.io/badge/license-BSD3-blue.svg)](packages/at_app/LICENSE)
 
-This is a command-line to make learning the @platform and building on it easier. If you are a developer working on the @platform, it is recommended that you try out this tool.
+This is a command-line to make learning the atPlatform and building on it easier. If you are a developer working on the atPlatform, it is recommended that you try out this tool.
 
 [[View on pub.dev](https://pub.dev/packages/at_app)]
 
