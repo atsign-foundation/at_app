@@ -8,4 +8,4 @@ scripts:
   postbootstrap: dart pub get -C templates
 
   build: sh tools/build_local.sh
-
+  build:generated: sh tools/build_generated.sh
