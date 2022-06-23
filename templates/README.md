@@ -42,7 +42,7 @@ In `templates/lib` choose the appropriate **\<template-type>** folder:
 
 In the **\<template-type>** folder, create a new folder for your template called **\<template-name>**.
 
-In the **\<template-name>** folder, create another folder called `__brick__`, and two files called `brick.yaml`, and `template.yaml`.
+In the **\<template-name>** folder, create another folder called `__brick__`, and two files called `brick.yaml`, and `pubspec.yaml`.
 
 ### 3. Configure brick.yaml
 
@@ -53,14 +53,16 @@ You need to include the following fields:
 - version - for now, leave it as 0.1.0
 - vars - You can leave this empty.
 
-### 4. Configure template.yaml
+### 4. Configure pubspec.yaml
 
 This file provides configuration options for the app output.
 
 N.B. Use Visual Studio Code in order to benefit from auto-completion in this file.
 
 Here is the schema:
-
+- name: Set this to `<template-name>_template`
+- publish_to: Set this to `none`
+- environment: The flutter sdk environment, add `sdk: '>=2.12.0 <3.0.0'`
 - dependencies: copy from pubspec.yaml
 - env
   - include: boolean  
