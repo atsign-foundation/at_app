@@ -10,7 +10,7 @@ class TemplateYamlParser {
   TemplateYamlParser(this.brick);
 
   Future<Map<String, dynamic>> parse() async {
-    File configFile = File(path.join(brick.absolute.path, 'template.yaml'));
+    File configFile = File(path.join(brick.absolute.path, 'pubspec.yaml'));
     String fileContents = await configFile.readAsString();
     yaml = loadYamlDocument(fileContents).contents.value;
 
