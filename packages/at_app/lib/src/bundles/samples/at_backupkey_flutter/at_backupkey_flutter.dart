@@ -11,7 +11,7 @@ class AtBackupkeyFlutterTemplateBundle extends AtTemplateBundle<AtTemplateVars> 
 
 final AtTemplateVars _vars = AtTemplateVars(
   includeBundles: {'at_backupkey_flutter'},
-  dependencies: ["at_onboarding_flutter: ^4.0.0", "cupertino_icons: ^1.0.0"],
+  dependencies: ["at_onboarding_flutter: ^4.0.0", "at_backupkey_flutter: ^4.0.2", "cupertino_icons: ^1.0.0"],
   enableR8: true,
   kotlinVersion: Version.parse('1.5.32'),
   minSdkVersion: '23',
