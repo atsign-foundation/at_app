@@ -13,12 +13,6 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^1.0.4
 
-dependency_overrides:
-  at_backupkey_flutter:
-  #    path: ../
-  file_selector_windows: ^0.8.2
-  permission_handler: ^9.2.0
-  file_selector_macos: ^0.8.2
 
 flutter:
   assets:
@@ -26,8 +20,6 @@ flutter:
   uses-material-design: true
 
 env:
-  include: true
-  gitignore: true
   override: true
 
 env_override:
