@@ -11,6 +11,8 @@ import 'home_screen.dart';
 
 final AtSignLogger _logger = AtSignLogger(AtEnv.appNamespace);
 
+// HELLO WORLD!
+
 Future<void> main() async {
   // * AtEnv is an abtraction of the flutter_dotenv package used to
   // * load the environment variables set by at_app

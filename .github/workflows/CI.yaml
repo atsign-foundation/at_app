@@ -33,6 +33,7 @@ jobs:
         id: commit_id
         with:
           commit_message: 'chore: automated build'
+          commit_options: '--no-edit --amend'
 
       - run: echo ${{ steps.commit_id.outputs.commit_hash }}
 
@@ -264,28 +265,3 @@ jobs:
         with:
           type: demo
           name: chit_chat
-      - run: exit 1 # FORCE FAILURE
-
-  dispose:
-    runs-on: ubuntu-latest
-
-    if: ${{ always() }} # Always dispose, regardless of whether jobs pass or fail
-    needs: # Needs everything to run before we dispose
-      - build
-      - at_app_bundler
-      - at_app_create
-      - at_app_flutter
-      - at_app
-      - generate-app_template
-      - generate-at_onboarding_flutter_sample
-      - generate-at_contacts_flutter_sample
-      - generate-snackbar_demo
-      - generate-snackbar_sender_demo
-      - generate-chit_chat_demo
-
-    steps:
-      - if: ${{ success() }}
-        run: echo success
-
-      - if: ${{ failure() }}
-        run: echo failure
