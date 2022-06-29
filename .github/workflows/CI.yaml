@@ -264,6 +264,7 @@ jobs:
         with:
           type: demo
           name: chit_chat
+      - run: exit 1 # FORCE FAILURE
 
   dispose:
     runs-on: ubuntu-latest
@@ -283,9 +284,8 @@ jobs:
       - generate-chit_chat_demo
 
     steps:
-      - name: Dispose of temporary branch
-        if: ${{ github.event.pull_request && github.event.pull_request.head.repo.full_name != github.repository }}
-        uses: dawidd6/action-delete-branch@v3
-        with:
-          github_token: ${{ github.token }}
-          branches: ${{ format('build_action-{0}-{1}', github.run_id, github.run_attempt) }}
+      - if: ${{ success() }}
+        run: echo success
+
+      - if: ${{ failure() }}
+        run: echo failure
