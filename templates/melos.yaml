@@ -1,7 +1,7 @@
 name: at_app_templates
 repository: https://github.com/atsign-foundation/at_app
 
-packages: 
+packages:
   - lib/*/*
 
 scripts:
@@ -9,4 +9,3 @@ scripts:
   upgrade:major: melos exec -- dart pub upgrade --major-versions
   get: melos exec -- dart pub get
 
-  
