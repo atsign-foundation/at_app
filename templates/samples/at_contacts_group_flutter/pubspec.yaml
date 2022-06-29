@@ -1,0 +1,26 @@
+name: at_contacts_group_flutter_template
+publish_to: none
+environment:
+  sdk: '>=2.12.0 <3.0.0'
+
+dependencies:
+  at_contacts_group_flutter: ^4.0.7
+  cupertino_icons: ^1.0.3
+  at_contacts_flutter: ^4.0.0
+  at_app_flutter: 5.0.0
+
+flutter:
+  assets:
+    - .env
+  uses-material-design: true
+
+env:
+  override: true
+
+env_override:
+  NAMESPACE: productive2227
+  API_KEY: 477b-876u-bcez-c42z-6a3d
+
+android:
+  kotlinVersion: 1.5.32
+  minSdkVersion: '23'
