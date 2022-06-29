@@ -10,6 +10,7 @@ final List<AtAppTemplate> samples = [
   atOnboardingFlutterTemplate,
   atContactsFlutterTemplate,
   atBackupkeyFlutterTemplate,
+  atChatFlutterTemplate,
 ];
 
 final List<AtAppTemplate> demos = [
