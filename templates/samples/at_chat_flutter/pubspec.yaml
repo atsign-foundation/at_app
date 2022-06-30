@@ -4,9 +4,9 @@ environment:
   sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
-  cupertino_icons: ^1.0.2
-  at_app_flutter: 4.0.0
-  at_chat_flutter:
+  cupertino_icons: ^1.0.5
+  at_app_flutter: ^5.0.0
+  at_chat_flutter: ^3.0.6
 
 dev_dependencies:
   flutter_test:
