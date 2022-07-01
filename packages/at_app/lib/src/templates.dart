@@ -14,6 +14,7 @@ final List<AtAppTemplate> samples = [
   atContactsGroupFlutterTemplate,
   atInvitationFlutterTemplate,
   atLocationFlutterTemplate,
+  atSyncUiFlutterTemplate,
 ];
 
 final List<AtAppTemplate> demos = [
