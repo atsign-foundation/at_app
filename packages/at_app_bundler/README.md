@@ -1,9 +1,6 @@
-
-
-
 # at_app_bundler
 
-<img width=250px src="https://atsign.dev/assets/img/@platform_logo_grey.svg?sanitize=true">
+<img width=250px src="https://atsign.dev/assets/img/atPlatform_logo_gray.svg?sanitize=true">
 
 [![pub package](https://img.shields.io/pub/v/at_app_bundler)](https://pub.dev/packages/at_app_bundler)
 [![pub points](https://badges.bar/at_app_bundler/pub%20points)](https://pub.dev/packages/at_app_bundler/score)
