@@ -8,3 +8,4 @@ export 'at_location_flutter/at_location_flutter.dart';
 export 'at_notify_flutter/at_notify_flutter.dart';
 export 'at_onboarding_flutter/at_onboarding_flutter.dart';
 export 'at_sync_ui_flutter/at_sync_ui_flutter.dart';
+export 'at_theme_flutter/at_theme_flutter.dart';
