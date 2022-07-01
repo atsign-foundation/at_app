@@ -15,6 +15,7 @@ final List<AtAppTemplate> samples = [
   atInvitationFlutterTemplate,
   atLocationFlutterTemplate,
   atNotifyFlutterTemplate,
+  atSyncUiFlutterTemplate,
 ];
 
 final List<AtAppTemplate> demos = [
