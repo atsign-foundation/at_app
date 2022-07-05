@@ -12,6 +12,7 @@ final List<AtAppTemplate> samples = [
   atBackupkeyFlutterTemplate,
   atChatFlutterTemplate,
   atContactsGroupFlutterTemplate,
+  atEventsFlutterTemplate,
   atInvitationFlutterTemplate,
   atLocationFlutterTemplate,
   atNotifyFlutterTemplate,
