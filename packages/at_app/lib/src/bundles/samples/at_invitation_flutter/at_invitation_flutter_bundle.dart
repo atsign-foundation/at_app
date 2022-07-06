@@ -8,7 +8,7 @@ final atInvitationFlutterBundle = MasonBundle.fromJson(<String, dynamic>{
     {
       "path": "lib/constants.dart",
       "data":
-          "Y2xhc3MgTWl4ZWRDb25zdGFudHMgewogIHN0YXRpYyBjb25zdCBTdHJpbmcgY29va2llUGFnZSA9ICdodHRwczovLzNlMmEtMTIyLTE2Ny0xOTItMTUzLm5ncm9rLmlvJzsKfQo=",
+          "Y2xhc3MgTWl4ZWRDb25zdGFudHMgewogIHN0YXRpYyBjb25zdCBTdHJpbmcgY29va2llUGFnZSA9ICdodHRwczovL2F0c2lnbi5kZXYvc2FtcGxlcy9hdF9pbnZpdGF0aW9uX2ZsdXR0ZXInOwp9Cg==",
       "type": "text"
     },
     {
