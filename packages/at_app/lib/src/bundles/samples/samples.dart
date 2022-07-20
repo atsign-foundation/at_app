@@ -3,7 +3,7 @@ export 'at_chat_flutter/at_chat_flutter.dart';
 export 'at_contacts_flutter/at_contacts_flutter.dart';
 export 'at_contacts_group_flutter/at_contacts_group_flutter.dart';
 export 'at_events_flutter/at_events_flutter.dart';
-export 'at_events_flutter/at_events_flutter.dart';
+export 'at_follows_flutter/at_follows_flutter.dart';
 export 'at_invitation_flutter/at_invitation_flutter.dart';
 export 'at_location_flutter/at_location_flutter.dart';
 export 'at_notify_flutter/at_notify_flutter.dart';
