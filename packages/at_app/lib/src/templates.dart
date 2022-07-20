@@ -13,6 +13,11 @@ final List<AtAppTemplate> samples = [
   atChatFlutterTemplate,
   atContactsGroupFlutterTemplate,
   atEventsFlutterTemplate,
+  atInvitationFlutterTemplate,
+  atLocationFlutterTemplate,
+  atNotifyFlutterTemplate,
+  atSyncUiFlutterTemplate,
+  atThemeFlutterTemplate,
 ];
 
 final List<AtAppTemplate> demos = [
