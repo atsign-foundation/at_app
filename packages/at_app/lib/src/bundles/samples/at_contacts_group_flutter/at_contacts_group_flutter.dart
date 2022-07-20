@@ -5,7 +5,8 @@ import 'package:pub_semver/pub_semver.dart';
 
 import 'at_contacts_group_flutter_bundle.dart';
 
-class AtContactsGroupFlutterTemplateBundle extends AtTemplateBundle<AtTemplateVars> {
+class AtContactsGroupFlutterTemplateBundle
+    extends AtTemplateBundle<AtTemplateVars> {
   AtContactsGroupFlutterTemplateBundle() : super(atContactsGroupFlutterBundle);
 }
 
