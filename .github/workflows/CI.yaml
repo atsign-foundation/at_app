@@ -135,11 +135,11 @@ jobs:
         run: dart test
 
   # GENERATED APP TESTS
-  template_apps:
+  generated_template_apps:
     needs: build
     runs-on: ubuntu-latest
     strategy:
-      fail-fast: true
+      fail-fast: false
       matrix:
         name:
           - app
@@ -161,11 +161,11 @@ jobs:
           type: app
           name: ${{ matrix.name }}
 
-  sample_apps:
+  generated_sample_apps:
     needs: build
     runs-on: ubuntu-latest
     strategy:
-      fail-fast: true
+      fail-fast: false
       matrix:
         name:
           - at_backupkey_flutter
@@ -198,7 +198,7 @@ jobs:
           type: sample
           name: ${{ matrix.name }}
 
-  demo_apps:
+  generated_demo_apps:
     needs: build
     runs-on: ubuntu-latest
     strategy:
