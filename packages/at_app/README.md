@@ -1,6 +1,6 @@
 # at_app
 
-<img width=250px src="https://atsign.dev/assets/img/@platform_logo_grey.svg?sanitize=true">
+<img width=250px src="https://atsign.dev/assets/img/atPlatform_logo_gray.svg?sanitize=true">
 
 [![pub package](https://img.shields.io/pub/v/at_app)](https://pub.dev/packages/at_app)
 [![pub points](https://badges.bar/at_app/pub%20points)](https://pub.dev/packages/at_app/score)
@@ -9,15 +9,15 @@
 
 ## Overview
 
-at_app is the one-stop shop for Flutter developers developing with, or trying out the @platform.
+at_app is the one-stop shop for Flutter developers developing with, or trying out the atPlatform.
 
 This open source application is written in Dart, and is designed to help you run apps on the
-@platform's decentralized, edge computing model. at_app can help you to:
-- Get started on the @platform
+atPlatform's decentralized, edge computing model. at_app can help you to:
+- Get started on the atPlatform
 - Build an app using our starter templates
-- Discover and learn about @platform packages that may be useful to your project
+- Discover and learn about atPlatform packages that may be useful to your project
 
-Features of the @platform include:
+Features of the atPlatform include:
 - Cryptographic control of data access through personal data stores
 - No application backend needed
 - End to end encryption where only the data owner has the keys
@@ -47,7 +47,7 @@ which you can depend on if you would like to create your own version of this app
 ### Usage
 
 See the [Example tab](https://pub.dev/packages/at_app/example) on pub.dev.
-Alternatively, follow our [5 step introductory tutorial](https://atsign.dev/docs/get-started/tryatplatform/) which uses this application to help you get started on the @platform.
+Alternatively, follow our [5 step introductory tutorial](https://atsign.dev/docs/get-started/tryatplatform/) which uses this application to help you get started on the atPlatform.
 
 ## Open source usage and contributions
 
