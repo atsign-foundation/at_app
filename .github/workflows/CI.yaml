@@ -158,7 +158,7 @@ jobs:
 
       - uses: ./.github/workflows/generated_app_job
         with:
-          type: app
+          type: template
           name: ${{ matrix.name }}
 
   generated_sample_apps:
