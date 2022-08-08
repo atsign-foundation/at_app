@@ -135,11 +135,14 @@ jobs:
         run: dart test
 
   # GENERATED APP TESTS
-
-  # App Templates
-  generate-app_template:
+  template_apps:
     needs: build
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+      matrix:
+        name:
+          - app
     steps:
       - uses: actions/checkout@v3
         with:
@@ -155,13 +158,28 @@ jobs:
 
       - uses: ./.github/workflows/generated_app_job
         with:
-          type: template
-          name: app
+          type: app
+          name: ${{ matrix.name }}
 
-  # Sample Apps
-  generate-at_onboarding_flutter_sample:
+  sample_apps:
     needs: build
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+      matrix:
+        name:
+          - at_backupkey_flutter
+          - at_chat_flutter
+          - at_contacts_flutter
+          - at_contacts_group_flutter
+          - at_events_flutter
+          - at_follows_flutter
+          - at_invitation_flutter
+          - at_location_flutter
+          - at_notify_flutter
+          - at_onboarding_flutter
+          - at_sync_ui_flutter
+          - at_theme_flutter
     steps:
       - uses: actions/checkout@v3
         with:
@@ -178,54 +196,18 @@ jobs:
       - uses: ./.github/workflows/generated_app_job
         with:
           type: sample
-          name: at_onboarding_flutter
+          name: ${{ matrix.name }}
 
-  generate-at_contacts_flutter_sample:
+  demo_apps:
     needs: build
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          ref: ${{ needs.build.outputs.commit_ref }}
-
-      - uses: subosito/flutter-action@v2
-        with:
-          channel: 'stable'
-          cache: true
-          cache-key: ${{ format('flutter-{0}', github.ref) }}
-
-      - run: dart pub global run melos bootstrap
-
-      - uses: ./.github/workflows/generated_app_job
-        with:
-          type: sample
-          name: at_contacts_flutter
-
-  # Demo Apps
-  generate-snackbar_demo:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          ref: ${{ needs.build.outputs.commit_ref }}
-
-      - uses: subosito/flutter-action@v2
-        with:
-          channel: 'stable'
-          cache: true
-          cache-key: ${{ format('flutter-{0}', github.ref) }}
-
-      - run: dart pub global run melos bootstrap
-
-      - uses: ./.github/workflows/generated_app_job
-        with:
-          type: demo
-          name: snackbar
-
-  generate-snackbar_sender_demo:
-    needs: build
-    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        name:
+          - chit_chat
+          - snackbar
+          - snackbar_sender
     steps:
       - uses: actions/checkout@v3
         with:
@@ -242,28 +224,7 @@ jobs:
       - uses: ./.github/workflows/generated_app_job
         with:
           type: demo
-          name: snackbar_sender
-
-  generate-chit_chat_demo:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          ref: ${{ needs.build.outputs.commit_ref }}
-
-      - uses: subosito/flutter-action@v2
-        with:
-          channel: 'stable'
-          cache: true
-          cache-key: ${{ format('flutter-{0}', github.ref) }}
-
-      - run: dart pub global run melos bootstrap
-
-      - uses: ./.github/workflows/generated_app_job
-        with:
-          type: demo
-          name: chit_chat
+          name: ${{ matrix.name }}
 
   dispose:
     runs-on: ubuntu-latest
@@ -275,13 +236,9 @@ jobs:
       - at_app_create
       - at_app_flutter
       - at_app
-      - generate-app_template
-      - generate-at_onboarding_flutter_sample
-      - generate-at_contacts_flutter_sample
-      - generate-snackbar_demo
-      - generate-snackbar_sender_demo
-      - generate-chit_chat_demo
-
+      - template_apps
+      - sample_apps
+      - demo_apps
     steps:
       - name: Dispose of temporary branch
         if: ${{ github.event.pull_request && github.event.pull_request.head.repo.full_name != github.repository }}
