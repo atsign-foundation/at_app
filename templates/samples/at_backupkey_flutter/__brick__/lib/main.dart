@@ -15,8 +15,7 @@ void main() {
   runApp(const MyApp());
 }
 
-final StreamController<ThemeMode> updateThemeMode =
-    StreamController<ThemeMode>.broadcast();
+final StreamController<ThemeMode> updateThemeMode = StreamController<ThemeMode>.broadcast();
 
 class MyApp extends StatefulWidget {
   static const appKey = Key('myapp');
@@ -37,8 +36,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<AtClientPreference> getAtClientPreference() async {
-    final appDocumentDirectory =
-        await path_provider.getApplicationSupportDirectory();
+    final appDocumentDirectory = await path_provider.getApplicationSupportDirectory();
     String path = appDocumentDirectory.path;
     var _atClientPreference = AtClientPreference()
       ..isLocalStoreRequired = true
@@ -60,16 +58,14 @@ class _MyAppState extends State<MyApp> {
           theme: ThemeData().copyWith(
             brightness: Brightness.light,
             primaryColor: const Color(0xFFf4533d),
-            colorScheme:
-                ThemeData().colorScheme.copyWith(secondary: Colors.black),
+            colorScheme: ThemeData().colorScheme.copyWith(secondary: Colors.black),
             backgroundColor: Colors.white,
             scaffoldBackgroundColor: Colors.white,
           ),
           darkTheme: ThemeData().copyWith(
             brightness: Brightness.dark,
             primaryColor: Colors.blue,
-            colorScheme:
-                ThemeData().colorScheme.copyWith(secondary: Colors.white),
+            colorScheme: ThemeData().colorScheme.copyWith(secondary: Colors.white),
             backgroundColor: Colors.grey[850],
             scaffoldBackgroundColor: Colors.grey[850],
           ),
@@ -80,9 +76,7 @@ class _MyAppState extends State<MyApp> {
               actions: [
                 IconButton(
                   onPressed: () {
-                    updateThemeMode.sink.add(themeMode == ThemeMode.light
-                        ? ThemeMode.dark
-                        : ThemeMode.light);
+                    updateThemeMode.sink.add(themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light);
                   },
                   icon: Icon(
                     Theme.of(context).brightness == Brightness.light
@@ -101,8 +95,7 @@ class _MyAppState extends State<MyApp> {
                     Center(
                       child: TextButton(
                         onPressed: () async {
-                          var _atClientPreference =
-                              await getAtClientPreference();
+                          var _atClientPreference = await getAtClientPreference();
                           Onboarding(
                             context: context,
                             domain: rootDomain,
@@ -124,13 +117,11 @@ class _MyAppState extends State<MyApp> {
                         child: const Text('Onboard my @sign'),
                       ),
                     ),
-                  if (onboardingState == OnboardingState.error ||
-                      onboardingState == OnboardingState.success)
+                  if (onboardingState == OnboardingState.error || onboardingState == OnboardingState.success)
                     Center(
                       child: TextButton(
                         onPressed: () async {
-                          await KeyChainManager.getInstance()
-                              .clearKeychainEntries();
+                          await clearKeychainEntries();
                           atsign = null;
                           atClientServiceMap = null;
                           onboardingState = OnboardingState.initial;
@@ -156,8 +147,7 @@ class _MyAppState extends State<MyApp> {
                           ),
                           label: const Text('Backup your key'),
                           onPressed: () async {
-                            BackupKeyWidget(atsign: atsign ?? '')
-                                .showBackupDialog(context);
+                            BackupKeyWidget(atsign: atsign ?? '').showBackupDialog(context);
                           },
                         ),
                       ],
@@ -169,5 +159,12 @@ class _MyAppState extends State<MyApp> {
         );
       },
     );
+  }
+
+  Future<void> clearKeychainEntries() async {
+    var atsignList = await KeyChainManager.getInstance().getAtSignListFromKeychain();
+    await Future.forEach(atsignList, (String atsign) async {
+      await KeyChainManager.getInstance().resetAtSignFromKeychain(atsign: atsign);
+    });
   }
 }

@@ -25,10 +25,10 @@ class _OnboardingButtonState extends State<OnboardingButton> {
   // * Get the atsigns from the keychain and load them into [_atSignsList]
   Future<void> initKeyChain() async {
     var atSignsList = await _keyChainManager.getAtSignListFromKeychain();
-    if (atSignsList?.isNotEmpty ?? false) {
+    if (atSignsList.isNotEmpty) {
       setState(() {
         _atSignsList = atSignsList;
-        _atsign = atSignsList![0];
+        _atsign = atSignsList[0];
       });
     } else {
       setState(() {
