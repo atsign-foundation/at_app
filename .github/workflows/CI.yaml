@@ -236,9 +236,9 @@ jobs:
       - at_app_create
       - at_app_flutter
       - at_app
-      - template_apps
-      - sample_apps
-      - demo_apps
+      - generated_template_apps
+      - generated_sample_apps
+      - generated_demo_apps
     steps:
       - name: Dispose of temporary branch
         if: ${{ github.event.pull_request && github.event.pull_request.head.repo.full_name != github.repository }}
