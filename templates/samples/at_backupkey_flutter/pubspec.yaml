@@ -5,24 +5,8 @@ environment:
 
 dependencies:
   at_onboarding_flutter: ^4.0.0
-
   at_backupkey_flutter: ^4.0.2
-
   cupertino_icons: ^1.0.0
-
-dev_dependencies:
-  flutter_test:
-    sdk: flutter
-  flutter_lints: ^1.0.4
-
-dependency_overrides:
-
-  file_selector_windows: ^0.8.2
-  permission_handler: ^9.2.0
-  file_selector_macos: ^0.8.2
-
-flutter:
-  uses-material-design: true
 
 env:
   override: true

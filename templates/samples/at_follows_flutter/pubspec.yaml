@@ -11,11 +11,6 @@ dependencies:
   at_follows_flutter: ^3.0.7
   cupertino_icons: ^1.0.3
 
-dev_dependencies:
-  flutter_test:
-    sdk: flutter
-  flutter_lints: ^2.0.1
-
 env:
   override: true
 

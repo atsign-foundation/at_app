@@ -9,11 +9,6 @@ dependencies:
   at_notify_flutter: ^1.0.5
   at_onboarding_flutter: ^4.0.3
 
-dev_dependencies:
-  flutter_test:
-    sdk: flutter
-  flutter_lints: ^2.0.1
-
 env:
   override: true
 

@@ -8,11 +8,6 @@ dependencies:
   at_app_flutter: ^5.0.0
   at_chat_flutter: ^3.0.6
 
-dev_dependencies:
-  flutter_test:
-    sdk: flutter
-  flutter_lints: ^1.0.4
-
 env:
   override: true
 

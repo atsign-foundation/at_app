@@ -9,11 +9,6 @@ dependencies:
   at_theme_flutter: ^1.0.2
   at_app_flutter: ^5.0.0+1
 
-dev_dependencies:
-  flutter_test:
-    sdk: flutter
-  flutter_lints: ^2.0.1
-
 env:
   override: true
 
