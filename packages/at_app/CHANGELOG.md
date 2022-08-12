@@ -1,3 +1,17 @@
+## 4.3.0
+
+- **Feat**: Added the following sample apps:
+  - at_backupkey_flutter
+  - at_chat_flutter
+  - at_contacts_group_flutter
+  - at_events_flutter
+  - at_invitation_flutter
+  - at_location_flutter
+  - at_notify_flutter
+  - at_sync_ui_flutter
+  - at_theme_flutter
+- **Chore**: Use at_app_flutter ^5.0.1 in all app templates.
+
 ## 4.2.3
 
   - **Chore**: Use `at_app_create ^0.1.1`.
