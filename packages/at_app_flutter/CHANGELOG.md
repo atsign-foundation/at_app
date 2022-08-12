@@ -1,3 +1,7 @@
+## 5.0.1
+
+- **Chore**: Updated dependency at_onboarding_flutter version to support major versions 4.x.x and 5.x.x.
+
 ## 5.0.0+2
 
   - **Chore**: Updated CI badge to refer to the new CI process.
