@@ -15,7 +15,8 @@ final AtTemplateVars _vars = AtTemplateVars(
     "at_common_flutter: ^2.0.8",
     "cupertino_icons: ^1.0.5",
     "at_theme_flutter: ^1.0.2",
-    "at_app_flutter: ^5.0.0+1"
+    "at_app_flutter: ^5.0.1",
+    "at_onboarding_flutter: ^5.0.0"
   ],
   enableR8: true,
   kotlinVersion: Version.parse('1.5.32'),

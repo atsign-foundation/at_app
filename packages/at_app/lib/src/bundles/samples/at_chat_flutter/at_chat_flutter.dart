@@ -11,7 +11,12 @@ class AtChatFlutterTemplateBundle extends AtTemplateBundle<AtTemplateVars> {
 
 final AtTemplateVars _vars = AtTemplateVars(
   includeBundles: {'at_chat_flutter'},
-  dependencies: ["cupertino_icons: ^1.0.5", "at_app_flutter: ^5.0.0", "at_chat_flutter: ^3.0.6"],
+  dependencies: [
+    "cupertino_icons: ^1.0.5",
+    "at_app_flutter: ^5.0.1",
+    "at_onboarding_flutter: ^5.0.0",
+    "at_chat_flutter: ^3.0.6"
+  ],
   enableR8: true,
   kotlinVersion: Version.parse('1.5.32'),
   minSdkVersion: '23',

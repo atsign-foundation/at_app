@@ -12,8 +12,8 @@ class AtSyncUiFlutterTemplateBundle extends AtTemplateBundle<AtTemplateVars> {
 final AtTemplateVars _vars = AtTemplateVars(
   includeBundles: {'at_sync_ui_flutter'},
   dependencies: [
-    "at_app_flutter: ^5.0.0",
-    "at_onboarding_flutter: ^4.0.3",
+    "at_app_flutter: ^5.0.1",
+    "at_onboarding_flutter: ^5.0.0",
     "cupertino_icons: ^1.0.5",
     "flutter_colorpicker: ^1.0.3",
     "at_sync_ui_flutter: ^1.0.3"

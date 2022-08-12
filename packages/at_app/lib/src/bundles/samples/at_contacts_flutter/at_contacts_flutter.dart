@@ -11,7 +11,7 @@ class AtContactsFlutterTemplateBundle extends AtTemplateBundle<AtTemplateVars> {
 
 final AtTemplateVars _vars = AtTemplateVars(
   includeBundles: {'at_contacts_flutter'},
-  dependencies: ["at_app_flutter: ^5.0.0", "at_contacts_flutter: ^4.0.0"],
+  dependencies: ["at_app_flutter: ^5.0.1", "at_onboarding_flutter: ^5.0.0", "at_contacts_flutter: ^4.0.0"],
   kotlinVersion: Version.parse('1.5.32'),
   minSdkVersion: '23',
   flutterConfig: ["assets:", "  - .env"],
