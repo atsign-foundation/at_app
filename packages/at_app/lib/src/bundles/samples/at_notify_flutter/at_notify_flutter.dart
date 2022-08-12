@@ -13,9 +13,9 @@ final AtTemplateVars _vars = AtTemplateVars(
   includeBundles: {'at_notify_flutter'},
   dependencies: [
     "cupertino_icons: ^1.0.5",
-    "at_app_flutter: ^5.0.0",
-    "at_notify_flutter: ^1.0.5",
-    "at_onboarding_flutter: ^4.0.3"
+    "at_app_flutter: ^5.0.1",
+    "at_onboarding_flutter: ^5.0.0",
+    "at_notify_flutter: ^1.0.5"
   ],
   enableR8: true,
   kotlinVersion: Version.parse('1.5.32'),

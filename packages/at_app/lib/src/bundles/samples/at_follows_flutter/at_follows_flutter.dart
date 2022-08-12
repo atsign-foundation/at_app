@@ -14,8 +14,8 @@ final AtTemplateVars _vars = AtTemplateVars(
   dependencies: [
     "path_provider: ^2.0.11",
     "flutter_local_notifications: ^9.1.4",
-    "at_app_flutter: ^5.0.0",
-    "at_onboarding_flutter: ^4.0.0",
+    "at_app_flutter: ^5.0.1",
+    "at_onboarding_flutter: ^5.0.0",
     "at_follows_flutter: ^3.0.7",
     "cupertino_icons: ^1.0.3"
   ],

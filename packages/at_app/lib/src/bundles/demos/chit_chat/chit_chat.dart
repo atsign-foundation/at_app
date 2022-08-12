@@ -18,7 +18,8 @@ final AtTemplateVars _vars = AtTemplateVars(
     "flutter_dotenv: ^5.0.2",
     "at_chat_flutter: ^3.0.3",
     "at_contacts_flutter: ^4.0.0",
-    "at_app_flutter: ^5.0.0"
+    "at_app_flutter: ^5.0.1",
+    "at_onboarding_flutter: ^5.0.0"
   ],
   kotlinVersion: Version.parse('1.5.32'),
   minSdkVersion: '23',
