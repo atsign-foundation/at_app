@@ -8,7 +8,7 @@ dependencies:
   at_onboarding_flutter: ^5.0.0
   cupertino_icons: ^1.0.5
   flutter_colorpicker: ^1.0.3
-  at_sync_ui_flutter: ^1.0.3
+  at_sync_ui_flutter: ^1.0.5
 
 env:
   override: true

@@ -71,13 +71,13 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             ElevatedButton(
               onPressed: () async {
-                await AtSyncUIService().sync();
+                AtSyncUIService().sync();
               },
               child: const Text('Default Sync'),
             ),
             ElevatedButton(
               onPressed: () async {
-                await AtSyncUIService().sync(
+                AtSyncUIService().sync(
                   atSyncUIOverlay: AtSyncUIOverlay.dialog,
                 );
               },
@@ -85,7 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             ElevatedButton(
               onPressed: () async {
-                await AtSyncUIService().sync(
+                AtSyncUIService().sync(
                   atSyncUIOverlay: AtSyncUIOverlay.snackbar,
                 );
               },

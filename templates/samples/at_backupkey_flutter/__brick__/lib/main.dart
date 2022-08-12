@@ -177,7 +177,7 @@ class _MyAppState extends State<MyApp> {
   Future<void> clearKeychainEntries() async {
     var atsignList = await KeyChainManager.getInstance().getAtSignListFromKeychain();
     await Future.forEach(atsignList, (String atsign) async {
-      await KeyChainManager.getInstance().resetAtSignFromKeychain(atsign: atsign);
+      await KeyChainManager.getInstance().resetAtSignFromKeychain(atsign);
     });
   }
 }
