@@ -18,7 +18,6 @@ final List<AtAppTemplate> samples = [
   atNotifyFlutterTemplate,
   atSyncUiFlutterTemplate,
   atThemeFlutterTemplate,
-  atFollowsFlutterTemplate,
 ];
 
 final List<AtAppTemplate> demos = [
