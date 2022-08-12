@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:at_app_flutter/at_app_flutter.dart';
 import 'package:at_client_mobile/at_client_mobile.dart';
 import 'package:at_onboarding_flutter/at_onboarding_flutter.dart';
 import 'package:flutter/material.dart';
@@ -93,28 +94,40 @@ class _MyAppState extends State<MyApp> {
                 children: [
                   if (onboardingState == OnboardingState.initial)
                     Center(
-                      child: TextButton(
+                      child: ElevatedButton(
                         onPressed: () async {
-                          var _atClientPreference = await getAtClientPreference();
-                          Onboarding(
+                          var futurePreference = getAtClientPreference();
+                          AtOnboardingResult onboardingResult = await AtOnboarding.onboard(
                             context: context,
-                            domain: rootDomain,
-                            rootEnvironment: RootEnvironment.Staging,
-                            appColor: const Color.fromARGB(255, 240, 94, 62),
-                            atClientPreference: _atClientPreference,
-                            onboard: (map, atsign) {
-                              atClientServiceMap = map;
-                              this.atsign = atsign;
-                              onboardingState = OnboardingState.success;
-                              setState(() {});
-                            },
-                            onError: (error) {
-                              onboardingState = OnboardingState.error;
-                              setState(() {});
-                            },
+                            config: AtOnboardingConfig(
+                              atClientPreference: await futurePreference,
+                              rootEnvironment: AtEnv.rootEnvironment,
+                              domain: AtEnv.rootDomain,
+                              appAPIKey: AtEnv.appApiKey,
+                            ),
                           );
+                          switch (onboardingResult.status) {
+                            case AtOnboardingResultStatus.success:
+                              setState(() {
+                                onboardingState = OnboardingState.success;
+                              });
+                              break;
+                            case AtOnboardingResultStatus.error:
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  backgroundColor: Colors.red,
+                                  content: Text('An error has occurred'),
+                                ),
+                              );
+                              setState(() {
+                                onboardingState = OnboardingState.error;
+                              });
+                              break;
+                            case AtOnboardingResultStatus.cancel:
+                              break;
+                          }
                         },
-                        child: const Text('Onboard my @sign'),
+                        child: const Text('Onboard an @sign'),
                       ),
                     ),
                   if (onboardingState == OnboardingState.error || onboardingState == OnboardingState.success)

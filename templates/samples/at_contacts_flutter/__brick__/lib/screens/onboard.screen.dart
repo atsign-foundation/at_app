@@ -1,9 +1,8 @@
 import 'package:at_app_flutter/at_app_flutter.dart';
+import 'package:at_onboarding_flutter/at_onboarding_flutter.dart';
 import '../services/client.sdk.services.dart';
 import 'package:flutter/material.dart';
 import 'package:at_utils/at_logger.dart' show AtSignLogger;
-
-import 'package:at_onboarding_flutter/at_onboarding_flutter.dart' show Onboarding;
 
 import 'home.screen.dart';
 
@@ -27,39 +26,34 @@ class LoginScreen extends StatelessWidget {
       body: Builder(
         builder: (context) => Center(
           child: ElevatedButton(
-            onPressed: () async {
-              Onboarding(
-                context: context,
-                atClientPreference: clientSdkService.atClientPreference,
-                domain: AtEnv.rootDomain,
-                rootEnvironment: AtEnv.rootEnvironment,
-                appAPIKey: AtEnv.appApiKey,
-                onboard: (value, atsign) {
-                  _logger.finer('Successfully onboarded $atsign');
-                },
-                onError: (error) async {
-                  await showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          content: const Text('Something went wrong'),
-                          actions: [
-                            TextButton(
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                              child: const Text('ok'),
-                            ),
-                          ],
-                        );
-                      });
-                  _logger.severe('Onboarding throws $error error');
-                },
-                nextScreen: const HomePage(),
-              );
-            },
-            child: const Text('Onboard an @sign'),
-          ),
+              onPressed: () async {
+                AtOnboardingResult onboardingResult = await AtOnboarding.onboard(
+                  context: context,
+                  config: AtOnboardingConfig(
+                    atClientPreference: clientSdkService.atClientPreference,
+                    rootEnvironment: AtEnv.rootEnvironment,
+                    domain: AtEnv.rootDomain,
+                    appAPIKey: AtEnv.appApiKey,
+                  ),
+                );
+                switch (onboardingResult.status) {
+                  case AtOnboardingResultStatus.success:
+                    Navigator.push(context, MaterialPageRoute(builder: (_) => const HomeScreen()));
+                    break;
+                  case AtOnboardingResultStatus.error:
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        backgroundColor: Colors.red,
+                        content: Text('An error has occurred'),
+                      ),
+                    );
+                    break;
+                  case AtOnboardingResultStatus.cancel:
+                    break;
+                }
+              },
+              child: const Text('Onboard an @sign'),
+            ),
         ),
       ),
     );

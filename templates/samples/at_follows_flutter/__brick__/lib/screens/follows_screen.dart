@@ -1,17 +1,16 @@
 import 'package:at_follows_flutter/screens/connections.dart';
 import 'package:flutter/material.dart';
-import 'package:at_utils/at_logger.dart';
 
 import '../services/at_service.dart';
 import '../services/notification_service.dart';
 import '../utils/app_strings.dart';
 
-class NextScreen extends StatefulWidget {
+class FollowsScreen extends StatefulWidget {
   @override
   _NextScreen createState() => _NextScreen();
 }
 
-class _NextScreen extends State<NextScreen> {
+class _NextScreen extends State<FollowsScreen> {
   String? atSign;
   AtService atService = AtService.getInstance();
   late NotificationService _notificationService;

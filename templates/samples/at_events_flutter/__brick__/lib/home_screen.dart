@@ -5,14 +5,14 @@ import 'package:at_client_mobile/at_client_mobile.dart';
 import 'main.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv;
 
-class SecondScreen extends StatefulWidget {
-  const SecondScreen({Key? key}) : super(key: key);
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
-  _SecondScreenState createState() => _SecondScreenState();
+  _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _SecondScreenState extends State<SecondScreen> {
+class _HomeScreenState extends State<HomeScreen> {
   String? activeAtSign;
   GlobalKey<ScaffoldState>? scaffoldKey;
   bool? isAuthenticated;

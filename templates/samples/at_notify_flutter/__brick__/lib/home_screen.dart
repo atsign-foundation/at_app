@@ -11,14 +11,14 @@ import 'package:at_lookup/at_lookup.dart';
 import 'main.dart';
 
 //* The next screen after onboarding (second screen)
-class SecondScreen extends StatefulWidget {
-  const SecondScreen({Key? key}) : super(key: key);
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
-  _SecondScreenState createState() => _SecondScreenState();
+  _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _SecondScreenState extends State<SecondScreen> {
+class _HomeScreenState extends State<HomeScreen> {
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   String? activeAtSign;
   var atClientManager = AtClientManager.getInstance();
