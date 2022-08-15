@@ -1,13 +1,91 @@
 version: 2
 enable-beta-ecosystems: true
 updates:
-  # Maintain dependencies for packages and templates
-  - package-ecosystem: "pub"
-    directory: "/"
-    schedule:
-      interval: "daily"
   # Maintain dependencies for GitHub Actions
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "daily"
+  # Maintain dependencies for packages
+  - package-ecosystem: "pub"
+    directory: "/packages/at_app"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "pub"
+    directory: "/packages/at_app_bundler"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "pub"
+    directory: "/packages/at_app_create"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "pub"
+    directory: "/packages/at_app_flutter"
+    schedule:
+      interval: "daily"
+  # Maintain dependencies for templates
+  - package-ecosystem: "pub"
+    directory: "/templates/demos/chit_chat"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "pub"
+    directory: "/templates/demos/snackbar"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "pub"
+    directory: "/templates/demos/snackbar_sender"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "pub"
+    directory: "/templates/samples/at_backupkey_flutter"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "pub"
+    directory: "/templates/samples/at_chat_flutter"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "pub"
+    directory: "/templates/samples/at_contacts_flutter"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "pub"
+    directory: "/templates/samples/at_contacts_group_flutter"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "pub"
+    directory: "/templates/samples/at_events_flutter"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "pub"
+    directory: "/templates/samples/at_follows_flutter"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "pub"
+    directory: "/templates/samples/at_invitation_flutter"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "pub"
+    directory: "/templates/samples/at_location_flutter"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "pub"
+    directory: "/templates/samples/at_notify_flutter"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "pub"
+    directory: "/templates/samples/at_onboarding_flutter"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "pub"
+    directory: "/templates/samples/at_sync_ui_flutter"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "pub"
+    directory: "/templates/samples/at_theme_flutter"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "pub"
+    directory: "/templates/templates/app"
+    schedule:
+      interval: "daily"
+
