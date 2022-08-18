@@ -4,15 +4,15 @@ import 'ui_options.dart';
 import 'package:flutter/material.dart';
 import 'main.dart';
 
-class SecondScreen extends StatefulWidget {
+class HomeScreen extends StatefulWidget {
   final String activeAtSign;
-  const SecondScreen({required this.activeAtSign, Key? key}) : super(key: key);
+  const HomeScreen({required this.activeAtSign, Key? key}) : super(key: key);
 
   @override
-  _SecondScreenState createState() => _SecondScreenState();
+  _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _SecondScreenState extends State<SecondScreen> {
+class _HomeScreenState extends State<HomeScreen> {
   late String activeAtSign;
 
   @override
@@ -71,13 +71,13 @@ class _SecondScreenState extends State<SecondScreen> {
             ),
             ElevatedButton(
               onPressed: () async {
-                await AtSyncUIService().sync();
+                AtSyncUIService().sync();
               },
               child: const Text('Default Sync'),
             ),
             ElevatedButton(
               onPressed: () async {
-                await AtSyncUIService().sync(
+                AtSyncUIService().sync(
                   atSyncUIOverlay: AtSyncUIOverlay.dialog,
                 );
               },
@@ -85,7 +85,7 @@ class _SecondScreenState extends State<SecondScreen> {
             ),
             ElevatedButton(
               onPressed: () async {
-                await AtSyncUIService().sync(
+                AtSyncUIService().sync(
                   atSyncUIOverlay: AtSyncUIOverlay.snackbar,
                 );
               },
@@ -93,8 +93,7 @@ class _SecondScreenState extends State<SecondScreen> {
             ),
             ElevatedButton(
               onPressed: () async {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const UIOptions()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const UIOptions()));
               },
               child: const Text('See all UI options'),
             ),
@@ -123,16 +122,11 @@ class _SecondScreenState extends State<SecondScreen> {
   }
 
   void showSnackBar(String msg, {bool isError = false}) {
-    ScaffoldMessenger.of(NavService.navKey.currentContext!)
-        .showSnackBar(SnackBar(
+    ScaffoldMessenger.of(NavService.navKey.currentContext!).showSnackBar(SnackBar(
       backgroundColor: isError ? const Color(0xFFe34040) : Colors.green,
       content: Text(
         msg,
-        style: const TextStyle(
-            color: Colors.white,
-            fontSize: 16,
-            letterSpacing: 0.1,
-            fontWeight: FontWeight.normal),
+        style: const TextStyle(color: Colors.white, fontSize: 16, letterSpacing: 0.1, fontWeight: FontWeight.normal),
       ),
     ));
   }

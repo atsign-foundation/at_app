@@ -5,14 +5,14 @@ import 'package:at_contacts_group_flutter/screens/group_contact_view/group_conta
 import 'package:flutter/material.dart';
 import 'package:at_client_mobile/at_client_mobile.dart';
 
-class SecondScreen extends StatefulWidget {
-  const SecondScreen({Key? key}) : super(key: key);
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
-  _SecondScreenState createState() => _SecondScreenState();
+  _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _SecondScreenState extends State<SecondScreen> {
+class _HomeScreenState extends State<HomeScreen> {
   /// Get the AtClientManager instance
   var atClientManager = AtClientManager.getInstance();
 

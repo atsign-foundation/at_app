@@ -1,6 +1,9 @@
+## 5.0.1
+- **Chore**: Updated at_onboarding_flutter dependency constraint to support major versions 4 and 5.
+
 ## 5.0.0+2
 
-  - **Chore**: Updated CI badge to refer to the new CI process.
+- **Chore**: Updated CI badge to refer to the new CI process.
 
 ## 5.0.0+1
 

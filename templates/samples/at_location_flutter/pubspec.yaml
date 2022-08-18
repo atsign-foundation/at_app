@@ -5,24 +5,10 @@ environment:
 
 dependencies:
   cupertino_icons: ^1.0.5
-  at_app_flutter: ^5.0.0+1
+  at_app_flutter: ^5.0.1
+  at_onboarding_flutter: ^5.0.0
   at_location_flutter: ^3.1.5
   latlong2: ^0.8.1
-  at_onboarding_flutter: ^4.0.3
-
-
-
-
-dev_dependencies:
-  flutter_test:
-    sdk: flutter
-  flutter_lints: ^2.0.1
-
-
-flutter:
-  assets:
-    - .env
-  uses-material-design: true
 
 env:
   override: true
@@ -35,4 +21,3 @@ android:
   enableR8: true
   kotlinVersion: 1.5.32
   minSdkVersion: '24'
-

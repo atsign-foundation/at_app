@@ -4,21 +4,11 @@ environment:
   sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
-  at_app_flutter: ^5.0.0
-  at_onboarding_flutter: ^4.0.3
+  at_app_flutter: ^5.0.1
+  at_onboarding_flutter: ^5.0.0
   cupertino_icons: ^1.0.5
   flutter_colorpicker: ^1.0.3
-  at_sync_ui_flutter: ^1.0.3
-
-dev_dependencies:
-  flutter_test:
-    sdk: flutter
-  flutter_lints: ^2.0.1
-
-flutter:
-  assets:
-    - .env
-  uses-material-design: true
+  at_sync_ui_flutter: ^1.0.5
 
 env:
   override: true
@@ -31,4 +21,3 @@ android:
   enableR8: true
   kotlinVersion: 1.5.32
   minSdkVersion: '24'
-

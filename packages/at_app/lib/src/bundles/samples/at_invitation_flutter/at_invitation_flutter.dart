@@ -12,7 +12,8 @@ class AtInvitationFlutterTemplateBundle extends AtTemplateBundle<AtTemplateVars>
 final AtTemplateVars _vars = AtTemplateVars(
   includeBundles: {'at_invitation_flutter'},
   dependencies: [
-    "at_app_flutter: ^5.0.0",
+    "at_app_flutter: ^5.0.1",
+    "at_onboarding_flutter: ^5.0.0",
     "at_invitation_flutter: ^2.0.0",
     "cupertino_icons: ^1.0.5",
     "uni_links: ^0.5.1",

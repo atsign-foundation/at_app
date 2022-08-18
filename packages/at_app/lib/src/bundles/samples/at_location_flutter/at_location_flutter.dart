@@ -13,10 +13,10 @@ final AtTemplateVars _vars = AtTemplateVars(
   includeBundles: {'at_location_flutter'},
   dependencies: [
     "cupertino_icons: ^1.0.5",
-    "at_app_flutter: ^5.0.0+1",
+    "at_app_flutter: ^5.0.1",
+    "at_onboarding_flutter: ^5.0.0",
     "at_location_flutter: ^3.1.5",
-    "latlong2: ^0.8.1",
-    "at_onboarding_flutter: ^4.0.3"
+    "latlong2: ^0.8.1"
   ],
   enableR8: true,
   kotlinVersion: Version.parse('1.5.32'),

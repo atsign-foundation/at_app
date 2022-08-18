@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:at_app_flutter/at_app_flutter.dart' show AtEnv;
 import 'package:at_client_mobile/at_client_mobile.dart';
-import 'package:at_onboarding_flutter/at_onboarding_flutter.dart' show Onboarding;
+import 'package:at_onboarding_flutter/at_onboarding_flutter.dart';
 import 'package:at_utils/at_logger.dart' show AtSignLogger;
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart' show getApplicationSupportDirectory;
@@ -59,23 +59,30 @@ class _MyAppState extends State<MyApp> {
           builder: (context) => Center(
             child: ElevatedButton(
               onPressed: () async {
-                // * The Onboarding widget
-                // * This widget contains the required logic for onboarding an @sign into the app
-                // * Read more here: https://pub.dev/packages/at_onboarding_flutter
-                Onboarding(
+                AtOnboardingResult onboardingResult = await AtOnboarding.onboard(
                   context: context,
-                  atClientPreference: await futurePreference,
-                  domain: AtEnv.rootDomain,
-                  rootEnvironment: AtEnv.rootEnvironment,
-                  appAPIKey: AtEnv.appApiKey,
-                  onboard: (value, atsign) {
-                    _logger.finer('Successfully onboarded $atsign');
-                  },
-                  onError: (error) {
-                    _logger.severe('Onboarding throws $error error');
-                  },
-                  nextScreen: const HomeScreen(),
+                  config: AtOnboardingConfig(
+                    atClientPreference: await futurePreference,
+                    rootEnvironment: AtEnv.rootEnvironment,
+                    domain: AtEnv.rootDomain,
+                    appAPIKey: AtEnv.appApiKey,
+                  ),
                 );
+                switch (onboardingResult.status) {
+                  case AtOnboardingResultStatus.success:
+                    Navigator.push(context, MaterialPageRoute(builder: (_) => const HomeScreen()));
+                    break;
+                  case AtOnboardingResultStatus.error:
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        backgroundColor: Colors.red,
+                        content: Text('An error has occurred'),
+                      ),
+                    );
+                    break;
+                  case AtOnboardingResultStatus.cancel:
+                    break;
+                }
               },
               child: const Text('Onboard an @sign'),
             ),

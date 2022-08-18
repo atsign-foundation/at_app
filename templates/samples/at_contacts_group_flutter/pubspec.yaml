@@ -7,19 +7,8 @@ dependencies:
   at_contacts_group_flutter: ^4.0.7
   cupertino_icons: ^1.0.5
   at_contacts_flutter: ^4.0.5
-  at_app_flutter: ^5.0.0
-
-
-dev_dependencies:
-  flutter_test:
-    sdk: flutter
-  flutter_lints: ^2.0.1
-
-
-flutter:
-  assets:
-    - .env
-  uses-material-design: true
+  at_app_flutter: ^5.0.1
+  at_onboarding_flutter: ^5.0.0
 
 env:
   override: true
@@ -32,4 +21,3 @@ android:
   enableR8: true
   kotlinVersion: 1.5.32
   minSdkVersion: '23'
-

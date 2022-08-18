@@ -4,14 +4,14 @@ import '../services/client.sdk.services.dart';
 import '../widgets/prompt.widget.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
-  _HomePageState createState() => _HomePageState();
+  _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomeScreenState extends State<HomeScreen> {
   AtClient atClientInstance = AtClientManager.getInstance().atClient;
   ClientSdkService clientSdkService = ClientSdkService.getInstance();
   String? activeAtSign, pickedAtSign;

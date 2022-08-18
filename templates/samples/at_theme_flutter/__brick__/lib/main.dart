@@ -1,9 +1,7 @@
 import 'dart:async';
-import 'package:at_onboarding_flutter/at_onboarding_flutter.dart'
-    show Onboarding;
+import 'package:at_onboarding_flutter/at_onboarding_flutter.dart';
 import 'package:at_theme_flutter/at_theme_flutter.dart';
-import 'package:path_provider/path_provider.dart'
-    show getApplicationSupportDirectory;
+import 'package:path_provider/path_provider.dart' show getApplicationSupportDirectory;
 import 'package:at_app_flutter/at_app_flutter.dart' show AtEnv;
 import 'package:flutter/material.dart';
 import 'package:at_client_mobile/at_client_mobile.dart';
@@ -12,8 +10,7 @@ import 'package:flutter_keychain/flutter_keychain.dart';
 
 import 'src/pages/profile_page.dart';
 
-final StreamController<AppTheme> appThemeController =
-    StreamController<AppTheme>.broadcast();
+final StreamController<AppTheme> appThemeController = StreamController<AppTheme>.broadcast();
 Future<void> main() async {
   await AtEnv.load();
   runApp(const MyApp());
@@ -81,41 +78,30 @@ class _MyAppState extends State<MyApp> {
                                 setState(() {
                                   atClientPreference = preference;
                                 });
-                                Onboarding(
+                                AtOnboardingResult onboardingResult = await AtOnboarding.onboard(
                                   context: context,
-                                  atClientPreference: atClientPreference!,
-                                  domain: AtEnv.rootDomain,
-                                  rootEnvironment: AtEnv.rootEnvironment,
-                                  appAPIKey: '477b-876u-bcez-c42z-6a3d',
-                                  onboard: (Map<String?, AtClientService> value,
-                                      String? atsign) async {
-                                    atClientService = value[atsign];
-                                    await Navigator.pushReplacement(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                const ProfilePage()));
-                                  },
-                                  onError: (error) async {
-                                    _logger.severe(
-                                        'Onboarding throws $error error');
-                                    await showDialog(
-                                        context: context,
-                                        builder: (BuildContext context) {
-                                          return AlertDialog(
-                                            content: const Text(
-                                                'Something went wrong'),
-                                            actions: [
-                                              TextButton(
-                                                  onPressed: () {
-                                                    Navigator.of(context).pop();
-                                                  },
-                                                  child: const Text('ok'))
-                                            ],
-                                          );
-                                        });
-                                  },
+                                  config: AtOnboardingConfig(
+                                    atClientPreference: await futurePreference,
+                                    rootEnvironment: AtEnv.rootEnvironment,
+                                    domain: AtEnv.rootDomain,
+                                    appAPIKey: AtEnv.appApiKey,
+                                  ),
                                 );
+                                switch (onboardingResult.status) {
+                                  case AtOnboardingResultStatus.success:
+                                    Navigator.push(context, MaterialPageRoute(builder: (_) => const ProfilePage()));
+                                    break;
+                                  case AtOnboardingResultStatus.error:
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                        backgroundColor: Colors.red,
+                                        content: Text('An error has occurred'),
+                                      ),
+                                    );
+                                    break;
+                                  case AtOnboardingResultStatus.cancel:
+                                    break;
+                                }
                               },
                               child: const Text('Start onboarding'),
                             ),
@@ -126,15 +112,12 @@ class _MyAppState extends State<MyApp> {
                           Center(
                               child: TextButton(
                                   style: ButtonStyle(
-                                    backgroundColor:
-                                        MaterialStateProperty.all<Color>(
-                                            Colors.black12),
+                                    backgroundColor: MaterialStateProperty.all<Color>(Colors.black12),
                                   ),
                                   onPressed: () {
                                     FlutterKeychain.remove(key: '@atsign');
                                   },
-                                  child: const Text('Clear paired atsigns',
-                                      style: TextStyle(color: Colors.black)))),
+                                  child: const Text('Clear paired atsigns', style: TextStyle(color: Colors.black)))),
                         ],
                       ),
                     )),
