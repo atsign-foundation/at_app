@@ -14,10 +14,10 @@ dependencies:
   at_onboarding_flutter: '>=4.0.0 <6.0.0'
   at_utils: ^3.0.5
   flutter_dotenv: ^5.0.2
+  meta: ^1.7.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   lints: ^1.0.0
   mockito: ^5.1.0
-  meta: ^1.7.0
