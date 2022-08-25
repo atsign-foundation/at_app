@@ -1,5 +1,5 @@
 name: at_app_flutter
-description: A library that help developers build flutter applications on the @platform.
+description: A library that help developers build flutter applications on the atPlatform.
 version: 5.0.1
 repository: https://github.com/atsign-foundation/at_app/tree/trunk/packages/at_app_flutter/
 homepage: https://atsign.dev/
