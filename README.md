@@ -12,7 +12,7 @@ at_app is a command-line tool for app developers to quickly generate a starter a
 ### at_app
 
 [![pub package](https://img.shields.io/pub/v/at_app)](https://pub.dev/packages/at_app)
-[![pub points](https://badges.bar/at_app/pub%20points)](https://pub.dev/packages/at_app/score)
+[![pub points](https://img.shields.io/badge/dynamic/json?url=https://pub.dev/api/packages/at_app/score&label=pub%20score&query=grantedPoints)]([https://pub.dev/packages/at_app](https://pub.dev/packages/at_app/score))
 [![gitHub license](https://img.shields.io/badge/license-BSD3-blue.svg)](packages/at_app/LICENSE)
 
 This is a command-line to make learning the atPlatform and building on it easier. If you are a developer working on the atPlatform, it is recommended that you try out this tool.
@@ -24,7 +24,7 @@ This is a command-line to make learning the atPlatform and building on it easier
 ### at_app_flutter
 
 [![pub package](https://img.shields.io/pub/v/at_app_flutter)](https://pub.dev/packages/at_app_flutter)
-[![pub points](https://badges.bar/at_app_flutter/pub%20points)](https://pub.dev/packages/at_app_flutter/score)
+[![pub points](https://img.shields.io/badge/dynamic/json?url=https://pub.dev/api/packages/at_app_flutter/score&label=pub%20score&query=grantedPoints)]([https://pub.dev/packages/at_app_flutter](https://pub.dev/packages/at_app_flutter/score))
 [![gitHub license](https://img.shields.io/badge/license-BSD3-blue.svg)](packages/at_app_flutter/LICENSE)
 
 This package is added to generated apps and provides additional functionality required by the templates. For now, all it does is read the .env file into a model called AtEnv.
@@ -36,7 +36,7 @@ This package is added to generated apps and provides additional functionality re
 ### at_app_create
 
 [![pub package](https://img.shields.io/pub/v/at_app_create)](https://pub.dev/packages/at_app_create)
-[![pub points](https://badges.bar/at_app_create/pub%20points)](https://pub.dev/packages/at_app_create/score)
+[![pub points](https://img.shields.io/badge/dynamic/json?url=https://pub.dev/api/packages/at_app_create/score&label=pub%20score&query=grantedPoints)]([https://pub.dev/packages/at_app_create](https://pub.dev/packages/at_app_create/score))
 [![gitHub license](https://img.shields.io/badge/license-BSD3-blue.svg)](/packages/at_app_create/LICENSE)
 
 This package provides the core code for the create command in at_app, you can depend on this package if you would like to build your own package of the tool.
@@ -48,7 +48,7 @@ This package provides the core code for the create command in at_app, you can de
 ### at_app_bundler
 
 [![pub package](https://img.shields.io/pub/v/at_app_bundler)](https://pub.dev/packages/at_app_bundler)
-[![pub points](https://badges.bar/at_app_bundler/pub%20points)](https://pub.dev/packages/at_app_bundler/score)
+[![pub points](https://img.shields.io/badge/dynamic/json?url=https://pub.dev/api/packages/at_app_bundler/score&label=pub%20score&query=grantedPoints)]([https://pub.dev/packages/at_app_bundler](https://pub.dev/packages/at_app_bundler/score))
 [![gitHub license](https://img.shields.io/badge/license-BSD3-blue.svg)](/packages/at_app_bundler/LICENSE)
 
 
