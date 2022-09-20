@@ -15,6 +15,5 @@ env_override:
   NAMESPACE: productive2227
   API_KEY: 477b-876u-bcez-c42z-6a3d
 
-android:
-  kotlinVersion: 1.5.32
-  minSdkVersion: '23'
+dependency_overrides:
+  biometric_storage: ^4.1.3
