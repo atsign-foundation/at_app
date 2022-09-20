@@ -98,7 +98,7 @@ final androidBundle = MasonBundle.fromJson(<String, dynamic>{
     {
       "path": "android/build.gradle",
       "data":
-          "YnVpbGRzY3JpcHQgewogICAgZXh0LmtvdGxpbl92ZXJzaW9uID0gJ3t7a290bGluVmVyc2lvbn19JwogICAgcmVwb3NpdG9yaWVzIHsKICAgICAgICBnb29nbGUoKQogICAgICAgIG1hdmVuQ2VudHJhbCgpCiAgICB9CgogICAgZGVwZW5kZW5jaWVzIHsKICAgICAgICBjbGFzc3BhdGggJ2NvbS5hbmRyb2lkLnRvb2xzLmJ1aWxkOmdyYWRsZTo0LjEuMCcKICAgICAgICBjbGFzc3BhdGggIm9yZy5qZXRicmFpbnMua290bGluOmtvdGxpbi1ncmFkbGUtcGx1Z2luOiRrb3RsaW5fdmVyc2lvbiIKICAgIH0KfQoKYWxscHJvamVjdHMgewogICAgcmVwb3NpdG9yaWVzIHsKICAgICAgICBnb29nbGUoKQogICAgICAgIG1hdmVuQ2VudHJhbCgpCiAgICB9Cn0KCnJvb3RQcm9qZWN0LmJ1aWxkRGlyID0gJy4uL2J1aWxkJwpzdWJwcm9qZWN0cyB7CiAgICBwcm9qZWN0LmJ1aWxkRGlyID0gIiR7cm9vdFByb2plY3QuYnVpbGREaXJ9LyR7cHJvamVjdC5uYW1lfSIKfQpzdWJwcm9qZWN0cyB7CiAgICBwcm9qZWN0LmV2YWx1YXRpb25EZXBlbmRzT24oJzphcHAnKQp9Cgp0YXNrIGNsZWFuKHR5cGU6IERlbGV0ZSkgewogICAgZGVsZXRlIHJvb3RQcm9qZWN0LmJ1aWxkRGlyCn0K",
+          "YnVpbGRzY3JpcHQgewogICAgZXh0LmtvdGxpbl92ZXJzaW9uID0gJ3t7a290bGluVmVyc2lvbn19JwogICAgcmVwb3NpdG9yaWVzIHsKICAgICAgICBnb29nbGUoKQogICAgICAgIG1hdmVuQ2VudHJhbCgpCiAgICB9CgogICAgZGVwZW5kZW5jaWVzIHsKICAgICAgICBjbGFzc3BhdGggJ2NvbS5hbmRyb2lkLnRvb2xzLmJ1aWxkOmdyYWRsZTo3LjIuMCcKICAgICAgICBjbGFzc3BhdGggIm9yZy5qZXRicmFpbnMua290bGluOmtvdGxpbi1ncmFkbGUtcGx1Z2luOiRrb3RsaW5fdmVyc2lvbiIKICAgIH0KfQoKYWxscHJvamVjdHMgewogICAgcmVwb3NpdG9yaWVzIHsKICAgICAgICBnb29nbGUoKQogICAgICAgIG1hdmVuQ2VudHJhbCgpCiAgICB9Cn0KCnJvb3RQcm9qZWN0LmJ1aWxkRGlyID0gJy4uL2J1aWxkJwpzdWJwcm9qZWN0cyB7CiAgICBwcm9qZWN0LmJ1aWxkRGlyID0gIiR7cm9vdFByb2plY3QuYnVpbGREaXJ9LyR7cHJvamVjdC5uYW1lfSIKfQpzdWJwcm9qZWN0cyB7CiAgICBwcm9qZWN0LmV2YWx1YXRpb25EZXBlbmRzT24oJzphcHAnKQp9Cgp0YXNrIGNsZWFuKHR5cGU6IERlbGV0ZSkgewogICAgZGVsZXRlIHJvb3RQcm9qZWN0LmJ1aWxkRGlyCn0K",
       "type": "text"
     },
     {
@@ -136,28 +136,28 @@ final androidBundle = MasonBundle.fromJson(<String, dynamic>{
     "minSdkVersion": {
       "type": "string",
       "description": "Set the minSdkVersion in the Android configuration",
-      "default": "flutter.minSdkVersion"
+      "default": 24
     },
     "targetSdkVersion": {
       "type": "string",
       "description": "Set the targetSdkVersion in the Android configuration",
-      "default": "flutter.targetSdkVersion"
+      "default": 30
     },
     "compileSdkVersion": {
       "type": "string",
       "description": "Set the compileSdkVersion in the Android configuration",
-      "default": "flutter.compileSdkVersion"
+      "default": 33
     },
     "enableR8": {"type": "boolean", "description": "Enable Android R8 code shrinking.", "default": true},
     "kotlinVersion": {
       "type": "string",
       "description": "Set the ext.kotlinVersion in the Android configuration",
-      "default": "1.5.32"
+      "default": "1.7.10"
     },
     "gradleVersion": {
       "type": "string",
       "description": "Set the Gradle version used in the Android configuration",
-      "default": "6.7"
+      "default": "7.5"
     }
   }
 });

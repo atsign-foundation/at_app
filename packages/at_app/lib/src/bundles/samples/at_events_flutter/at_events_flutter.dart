@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 import 'package:at_app_create/at_app_create.dart';
-import 'package:pub_semver/pub_semver.dart';
 
 import 'at_events_flutter_bundle.dart';
 
@@ -17,9 +16,6 @@ final AtTemplateVars _vars = AtTemplateVars(
     "at_onboarding_flutter: ^5.0.0",
     "at_events_flutter: ^3.1.6"
   ],
-  enableR8: true,
-  kotlinVersion: Version.parse('1.5.32'),
-  minSdkVersion: '24',
   flutterConfig: ["assets:", "  - .env"],
 );
 
