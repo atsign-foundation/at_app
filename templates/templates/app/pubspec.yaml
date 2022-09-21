@@ -15,5 +15,3 @@ env:
   include: true
   gitignore: true
 
-dependency_overrides:
-  biometric_storage: ^4.1.3

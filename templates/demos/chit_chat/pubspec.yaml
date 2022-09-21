@@ -20,5 +20,3 @@ env_override:
   NAMESPACE: tapiradded13
   API_KEY: 477b-876u-bcez-c42z-6a3d
 
-dependency_overrides:
-  biometric_storage: ^4.1.3
