@@ -11,11 +11,12 @@ class AtContactsGroupFlutterTemplateBundle extends AtTemplateBundle<AtTemplateVa
 final AtTemplateVars _vars = AtTemplateVars(
   includeBundles: {'at_contacts_group_flutter'},
   dependencies: [
-    "at_contacts_group_flutter: ^4.0.7",
+    "at_contacts_group_flutter: ^4.0.9",
     "cupertino_icons: ^1.0.5",
-    "at_contacts_flutter: ^4.0.5",
+    "at_contacts_flutter: ^4.0.7",
     "at_app_flutter: ^5.0.1",
-    "at_onboarding_flutter: ^5.0.0"
+    "at_onboarding_flutter: ^5.0.3",
+    "biometric_storage: ^4.1.3"
   ],
   flutterConfig: ["assets:", "  - .env"],
 );

@@ -13,8 +13,9 @@ final AtTemplateVars _vars = AtTemplateVars(
   dependencies: [
     "cupertino_icons: ^1.0.5",
     "at_app_flutter: ^5.0.1",
-    "at_onboarding_flutter: ^5.0.0",
-    "at_notify_flutter: ^1.0.5"
+    "at_onboarding_flutter: ^5.0.3",
+    "at_notify_flutter: ^1.0.6",
+    "biometric_storage: ^4.1.3"
   ],
   flutterConfig: ["assets:", "  - .env"],
 );

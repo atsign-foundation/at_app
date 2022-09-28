@@ -11,11 +11,12 @@ class AtThemeFlutterTemplateBundle extends AtTemplateBundle<AtTemplateVars> {
 final AtTemplateVars _vars = AtTemplateVars(
   includeBundles: {'at_theme_flutter'},
   dependencies: [
-    "at_common_flutter: ^2.0.8",
+    "at_common_flutter: ^2.0.10",
     "cupertino_icons: ^1.0.5",
-    "at_theme_flutter: ^1.0.2",
+    "at_theme_flutter: ^1.0.3",
     "at_app_flutter: ^5.0.1",
-    "at_onboarding_flutter: ^5.0.0"
+    "at_onboarding_flutter: ^5.0.3",
+    "biometric_storage: ^4.1.3"
   ],
   flutterConfig: ["assets:", "  - .env"],
 );

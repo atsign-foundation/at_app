@@ -10,7 +10,7 @@ class AtOnboardingFlutterTemplateBundle extends AtTemplateBundle<AtTemplateVars>
 
 final AtTemplateVars _vars = AtTemplateVars(
   includeBundles: {'at_onboarding_flutter'},
-  dependencies: ["at_app_flutter: ^5.0.1", "at_onboarding_flutter: ^5.0.0"],
+  dependencies: ["at_app_flutter: ^5.0.1", "at_onboarding_flutter: ^5.0.3", "biometric_storage: ^4.1.3"],
   flutterConfig: ["assets:", "  - .env"],
 );
 
