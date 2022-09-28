@@ -105,7 +105,7 @@ jobs:
 
       - name: Unit Tests
         working-directory: ./packages/at_app_flutter
-        run: flutter test
+        run: flutter test --no-pub
 
   at_app:
     needs: build
@@ -132,7 +132,7 @@ jobs:
 
       - name: Unit Tests
         working-directory: ./packages/at_app
-        run: dart test
+        run: flutter test --no-pub
 
   # GENERATED APP TESTS
   generated_template_apps:
