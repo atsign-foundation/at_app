@@ -13,7 +13,7 @@ runs:
       shell: bash
 
     - name: Install build_runner
-      run: dart pub global run build_runner
+      run: dart pub global activate build_runner
       shell: bash
 
     - name: Install mason_cli
