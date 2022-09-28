@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 import 'package:at_app_create/at_app_create.dart';
-import 'package:pub_semver/pub_semver.dart';
 
 import 'at_notify_flutter_bundle.dart';
 
@@ -14,12 +13,10 @@ final AtTemplateVars _vars = AtTemplateVars(
   dependencies: [
     "cupertino_icons: ^1.0.5",
     "at_app_flutter: ^5.0.1",
-    "at_onboarding_flutter: ^5.0.0",
-    "at_notify_flutter: ^1.0.5"
+    "at_onboarding_flutter: ^5.0.3",
+    "at_notify_flutter: ^1.0.6",
+    "biometric_storage: ^4.1.3"
   ],
-  enableR8: true,
-  kotlinVersion: Version.parse('1.5.32'),
-  minSdkVersion: '24',
   flutterConfig: ["assets:", "  - .env"],
 );
 

@@ -5,7 +5,8 @@ environment:
 
 dependencies:
   at_app_flutter: ^5.0.1
-  at_onboarding_flutter: ^5.0.0
+  at_onboarding_flutter: ^5.0.3
+  biometric_storage: ^4.1.3
 
 
 env:
@@ -15,6 +16,3 @@ env_override:
   NAMESPACE: productive2227
   API_KEY: 477b-876u-bcez-c42z-6a3d
 
-android:
-  kotlinVersion: 1.5.32
-  minSdkVersion: '23'

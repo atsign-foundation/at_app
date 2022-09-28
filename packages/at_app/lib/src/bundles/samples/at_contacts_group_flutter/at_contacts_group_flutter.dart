@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 import 'package:at_app_create/at_app_create.dart';
-import 'package:pub_semver/pub_semver.dart';
 
 import 'at_contacts_group_flutter_bundle.dart';
 
@@ -12,15 +11,13 @@ class AtContactsGroupFlutterTemplateBundle extends AtTemplateBundle<AtTemplateVa
 final AtTemplateVars _vars = AtTemplateVars(
   includeBundles: {'at_contacts_group_flutter'},
   dependencies: [
-    "at_contacts_group_flutter: ^4.0.7",
+    "at_contacts_group_flutter: ^4.0.9",
     "cupertino_icons: ^1.0.5",
-    "at_contacts_flutter: ^4.0.5",
+    "at_contacts_flutter: ^4.0.7",
     "at_app_flutter: ^5.0.1",
-    "at_onboarding_flutter: ^5.0.0"
+    "at_onboarding_flutter: ^5.0.3",
+    "biometric_storage: ^4.1.3"
   ],
-  enableR8: true,
-  kotlinVersion: Version.parse('1.5.32'),
-  minSdkVersion: '23',
   flutterConfig: ["assets:", "  - .env"],
 );
 

@@ -12,3 +12,4 @@ packages:
 scripts:
   build: sh tools/build_local.sh
   build:generated: sh tools/build_generated.sh
+  templates: melos exec --ignore="*at_app*"

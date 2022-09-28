@@ -20,17 +20,17 @@ vars:
   minSdkVersion:
     type: string
     description: Set the minSdkVersion in the Android configuration
-    default: flutter.minSdkVersion
+    default: 24
 
   targetSdkVersion:
     type: string
     description: Set the targetSdkVersion in the Android configuration
-    default: flutter.targetSdkVersion
+    default: 30
 
   compileSdkVersion:
     type: string
     description: Set the compileSdkVersion in the Android configuration
-    default: flutter.compileSdkVersion
+    default: 33
 
   enableR8:
     type: boolean
@@ -40,9 +40,9 @@ vars:
   kotlinVersion:
     type: string
     description: Set the ext.kotlinVersion in the Android configuration
-    default: '1.5.32'
+    default: '1.7.10'
 
   gradleVersion:
     type: string
     description: Set the Gradle version used in the Android configuration
-    default: '6.7'
+    default: '7.5'

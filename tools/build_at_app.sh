@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ ! -z "$GITHUB_ACTION" ];
+if [ -n "$GITHUB_ACTION" ];
 then
   MELOS_ROOT_PATH="$GITHUB_WORKSPACE"
 fi
