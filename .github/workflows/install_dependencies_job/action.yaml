@@ -12,6 +12,15 @@ runs:
       run: dart pub global run melos bootstrap
       shell: bash
 
+    - id: path_source
+      uses: mikefarah/yq@v4.27.5
+      with:
+        cmd: yq '.packages.at_app_create.source == "path"' packages/at_app/pubspec.lock
+
+    - name: Verify melos bootstrap local linkage
+      run: echo ${{ steps.path_source.outputs.result }}
+      shell: bash
+
     - name: Install mason_cli
       run: dart pub global activate mason_cli
       shell: bash
