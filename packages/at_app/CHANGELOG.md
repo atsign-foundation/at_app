@@ -1,3 +1,9 @@
+## 4.4.0
+
+  - **Chore**: Use `at_app_create ^0.2.0`.
+  - **Chore**: Updated dependencies of all templates to latest.
+  - **Fix**(Windows): Explicitly added `biometric_storage: ^4.1.3` as a dependency to all templates.
+
 ## 4.3.0
 
 - **Feat**: Added the following sample apps:
@@ -19,12 +25,14 @@
 ## 4.2.2+1
 
   - **Chore**: Updated CI badge to refer to the new CI process.
+
 ## 4.2.2
 
   - **Chore**: Migrated some models to [at_app_create](https://pub.dev/packages/at_app_create) package.
     - Developers can now depend on at_app_create to build their own version of at_app.
 
 ## 4.2.1
+
   - **Chore**: Update templates to use [at_app_flutter](https://pub.dev/packages/at_app_flutter) ^5.0.0
 
 ## 4.2.0

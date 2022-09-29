@@ -12,6 +12,10 @@ runs:
       run: dart pub global run melos bootstrap
       shell: bash
 
+    - name: Install build_runner
+      run: dart pub global activate build_runner
+      shell: bash
+
     - name: Install mason_cli
       run: dart pub global activate mason_cli
       shell: bash
