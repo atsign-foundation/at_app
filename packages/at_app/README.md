@@ -3,7 +3,7 @@
 <img width=250px src="https://atsign.dev/assets/img/atPlatform_logo_gray.svg?sanitize=true">
 
 [![pub package](https://img.shields.io/pub/v/at_app)](https://pub.dev/packages/at_app)
-[![pub points](https://badges.bar/at_app/pub%20points)](https://pub.dev/packages/at_app/score)
+[![pub points](https://img.shields.io/badge/dynamic/json?url=https://pub.dev/api/packages/at_app/score&label=pub%20score&query=grantedPoints)]([https://pub.dev/packages/at_app](https://pub.dev/packages/at_app/score))
 [![gitHub license](https://img.shields.io/badge/license-BSD3-blue.svg)](./LICENSE)
 [![CI](https://github.com/atsign-foundation/at_app/actions/workflows/CI.yaml/badge.svg?branch=trunk)](https://github.com/atsign-foundation/at_app/actions/workflows/CI.yaml)
 
@@ -26,7 +26,7 @@ Features of the atPlatform include:
 
 We call giving people control of access to their data “flipping the internet”
 and you can learn more about how it works by reading this
-[overview](https://atsign.dev/docs/overview/).
+[overview](https://docs.atsign.com/atplatform/atplatformoverview/).
 
 ## Get started
 
@@ -47,7 +47,7 @@ which you can depend on if you would like to create your own version of this app
 ### Usage
 
 See the [Example tab](https://pub.dev/packages/at_app/example) on pub.dev.
-Alternatively, follow our [5 step introductory tutorial](https://atsign.dev/docs/get-started/tryatplatform/) which uses this application to help you get started on the atPlatform.
+Alternatively, follow our [tutorial](https://docs.atsign.com/tutorials/at-dude/1-introduction/) which uses this application to help you get started on the atPlatform.
 
 ## Open source usage and contributions
 
