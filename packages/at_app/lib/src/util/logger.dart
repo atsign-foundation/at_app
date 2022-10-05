@@ -1,6 +1,7 @@
 import 'dart:convert' show JsonEncoder;
 
-import 'package:logger/logger.dart' show Logger, ProductionFilter, AnsiColor, Level, LogEvent, LogPrinter;
+import 'package:logger/logger.dart' show Logger, ProductionFilter, Level, LogEvent, LogPrinter;
+import 'package:chalk/chalk.dart';
 
 class LoggerService {
   static final LoggerService _singleton = LoggerService._();
@@ -13,33 +14,24 @@ class LoggerService {
 class _Printer extends LogPrinter {
   @override
   List<String> log(LogEvent event) {
-    var messageStr = _stringifyMessage(event.message ?? '');
-    var errorStr = event.error ?? '';
-    return [_color(event.level)('${_labelFor(event.level)}$messageStr$errorStr')];
-  }
-
-  AnsiColor _color(Level level) => {
-        Level.verbose: AnsiColor.fg(AnsiColor.grey(0.5)),
-        Level.debug: AnsiColor.none(),
-        Level.info: AnsiColor.fg(AnsiColor.grey(1)),
-        Level.warning: AnsiColor.fg(208),
-        Level.error: AnsiColor.fg(196),
-        Level.wtf: AnsiColor.fg(199),
-        Level.nothing: AnsiColor.none(),
-      }[level]!;
-
-  String _labelFor(Level level) {
-    switch (level) {
-      case Level.error:
-        return '[!] ERROR: ';
-      case Level.warning:
-        return '[!] Warning: ';
-      default:
-        return '';
+    var message = _buildMessage(event);
+    if (event.level == Level.error) {
+      message.first = '${chalk.red("[X]")} Error: ${message.first}';
+    } else if (event.level == Level.warning) {
+      message.first = '${"chalk.yellow([!])"} Warning: ${message.first}';
     }
+    return message;
   }
 
-  String _stringifyMessage(dynamic message) {
+  List<String> _buildMessage(LogEvent event) {
+    return [
+      _encodeMessage(event.message),
+      if (event.error != null) _encodeMessage(event.error),
+      if (event.stackTrace != null) _encodeMessage(event.stackTrace),
+    ];
+  }
+
+  String _encodeMessage(dynamic message) {
     if (message is Map || message is Iterable) {
       var encoder = const JsonEncoder.withIndent(null);
       return encoder.convert(message);
