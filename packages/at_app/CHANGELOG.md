@@ -1,6 +1,12 @@
+## 4.5.0
+
+- **Chore**: Use `lints: >=1.0.0 <3.0.0` in dev_dependencies.
+- **Fix**: Logger color accessibility issues on light mode terminals.
+  - Added `chalk: 1.2.0` as a dependency.
+
 ## 4.4.0
 
-  - **Chore**: Use `at_app_create ^0.2.0`.
+  - **Chore**: Use `at_app_create: ^0.2.0`.
   - **Chore**: Updated dependencies of all templates to latest.
   - **Fix**(Windows): Explicitly added `biometric_storage: ^4.1.3` as a dependency to all templates.
 
@@ -20,7 +26,7 @@
 
 ## 4.2.3
 
-  - **Chore**: Use `at_app_create ^0.1.1`.
+  - **Chore**: Use `at_app_create: ^0.1.1`.
 
 ## 4.2.2+1
 
@@ -61,18 +67,18 @@
 
 ## 3.0.0
 
-- **BREAKING CHANGE**: Depends on at_app_flutter 3.0.0
-- **Chore**: Updated the android build config for flutter_config (introduced in at_app_flutter 3.0.0)
+- **BREAKING CHANGE**: Depends on `at_app_flutter: ^3.0.0`
+- **Chore**: Updated the android build config for flutter_config (introduced in `at_app_flutter ^3.0.0`)
 - **Chore**: Updated the default compileSdkVersion to 31 for android apps
 - **Chore**: Performance optimizations to file management
 
 ## 2.0.0
 
-- **BREAKING CHANGE**: Depends on at_app_flutter 2.0.0
+- **BREAKING CHANGE**: Depends on `at_app_flutter: ^2.0.0`
 
 ## 1.1.1
 
-- **Chore**: Depends on at_app_flutter 1.1.1
+- **Chore**: Depends on `at_app_flutter: ^1.1.1`
 
 ## 1.1.0
 
