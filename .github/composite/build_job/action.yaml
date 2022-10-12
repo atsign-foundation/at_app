@@ -8,8 +8,8 @@ runs:
     - name: Build at_app_bundler
       shell: bash
       run: |
-        chmod +x ./tools/build_at_app_create.sh
-        ./tools/build_at_app_create.sh --no-analyze
+        chmod +x ./tools/build_at_app_bundler.sh
+        ./tools/build_at_app_bundler.sh --no-analyze
 
     - name: Build at_app_create
       shell: bash
