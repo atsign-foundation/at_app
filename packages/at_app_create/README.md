@@ -3,7 +3,7 @@
 <img width=250px src="https://atsign.dev/assets/img/atPlatform_logo_gray.svg?sanitize=true">
 
 [![pub package](https://img.shields.io/pub/v/at_app_create)](https://pub.dev/packages/at_app_create)
-[![pub points](https://badges.bar/at_app_create/pub%20points)](https://pub.dev/packages/at_app_create/score)
+[![pub points](https://img.shields.io/pub/points/at_app_create?logo=dart)](https://pub.dev/packages/at_app_create/score)
 [![gitHub license](https://img.shields.io/badge/license-BSD3-blue.svg)](./LICENSE)
 [![CI](https://github.com/atsign-foundation/at_app/actions/workflows/CI.yaml/badge.svg?branch=trunk)](https://github.com/atsign-foundation/at_app/actions/workflows/CI.yaml)
 
