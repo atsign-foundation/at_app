@@ -9,7 +9,7 @@ class PackageCommand extends Command<CommandStatus> {
   final String name = 'packages';
 
   @override
-  final String description = 'Commands for managing @platform packages.';
+  final String description = 'Commands for managing atPlatform packages.';
 
   PackageCommand() {
     addSubcommand(AddCommand());

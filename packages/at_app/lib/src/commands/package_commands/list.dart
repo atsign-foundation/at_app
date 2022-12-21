@@ -13,7 +13,7 @@ class ListCommand extends Command<CommandStatus> {
   final String name = 'list';
 
   @override
-  final String description = '''List available packages on the @platform.
+  final String description = '''List available packages on the atPlatform.
 The packages are grouped into three categories: flutter, utility, core.''';
 
   final Logger _logger = LoggerService().logger;

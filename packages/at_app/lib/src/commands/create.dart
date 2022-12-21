@@ -24,7 +24,7 @@ const platforms = ['android', 'ios'];
 /// and uses the respective template generator to generate the full template.
 class CreateCommand extends AtCreateCommand<CommandStatus> {
   @override
-  final String description = 'Create a new @platform Flutter project.';
+  final String description = 'Create a new atPlatform Flutter project.';
   final Logger _logger = LoggerService().logger;
   CreateCommand({Logger? logger})
       : super(
@@ -176,7 +176,7 @@ class CreateCommand extends AtCreateCommand<CommandStatus> {
     // Copyright 2014 The Flutter Authors. All rights reserved.
     _logger.i('''
 
-In order to run your @platform application, type:
+In order to run your atPlatform application, type:
 
 \$ cd $relativeOutputPath
 \$ flutter run
