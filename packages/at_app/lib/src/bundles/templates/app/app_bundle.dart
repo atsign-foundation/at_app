@@ -20,7 +20,7 @@ final appBundle = MasonBundle.fromJson(<String, dynamic>{
   ],
   "hooks": [],
   "name": "app",
-  "description": "The @platform skeleton app template.",
+  "description": "The atPlatform skeleton app template.",
   "version": "0.1.0",
   "environment": {"mason": "any"},
   "vars": {}
