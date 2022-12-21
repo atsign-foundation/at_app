@@ -16,11 +16,11 @@ There are a few variables defined in this guide, that may change depending on th
 
 **\<template-type>** - for at_app this can one of demo, sample, or template:
 
-| Type     | What this type is for                              |
-| -------- | -------------------------------------------------- |
-| demo     | A complete, standalone @platform demo application. |
-| sample   | An example application for an @platform package.   |
-| template | A starter template for an @platform application.   |
+| Type     | What this type is for                               |
+| -------- | --------------------------------------------------- |
+| demo     | A complete, standalone atPlatform demo application. |
+| sample   | An example application for an atPlatform package.   |
+| template | A starter template for an atPlatform application.   |
 
 
 **\<template-name>** - The name of your template, this should be defined in **snake_case** unless specified otherwise:
