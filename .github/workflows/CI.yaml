@@ -8,6 +8,9 @@ on:
     branches:
       - trunk
 
+permissions:  # added using https://github.com/step-security/secure-workflows
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -16,9 +19,9 @@ jobs:
       commit_ref: ${{ steps.commit_id.outputs.changes_detected && steps.commit_id.outputs.commit_hash || github.ref }}
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b # v3.2.0
 
-      - uses: subosito/flutter-action@v2
+      - uses: subosito/flutter-action@dbf1fa04f4d2e52c33185153d06cdb5443aa189d # v2.8.0
         with:
           channel: 'stable'
           cache: true
@@ -29,7 +32,7 @@ jobs:
       - uses: ./.github/composite/install_dependencies_job
       - uses: ./.github/composite/build_job
 
-      - uses: stefanzweifel/git-auto-commit-action@v4
+      - uses: stefanzweifel/git-auto-commit-action@3ea6ae190baf489ba007f7c92608f33ce20ef04a # v4.16.0
         id: commit_id
         with:
           commit_message: 'chore: automated build'
@@ -41,11 +44,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b # v3.2.0
         with:
           ref: ${{ needs.build.outputs.commit_ref }}
 
-      - uses: subosito/flutter-action@v2
+      - uses: subosito/flutter-action@dbf1fa04f4d2e52c33185153d06cdb5443aa189d # v2.8.0
         with:
           channel: 'stable'
           cache: true
@@ -66,11 +69,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b # v3.2.0
         with:
           ref: ${{ needs.build.outputs.commit_ref }}
 
-      - uses: subosito/flutter-action@v2
+      - uses: subosito/flutter-action@dbf1fa04f4d2e52c33185153d06cdb5443aa189d # v2.8.0
         with:
           channel: 'stable'
           cache: true
@@ -87,11 +90,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b # v3.2.0
         with:
           ref: ${{ needs.build.outputs.commit_ref }}
 
-      - uses: subosito/flutter-action@v2
+      - uses: subosito/flutter-action@dbf1fa04f4d2e52c33185153d06cdb5443aa189d # v2.8.0
         with:
           channel: 'stable'
           cache: true
@@ -114,11 +117,11 @@ jobs:
       build_key: ${{ needs.build.outputs.build_key }}
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b # v3.2.0
         with:
           ref: ${{ needs.build.outputs.commit_ref }}
 
-      - uses: subosito/flutter-action@v2
+      - uses: subosito/flutter-action@dbf1fa04f4d2e52c33185153d06cdb5443aa189d # v2.8.0
         with:
           channel: 'stable'
           cache: true
@@ -144,11 +147,11 @@ jobs:
         name:
           - app
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b # v3.2.0
         with:
           ref: ${{ needs.build.outputs.commit_ref }}
 
-      - uses: subosito/flutter-action@v2
+      - uses: subosito/flutter-action@dbf1fa04f4d2e52c33185153d06cdb5443aa189d # v2.8.0
         with:
           channel: 'stable'
           cache: true
@@ -181,11 +184,11 @@ jobs:
           - at_sync_ui_flutter
           - at_theme_flutter
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b # v3.2.0
         with:
           ref: ${{ needs.build.outputs.commit_ref }}
 
-      - uses: subosito/flutter-action@v2
+      - uses: subosito/flutter-action@dbf1fa04f4d2e52c33185153d06cdb5443aa189d # v2.8.0
         with:
           channel: 'stable'
           cache: true
@@ -209,11 +212,11 @@ jobs:
           - snackbar
           - snackbar_sender
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b # v3.2.0
         with:
           ref: ${{ needs.build.outputs.commit_ref }}
 
-      - uses: subosito/flutter-action@v2
+      - uses: subosito/flutter-action@dbf1fa04f4d2e52c33185153d06cdb5443aa189d # v2.8.0
         with:
           channel: 'stable'
           cache: true
