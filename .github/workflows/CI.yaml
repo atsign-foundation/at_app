@@ -9,7 +9,7 @@ on:
       - trunk
 
 permissions:  # added using https://github.com/step-security/secure-workflows
-  contents: read
+  contents: write  # required for stefanzweifel/git-auto-commit-action
 
 jobs:
   build:
