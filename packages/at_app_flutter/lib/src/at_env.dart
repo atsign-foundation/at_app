@@ -18,8 +18,15 @@ class AtEnv {
   /// Load the environment variables from the .env file.
   ///
   /// Calls [load()] from flutter_dotenv package.
-  static Future<void> load({Map<String, String> mergeWith = const <String, String>{}}) =>
-      dotenv.load(mergeWith: mergeWith);
+  static Future<void> load({Map<String, String> mergeWith = const <String, String>{}}) async {
+    try {
+      await dotenv.load(mergeWith: mergeWith);
+    } on FileNotFoundError {
+      _logger.warning('The .env file was not found, using fallback values instead.');
+    } on EmptyEnvFileError {
+      _logger.warning('The .env file is empty, using fallback values instead.');
+    }
+  }
 
   /// Returns the value for ['ROOT_DOMAIN'] from the .env file.
   ///
@@ -73,12 +80,6 @@ class AtEnv {
       return result;
     } on NotInitializedError {
       _logger.warning('The .env file has not been loaded, using fallback values instead.');
-      return fallback;
-    } on FileNotFoundError {
-      _logger.warning('The .env file was not found, using fallback values instead.');
-      return fallback;
-    } on EmptyEnvFileError {
-      _logger.warning('The .env file is empty, using fallback values instead.');
       return fallback;
     } catch (_) {
       rethrow;
