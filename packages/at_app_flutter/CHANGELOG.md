@@ -1,6 +1,6 @@
 ## 5.1.0
 
-- **Fix**: `flutter_dotenv`'s Errors were previously caught and suppressed by AtEnv failing to warn the user.
+- **Fix**: `flutter_dotenv`'s Errors were previously caught and suppressed by AtEnv failing to warn the developer.
   - AtEnv now warns the user that the `.env` file failed to load, and the reason why.
 
 ## 5.0.1
