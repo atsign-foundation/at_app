@@ -1,10 +1,14 @@
 import 'package:at_onboarding_flutter/at_onboarding_flutter.dart' show RootEnvironment;
+import 'package:at_utils/at_logger.dart' show AtSignLogger;
 import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv, DotEnv;
+// ignore: implementation_imports
+import 'package:flutter_dotenv/src/errors.dart' show EmptyEnvFileError, FileNotFoundError, NotInitializedError;
 import 'package:meta/meta.dart';
 
-const String apiKeyWarning =
-    '''\x1B[33mWARNING: API_KEY is not set in .env file
+const String apiKeyWarning = '''\x1B[33mWARNING: API_KEY is not set in .env file
 Make sure to set the API_KEY before releasing to production.\x1B[0m''';
+
+AtSignLogger _logger = AtSignLogger('AtEnv');
 
 /// AtEnv is a helper class to load in the environment variables from the .env file
 class AtEnv {
@@ -14,7 +18,8 @@ class AtEnv {
   /// Load the environment variables from the .env file.
   ///
   /// Calls [load()] from flutter_dotenv package.
-  static Future<void> load() => dotenvInstance.load();
+  static Future<void> load({Map<String, String> mergeWith = const <String, String>{}}) =>
+      dotenv.load(mergeWith: mergeWith);
 
   /// Returns the value for ['ROOT_DOMAIN'] from the .env file.
   ///
@@ -22,7 +27,7 @@ class AtEnv {
   ///
   /// Root domain is used to control what root server you want to use for the app.
   /// The vast majority of apps will use ['root.atsign.org'].
-  static final String rootDomain = getEnv('ROOT_DOMAIN', fallback: 'root.atsign.org');
+  static String get rootDomain => getEnv('ROOT_DOMAIN', fallback: 'root.atsign.org');
 
   /// Returns the value for ['NAMESPACE'] in the .env file.
   ///
@@ -32,14 +37,14 @@ class AtEnv {
   /// This value should be an @sign that you own (without the '@' symbol).
   /// By owning the @sign, you enforce that you also own the namespace.
   /// The namespace is invisible to the app user, so any @sign will suffice.
-  static final String appNamespace = getEnv('NAMESPACE', fallback: 'at_skeleton_app');
+  static String get appNamespace => getEnv('NAMESPACE', fallback: 'at_skeleton_app');
 
   /// Returns the value for ['API_KEY'] in the .env file.
   ///
   /// Fallback value: [null]
   ///
   /// This is api key used to generate free @signs by at_onboarding_flutter.
-  static final String? appApiKey = getEnv('API_KEY');
+  static String? get appApiKey => getEnv('API_KEY');
 
   /// Returns [RootEnvironment.Production] if [appApiKey] has a value.
   /// Returns [RootEnvironment.Staging] if [appApiKey] is null.
@@ -66,8 +71,17 @@ class AtEnv {
       dynamic result = dotenvInstance.maybeGet(key);
       if (result == null) return fallback;
       return result;
-    } catch (_) {
+    } on NotInitializedError {
+      _logger.warning('The .env file has not been loaded, using fallback values instead.');
       return fallback;
+    } on FileNotFoundError {
+      _logger.warning('The .env file was not found, using fallback values instead.');
+      return fallback;
+    } on EmptyEnvFileError {
+      _logger.warning('The .env file is empty, using fallback values instead.');
+      return fallback;
+    } catch (_) {
+      rethrow;
     }
   }
 }
