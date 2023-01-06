@@ -32,7 +32,7 @@ final chitChatBundle = MasonBundle.fromJson(<String, dynamic>{
   ],
   "hooks": [],
   "name": "chit_chat",
-  "description": "Send end-to-end encrypted messages on the @platform!",
+  "description": "Send end-to-end encrypted messages on the atPlatform!",
   "version": "0.1.0",
   "environment": {"mason": "any"},
   "vars": {}

@@ -26,7 +26,7 @@ final AtTemplateVars _vars = AtTemplateVars(
 
 final AtAppTemplate chitChatTemplate = AtAppTemplate(
   name: 'chit_chat',
-  description: 'Send end-to-end encrypted messages on the @platform!',
+  description: 'Send end-to-end encrypted messages on the atPlatform!',
   vars: _vars,
   overrideEnv: true,
   env: {"NAMESPACE": "tapiradded13", "API_KEY": "477b-876u-bcez-c42z-6a3d"},

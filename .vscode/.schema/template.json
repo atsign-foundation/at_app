@@ -164,16 +164,16 @@
       "type": "object",
       "properties": {
         "NAMESPACE": {
-          "description": "Set the default @platform namespace to use for the generated app.",
+          "description": "Set the default atPlatform namespace to use for the generated app.",
           "type": "string"
         },
         "API_KEY": {
-          "description": "Set the default api key to use for @platform onboarding in the generated app.",
+          "description": "Set the default api key to use for atPlatform onboarding in the generated app.",
           "type": "string",
           "pattern": "^([a-z0-9]{4}-){4}[a-z0-9]{4}$"
         },
         "ROOT_DOMAIN": {
-          "description": "Set the default @platform root domain for the generated app.",
+          "description": "Set the default atPlatform root domain for the generated app.",
           "type": "string",
           "format": "uri"
         }

@@ -24,7 +24,7 @@ final AtTemplateVars _vars = AtTemplateVars(
 
 final AtAppTemplate appTemplate = AtAppTemplate(
   name: 'app',
-  description: 'The @platform skeleton app template.',
+  description: 'The atPlatform skeleton app template.',
   vars: _vars,
   overrideEnv: false,
   env: {},

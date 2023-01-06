@@ -1,13 +1,13 @@
 import '../../at_app.dart';
 
-/// This file contains all @platform packages sorted into three categories
+/// This file contains all atPlatform packages sorted into three categories
 
-/// All flutter based @platform packages
+/// All flutter based atPlatform packages
 /// Designed to be included in an app
 const List<List<String>> flutterPackages = [
   [
     'at_client_mobile',
-    'The @platform SDK with device specific features for iOS and Android applications.',
+    'The atPlatform SDK with device specific features for iOS and Android applications.',
   ],
   [
     'at_onboarding_flutter',
@@ -43,7 +43,7 @@ const List<List<String>> flutterPackages = [
   ],
   [
     'at_invitation_flutter',
-    'A Flutter package to share data and invite contacts using SMS or email to the @platform.',
+    'A Flutter package to share data and invite contacts using SMS or email to the atPlatform.',
   ],
   [
     'at_theme_flutter',
@@ -55,7 +55,7 @@ const List<List<String>> flutterPackages = [
   ],
 ];
 
-/// All utility based @platform packages
+/// All utility based atPlatform packages
 /// May be included and used in an app
 const List<List<String>> utilPackages = [
   [
@@ -72,7 +72,7 @@ const List<List<String>> utilPackages = [
   ],
   [
     'at_demo_data',
-    'A library that provides demo data when using the @platform virtual environment',
+    'A library that provides demo data when using the atPlatform virtual environment',
   ],
   [
     atAppName,
@@ -84,11 +84,11 @@ const List<List<String>> utilPackages = [
   ],
   [
     'at_contact',
-    'at_contact library persists contacts across different @platform applications.',
+    'at_contact library persists contacts across different atPlatform applications.',
   ],
 ];
 
-/// All core @platform packages
+/// All core atPlatform packages
 /// Not designed to be used directly in an app
 const List<List<String>> corePackages = [
   [
