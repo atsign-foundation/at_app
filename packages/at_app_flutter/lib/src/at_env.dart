@@ -5,8 +5,8 @@ import 'package:flutter_dotenv/flutter_dotenv.dart' show dotenv, DotEnv;
 import 'package:flutter_dotenv/src/errors.dart' show EmptyEnvFileError, FileNotFoundError, NotInitializedError;
 import 'package:meta/meta.dart';
 
-const String apiKeyWarning = '''\x1B[33mWARNING: API_KEY is not set in .env file
-Make sure to set the API_KEY before releasing to production.\x1B[0m''';
+const String apiKeyWarning =
+    'WARNING: API_KEY is not set in .env file\nMake sure to set the API_KEY before releasing to production.';
 
 AtSignLogger _logger = AtSignLogger('AtEnv');
 
@@ -55,7 +55,7 @@ class AtEnv {
   /// otherwise the free @sign generator will not work.
   static RootEnvironment get rootEnvironment {
     if (appApiKey == null) {
-      print(apiKeyWarning);
+      _logger.warning(apiKeyWarning);
       return RootEnvironment.Staging;
     }
     return RootEnvironment.Production;
