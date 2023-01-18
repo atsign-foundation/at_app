@@ -1,3 +1,7 @@
+## 4.5.1
+
+- **Chore**: Pin `at_app_create` to version `0.3.0`.
+
 ## 4.5.0
 
 - **Chore**: Use `lints: >=1.0.0 <3.0.0` in dev_dependencies.

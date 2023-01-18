@@ -1,3 +1,7 @@
+## 0.3.0
+
+- **Fix**: Fixed an issue with the template that caused the minIosVersion to be hardcoded to 9.0. (now defaults to 14.0)
+
 ## 0.2.0
 
   - **Chore**: Updated the kotlin and gradle version to 1.7.10 and 7.5 respectively.
