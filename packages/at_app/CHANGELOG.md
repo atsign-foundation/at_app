@@ -1,5 +1,6 @@
 ## 4.5.1
 
+- **Chore**: Pin `at_app_create` to version `0.3.0`.
 - **Chore**: Update atPlatform branding to `at` instead of `@`.
 
 ## 4.5.0

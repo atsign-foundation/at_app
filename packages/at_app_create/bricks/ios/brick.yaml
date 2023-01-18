@@ -20,4 +20,4 @@ vars:
   minIosVersion:
     type: string
     description: The minimum supported IOS version.
-    default: '13.0'
+    default: '14.0'

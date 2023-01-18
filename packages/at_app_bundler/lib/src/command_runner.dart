@@ -11,7 +11,7 @@ class AtTemplateCommandRunner extends CommandRunner<int> {
 
   @override
   Future<int> run(Iterable<String> args) async {
-    final _argResults = parse(args);
-    return await runCommand(_argResults) ?? 0;
+    final argResults = parse(args);
+    return await runCommand(argResults) ?? 0;
   }
 }
