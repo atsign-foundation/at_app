@@ -7,18 +7,18 @@ The following provides a full guide on the various ways to use at_app.
   - [Table of Contents](#table-of-contents)
   - [Installing and Updating](#installing-and-updating)
   - [Windows Users](#windows-users)
-  - [Creating an @platform app](#creating-an-platform-app)
+  - [Creating an atPlatform app](#creating-an-platform-app)
     - [Explore and use other templates](#explore-and-use-other-templates)
     - [Explore and try a package sample](#explore-and-try-a-package-sample)
     - [Explore and try a demo app](#explore-and-try-a-demo-app)
     - [App Configuration](#app-configuration)
-      - [@platform Configuration](#platform-configuration)
+      - [atPlatform Configuration](#platform-configuration)
         - [namespace](#namespace)
         - [root-domain](#root-domain)
         - [api-key](#api-key)
       - [Flutter Configuration](#flutter-configuration)
-  - [Working with @platform Packages](#working-with-platform-packages)
-    - [Discovering @platform Packages](#discovering-platform-packages)
+  - [Working with atPlatform Packages](#working-with-platform-packages)
+    - [Discovering atPlatform Packages](#discovering-platform-packages)
     - [Adding packages](#adding-packages)
 
 ## Installing and Updating
@@ -43,9 +43,9 @@ Pub binaries are activated as batch files on Windows.
 
 If you are a Windows user, replace `at_app` with `at_app.bat` in the following commands.
 
-## Creating an @platform app
+## Creating an atPlatform app
 
-The default template generates a starter @platform application.  
+The default template generates a starter atPlatform application.  
 The basic command syntax is identical to `flutter create`:
 
 ```sh
@@ -118,9 +118,9 @@ at_app create -d <demo-name> <path/to/output/directory>
 
 Just like `flutter create`, at_app also ships with a number of commands to
 configure your application to suit your needs. Some of these options are
-inherited from flutter create, and others are specific to @platform apps.
+inherited from flutter create, and others are specific to atPlatform apps.
 
-#### @platform Configuration
+#### atPlatform Configuration
 
 | Option        | Shorthand | Description                                             | Value        |
 | ------------- | --------- | ------------------------------------------------------- | ------------ |
@@ -132,7 +132,7 @@ These arguments are loaded into a .env file in the application and read into the
 
 ##### namespace
 
-In short, the namespace is what distinguishes the data stored by your app from other apps on the @platform.
+In short, the namespace is what distinguishes the data stored by your app from other apps on the atPlatform.
 To ensure that you are not colliding with other namespaces, the best practice is to use an atsign that you own.
 By convention, if you own the atsign, then you also own the namespace. <!--- TODO add "learn more" link to atsign.dev page -->
 
@@ -155,7 +155,7 @@ The production environment allows you to test your app, using regular atsigns.
 It is recommended to get and activate some free atsigns for testing purposes.
 
 The alternative option available is ve, which stands for virtual environment.
-The virtual environment is a self-contained docker development environment for developing on the @platform.
+The virtual environment is a self-contained docker development environment for developing on the atPlatform.
 While ve is still available, using prod is preferred.
 
 No additional options are required if you want to use production, however, if you want to use ve:
@@ -190,13 +190,13 @@ at_app create -k <api-key> <path/to/output/directory>
 
 These are all the same as `flutter create` with one minor exception:
 
-Since the @platform is currently not supported on web, that option has been disabled in `--platforms`
+Since the atPlatform is currently not supported on web, that option has been disabled in `--platforms`
 
-## Working with @platform Packages
+## Working with atPlatform Packages
 
-The packages command serves as an easy way to discover @platform packages that you may want to use in your new application.
+The packages command serves as an easy way to discover atPlatform packages that you may want to use in your new application.
 
-### Discovering @platform Packages
+### Discovering atPlatform Packages
 
 The packages have been sorted into three categories so you can filter and list based on your needs:
 - Flutter packages
