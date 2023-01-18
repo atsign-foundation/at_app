@@ -27,8 +27,8 @@ class AtCommandRunner extends CommandRunner<CommandStatus> {
   @override
   Future<CommandStatus> run(Iterable<String> args) async {
     try {
-      final _argResults = parse(args);
-      return await runCommand(_argResults) ?? CommandStatus.success;
+      final argResults = parse(args);
+      return await runCommand(argResults) ?? CommandStatus.success;
     } on FormatException catch (e, stackTrace) {
       _logger.e(e.message, e, stackTrace);
       _logger.i(usage);
