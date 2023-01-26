@@ -5,7 +5,7 @@ environment:
 
 dependencies:
   at_app_flutter: ^5.0.1
-  at_onboarding_flutter: ^5.0.3
+  at_onboarding_flutter: ^6.0.1
   cupertino_icons: ^1.0.5
   flutter_colorpicker: ^1.0.3
   at_sync_ui_flutter: ^1.0.6
