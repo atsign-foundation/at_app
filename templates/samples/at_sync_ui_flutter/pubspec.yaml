@@ -1,7 +1,7 @@
 name: at_sync_ui_flutter_template
 publish_to: none
 environment:
-  sdk: '>=2.12.0 <3.0.0'
+  sdk: '>=2.12.0 <4.0.0'
 
 dependencies:
   at_app_flutter: ^5.0.1

@@ -1,7 +1,7 @@
 name: at_location_flutter_template
 publish_to: none
 environment:
-  sdk: '>=2.12.0 <3.0.0'
+  sdk: '>=2.12.0 <4.0.0'
 
 dependencies:
   cupertino_icons: ^1.0.5
