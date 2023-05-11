@@ -117,10 +117,10 @@ packages:
     dependency: "direct main"
     description:
       name: mason
-      sha256: "26c5ec7758591827d1dac46a756bbe2f64c017c3a8035f588919d311ab6f36b3"
+      sha256: c6c25b83c61c628fc9946be39f01291808342d8e8df75c61fc7b6a671bd0a8f8
       url: "https://pub.dev"
     source: hosted
-    version: "0.1.0-dev.8"
+    version: "0.1.0-dev.49"
   mason_api:
     dependency: transitive
     description:
@@ -141,10 +141,10 @@ packages:
     dependency: transitive
     description:
       name: mason_logger
-      sha256: f307bade8d2557a11e4e3d6a218093454038d877e5f72a60482c9bb5fe7a9bac
+      sha256: ca34d14e998cd7a7738e7320b102aa45fb363aa49a290084b211ababf75bb7ee
       url: "https://pub.dev"
     source: hosted
-    version: "0.1.4"
+    version: "0.2.5"
   meta:
     dependency: transitive
     description:
@@ -185,6 +185,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.6.2"
+  pool:
+    dependency: transitive
+    description:
+      name: pool
+      sha256: "20fe868b6314b322ea036ba325e6fc0711a22948856475e2c2b6306e8ab39c2a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.5.1"
   process:
     dependency: transitive
     description:
@@ -225,6 +233,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.9.1"
+  stack_trace:
+    dependency: transitive
+    description:
+      name: stack_trace
+      sha256: c3c7d8edb15bee7f0f74debd4b9c5f3c2ea86766fe4178eb2a18eb30a0bdaed5
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.11.0"
   string_scanner:
     dependency: transitive
     description:
