@@ -2,6 +2,9 @@
 .dart_tool/
 .packages
 
+# only the root lock file is ignored here
+/pubspec.lock
+
 # Conventional directory for build outputs.
 build/
 
