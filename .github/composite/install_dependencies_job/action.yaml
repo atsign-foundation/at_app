@@ -5,11 +5,11 @@ runs:
   using: composite
   steps:
     - name: Install melos
-      run: dart pub global activate melos
+      run: dart pub get
       shell: bash
 
     - name: Bootstrap project with melos
-      run: dart pub global run melos bootstrap
+      run: dart run melos bootstrap
       shell: bash
 
     - name: Install build_runner
