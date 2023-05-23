@@ -2,7 +2,7 @@
 
 if [ -n "$GITHUB_ACTION" ];
 then
-  MELOS_ROOT_PATH="$GITHUB_WORKSPACE"
+  exit 1
 fi
 
 MAIN_FILE="$MELOS_ROOT_PATH/packages/at_app/bin/at_app.dart"

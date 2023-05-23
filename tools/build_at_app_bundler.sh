@@ -2,7 +2,7 @@
 
 if [ -n "$GITHUB_ACTION" ];
 then
-  MELOS_ROOT_PATH="$GITHUB_WORKSPACE"
+  exit 1
 fi
 
 BUNDLER_PATH="$MELOS_ROOT_PATH/packages/at_app_bundler"
