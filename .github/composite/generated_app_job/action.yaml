@@ -13,10 +13,10 @@ runs:
   using: composite
   steps:
     - name: Build generated app
-      run: |
-        chmod +x ./tools/build_generated.sh
-        ./tools/build_generated.sh ${{inputs.type}} ${{inputs.name}}
-      shell: bash
+      uses: ./.github/composite/build_generated
+      with:
+        type: ${{inputs.type}}
+        name: ${{inputs.name}}
 
     - name: Analyze generated app
       working-directory: ./build/${{inputs.type}}/${{inputs.name}}
