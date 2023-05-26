@@ -2,7 +2,7 @@ name: build_generated_job
 description: Build generated
 
 inputs:
-  demo_name:
+  name:
     required: false
     description: Name of the demo template (empty for default template)
 

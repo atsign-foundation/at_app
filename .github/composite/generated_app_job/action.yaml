@@ -2,7 +2,7 @@ name: generated_app_job
 description: Build and analyze a generated app
 
 inputs:
-  demo_name:
+  name:
     required: false
     description: Name of the demo template (empty for default template)
 
