@@ -37,55 +37,6 @@ updates:
     schedule:
       interval: "daily"
   - package-ecosystem: "pub"
-    directory: "/templates/samples/at_backupkey_flutter"
-    schedule:
-      interval: "daily"
-  - package-ecosystem: "pub"
-    directory: "/templates/samples/at_chat_flutter"
-    schedule:
-      interval: "daily"
-  - package-ecosystem: "pub"
-    directory: "/templates/samples/at_contacts_flutter"
-    schedule:
-      interval: "daily"
-  - package-ecosystem: "pub"
-    directory: "/templates/samples/at_contacts_group_flutter"
-    schedule:
-      interval: "daily"
-  - package-ecosystem: "pub"
-    directory: "/templates/samples/at_events_flutter"
-    schedule:
-      interval: "daily"
-  - package-ecosystem: "pub"
-    directory: "/templates/samples/at_follows_flutter"
-    schedule:
-      interval: "daily"
-  - package-ecosystem: "pub"
-    directory: "/templates/samples/at_invitation_flutter"
-    schedule:
-      interval: "daily"
-  - package-ecosystem: "pub"
-    directory: "/templates/samples/at_location_flutter"
-    schedule:
-      interval: "daily"
-  - package-ecosystem: "pub"
-    directory: "/templates/samples/at_notify_flutter"
-    schedule:
-      interval: "daily"
-  - package-ecosystem: "pub"
-    directory: "/templates/samples/at_onboarding_flutter"
-    schedule:
-      interval: "daily"
-  - package-ecosystem: "pub"
-    directory: "/templates/samples/at_sync_ui_flutter"
-    schedule:
-      interval: "daily"
-  - package-ecosystem: "pub"
-    directory: "/templates/samples/at_theme_flutter"
-    schedule:
-      interval: "daily"
-  - package-ecosystem: "pub"
     directory: "/templates/templates/app"
     schedule:
       interval: "daily"
-

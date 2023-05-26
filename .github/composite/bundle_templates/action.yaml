@@ -20,7 +20,7 @@ runs:
         touch "$BUNDLE_FILE"
 
         # Iterate over each type of templates
-        for TEMPLATE_TYPE_BASE in demos samples templates;
+        for TEMPLATE_TYPE_BASE in demos templates;
           do
 
           # Get the path for the template type
