@@ -25,5 +25,5 @@ runs:
         else
           dart run "$MAIN_FILE" create --demo "$NAME" --overwrite --no-pub --project-name "${NAME}_test_app" "$OUTPUT_PATH/$NAME"
         fi
-        echo -e "dependency_overrides:\n  at_app_flutter:\n    path: ../../../packages/at_app_flutter" >> "$OUTPUT_PATH/$NAME/pubspec.yaml"
+        echo -e "dependency_overrides:\n  at_app_flutter:\n    path: ../../packages/at_app_flutter" >> "$OUTPUT_PATH/$NAME/pubspec.yaml"
         dart pub get --directory="$OUTPUT_PATH/$NAME"
