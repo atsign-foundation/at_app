@@ -2,12 +2,9 @@ name: generated_app_job
 description: Build and analyze a generated app
 
 inputs:
-  type:
-    required: true
-    description: Can be one of "template" "sample" "demo"
-  name:
-    required: true
-    description: Name of the template
+  demo_name:
+    required: false
+    description: Name of the demo template (empty for default template)
 
 runs:
   using: composite
@@ -15,10 +12,9 @@ runs:
     - name: Build generated app
       uses: ./.github/composite/build_generated
       with:
-        type: ${{inputs.type}}
         name: ${{inputs.name}}
 
     - name: Analyze generated app
-      working-directory: ./build/${{inputs.type}}/${{inputs.name}}
+      working-directory: ./build/${{inputs.name || 'app'}}
       run: dart analyze
       shell: bash
