@@ -38,6 +38,7 @@ class _MyAppState extends State<MyApp> {
   Future<AtClientPreference> futurePreference = loadAtClientPreference();
   AtClientPreference? atClientPreference;
 
+  // ignore: unused_field
   final AtSignLogger _logger = AtSignLogger(AtEnv.appNamespace);
 
   @override
@@ -98,12 +99,9 @@ class _HomeScreenState extends State<HomeScreen> {
   Snack lastsnack = Snack(snack: 'none');
   @override
   Widget build(BuildContext context) {
-    /// Get the AtClientManager instance
-    var atClientManager = AtClientManager.getInstance();
+    AtClient atClient = AtClientManager.getInstance().atClient;
     String? currentAtsign;
-    late AtClient atClient;
 
-    atClient = atClientManager.atClient;
     currentAtsign = atClient.getCurrentAtSign();
     return Scaffold(
       appBar: AppBar(
@@ -113,8 +111,6 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           children: [
             const Text('Successfully onboarded and navigated to FirstAppScreen'),
-
-            /// Use the AtClientManager instance to get the current atsign
             Text('Current @sign: $currentAtsign'),
             const Spacer(flex: 1),
             const Text('Send yourself a snackbar'),
@@ -135,8 +131,7 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 void sendAtsignData(context, Snack lastsnack) async {
-  /// Get the AtClientManager instance
-  var atClientManager = AtClientManager.getInstance();
+  AtClient atClient = AtClientManager.getInstance().atClient;
 
   Future<AtClientPreference> futurePreference = loadAtClientPreference();
 
@@ -157,9 +152,7 @@ void sendAtsignData(context, Snack lastsnack) async {
     ' KitKat Bar',
   ];
   String? currentAtsign;
-  late AtClient atClient;
-  atClient = atClientManager.atClient;
-  atClientManager.atClient.setPreferences(preference);
+  atClient.setPreferences(preference);
   currentAtsign = atClient.getCurrentAtSign();
 
   var metaData = Metadata()
