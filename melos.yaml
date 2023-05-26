@@ -3,11 +3,10 @@ repository: https://github.com/atsign-foundation/at_app
 
 packages:
   # Published packages
-  - packages/*/*
+  - packages/*
   # App Templates
-  - templates/demos/*/*
-  - templates/samples/*/*
-  - templates/templates/*/*
+  - templates/demos/*
+  - templates/templates/*
 
 scripts:
   build: sh tools/build_local.sh
