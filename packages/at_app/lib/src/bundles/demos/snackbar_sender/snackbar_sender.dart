@@ -11,7 +11,7 @@ class SnackbarSenderTemplateBundle extends AtTemplateBundle<AtTemplateVars> {
 final AtTemplateVars _vars = AtTemplateVars(
   includeBundles: {'snackbar_sender'},
   dependencies: [
-    "at_client_mobile: ^3.2.6",
+    "at_client_mobile: ^3.2.9",
     "at_utils: ^3.0.11",
     "path_provider: ^2.0.11",
     "flutter_dotenv: ^5.0.2",

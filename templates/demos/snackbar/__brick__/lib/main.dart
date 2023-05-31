@@ -38,6 +38,8 @@ class _MyAppState extends State<MyApp> {
   Future<AtClientPreference> futurePreference = loadAtClientPreference();
   AtClientPreference? atClientPreference;
 
+  /// [_logger] is left in place for anyone wishing to extend the example
+  // ignore: unused_field
   final AtSignLogger _logger = AtSignLogger(AtEnv.appNamespace);
 
   @override
@@ -97,18 +99,15 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    /// Get the AtClientManager instance
-    var atClientManager = AtClientManager.getInstance();
     String? currentAtsign;
-    late AtClient atClient;
+    AtClient atClient = AtClientManager.getInstance().atClient;
     final myController = TextEditingController();
 
-    var notificationService = atClientManager.notificationService;
+    var notificationService = atClient.notificationService;
     notificationService.subscribe(regex: AtEnv.appNamespace).listen((notification) {
       getAtsignData(context, notification.key);
     });
 
-    atClient = atClientManager.atClient;
     currentAtsign = atClient.getCurrentAtSign();
     return Scaffold(
       appBar: AppBar(
@@ -142,17 +141,14 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 void getAtsignData(context, String notificationKey) async {
-  /// Get the AtClientManager instance
-  var atClientManager = AtClientManager.getInstance();
+  AtClient atClient = AtClientManager.getInstance().atClient;
 
   Future<AtClientPreference> futurePreference = loadAtClientPreference();
 
   var preference = await futurePreference;
 
   String? currentAtsign;
-  late AtClient atClient;
-  atClient = atClientManager.atClient;
-  atClientManager.atClient.setPreferences(preference);
+  atClient.setPreferences(preference);
   currentAtsign = atClient.getCurrentAtSign();
 
   //Split the notification to get the key and the sharedByAtsign
@@ -183,8 +179,7 @@ void getAtsignData(context, String notificationKey) async {
 }
 
 void sendAtsignData(context, String sendSnackTo) async {
-  /// Get the AtClientManager instance
-  var atClientManager = AtClientManager.getInstance();
+  AtClient atClient = AtClientManager.getInstance().atClient;
 
   Future<AtClientPreference> futurePreference = loadAtClientPreference();
 
@@ -207,9 +202,8 @@ void sendAtsignData(context, String sendSnackTo) async {
 
   String snack = snacks[Random().nextInt(snacks.length)];
   String? currentAtsign;
-  late AtClient atClient;
-  atClient = atClientManager.atClient;
-  atClientManager.atClient.setPreferences(preference);
+
+  atClient.setPreferences(preference);
   currentAtsign = atClient.getCurrentAtSign();
 
   var metaData = Metadata()
@@ -226,7 +220,7 @@ void sendAtsignData(context, String sendSnackTo) async {
 
   // The magic line to send the snack
   await atClient.put(key, snack);
-  atClientManager.syncService.sync;
+  atClient.syncService.sync();
 
   popSnackBar(context, 'You just sent. A$snack, to $sendSnackTo');
 }

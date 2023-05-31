@@ -1,4 +1,9 @@
 ## 5.1.1
+
+- **Chore**: Update to support Dart-3
+
+## 5.1.1
+
 - **Chore**: Updated at_onboarding_flutter dependency constraint to support major versions 4 to 6.
 
 ## 5.1.0

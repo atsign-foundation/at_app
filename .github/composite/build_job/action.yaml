@@ -1,30 +1,18 @@
 name: build_job
-description: Build at_app repo - make sure to run setup_repo first
+description: Build at_app repo
 
 runs:
   using: composite
 
   steps:
     - name: Build at_app_bundler
-      shell: bash
-      run: |
-        chmod +x ./tools/build_at_app_bundler.sh
-        ./tools/build_at_app_bundler.sh --no-analyze
+      uses: ./.github/composite/build_at_app_bundler
 
     - name: Build at_app_create
-      shell: bash
-      run: |
-        chmod +x ./tools/build_at_app_create.sh
-        ./tools/build_at_app_create.sh --no-analyze
+      uses: ./.github/composite/build_at_app_create
 
     - name: Bundle templates into at_app
-      shell: bash
-      run: |
-        chmod +x ./tools/bundle_templates.sh
-        ./tools/bundle_templates.sh --no-analyze
+      uses: ./.github/composite/bundle_templates
 
     - name: Build at_app
-      shell: bash
-      run: |
-        chmod +x ./tools/build_at_app.sh
-        ./tools/build_at_app.sh --no-analyze
+      uses: ./.github/composite/build_at_app

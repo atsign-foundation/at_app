@@ -1,4 +1,3 @@
-import 'package:args/command_runner.dart';
 import 'package:at_app/src/services/env_manager.dart';
 import 'package:at_app/src/services/template_service.dart';
 import 'package:at_app/src/util/root_domain.dart';
@@ -56,31 +55,6 @@ class CreateCommand extends AtCreateCommand<CommandStatus> {
       valueHelp: 'api-key',
     );
     argParser.addOption(
-      'template',
-      abbr: 't',
-      help: 'The app template to generate.',
-      allowed: TemplateService.templateNames.keys,
-      defaultsTo: defaultTemplateName,
-      valueHelp: 'template-name',
-      hide: true,
-    );
-    argParser.addFlag(
-      'list-templates',
-      hide: true,
-    );
-    argParser.addOption(
-      'sample',
-      abbr: 's',
-      help: 'The package sample to generate.',
-      allowed: TemplateService.sampleNames.keys,
-      valueHelp: 'sample-name',
-      hide: true,
-    );
-    argParser.addFlag(
-      'list-samples',
-      hide: true,
-    );
-    argParser.addOption(
       'demo',
       abbr: 'd',
       help: 'The demo app to generate.',
@@ -102,14 +76,6 @@ class CreateCommand extends AtCreateCommand<CommandStatus> {
 
   @override
   Future<CommandStatus> run() async {
-    if (argResults!.wasParsed('list-templates')) {
-      return _listOptions(TemplateService.templateNames, 'TEMPLATE');
-    }
-
-    if (argResults!.wasParsed('list-samples')) {
-      return _listOptions(TemplateService.sampleNames, 'SAMPLE');
-    }
-
     if (argResults!.wasParsed('list-demos')) {
       return _listOptions(TemplateService.demoNames, 'DEMO');
     }
@@ -196,32 +162,13 @@ Happy coding!
   }
 
   AtAppTemplate _parseTemplate() {
-    bool templateParsed = argResults!.wasParsed('template');
-    bool sampleParsed = argResults!.wasParsed('sample');
     bool demoParsed = argResults!.wasParsed('demo');
-
-    int parseCount = 0;
-    for (bool wasParsed in [templateParsed, sampleParsed, demoParsed]) {
-      if (wasParsed) parseCount++;
-    }
-
-    if (parseCount > 1) {
-      throw UsageException('Only specify one of the following: [template, sample, demo]', '');
-    }
-
-    if (templateParsed) {
-      return TemplateService.getTemplate(stringArg('template') ?? 'app')!;
-    }
-
-    if (sampleParsed) {
-      return TemplateService.getSample(stringArg('sample')!)!;
-    }
 
     if (demoParsed) {
       return TemplateService.getDemo(stringArg('demo')!)!;
     }
 
-    return TemplateService.getTemplate(defaultTemplateName)!;
+    return TemplateService.getTemplate();
   }
 
   AtTemplateVars _parseVars(AtAppTemplate template) {

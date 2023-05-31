@@ -1,0 +1,16 @@
+name: build_at_app_job
+description: Build at_app
+
+runs:
+  using: composite
+
+  steps:
+    - name: Build at_app
+      shell: bash
+      run: |
+        cd "$GITHUB_WORKSPACE/packages/at_app" || exit 1
+        dart run build_runner build --delete-conflicting-outputs
+        cd "$GITHUB_WORKSPACE" || exit 1
+
+        # Dart Format
+        dart format -l 120 "$GITHUB_WORKSPACE/packages/at_app";

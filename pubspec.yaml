@@ -1,0 +1,8 @@
+name: at_app_workspace
+
+environment:
+  sdk: ">=2.19.0 <4.0.0"
+
+dev_dependencies:
+  melos: ^3.0.1
+  mason_cli: 0.1.0-dev.49

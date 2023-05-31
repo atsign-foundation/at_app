@@ -1,3 +1,12 @@
+## 5.0.0
+- **BREAKING CHANGE**: Removed all sample applications and the following options:
+  - `--sample`/`-s`
+  - `--template`/`-t` (The only template is still the default option with the `create` command)
+  - `--list-samples`
+  - `--list-templates`
+- **Chore**: Update to support Dart 3.
+- **Chore**: Pin `at_app_create` to version `0.4.0`.
+
 ## 4.5.1
 
 - **Chore**: Pin `at_app_create` to version `0.3.0`.

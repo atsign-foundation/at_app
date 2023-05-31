@@ -1,0 +1,29 @@
+name: build_generated_job
+description: Build generated
+
+inputs:
+  name:
+    required: false
+    description: Name of the demo template (empty for default template)
+
+runs:
+  using: composite
+
+  steps:
+    - name: Build generated
+      shell: bash
+      env:
+        NAME: ${{inputs.name}}
+      run: |
+        MAIN_FILE="$GITHUB_WORKSPACE/packages/at_app/bin/at_app.dart"
+        OUTPUT_PATH="$GITHUB_WORKSPACE/build"
+
+        echo "BUILDING $NAME"
+        if [ -z "$NAME" ]; then
+          NAME="app"
+          dart run "$MAIN_FILE" create --overwrite --no-pub --project-name "${NAME}_test_app" "$OUTPUT_PATH/$NAME"
+        else
+          dart run "$MAIN_FILE" create --demo "$NAME" --overwrite --no-pub --project-name "${NAME}_test_app" "$OUTPUT_PATH/$NAME"
+        fi
+        echo -e "dependency_overrides:\n  at_app_flutter:\n    path: ../../packages/at_app_flutter" >> "$OUTPUT_PATH/$NAME/pubspec.yaml"
+        dart pub get --directory="$OUTPUT_PATH/$NAME"

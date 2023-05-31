@@ -11,38 +11,10 @@ void runTest(String name, AtAppTemplate? Function(String) getter) {
 
 void main() {
   group('Template Functions', () {
-    AtAppTemplate? Function(String) getter = TemplateService.getTemplate;
-
-    test('templateNames', () {
-      Map<String, String> names = TemplateService.templateNames;
-      expect(names.length, templates.length);
-      expect(names.keys, templates.map((e) => e.name));
+    test('getTemplate app', () {
+      AtAppTemplate template = TemplateService.getTemplate();
+      expect(template, mainTemplate);
     });
-
-    test('getTemplate non-existent', () {
-      AtAppTemplate? template = TemplateService.getTemplate('');
-      expect(template, null);
-    });
-
-    test('getTemplate app', () => runTest('app', getter));
-  });
-
-  group('Sample Functions', () {
-    AtAppTemplate? Function(String) getter = TemplateService.getSample;
-
-    test('sampleNames', () {
-      Map<String, String> names = TemplateService.sampleNames;
-      expect(names.length, samples.length);
-      expect(names.keys, samples.map((e) => e.name));
-    });
-
-    test('getSample non-existent', () {
-      AtAppTemplate? template = TemplateService.getSample('');
-      expect(template, null);
-    });
-
-    test('getSample at_contacts_flutter', () => runTest('at_contacts_flutter', getter));
-    test('getSample at_onboarding_flutter', () => runTest('at_onboarding_flutter', getter));
   });
 
   group('Demo Functions', () {

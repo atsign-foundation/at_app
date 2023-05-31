@@ -1,3 +1,7 @@
+## 0.4.0
+
+- **Chore**: Updated to support Dart 3
+
 ## 0.3.0
 
 - **Fix**: Fixed an issue with the template that caused the minIosVersion to be hardcoded to 9.0. (now defaults to 14.0)

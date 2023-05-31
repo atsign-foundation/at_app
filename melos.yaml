@@ -3,19 +3,7 @@ repository: https://github.com/atsign-foundation/at_app
 
 packages:
   # Published packages
-  - packages/*/*
+  - packages/*
   # App Templates
-  - templates/demos/*/*
-  - templates/samples/*/*
-  - templates/templates/*/*
-
-scripts:
-  build: sh tools/build_local.sh
-  build:generated: sh tools/build_generated.sh
-  templates: melos exec --ignore="*at_app*"
-
-  # Debugging Scripts:
-  build:at_app: sh tools/build_at_app.sh
-  build:at_app_create: sh tools/build_at_app_create.sh
-  build:at_app_bundler: sh tools/build_at_app_bundler.sh
-  bundle:templates: sh tools/bundle_templates.sh
+  - templates/demos/*
+  - templates/templates/*

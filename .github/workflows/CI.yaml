@@ -8,8 +8,8 @@ on:
     branches:
       - trunk
 
-permissions:  # added using https://github.com/step-security/secure-workflows
-  contents: write  # required for stefanzweifel/git-auto-commit-action
+permissions: # added using https://github.com/step-security/secure-workflows
+  contents: write # required for stefanzweifel/git-auto-commit-action
 
 jobs:
   build:
@@ -23,7 +23,7 @@ jobs:
 
       - uses: subosito/flutter-action@dbf1fa04f4d2e52c33185153d06cdb5443aa189d # v2.8.0
         with:
-          channel: 'stable'
+          channel: "stable"
           cache: true
           cache-key: ${{ format('flutter-{0}', github.ref) }}
 
@@ -35,7 +35,7 @@ jobs:
       - uses: stefanzweifel/git-auto-commit-action@3ea6ae190baf489ba007f7c92608f33ce20ef04a # v4.16.0
         id: commit_id
         with:
-          commit_message: 'chore: automated build'
+          commit_message: "chore: automated build"
 
       - run: echo ${{ steps.commit_id.outputs.commit_hash }}
 
@@ -50,11 +50,11 @@ jobs:
 
       - uses: subosito/flutter-action@dbf1fa04f4d2e52c33185153d06cdb5443aa189d # v2.8.0
         with:
-          channel: 'stable'
+          channel: "stable"
           cache: true
           cache-key: ${{ format('flutter-{0}', github.ref) }}
 
-      - run: dart pub global run melos bootstrap
+      - run: dart run melos bootstrap
 
       - name: Dart Analyze
         working-directory: ./packages/at_app_bundler
@@ -75,11 +75,11 @@ jobs:
 
       - uses: subosito/flutter-action@dbf1fa04f4d2e52c33185153d06cdb5443aa189d # v2.8.0
         with:
-          channel: 'stable'
+          channel: "stable"
           cache: true
           cache-key: ${{ format('flutter-{0}', github.ref) }}
 
-      - run: dart pub global run melos bootstrap
+      - run: dart run melos bootstrap
 
       - name: Dart Analyze
         working-directory: ./packages/at_app_create
@@ -96,11 +96,11 @@ jobs:
 
       - uses: subosito/flutter-action@dbf1fa04f4d2e52c33185153d06cdb5443aa189d # v2.8.0
         with:
-          channel: 'stable'
+          channel: "stable"
           cache: true
           cache-key: ${{ format('flutter-{0}', github.ref) }}
 
-      - run: dart pub global run melos bootstrap
+      - run: dart run melos bootstrap
 
       - name: Dart Analyze
         working-directory: ./packages/at_app_flutter
@@ -123,11 +123,11 @@ jobs:
 
       - uses: subosito/flutter-action@dbf1fa04f4d2e52c33185153d06cdb5443aa189d # v2.8.0
         with:
-          channel: 'stable'
+          channel: "stable"
           cache: true
           cache-key: ${{ format('flutter-{0}', github.ref) }}
 
-      - run: dart pub global run melos bootstrap
+      - run: dart run melos bootstrap
 
       - name: Dart Analyze
         working-directory: ./packages/at_app
@@ -138,14 +138,10 @@ jobs:
         run: flutter test --no-pub
 
   # GENERATED APP TESTS
-  generated_template_apps:
+  generated_template_app:
     needs: build
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        name:
-          - app
+
     steps:
       - uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
         with:
@@ -153,53 +149,13 @@ jobs:
 
       - uses: subosito/flutter-action@dbf1fa04f4d2e52c33185153d06cdb5443aa189d # v2.8.0
         with:
-          channel: 'stable'
+          channel: "stable"
           cache: true
           cache-key: ${{ format('flutter-{0}', github.ref) }}
 
-      - run: dart pub global run melos bootstrap
+      - run: dart run melos bootstrap
 
       - uses: ./.github/composite/generated_app_job
-        with:
-          type: template
-          name: ${{ matrix.name }}
-
-  generated_sample_apps:
-    needs: build
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        name:
-          - at_backupkey_flutter
-          - at_chat_flutter
-          - at_contacts_flutter
-          - at_contacts_group_flutter
-          - at_events_flutter
-          # - at_follows_flutter
-          - at_invitation_flutter
-          - at_location_flutter
-          - at_notify_flutter
-          - at_onboarding_flutter
-          - at_sync_ui_flutter
-          - at_theme_flutter
-    steps:
-      - uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
-        with:
-          ref: ${{ needs.build.outputs.commit_ref }}
-
-      - uses: subosito/flutter-action@dbf1fa04f4d2e52c33185153d06cdb5443aa189d # v2.8.0
-        with:
-          channel: 'stable'
-          cache: true
-          cache-key: ${{ format('flutter-{0}', github.ref) }}
-
-      - run: dart pub global run melos bootstrap
-
-      - uses: ./.github/composite/generated_app_job
-        with:
-          type: sample
-          name: ${{ matrix.name }}
 
   generated_demo_apps:
     needs: build
@@ -218,15 +174,14 @@ jobs:
 
       - uses: subosito/flutter-action@dbf1fa04f4d2e52c33185153d06cdb5443aa189d # v2.8.0
         with:
-          channel: 'stable'
+          channel: "stable"
           cache: true
           cache-key: ${{ format('flutter-{0}', github.ref) }}
 
-      - run: dart pub global run melos bootstrap
+      - run: dart run melos bootstrap
 
       - uses: ./.github/composite/generated_app_job
         with:
-          type: demo
           name: ${{ matrix.name }}
 
   dispose:
@@ -239,8 +194,7 @@ jobs:
       - at_app_create
       - at_app_flutter
       - at_app
-      - generated_template_apps
-      - generated_sample_apps
+      - generated_template_app
       - generated_demo_apps
     steps:
       - name: Dispose of temporary branch
