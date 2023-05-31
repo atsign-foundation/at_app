@@ -38,6 +38,7 @@ class _MyAppState extends State<MyApp> {
   Future<AtClientPreference> futurePreference = loadAtClientPreference();
   AtClientPreference? atClientPreference;
 
+  /// [_logger] is left in place for anyone wishing to extend the example
   // ignore: unused_field
   final AtSignLogger _logger = AtSignLogger(AtEnv.appNamespace);
 
