@@ -18,7 +18,7 @@ final AtTemplateVars _vars = AtTemplateVars(
     "at_chat_flutter: ^3.0.6",
     "at_contacts_flutter: ^4.0.7",
     "at_app_flutter: ^5.0.1",
-    "at_onboarding_flutter: ^5.0.3",
+    "at_onboarding_flutter: ^6.1.0",
     "biometric_storage: ^4.1.3"
   ],
   flutterConfig: ["assets:", "  - .env"],
