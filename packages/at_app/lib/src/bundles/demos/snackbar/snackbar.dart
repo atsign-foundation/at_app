@@ -18,7 +18,7 @@ final AtTemplateVars _vars = AtTemplateVars(
     "timer_builder: ^2.0.0",
     "at_app_flutter: ^5.1.1",
     "at_onboarding_flutter: ^6.1.0",
-    "biometric_storage: ^4.1.3"
+    "biometric_storage: ^5.0.0"
   ],
   flutterConfig: ["assets:", "  - .env"],
 );
