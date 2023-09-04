@@ -18,7 +18,7 @@ dependencies:
   at_utils: ^3.0.0
   collection: ^1.16.0
   io: ^1.0.3
-  logger: ^1.0.0
+  logger: ">=1.0.0 <3.0.0"
   path: ^1.8.0
   pub_cache: ^0.3.1
   pub_semver: ^2.0.0
