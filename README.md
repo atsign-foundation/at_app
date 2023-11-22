@@ -5,6 +5,7 @@
 [![gitHub license](https://img.shields.io/badge/license-BSD3-blue.svg)](packages/at_app/LICENSE)
 [![CI](https://github.com/atsign-foundation/at_app/actions/workflows/CI.yaml/badge.svg?branch=trunk)](https://github.com/atsign-foundation/at_app/actions/workflows/CI.yaml)
 [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/atsign-foundation/at_app/badge)](https://api.securityscorecards.dev/projects/github.com/atsign-foundation/at_app)
+[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/8109/badge)](https://www.bestpractices.dev/projects/8109)
 
 at_app is a command-line tool for app developers to quickly generate a starter atPlatform app. at_app was designed to be the atPlatform's version of flutter create, and uses it behind the scenes to help you get started with your app.
 
