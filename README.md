@@ -9,6 +9,12 @@
 
 at_app is a command-line tool for app developers to quickly generate a starter atPlatform app. at_app was designed to be the atPlatform's version of flutter create, and uses it behind the scenes to help you get started with your app.
 
+## End of Life
+
+at_app has been replaced in favor of our tutorial, which relies on Flutter create. This way you no longer have to install any extra tools to build a Flutter app with the atSDK.
+
+See our tutorial [here](https://docs.atsign.com/tutorials/flutter-and-atsdk-app)
+
 ## Packages
 
 ### at_app
